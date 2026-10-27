@@ -717,7 +717,7 @@ function bakePaper(cv: HTMLCanvasElement, W: number, H: number, dpr: number, p: 
     let fs = adv.titleSize * U
     const maxT = colR - colL - 2 * (rbW + 20 * U)
     const meas = (f: number) => {
-        ctx.font = `${f}px ${BLACKLETTER}`
+        ctx.font = `${f}px ${p.mastheadFont || BLACKLETTER}`
         const w = main ? ctx.measureText(main).width : 0
         const l = lead ? f * 0.55 * 0.8 + f * 0.14 : 0
         return { w, l }
@@ -742,11 +742,11 @@ function bakePaper(cv: HTMLCanvasElement, W: number, H: number, dpr: number, p: 
             ctx.save()
             ctx.translate(x0 + fs * 0.55 * 0.8, base + 4 * U)
             ctx.rotate(-Math.PI / 2)
-            ctx.font = `${fs * 0.55}px ${BLACKLETTER}`
+            ctx.font = `${fs * 0.55}px ${p.mastheadFont || BLACKLETTER}`
             ctx.fillText(lead, 0, 0)
             ctx.restore()
         }
-        ctx.font = `${fs}px ${BLACKLETTER}`
+        ctx.font = `${fs}px ${p.mastheadFont || BLACKLETTER}`
         ctx.fillText(main, x0 + mm.l, base)
     }
 
@@ -814,6 +814,7 @@ export interface StillPosterCreamProps {
     paper?: string
     text?: string
     title?: string
+    mastheadFont?: string
     size?: number
     pageScale?: number
     pageAlign?: "top" | "bottom" | "left" | "right" | "center"
@@ -875,6 +876,7 @@ export default function StillPosterCream(props: StillPosterCreamProps) {
         paper = "#F4F2EC",
         background = "#000000",
         title = "The Newyork Times",
+        mastheadFont,
         image = {"alt":"","src":"https://cdn.brandfetch.io/id6O2oGzv-/theme/dark/symbol.svg?c=1dxbfHSJFAPEGdCLU4o5B"},
         tint = true,
         pageScale = 100,
@@ -888,7 +890,7 @@ export default function StillPosterCream(props: StillPosterCreamProps) {
     const rootRef = useRef<HTMLDivElement>(null)
     const canvasRef = useRef<HTMLCanvasElement>(null)
     const propsRef = useRef<any>(null)
-    propsRef.current = { text, size, speed, hold, dryness, ink, paper, background, title, image, tint, pageScale, pageAlign, alignX, alignY, advanced }
+    propsRef.current = { text, size, speed, hold, dryness, ink, paper, background, title, mastheadFont, image, tint, pageScale, pageAlign, alignX, alignY, advanced }
 
     useEffect(() => {
         const root = rootRef.current
@@ -919,15 +921,15 @@ export default function StillPosterCream(props: StillPosterCreamProps) {
             } catch (e) {}
         }
         let link = document.getElementById(FONT_LINK_ID) as HTMLLinkElement | null
-        if (!link) {
+        if (!link && !propsRef.current.mastheadFont) {
             link = document.createElement("link")
             link.id = FONT_LINK_ID
             link.rel = "stylesheet"
             link.href = "https://fonts.googleapis.com/css2?family=UnifrakturMaguntia&display=swap"
             document.head.appendChild(link)
         }
-        link.addEventListener("load", loadFace)
-        loadFace()
+        link?.addEventListener("load", loadFace)
+        if (!propsRef.current.mastheadFont) loadFace()
         try {
             ;(document as any).fonts?.ready?.then(bump)
         } catch (e) {}
@@ -1040,7 +1042,7 @@ export default function StillPosterCream(props: StillPosterCreamProps) {
             const areaTop = Math.max(colTop + 4 * uP, 8 * uS)
             const areaBot = Math.max(areaTop + 40 * uS, Math.min(colBot - 3 * uP, H - 8 * uS))
 
-            const pk = [VW, VH, pdpr, p.paper, p.title, p.tint, adv.margin, adv.mastheadColor, adv.headColor, adv.bodyColor, adv.ruleColor, adv.borderColor, adv.titleSize, adv.bodySize, adv.leading, adv.columnWidth, adv.columnVary, adv.seed, fontVer, imgState.ver].join("|")
+            const pk = [VW, VH, pdpr, p.paper, p.title, p.mastheadFont, p.tint, adv.margin, adv.mastheadColor, adv.headColor, adv.bodyColor, adv.ruleColor, adv.borderColor, adv.titleSize, adv.bodySize, adv.leading, adv.columnWidth, adv.columnVary, adv.seed, fontVer, imgState.ver].join("|")
             if (pk !== paperKey) {
                 bakePaper(paperCv, VW, VH, pdpr, p, adv, logo)
                 paperKey = pk

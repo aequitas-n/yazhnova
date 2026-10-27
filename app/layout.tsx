@@ -1,8 +1,8 @@
 import type { Metadata, Viewport } from "next";
 import "./fonts.css";
 import "./globals.css";
-import "./playground.css";
 import "./site.css";
+import "./cohesion.css";
 import { site } from "@/content/site";
 export const metadata: Metadata = {
   metadataBase: new URL(site.url),

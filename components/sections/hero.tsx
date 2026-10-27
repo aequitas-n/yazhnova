@@ -14,10 +14,11 @@ export function Hero() {
             kind="hero-dither"
             priority
             sizes="100vw"
-            frameSrc="/frames/hero-hands.png"
+            frameSrc="/frames/signal/hero-hands.png"
             className="monochrome"
           />
         </div>
+        <span className="fingertip-signal" aria-hidden="true" />
         <div className="source-rails" aria-hidden="true">
           <GridRails />
         </div>
@@ -60,7 +61,7 @@ export function Hero() {
           {site.hero.index}
         </span>
       </div>
-      <div className="hero-horizon" aria-hidden="true">
+      <div className="hero-horizon signal-rim" aria-hidden="true">
         <LiveVisual kind="horizon" />
       </div>
     </section>

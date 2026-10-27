@@ -1,3 +1,5 @@
+> The latest **From raw stone to signal** brief supersedes the earlier plan below. See [the implemented cohesion pass](cohesion/README.md).
+
 > Production update: the latest user request authorizes using the newly downloaded pieces. See [the scored component review](component-ratings.md) and [current production combinations](production-integration.md). The deferred-slot portions below describe the earlier phase.
 
 # Yazhnova — editorial engineering

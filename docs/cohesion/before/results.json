@@ -1,0 +1,156 @@
+[
+  {
+    "device": "desktop",
+    "section": "hero",
+    "canvases": 2,
+    "height": 995
+  },
+  {
+    "device": "desktop",
+    "section": "manifesto",
+    "canvases": 1,
+    "height": 867.96875
+  },
+  {
+    "device": "desktop",
+    "section": "services",
+    "canvases": 3,
+    "height": 1060.75
+  },
+  {
+    "device": "desktop",
+    "section": "agents",
+    "canvases": 1,
+    "height": 1057.609375
+  },
+  {
+    "device": "desktop",
+    "section": "process",
+    "canvases": 1,
+    "height": 752.125
+  },
+  {
+    "device": "desktop",
+    "section": "technology",
+    "canvases": 1,
+    "height": 295.59375
+  },
+  {
+    "device": "desktop",
+    "section": "work",
+    "canvases": 2,
+    "height": 1126.53125
+  },
+  {
+    "device": "desktop",
+    "section": "engage",
+    "canvases": 0,
+    "height": 920.46875
+  },
+  {
+    "device": "desktop",
+    "section": "proof",
+    "canvases": 0,
+    "height": 629.84375
+  },
+  {
+    "device": "desktop",
+    "section": "faq",
+    "canvases": 0,
+    "height": 624.34375
+  },
+  {
+    "device": "desktop",
+    "section": "cta",
+    "canvases": 1,
+    "height": 632
+  },
+  {
+    "device": "desktop",
+    "section": "footer",
+    "canvases": 2,
+    "height": 620.71875
+  },
+  {
+    "device": "desktop",
+    "section": "contact",
+    "errors": []
+  },
+  {
+    "device": "mobile",
+    "section": "hero",
+    "canvases": 0,
+    "height": 843
+  },
+  {
+    "device": "mobile",
+    "section": "manifesto",
+    "canvases": 0,
+    "height": 651.78125
+  },
+  {
+    "device": "mobile",
+    "section": "services",
+    "canvases": 0,
+    "height": 2189.703125
+  },
+  {
+    "device": "mobile",
+    "section": "agents",
+    "canvases": 0,
+    "height": 1407.53125
+  },
+  {
+    "device": "mobile",
+    "section": "process",
+    "canvases": 0,
+    "height": 938.765625
+  },
+  {
+    "device": "mobile",
+    "section": "technology",
+    "canvases": 0,
+    "height": 294
+  },
+  {
+    "device": "mobile",
+    "section": "work",
+    "canvases": 0,
+    "height": 1024.234375
+  },
+  {
+    "device": "mobile",
+    "section": "engage",
+    "canvases": 0,
+    "height": 1810.515625
+  },
+  {
+    "device": "mobile",
+    "section": "proof",
+    "canvases": 0,
+    "height": 866.703125
+  },
+  {
+    "device": "mobile",
+    "section": "faq",
+    "canvases": 0,
+    "height": 642.1875
+  },
+  {
+    "device": "mobile",
+    "section": "cta",
+    "canvases": 0,
+    "height": 732
+  },
+  {
+    "device": "mobile",
+    "section": "footer",
+    "canvases": 0,
+    "height": 624.015625
+  },
+  {
+    "device": "mobile",
+    "section": "contact",
+    "errors": []
+  }
+]

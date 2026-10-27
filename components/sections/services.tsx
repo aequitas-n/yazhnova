@@ -1,64 +1,102 @@
-import Link from "next/link";
-import { ArrowUpRight, Plus } from "lucide-react";
+"use client";
+import { useRef, useState, type KeyboardEvent } from "react";
+import { ArrowUpRight } from "lucide-react";
 import { site } from "@/content/site";
 import { SectionLabel } from "@/components/ui/section-label";
 import { SectionTitle } from "@/components/ui/section-title";
+import { ProjectLink } from "@/components/ui/project-link";
 import { LiveVisual } from "@/components/visuals/live-visual";
-import { RevealCopy } from "@/components/visuals/native-details";
+
 export function Services() {
+  const [active, setActive] = useState(0);
+  const buttons = useRef<(HTMLButtonElement | null)[]>([]);
+  const selected = site.services.tabs[active];
+  const onKey = (event: KeyboardEvent<HTMLButtonElement>, index: number) => {
+    let next = index;
+    if (["ArrowDown", "ArrowRight"].includes(event.key))
+      next = (index + 1) % site.services.tabs.length;
+    else if (["ArrowUp", "ArrowLeft"].includes(event.key))
+      next = (index - 1 + site.services.tabs.length) % site.services.tabs.length;
+    else if (event.key === "Home") next = 0;
+    else if (event.key === "End") next = site.services.tabs.length - 1;
+    else return;
+    event.preventDefault();
+    setActive(next);
+    buttons.current[next]?.focus();
+  };
   return (
     <section
       id="services"
       className="section services-section ink"
       aria-labelledby="services-title"
     >
-      <div className="container">
-        <div className="heading-row">
-          <div>
-            <SectionLabel number={site.services.number}>{site.services.label}</SectionLabel>
-            <SectionTitle id="services-title">
-              {site.services.title}
-              <br />
-              <em>{site.services.serif}</em>
-            </SectionTitle>
-          </div>
-          <RevealCopy text={site.services.description} />
+      <div className="container heading-row">
+        <div>
+          <SectionLabel number={site.services.number}>{site.services.label}</SectionLabel>
+          <SectionTitle id="services-title">
+            {site.services.title}
+            <br />
+            <em>{site.services.serif}</em>
+          </SectionTitle>
         </div>
-        <div className="service-columns">
-          {site.services.cards.map((service, i) => (
-            <article className="service-column" key={service.title}>
-              <div className="service-index mono">
-                <span>/{service.number}</span>
-                <Link
-                  href={`/contact?service=${encodeURIComponent(service.service)}`}
-                  aria-label={`${site.actions.start}: ${service.title}`}
-                >
-                  <ArrowUpRight size={22} />
-                </Link>
-              </div>
-              <div className={`service-visual service-visual-${i}`}>
-                <LiveVisual kind={service.visual} />
-              </div>
-              <p className="eyebrow">{service.tag}</p>
-              <h3>{service.title}</h3>
-              <p className="service-description">{service.description}</p>
-              <ul>
-                {service.tags.map((tag) => (
-                  <li key={tag}>{tag}</li>
-                ))}
-              </ul>
-            </article>
-          ))}
-        </div>
-        <div className="secondary-services">
-          <span className="eyebrow">{site.services.more}</span>
-          <div>
-            {site.services.secondary.map((label) => (
-              <Link href="/contact" key={label}>
-                <Plus size={13} />
-                {label}
-              </Link>
+        <p className="section-description">{site.services.description}</p>
+      </div>
+      <div className="service-stage">
+        <div className="service-console">
+          <div
+            role="tablist"
+            aria-label={site.services.tabLabel}
+            aria-orientation="vertical"
+            className="service-tabs"
+          >
+            {site.services.tabs.map((tab, index) => (
+              <button
+                key={tab.id}
+                id={"service-tab-" + tab.id}
+                role="tab"
+                aria-selected={active === index}
+                aria-controls="service-panel"
+                tabIndex={active === index ? 0 : -1}
+                ref={(node) => {
+                  buttons.current[index] = node;
+                }}
+                onClick={() => setActive(index)}
+                onKeyDown={(event) => onKey(event, index)}
+              >
+                <span className="mono">0{index + 1}</span>
+                {tab.label}
+                <ArrowUpRight size={18} />
+              </button>
             ))}
+          </div>
+          <div className="service-active-copy">
+            <h3>{selected.title}</h3>
+            <p>{selected.description}</p>
+            <ul>
+              {selected.tags.map((tag) => (
+                <li key={tag}>{tag}</li>
+              ))}
+            </ul>
+            <ProjectLink href={"/contact?service=" + encodeURIComponent(selected.service)}>
+              {site.actions.start}
+            </ProjectLink>
+          </div>
+        </div>
+        <div
+          id="service-panel"
+          role="tabpanel"
+          tabIndex={0}
+          aria-labelledby={"service-tab-" + selected.id}
+          className="service-stage-visual"
+        >
+          <LiveVisual
+            key={selected.id}
+            kind={selected.visual}
+            sizes="(max-width:767px) 100vw, 70vw"
+          />
+          <div className="service-stage-caption mono">
+            <span>{site.services.stageLabel}</span>
+            <span>0{active + 1} / 06</span>
           </div>
         </div>
       </div>

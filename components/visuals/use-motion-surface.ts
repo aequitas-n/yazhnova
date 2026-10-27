@@ -30,6 +30,7 @@ export function useMotionSurface() {
 }
 
 const loaders = {
+  rolling: () => import("@/components/originkit/ui/pricing-04/rolling-letters"),
   chat: () => import("@/components/originkit/ui/live-chat"),
   marquee: () => import("@/components/originkit/ui/curvedmarquee"),
   scramble: () => import("@/components/originkit/ui/scrambletext"),

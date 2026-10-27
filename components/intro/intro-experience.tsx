@@ -101,7 +101,7 @@ export function IntroExperience({ children }: { children: ReactNode }) {
   }, [blocking, finish]);
 
   return (
-    <IntroActiveContext.Provider value={active && phase !== "revealing"}>
+    <IntroActiveContext.Provider value={active}>
       <div className="intro-page" inert={blocking || undefined} aria-hidden={blocking || undefined}>
         {children}
       </div>
@@ -118,7 +118,13 @@ export function IntroExperience({ children }: { children: ReactNode }) {
             {site.intro.title}
           </p>
           <div className="intro-visual-layer">
-            <Image src="/frames/ember.png" alt="" fill sizes="100vw" className="intro-poster" />
+            <Image
+              src="/frames/signal/ember.png"
+              alt=""
+              fill
+              sizes="100vw"
+              className="intro-poster"
+            />
             {phase !== "pending" && (
               <IntroBoundary onError={finish}>
                 <CinematicIntro

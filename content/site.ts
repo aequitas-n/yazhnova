@@ -1,4 +1,5 @@
 export const site = {
+  features: { proof: true, testimonials: false, verifiedStats: false, cursor: false },
   name: "YAZHNOVA",
   url: process.env.NEXT_PUBLIC_SITE_URL || "https://yazhnova.in",
   email: "hello@yazhnova.in",
@@ -47,6 +48,7 @@ export const site = {
     label: "THE WAY WE THINK",
     title: "THE YAZHNOVA DISPATCH",
     brush: "We build\nwhat's next.",
+    signalNote: "FROM RAW POTENTIAL TO REAL POSSIBILITY.",
     heading: "Thought before code.",
     description:
       "Every worthwhile product begins with a better question. We bring design, engineering and practical intelligence into the same conversation — and stay curious until the right answer takes shape.",
@@ -55,6 +57,70 @@ export const site = {
       "The Yazhnova Dispatch. We build what's next. Thoughtful design and purposeful engineering, from idea to impact.",
   },
   services: {
+    tabLabel: "Explore our capabilities",
+    stageLabel: "INTERACTIVE CAPABILITY STUDY",
+    tabs: [
+      {
+        id: "web",
+        label: "Web",
+        title: "Web development",
+        visual: "pixels" as const,
+        description:
+          "Fast, considered websites and applications. A clear interface, engineered down to the last pixel.",
+        tags: ["Websites & web apps", "Commerce", "Custom platforms"],
+        service: "Website or web application",
+      },
+      {
+        id: "saas",
+        label: "SaaS",
+        title: "SaaS products",
+        visual: "liquid" as const,
+        description:
+          "A product that responds as your business evolves. From first release to resilient, multi-tenant platforms.",
+        tags: ["MVP to scale", "Product engineering", "Multi-tenant systems"],
+        service: "SaaS product",
+      },
+      {
+        id: "ai",
+        label: "Agentic AI",
+        title: "Intelligence in action",
+        visual: "glossy" as const,
+        description:
+          "Context becomes understanding. Understanding becomes useful action, with people in control.",
+        tags: ["AI agents & RAG", "Workflow automation", "Tool integrations"],
+        service: "Agentic AI system",
+      },
+      {
+        id: "mobile",
+        label: "Mobile",
+        title: "Made for the everyday",
+        visual: "liquid" as const,
+        description:
+          "Intuitive mobile products that connect people to the work, services and information they need.",
+        tags: ["Cross-platform apps", "Connected experiences", "Product design"],
+        service: "Mobile application",
+      },
+      {
+        id: "cloud",
+        label: "Cloud",
+        title: "Foundations that hold",
+        visual: "network" as const,
+        description:
+          "Connected infrastructure, reliable deployments and the visibility to keep your product moving.",
+        tags: ["Cloud & DevOps", "Infrastructure", "Reliability"],
+        service: "Cloud & DevOps",
+      },
+      {
+        id: "design",
+        label: "UI-UX",
+        title: "Clarity by design",
+        visual: "pixels" as const,
+        description:
+          "We turn complex requirements into interfaces that feel natural, purposeful and unmistakably yours.",
+        tags: ["Research & strategy", "Interface design", "Design systems"],
+        service: "Design & engineering",
+      },
+    ],
     number: "02",
     label: "OUR PRACTICE",
     title: "Good ideas deserve",
@@ -162,7 +228,7 @@ export const site = {
       },
       {
         number: "04",
-        title: "Ship & Scale",
+        title: "Ship",
         detail: "Launch with care, learn from real use and keep improving.",
         output: "RELEASE / MEASURE / EVOLVE",
       },
@@ -192,7 +258,7 @@ export const site = {
     title: "A glimpse of",
     serif: "what's possible.",
     description: "Concept explorations of the kinds of challenges we love to solve.",
-    notice: "CONCEPT WORK / TODO: replace with approved client case studies.",
+    notice: "Independent concept studies. Built to explore what is possible.",
     concept: "CONCEPT EXPLORATION",
     overview: "THE OPPORTUNITY",
     approach: "OUR APPROACH",
@@ -326,19 +392,26 @@ export const site = {
     label: "PARTNERSHIP NOTES",
     title: "Built together.",
     serif: "Built on trust.",
-    notice: "SAMPLE QUOTES / TODO: approved client stories and attribution to follow.",
-    items: [
-      {
-        quote:
-          "They understood the problem before jumping to the solution. That made all the difference.",
-        attribution: "Sample client quote — pending approval",
-      },
-      {
-        quote:
-          "A thoughtful partner from the first conversation to the details of the final release.",
-        attribution: "Sample client quote — pending approval",
-      },
+    notice: "Client perspectives.",
+    items: [] as { quote: string; attribution: string }[],
+  },
+  proof: {
+    number: "07",
+    label: "CAPABILITY, WITHOUT BORDERS",
+    title: "Built to connect.",
+    serif: "Made to go further.",
+    description:
+      "One engineering partner for the interface, the intelligence and the infrastructure behind it.",
+    note: "CONNECTED CAPABILITIES / ENGINEERED END TO END",
+    interaction: "Drag to explore",
+    capabilities: [
+      { label: "Interfaces", detail: "Web and mobile experiences" },
+      { label: "Intelligence", detail: "Agents, retrieval and automation" },
+      { label: "Systems", detail: "SaaS platforms and integrations" },
+      { label: "Operations", detail: "Cloud, delivery and ongoing support" },
     ],
+    stats: [] as { value: string; label: string }[],
+    locations: [] as { lat: number; lng: number }[],
   },
   faq: {
     number: "08",
@@ -384,7 +457,7 @@ export const site = {
     serif: "what's next.",
     description: "Bring the idea. We'll bring the thinking, the craft and the code.",
     action: "Let's build something",
-    alt: "The original EmberHusk fractured 3D object, recolored to matte ink with warm amber seams",
+    alt: "An orange signal tunnel opening into the next chapter",
   },
   footer: {
     label: "GOOD THINGS HAPPEN WHEN WE CONNECT.",
@@ -456,6 +529,7 @@ export const site = {
       "SaaS product",
       "Agentic AI system",
       "Mobile application",
+      "Cloud & DevOps",
       "Design & engineering",
       "Something else",
     ],

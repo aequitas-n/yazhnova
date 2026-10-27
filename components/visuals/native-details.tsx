@@ -81,6 +81,10 @@ export function NativeChat({ run }: { run: number }) {
         <Source
           key={run}
           {...editorialPresets["live-chat"]}
+          sentBubbleColor="#242424"
+          sentTextColor="#F4F2EC"
+          receivedBubbleColor="#141414"
+          receivedTextColor="#F4F2EC"
           messages={site.agents.demo.messages}
           font={{ fontFamily: "Inter Tight", fontSize: 14, lineHeight: "1.45em" }}
           staggerDelay={500}
@@ -125,7 +129,7 @@ export function NativeMarquee() {
             draggable={false}
             font={{
               fontFamily: "Geist Mono",
-              fontSize: 34,
+              fontSize: 44,
               fontWeight: 400,
               letterSpacing: "-0.02em",
             }}
@@ -161,6 +165,41 @@ export function ProjectSpotlight({ src, alt }: { src: string; alt: string }) {
           />
         </div>
       )}
+    </div>
+  );
+}
+
+export function RollingHeading({ text }: { text: string }) {
+  const { ref, live } = useMotionSurface();
+  const Source = useNativeSource("rolling", live);
+  return (
+    <div ref={ref} className="native-heading">
+      <h3 className="engagement-title native-copy">
+        <span className={Source ? "copy-underlay" : undefined}>{text}</span>
+        {Source && (
+          <span className="native-copy-overlay" aria-hidden="true">
+            <Source
+              text={text}
+              tag="span"
+              color="#F4F2EC"
+              font={{
+                fontFamily: "Inter Tight",
+                fontSize: "inherit",
+                fontWeight: 500,
+                lineHeight: "1.2em",
+                letterSpacing: "-0.04em",
+              }}
+              transition={{
+                type: "tween",
+                duration: 0.45,
+                delay: 0,
+                staggerChildren: 0.015,
+                ease: "easeOut",
+              }}
+            />
+          </span>
+        )}
+      </h3>
     </div>
   );
 }

@@ -1,0 +1,92 @@
+[
+  {
+    "kind": "hero-dither",
+    "canvases": 1,
+    "errors": []
+  },
+  {
+    "kind": "pixels",
+    "canvases": 1,
+    "errors": []
+  },
+  {
+    "kind": "liquid",
+    "canvases": 1,
+    "errors": []
+  },
+  {
+    "kind": "glossy",
+    "canvases": 1,
+    "errors": []
+  },
+  {
+    "kind": "network",
+    "canvases": 1,
+    "errors": []
+  },
+  {
+    "kind": "horizon",
+    "canvases": 1,
+    "errors": []
+  },
+  {
+    "kind": "glassbound",
+    "canvases": 1,
+    "errors": []
+  },
+  {
+    "kind": "cables",
+    "canvases": 1,
+    "errors": []
+  },
+  {
+    "kind": "shadow",
+    "canvases": 1,
+    "errors": []
+  },
+  {
+    "kind": "deck",
+    "canvases": 1,
+    "errors": []
+  },
+  {
+    "kind": "globe",
+    "canvases": 1,
+    "errors": []
+  },
+  {
+    "kind": "gate",
+    "canvases": 1,
+    "errors": []
+  },
+  {
+    "kind": "rain",
+    "canvases": 1,
+    "errors": []
+  },
+  {
+    "kind": "ember",
+    "canvases": 1,
+    "errors": []
+  },
+  {
+    "kind": "wordmark",
+    "canvases": 1,
+    "errors": []
+  },
+  {
+    "kind": "manifesto",
+    "canvases": 1,
+    "errors": []
+  },
+  {
+    "kind": "strings",
+    "canvases": 1,
+    "errors": []
+  },
+  {
+    "kind": "ocean",
+    "canvases": 1,
+    "errors": []
+  }
+]

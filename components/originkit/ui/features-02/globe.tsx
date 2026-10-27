@@ -45,10 +45,10 @@ const DEFAULT_MARKER_CONFIG: MarkerConfig = {
 
 let landDataPromise: Promise<any> | null = null;
 
-const getLandData = () => {
+const getLandData = (url?: string) => {
   if (!landDataPromise) {
     landDataPromise = fetch(
-      "https://raw.githubusercontent.com/martynafford/natural-earth-geojson/refs/heads/master/50m/physical/ne_50m_land.json",
+      url || "https://raw.githubusercontent.com/martynafford/natural-earth-geojson/refs/heads/master/50m/physical/ne_50m_land.json",
     )
       .then((response) => {
         if (!response.ok) throw new Error("Failed to load land data");
@@ -208,6 +208,7 @@ interface DotsConfig {
   allDots: boolean;
 }
 interface GlobeProps {
+  landDataUrl?: string;
   speed?: number;
   smoothing?: number;
   dots?: DotsConfig;
@@ -232,6 +233,7 @@ interface GlobeProps {
 }
 
 export default function Globe({
+  landDataUrl,
   speed = 2,
   smoothing = 8,
   dots = DEFAULT_DOTS,
@@ -507,7 +509,7 @@ export default function Globe({
 
     const loadWorldData = async () => {
       try {
-        const landFeatures = await getLandData();
+        const landFeatures = await getLandData(landDataUrl);
 
         while (continentOutlineGroup.children.length > 0) {
           continentOutlineGroup.remove(continentOutlineGroup.children[0]);

@@ -1,6 +1,5 @@
 import Link from "next/link";
 import { ArrowUpRight } from "lucide-react";
-import { GlowBorder } from "@/components/slots/GlowBorder";
 export function ProjectLink({
   children,
   href = "/contact",
@@ -11,11 +10,9 @@ export function ProjectLink({
   paper?: boolean;
 }) {
   return (
-    <GlowBorder>
-      <Link href={href} className={`button ${paper ? "button-paper" : "button-ink"}`}>
-        {children}
-        <ArrowUpRight size={17} />
-      </Link>
-    </GlowBorder>
+    <Link href={href} className={`button ${paper ? "button-paper" : "button-ink"}`}>
+      {children}
+      <ArrowUpRight size={17} />
+    </Link>
   );
 }

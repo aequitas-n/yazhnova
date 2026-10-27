@@ -1,3 +1,5 @@
+> The current cohesion pass supersedes these earlier boundaries. Native border, fluid-field and spark-lattice are inactive; network, ocean, cables, globe and tunnel now serve the story. See [the current report](cohesion/README.md).
+
 # OriginKit integration and slot status
 
 34 of 35 requested sources are downloaded. Every available source has paired playground studies and a score in [component-ratings.md](component-ratings.md). The latest request authorizes integrating the selected components; [production-integration.md](production-integration.md) records the resulting page.

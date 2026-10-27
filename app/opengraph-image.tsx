@@ -12,8 +12,8 @@ export default function Image() {
         display: "flex",
         flexDirection: "column",
         padding: "54px 70px",
-        background: "#F4F2EC",
-        color: "#0A0A0A",
+        background: "#0A0A0A",
+        color: "#F4F2EC",
         fontFamily: "sans-serif",
         position: "relative",
       }}
@@ -25,7 +25,7 @@ export default function Image() {
           top: 0,
           height: 630,
           width: 1,
-          background: "#0A0A0A15",
+          background: "#F4F2EC15",
         }}
       />
       <div
@@ -35,7 +35,7 @@ export default function Image() {
           top: 0,
           height: 630,
           width: 1,
-          background: "#0A0A0A15",
+          background: "#F4F2EC15",
         }}
       />
       <div
@@ -49,10 +49,10 @@ export default function Image() {
         }}
       >
         {site.name}
-        <span style={{ width: 7, height: 7, background: "#FFB45A", marginTop: 12 }} />
+        <span style={{ width: 7, height: 7, background: "#FF3B00", marginTop: 12 }} />
       </div>
       <div
-        style={{ display: "flex", marginTop: 49, fontSize: 11, letterSpacing: 3, color: "#8C8A84" }}
+        style={{ display: "flex", marginTop: 49, fontSize: 11, letterSpacing: 3, color: "#A3A3A3" }}
       >
         {site.hero.label}
       </div>
@@ -66,15 +66,15 @@ export default function Image() {
           marginTop: 26,
         }}
       >
-        Software,
+        {site.hero.lines[0]}
       </div>
       <div
         style={{ display: "flex", fontSize: 96, fontWeight: 500, letterSpacing: -6, lineHeight: 1 }}
       >
-        engineered to think.
+        {site.hero.lines[1]} {site.hero.serif}
       </div>
       <div
-        style={{ display: "flex", fontSize: 17, color: "#8C8A84", marginTop: 26, maxWidth: 750 }}
+        style={{ display: "flex", fontSize: 17, color: "#A3A3A3", marginTop: 26, maxWidth: 750 }}
       >
         {site.description}
       </div>
@@ -83,13 +83,13 @@ export default function Image() {
           display: "flex",
           justifyContent: "space-between",
           fontSize: 11,
-          color: "#8C8A84",
+          color: "#A3A3A3",
           marginTop: "auto",
-          borderTop: "1px solid #0A0A0A25",
+          borderTop: "1px solid #F4F2EC25",
           paddingTop: 18,
         }}
       >
-        <span>YAZHNOVA.IN</span>
+        <span>{site.url.replace("https://", "").toUpperCase()}</span>
         <span>STRATEGY → DESIGN → ENGINEERING</span>
       </div>
     </div>,

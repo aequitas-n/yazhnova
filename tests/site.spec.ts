@@ -34,14 +34,13 @@ test("desktop uses real source canvases and interactive sections work without er
     ["horizon", "webgl"],
     ["manifesto", "2d"],
     ["pixels", "2d"],
-    ["liquid", "2d"],
-    ["glossy", "webgl2"],
     ["glassbound", "webgl2"],
-    ["sparks", "webgl"],
+    ["cables", "webgl"],
     ["strings", "2d"],
     ["shadow", "webgl"],
     ["deck", "webgl"],
-    ["ember", "webgl2"],
+    ["globe", "webgl2"],
+    ["gate", "webgl2"],
     ["rain", "webgl"],
     ["wordmark", "webgl2"],
   ]) {
@@ -80,11 +79,6 @@ test("desktop uses real source canvases and interactive sections work without er
   await expect(page.locator(".agent-copy .line-mask-split")).toHaveCount(1);
   await expect(page.locator(".workflow-status")).toHaveClass(/ready/, { timeout: 7000 });
   await expect(page.locator(".workflow-demo li.complete")).toHaveCount(3);
-  const cta = page.locator(".hero-actions .native-button-border");
-  await cta.hover();
-  await expect(cta.locator(".button-border-source > div")).toHaveCount(1);
-  await page.mouse.move(0, 0);
-  await expect(cta.locator(".button-border-source")).toHaveCount(0);
   const scan = await new AxeBuilder({ page }).withTags(["wcag2a", "wcag2aa", "wcag21aa"]).analyze();
   expect(scan.violations.map((v) => ({ id: v.id, nodes: v.nodes.map((n) => n.target) }))).toEqual(
     [],
@@ -158,7 +152,7 @@ test("form preselection, accessible validation and submission confirmation work"
     if (m.type() === "error") errors.push(m.text());
   });
   await page.goto(`/contact?service=${encodeURIComponent(site.contact.services[2])}`);
-  await expect(page.locator('main [data-visual="fluid"] canvas')).toHaveCount(1, {
+  await expect(page.locator('main [data-visual="ocean"] canvas')).toHaveCount(1, {
     timeout: 20000,
   });
   await expect(page.locator("#service")).toHaveValue(site.contact.services[2]);

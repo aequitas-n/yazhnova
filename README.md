@@ -1,6 +1,6 @@
 # Yazhnova — editorial engineering studio
 
-A complete Next.js 15 App Router site for **yazhnova.in**, built with TypeScript, Tailwind CSS v4, Framer Motion, Three.js and actual installed OriginKit source. shadcn/Radix patterns are limited to navigation, accordion, dialog and form primitives. The palette is ink, warm paper and graphite with a restrained amber accent.
+A complete Next.js 15 App Router site for **yazhnova.in**, built with TypeScript, Tailwind CSS v4, Framer Motion, Three.js and actual installed OriginKit source. shadcn/Radix patterns are limited to navigation, accordion, dialog and form primitives. The palette is ink, warm paper and graphite with a single orange accent.
 
 ## Run
 
@@ -27,6 +27,14 @@ npm start
 
 34 of 35 requested OriginKit sources are downloaded. The latest retry added live-chat, aura-cursor and hairline-loader. Only cloud-sky-03 remains quota-blocked. Review the real sources in the playground and see [download results](docs/downloads.md). Selected pieces now run in the website; see the scored component review for production placements and deliberate exclusions.
 
+## Current concept: From raw stone to signal
+
+The site uses an ink base, signal orange (#FF3B00), two deliberate paper breaths, one tabbed service stage, full-size native scenes and a shared two-WebGL-context budget. Quotes, verified stats and client locations stay empty until real data is supplied; capabilities remain visible. Mobile and reduced motion use genuine frames.
+
+- [Before/after report for every section](docs/cohesion/README.md)
+- [Interactive comparison viewer](docs/cohesion/index.html)
+- Flags and data: `content/site.ts` (`features`, `testimonials.items`, `proof.stats`, `proof.locations`)
+
 ## Review the work
 
 - [Source inventory](docs/inventory.md): all 34 items, signature elements, complete props/defaults, interaction, performance and mobile notes.
@@ -40,7 +48,7 @@ npm start
 - `docs/playground-results.json`: observed canvas contexts and runtime results.
 - `docs/visual-frame-results.json`: genuine production visual/frame captures.
 
-The original pre-change source hashes are in `docs/originkit-source-manifest.json`. Installed files have the small typing corrections and the explicitly requested, optional stone-intro controls listed in `fixes.md`. Original geometry, materials and shaders are preserved. All 34 currently render; none was moved to the unavailable list.
+The original pre-change source hashes are in `docs/originkit-source-manifest.json`. Installed files have the small typing corrections and the explicitly requested, optional stone-intro controls listed in `fixes.md`. Original geometry is preserved; the documented optional source controls support the intro, typography, local dataset and ocean light. All 34 currently render; none was moved to the unavailable list.
 
 ## Edit
 
@@ -73,7 +81,7 @@ The Next.js Node handler validates the request with Zod and sends plain-text ema
 
 Self-hosted Instrument Serif, Inter Tight and Geist Mono are used for production. The original source demos may load their own fonts or sample assets; those dependencies remain isolated to the playground.
 
-The original Latin font files and licenses are in `public/fonts`; `node scripts/prepare-fonts.mjs` can recopy them from the installed Fontsource packages. Each face has one URL and the two headline faces are preloaded. Fallback images load near the viewport; the hero image is present in the initial HTML with high fetch priority.
+The original Latin font files and licenses are in `public/fonts`; `node scripts/prepare-fonts.mjs` can recopy them from the installed Fontsource packages. Each face has one URL and the two headline faces are preloaded. Fallback images load near the viewport; the hero and contact backgrounds are present in the initial HTML with high fetch priority.
 
 ## Verification and captures
 

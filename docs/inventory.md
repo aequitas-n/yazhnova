@@ -1,3 +1,5 @@
+> This inventories original downloaded APIs/defaults. The cohesion pass adds the opt-in controls documented in [fixes](fixes.md); current production placements and captures are in [the report](cohesion/README.md).
+
 # OriginKit inventory - rendered source studies
 
 All 34 installed items were read and rendered in original and editorial variants. `/playground` mounts only visible panels; each variant has its own document so CSS and IDs cannot collide. The exact draw contexts and runtime observations are in [playground-results.json](playground-results.json).

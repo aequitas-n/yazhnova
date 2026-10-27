@@ -22,7 +22,7 @@ export default function ContactPage() {
     <SiteShell>
       <main id="main-content" className="contact-page">
         <div className="contact-water" aria-hidden="true">
-          <LiveVisual kind="fluid" />
+          <LiveVisual kind="ocean" priority sizes="100vw" />
         </div>
         <div className="container contact-layout">
           <div className="contact-intro">

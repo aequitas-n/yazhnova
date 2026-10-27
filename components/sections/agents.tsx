@@ -26,7 +26,7 @@ export function Agents() {
   }, [inView, reduced, run]);
   return (
     <section className="section agents-section ink" aria-labelledby="agents-title">
-      <div className="container">
+      <div className="container agent-container">
         <SectionLabel number={site.agents.number}>{site.agents.label}</SectionLabel>
         <div className="agent-layout">
           <div className="agent-visual">

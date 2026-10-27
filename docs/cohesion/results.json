@@ -1,0 +1,131 @@
+{
+  "concept": "From raw stone to signal",
+  "accent": "#FF3B00",
+  "screenshots": 54,
+  "maxActiveWebGLContexts": 2,
+  "consoleErrors": [],
+  "lighthouse": [
+    {
+      "page": "/",
+      "fetchTime": "2026-10-27T06:13:58.658Z",
+      "lighthouseVersion": "13.5.0",
+      "formFactor": "mobile",
+      "scores": {
+        "performance": 90,
+        "accessibility": 100,
+        "best-practices": 100,
+        "seo": 100
+      },
+      "metrics": {
+        "lcp": "3.5 s",
+        "cls": "0",
+        "tbt": "100 ms"
+      },
+      "runtimeError": null
+    },
+    {
+      "page": "/contact",
+      "fetchTime": "2026-10-27T06:14:07.321Z",
+      "lighthouseVersion": "13.5.0",
+      "formFactor": "mobile",
+      "scores": {
+        "performance": 95,
+        "accessibility": 100,
+        "best-practices": 100,
+        "seo": 100
+      },
+      "metrics": {
+        "lcp": "2.9 s",
+        "cls": "0",
+        "tbt": "60 ms"
+      },
+      "runtimeError": null
+    }
+  ],
+  "desktopVisuals": [
+    {
+      "device": "desktop",
+      "section": "hero",
+      "canvases": 2,
+      "height": 1104
+    },
+    {
+      "device": "desktop",
+      "section": "manifesto",
+      "canvases": 1,
+      "height": 900
+    },
+    {
+      "device": "desktop",
+      "section": "services",
+      "canvases": 1,
+      "height": 1156.5625
+    },
+    {
+      "device": "desktop",
+      "section": "agents",
+      "canvases": 1,
+      "height": 1184.828125
+    },
+    {
+      "device": "desktop",
+      "section": "process",
+      "canvases": 1,
+      "height": 1000
+    },
+    {
+      "device": "desktop",
+      "section": "technology",
+      "canvases": 1,
+      "height": 500
+    },
+    {
+      "device": "desktop",
+      "section": "work",
+      "canvases": 2,
+      "height": 1652.765625
+    },
+    {
+      "device": "desktop",
+      "section": "engage",
+      "canvases": 1,
+      "height": 1049.265625
+    },
+    {
+      "device": "desktop",
+      "section": "proof",
+      "canvases": 1,
+      "height": 1000
+    },
+    {
+      "device": "desktop",
+      "section": "faq",
+      "canvases": 0,
+      "height": 598.984375
+    },
+    {
+      "device": "desktop",
+      "section": "cta",
+      "canvases": 1,
+      "height": 1000
+    },
+    {
+      "device": "desktop",
+      "section": "footer",
+      "canvases": 2,
+      "height": 850
+    },
+    {
+      "device": "desktop",
+      "section": "contact",
+      "errors": []
+    }
+  ],
+  "mobileCanvases": 0,
+  "skips": [
+    "Aura cursor: omitted to preserve the two-WebGL-context budget and the system pointer.",
+    "Testimonials, numerical stats and client-location markers: no approved data supplied; quotes/stats are feature-gated and locations are empty. The proof section shows four capabilities.",
+    "Mobile/reduced-motion canvas animation: genuine signal-palette frames replace live canvases, using zero WebGL contexts.",
+    "Work uses the three existing labelled concept explorations; no additional client projects were invented."
+  ]
+}

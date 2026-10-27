@@ -2,6 +2,16 @@
 @import "./originkit-section-themes.css";
 @import "./originkit-section-theme.css";
 
+/* Full source sections belong to the study route. Production imports their
+   selected companions, which remain discoverable in the ui directory. */
+@source not "../components/originkit/hero-40.tsx";
+@source not "../components/originkit/hero-51.tsx";
+@source not "../components/originkit/hero-69.tsx";
+@source not "../components/originkit/hero-28.tsx";
+@source not "../components/originkit/features-02.tsx";
+@source not "../components/originkit/pricing-04.tsx";
+@source not "../components/originkit/footer-03.tsx";
+
 :root {
   --background: #0a0a0a;
   --foreground: #f4f2ec;

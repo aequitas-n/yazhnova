@@ -1,0 +1,320 @@
+<!doctype html>
+<html lang="en">
+  <meta charset="utf-8" /><meta
+    name="viewport"
+    content="width=device-width,initial-scale=1"
+  /><title>Yazhnova cohesion: before and after</title
+  ><style>
+    body {
+      margin: 0;
+      background: #0a0a0a;
+      color: #f4f2ec;
+      font: 16px/1.5 system-ui;
+    }
+    header {
+      padding: 40px 4vw;
+      border-bottom: 1px solid #333;
+    }
+    h1 {
+      font-size: clamp(30px, 5vw, 70px);
+      letter-spacing: -0.05em;
+      margin: 0;
+    }
+    p {
+      color: #aaa;
+    }
+    button {
+      padding: 12px 24px;
+      border: 1px solid #555;
+      background: #141414;
+      color: #f4f2ec;
+      margin-right: 12px;
+      cursor: pointer;
+    }
+    button[aria-pressed="true"] {
+      border-color: #ff3b00;
+    }
+    section {
+      padding: 30px 4vw;
+      border-bottom: 1px solid #333;
+    }
+    .pair {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 20px;
+    }
+    figure {
+      margin: 0;
+      min-width: 0;
+    }
+    figcaption {
+      font: 12px monospace;
+      color: #ff3b00;
+      margin-bottom: 12px;
+    }
+    img {
+      width: 100%;
+      height: auto;
+      display: block;
+    }
+    body.mobile img {
+      max-width: 390px;
+      margin: auto;
+    }
+    h2 {
+      letter-spacing: -0.03em;
+      font-weight: 500;
+    }
+    @media (max-width: 700px) {
+      .pair {
+        grid-template-columns: 1fr;
+      }
+    }
+  </style>
+  <header>
+    <h1>From raw stone to signal.</h1>
+    <p>YAZHNOVA / actual browser captures / before and after</p>
+    <button aria-pressed="true" data-device="desktop">Desktop</button
+    ><button aria-pressed="false" data-device="mobile">Mobile</button>
+  </header>
+  <section data-section="intro">
+    <h2>Stone introduction</h2>
+    <div class="pair">
+      <figure>
+        <figcaption>Before</figcaption>
+        <img loading="lazy" src="before/desktop/intro.png" alt="Before: Stone introduction" />
+      </figure>
+      <figure>
+        <figcaption>After</figcaption>
+        <img loading="lazy" src="after/desktop/intro.png" alt="After: Stone introduction" />
+      </figure>
+    </div>
+  </section>
+  <section data-section="hero">
+    <h2>Hands / signal origin</h2>
+    <div class="pair">
+      <figure>
+        <figcaption>Before</figcaption>
+        <img loading="lazy" src="before/desktop/hero.png" alt="Before: Hands / signal origin" />
+      </figure>
+      <figure>
+        <figcaption>After</figcaption>
+        <img loading="lazy" src="after/desktop/hero.png" alt="After: Hands / signal origin" />
+      </figure>
+    </div>
+  </section>
+  <section data-section="manifesto">
+    <h2>Manifesto / newsprint</h2>
+    <div class="pair">
+      <figure>
+        <figcaption>Before</figcaption>
+        <img
+          loading="lazy"
+          src="before/desktop/manifesto.png"
+          alt="Before: Manifesto / newsprint"
+        />
+      </figure>
+      <figure>
+        <figcaption>After</figcaption>
+        <img loading="lazy" src="after/desktop/manifesto.png" alt="After: Manifesto / newsprint" />
+      </figure>
+    </div>
+  </section>
+  <section data-section="services">
+    <h2>Services / one tabbed stage</h2>
+    <div class="pair">
+      <figure>
+        <figcaption>Before</figcaption>
+        <img
+          loading="lazy"
+          src="before/desktop/services.png"
+          alt="Before: Services / one tabbed stage"
+        />
+      </figure>
+      <figure>
+        <figcaption>After</figcaption>
+        <img
+          loading="lazy"
+          src="after/desktop/services.png"
+          alt="After: Services / one tabbed stage"
+        />
+      </figure>
+    </div>
+  </section>
+  <section data-section="agents">
+    <h2>Agentic AI / 60:40 composition</h2>
+    <div class="pair">
+      <figure>
+        <figcaption>Before</figcaption>
+        <img
+          loading="lazy"
+          src="before/desktop/agents.png"
+          alt="Before: Agentic AI / 60:40 composition"
+        />
+      </figure>
+      <figure>
+        <figcaption>After</figcaption>
+        <img
+          loading="lazy"
+          src="after/desktop/agents.png"
+          alt="After: Agentic AI / 60:40 composition"
+        />
+      </figure>
+    </div>
+  </section>
+  <section data-section="process">
+    <h2>Process / converging cables</h2>
+    <div class="pair">
+      <figure>
+        <figcaption>Before</figcaption>
+        <img
+          loading="lazy"
+          src="before/desktop/process.png"
+          alt="Before: Process / converging cables"
+        />
+      </figure>
+      <figure>
+        <figcaption>After</figcaption>
+        <img
+          loading="lazy"
+          src="after/desktop/process.png"
+          alt="After: Process / converging cables"
+        />
+      </figure>
+    </div>
+  </section>
+  <section data-section="technology">
+    <h2>Technology / signal strands</h2>
+    <div class="pair">
+      <figure>
+        <figcaption>Before</figcaption>
+        <img
+          loading="lazy"
+          src="before/desktop/technology.png"
+          alt="Before: Technology / signal strands"
+        />
+      </figure>
+      <figure>
+        <figcaption>After</figcaption>
+        <img
+          loading="lazy"
+          src="after/desktop/technology.png"
+          alt="After: Technology / signal strands"
+        />
+      </figure>
+    </div>
+  </section>
+  <section data-section="work">
+    <h2>Work / paper breath</h2>
+    <div class="pair">
+      <figure>
+        <figcaption>Before</figcaption>
+        <img loading="lazy" src="before/desktop/work.png" alt="Before: Work / paper breath" />
+      </figure>
+      <figure>
+        <figcaption>After</figcaption>
+        <img loading="lazy" src="after/desktop/work.png" alt="After: Work / paper breath" />
+      </figure>
+    </div>
+  </section>
+  <section data-section="engage">
+    <h2>Engage / partnerships</h2>
+    <div class="pair">
+      <figure>
+        <figcaption>Before</figcaption>
+        <img loading="lazy" src="before/desktop/engage.png" alt="Before: Engage / partnerships" />
+      </figure>
+      <figure>
+        <figcaption>After</figcaption>
+        <img loading="lazy" src="after/desktop/engage.png" alt="After: Engage / partnerships" />
+      </figure>
+    </div>
+  </section>
+  <section data-section="proof">
+    <h2>Proof / capabilities</h2>
+    <div class="pair">
+      <figure>
+        <figcaption>Before</figcaption>
+        <img loading="lazy" src="before/desktop/proof.png" alt="Before: Proof / capabilities" />
+      </figure>
+      <figure>
+        <figcaption>After</figcaption>
+        <img loading="lazy" src="after/desktop/proof.png" alt="After: Proof / capabilities" />
+      </figure>
+    </div>
+  </section>
+  <section data-section="faq">
+    <h2>FAQ / two columns</h2>
+    <div class="pair">
+      <figure>
+        <figcaption>Before</figcaption>
+        <img loading="lazy" src="before/desktop/faq.png" alt="Before: FAQ / two columns" />
+      </figure>
+      <figure>
+        <figcaption>After</figcaption>
+        <img loading="lazy" src="after/desktop/faq.png" alt="After: FAQ / two columns" />
+      </figure>
+    </div>
+  </section>
+  <section data-section="cta">
+    <h2>Final CTA / signal tunnel</h2>
+    <div class="pair">
+      <figure>
+        <figcaption>Before</figcaption>
+        <img loading="lazy" src="before/desktop/cta.png" alt="Before: Final CTA / signal tunnel" />
+      </figure>
+      <figure>
+        <figcaption>After</figcaption>
+        <img loading="lazy" src="after/desktop/cta.png" alt="After: Final CTA / signal tunnel" />
+      </figure>
+    </div>
+  </section>
+  <section data-section="footer">
+    <h2>Footer / reflections</h2>
+    <div class="pair">
+      <figure>
+        <figcaption>Before</figcaption>
+        <img loading="lazy" src="before/desktop/footer.png" alt="Before: Footer / reflections" />
+      </figure>
+      <figure>
+        <figcaption>After</figcaption>
+        <img loading="lazy" src="after/desktop/footer.png" alt="After: Footer / reflections" />
+      </figure>
+    </div>
+  </section>
+  <section data-section="contact">
+    <h2>Contact / ocean</h2>
+    <div class="pair">
+      <figure>
+        <figcaption>Before</figcaption>
+        <img loading="lazy" src="before/desktop/contact.png" alt="Before: Contact / ocean" />
+      </figure>
+      <figure>
+        <figcaption>After</figcaption>
+        <img loading="lazy" src="after/desktop/contact.png" alt="After: Contact / ocean" />
+      </figure>
+    </div>
+  </section>
+  <script>
+    document.querySelectorAll("button").forEach((button) =>
+      button.addEventListener("click", () => {
+        const device = button.dataset.device;
+        document.body.classList.toggle("mobile", device === "mobile");
+        document
+          .querySelectorAll("button")
+          .forEach((item) => item.setAttribute("aria-pressed", String(item === button)));
+        document.querySelectorAll("[data-section]").forEach((section) => {
+          section.hidden = device === "mobile" && section.dataset.section === "intro";
+          section
+            .querySelectorAll("img")
+            .forEach(
+              (image) =>
+                (image.src = image
+                  .getAttribute("src")
+                  .replace(/\/(desktop|mobile)\//, "/" + device + "/")),
+            );
+        });
+      }),
+    );
+  </script>
+</html>

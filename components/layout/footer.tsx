@@ -6,7 +6,7 @@ export function Footer() {
   return (
     <footer className="site-footer">
       <div className="footer-water" aria-hidden="true">
-        <LiveVisual kind="rain" className="monochrome" />
+        <LiveVisual kind="rain" />
       </div>
       <div className="container">
         <div className="footer-top">

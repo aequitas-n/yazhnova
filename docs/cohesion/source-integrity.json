@@ -1,0 +1,12 @@
+{
+  "files": 68,
+  "changed": [
+    "components/originkit/ui/dithered-pixel-grid.tsx",
+    "components/originkit/ui/features-02/globe.tsx",
+    "components/originkit/ui/glassbound.tsx",
+    "components/originkit/ui/hero-69/ember-husk.tsx",
+    "components/originkit/ui/ocean-swell.tsx",
+    "components/originkit/ui/paperline-archive.tsx"
+  ],
+  "notes": "Original shader/geometry code is retained. Ocean exposes existing sun-direction constants as uniforms with unchanged defaults; documented opt-in font and dataset controls are used."
+}

@@ -1,3 +1,5 @@
+> This rating table records the earlier curation pass. The current composition follows the user's later **From raw stone to signal** brief; see [the cohesion report](cohesion/README.md) for current placements, deliberate exclusions and before/after screenshots.
+
 # OriginKit component review and production choices
 
 Reviewed all 34 downloaded pieces in both their original and editorial presets. The paired screenshots are in [shots](shots/README.md), and every source is individually available at `/playground`. Scores express fit for **this site**, not general component quality: visual fit (40%), ability to explain our work (35%), and runtime/readability cost (25%). Cost estimates describe the actual render technique; they are not benchmark timings.

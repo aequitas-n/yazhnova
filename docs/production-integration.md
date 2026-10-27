@@ -1,3 +1,5 @@
+> This composition record predates the cohesion pass. See [the current story and comparisons](cohesion/README.md).
+
 # Production composition update
 
 The latest user request authorizes reviewing, rating and using the downloaded components. The original phase-one deferred-slot plan is superseded for the selected integrations described in [component-ratings.md](component-ratings.md).

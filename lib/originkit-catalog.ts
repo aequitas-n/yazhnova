@@ -251,7 +251,7 @@ export const palette = {
   graphite: "#141414",
   paper: "#F4F2EC",
   grey: "#8C8A84",
-  accent: "#FFB45A",
+  accent: "#FF3B00",
 };
 export const editorialPresets: Partial<Record<SourceSlug, Record<string, unknown>>> = {
   "live-chat": {

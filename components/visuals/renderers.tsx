@@ -3,11 +3,12 @@ import dynamic from "next/dynamic";
 import type { ComponentType } from "react";
 import { visualPresets, type VisualKind } from "@/lib/visual-presets";
 const renderers = {
+  cables: dynamic(() => import("@/components/originkit/ui/light-cables"), { ssr: false }),
+  globe: dynamic(() => import("@/components/originkit/ui/features-02/globe"), { ssr: false }),
+  gate: dynamic(() => import("@/components/originkit/ui/star-gate"), { ssr: false }),
   liquid: dynamic(() => import("@/components/originkit/ui/liquid-grid"), { ssr: false }),
   glossy: dynamic(() => import("@/components/originkit/ui/single-glossy-sphere"), { ssr: false }),
-  sparks: dynamic(() => import("@/components/originkit/ui/spark-lattice"), { ssr: false }),
   strings: dynamic(() => import("@/components/originkit/ui/data-strings"), { ssr: false }),
-  fluid: dynamic(() => import("@/components/originkit/ui/fluid-field"), { ssr: false }),
   deck: dynamic(() => import("@/components/originkit/ui/stacked-carousel"), { ssr: false }),
   "hero-dither": dynamic(() => import("@/components/originkit/ui/hero-40/dither-reveal"), {
     ssr: false,

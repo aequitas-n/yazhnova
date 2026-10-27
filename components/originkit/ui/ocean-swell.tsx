@@ -31,6 +31,9 @@ const DEFAULTS = {
 }
 
 type Config = {
+    sunColor: string
+    sunPositionX: number
+    sunPositionZ: number
     deep: string
     shallow: string
     scatter: string
@@ -104,6 +107,8 @@ uniform vec3 uShallow;
 uniform vec3 uScatter;
 uniform vec3 uFoam;
 uniform vec3 uSun;
+uniform float uSunX;
+uniform float uSunZ;
 uniform vec3 uZenith;
 uniform vec3 uHorizon;
 uniform float uSwell;
@@ -169,7 +174,7 @@ float seaHeight(vec2 p, int waveCount) {
 }
 
 vec3 sunDir() {
-    return normalize(vec3(0.62, sin(uSunHeight), -0.78));
+    return normalize(vec3(uSunX, sin(uSunHeight), uSunZ));
 }
 
 vec3 sky(vec3 rd) {
@@ -340,7 +345,9 @@ class OceanSwellScene {
                 uScatter: { value: new THREE.Color(cfg.scatter) },
                 uFoam: { value: new THREE.Color(cfg.foam) },
 
-                uSun: { value: new THREE.Color(SUN_COLOR) },
+                uSun: { value: new THREE.Color(cfg.sunColor) },
+                uSunX: { value: cfg.sunPositionX },
+                uSunZ: { value: cfg.sunPositionZ },
                 uZenith: { value: new THREE.Color(cfg.zenith) },
                 uHorizon: { value: new THREE.Color(cfg.horizon) },
                 uSwell: { value: S.swell },
@@ -433,6 +440,9 @@ class OceanSwellScene {
     updateConfig(cfg: Config) {
         if (this.disposed) return
         this.cfg = cfg
+        this.material.uniforms.uSun.value.set(cfg.sunColor)
+        this.material.uniforms.uSunX.value = cfg.sunPositionX
+        this.material.uniforms.uSunZ.value = cfg.sunPositionZ
         const S = settingsFor(cfg)
         const u = this.material.uniforms
 
@@ -499,6 +509,9 @@ class OceanSwellScene {
 }
 
 export interface OceanSwellProps {
+    sunColor?: string
+    sunPositionX?: number
+    sunPositionZ?: number
     deep?: string
     shallow?: string
     scatter?: string
@@ -521,6 +534,9 @@ export interface OceanSwellProps {
 
 export default function OceanSwell(props: OceanSwellProps) {
     const {
+        sunColor = SUN_COLOR,
+        sunPositionX = 0.62,
+        sunPositionZ = -0.78,
         deep = DEFAULTS.deep,
         shallow = DEFAULTS.shallow,
         scatter = DEFAULTS.scatter,
@@ -546,6 +562,9 @@ export default function OceanSwell(props: OceanSwellProps) {
 
     const cfgRef = useRef<Config>(null as any)
     cfgRef.current = {
+        sunColor,
+        sunPositionX,
+        sunPositionZ,
         deep,
         shallow,
         scatter,
@@ -592,6 +611,9 @@ export default function OceanSwell(props: OceanSwellProps) {
     useEffect(() => {
         sceneRef.current?.updateConfig(cfgRef.current)
     }, [
+        sunColor,
+        sunPositionX,
+        sunPositionZ,
         deep,
         shallow,
         scatter,

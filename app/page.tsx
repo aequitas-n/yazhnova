@@ -7,7 +7,7 @@ import { Process } from "@/components/sections/process";
 import { TechStack } from "@/components/sections/tech-stack";
 import { Work } from "@/components/sections/work";
 import { Engagement } from "@/components/sections/engagement";
-import { TestimonialsFaq } from "@/components/sections/testimonials-faq";
+import { Proof, Faq } from "@/components/sections/testimonials-faq";
 import { FinalCta } from "@/components/sections/final-cta";
 import { IntroExperience } from "@/components/intro/intro-experience";
 export default function Home() {
@@ -23,7 +23,8 @@ export default function Home() {
           <TechStack />
           <Work />
           <Engagement />
-          <TestimonialsFaq />
+          <Proof />
+          <Faq />
           <FinalCta />
         </main>
       </SiteShell>
