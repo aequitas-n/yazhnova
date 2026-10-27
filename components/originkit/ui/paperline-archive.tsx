@@ -1,4 +1,5 @@
 "use client"
+import { canvasPixelRatio } from "@/lib/canvas-quality";
 
 import type { CSSProperties } from "react"
 import * as React from "react"
@@ -952,7 +953,7 @@ export default function StillPosterCream(props: StillPosterCreamProps) {
         const measure = () => {
             W = root.offsetWidth
             H = root.offsetHeight
-            dpr = Math.min(2, window.devicePixelRatio || 1)
+            dpr = canvasPixelRatio(2)
             cv.width = Math.max(1, Math.round(W * dpr))
             cv.height = Math.max(1, Math.round(H * dpr))
         }

@@ -9,9 +9,7 @@ export function useMotionSurface() {
   const [visible, setVisible] = useState(false);
   const [foreground, setForeground] = useState(true);
   useEffect(() => {
-    const query = matchMedia(
-      "(min-width: 768px) and (pointer: fine) and (prefers-reduced-motion: no-preference)",
-    );
+    const query = matchMedia("(prefers-reduced-motion: no-preference)");
     const sync = () => setAllowed(query.matches);
     const visibility = () => setForeground(!document.hidden);
     const observer = new IntersectionObserver(([entry]) => setVisible(entry.isIntersecting));

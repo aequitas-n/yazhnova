@@ -1,4 +1,5 @@
 "use client"
+import { canvasPixelRatio } from "@/lib/canvas-quality";
 
 import { useEffect, useRef } from "react"
 import type { CSSProperties } from "react"
@@ -322,7 +323,7 @@ export default function ShadowCast(props: ShadowCastProps) {
             const pointer = pointerRef.current
             pointer.on += (pointer.onTarget - pointer.on) * (1 - Math.exp(-HOVER_RATE * dt))
 
-            const dpr = Math.min(window.devicePixelRatio || 1, MAX_DPR)
+            const dpr = canvasPixelRatio(MAX_DPR)
             const bufferWidth = Math.max(1, Math.round(cssWidth * dpr))
             const bufferHeight = Math.max(1, Math.round(cssHeight * dpr))
             if (canvas.width !== bufferWidth || canvas.height !== bufferHeight) {

@@ -1,6 +1,7 @@
 /* eslint-disable */
 // @ts-nocheck
 "use client"
+import { canvasPixelRatio } from "@/lib/canvas-quality";
 
 import { useEffect, useRef, useState } from "react"
 import type { CSSProperties } from "react"
@@ -528,7 +529,7 @@ export default function GrinIris({
 
         function resize() {
             if (!gl) return
-            dpr = Math.min(window.devicePixelRatio || 1, DPR_CAP)
+            dpr = canvasPixelRatio(DPR_CAP)
             const w = Math.max(1, Math.round(host!.clientWidth * dpr))
             const h = Math.max(1, Math.round(host!.clientHeight * dpr))
             if (canvas!.width !== w || canvas!.height !== h) {

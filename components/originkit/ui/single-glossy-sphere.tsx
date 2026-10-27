@@ -1,4 +1,5 @@
 "use client"
+import { canvasPixelRatio } from "@/lib/canvas-quality";
 
 import * as React from "react"
 import { useEffect, useRef } from "react"
@@ -445,7 +446,7 @@ export default function SingleGlossySphere(props: SingleGlossySphereProps) {
                 rot.yaw += dt * (clamp(v.rotateSpeed, 0, 100) / 100) * 0.6
             }
 
-            const pr = software ? 0.5 : Math.min(window.devicePixelRatio || 1, 2)
+            const pr = software ? 0.5 : canvasPixelRatio(2)
             const k = (pr * clamp(adv.resolution, 25, 100)) / 100
             let w = Math.max(1, Math.round(cssW * k))
             let h = Math.max(1, Math.round(cssH * k))

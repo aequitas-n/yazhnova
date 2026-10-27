@@ -1,4 +1,5 @@
 "use client"
+import { canvasPixelRatio } from "@/lib/canvas-quality";
 
 import * as React from "react"
 import { useEffect, useRef } from "react"
@@ -451,7 +452,7 @@ export default function RainPuddle(props: Partial<Props>) {
         let bufW = 0
         let bufH = 0
         const resize = () => {
-            const dpr = Math.min(window.devicePixelRatio || 1, MAX_DPR)
+            const dpr = canvasPixelRatio(MAX_DPR)
 
             const bw = Math.max(1, Math.round((canvas.clientWidth || host.clientWidth || 1) * dpr))
             const bh = Math.max(1, Math.round((canvas.clientHeight || host.clientHeight || 1) * dpr))

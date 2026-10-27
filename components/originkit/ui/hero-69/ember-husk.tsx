@@ -3,6 +3,7 @@
 "use client";
 
 "use client"
+import { warmRenderer } from "@/lib/warm-renderer"
 
 import { useEffect, useRef } from "react"
 import type { CSSProperties } from "react"
@@ -1916,7 +1917,13 @@ function __OriginkitBase_EmberHusk(props: EmberHuskProps) {
             renderFrame(t, dt)
         }
 
-        renderer.setAnimationLoop(loop)
+        const cancelWarmup = warmRenderer(renderer, [
+            () => { renderer.setRenderTarget(rtScene); renderer.compile(scene, camera) },
+            ...[prefilterMat, downMat, upMat].map(mat => () => {
+                renderer.setRenderTarget(rtScene); quad.material = mat; renderer.compile(quadScene, quadCam)
+            }),
+            () => { renderer.setRenderTarget(null); quad.material = compositeMat; renderer.compile(quadScene, quadCam) },
+        ], () => { clock.start(); last = 0; renderer.setAnimationLoop(loop) }, () => callbacksRef.current.onError?.())
 
         apiRef.current = {
             invalidate: () => {
@@ -1929,6 +1936,7 @@ function __OriginkitBase_EmberHusk(props: EmberHuskProps) {
         }
 
         return () => {
+            cancelWarmup()
             renderer.setAnimationLoop(null)
             apiRef.current = null
 

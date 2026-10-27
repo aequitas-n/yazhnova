@@ -1,3 +1,210 @@
+export const pageContent = {
+  scroll: "SCROLL TO EXPLORE",
+  exploreServices: "Explore all services",
+  exploreWork: "See the work",
+  viewProject: "View case study",
+  backToWork: "All work",
+  home: {
+    path: "/",
+    seoTitle: "Software, engineered to think.",
+    title: "Software, engineered to think.",
+    description:
+      "An independent software studio for web, SaaS and agentic AI. From a considered first idea to a product ready for the world.",
+  },
+  services: {
+    path: "/services",
+    seoTitle: "Software development services",
+    label: "01 / OUR PRACTICE",
+    title: "What we",
+    serif: "build.",
+    description:
+      "The interface. The intelligence. The infrastructure. One engineering partner, from the first sketch to the systems that run it.",
+    next: "practice",
+  },
+  agents: {
+    path: "/ai-agents",
+    seoTitle: "Agentic AI systems",
+    label: "02 / PRACTICAL INTELLIGENCE",
+    title: "Agents that",
+    serif: "do the work.",
+    description:
+      "Connected to your context. Built around your tools. Useful action, with people in control.",
+    next: "agent-demo",
+  },
+  work: {
+    path: "/work",
+    seoTitle: "Selected work and product concepts",
+    label: "03 / IDEAS, MADE TANGIBLE",
+    title: "Selected",
+    serif: "work.",
+    description:
+      "Three independent product concepts. A closer look at how we connect design, engineering and the work a product needs to do.",
+    next: "work",
+  },
+  process: {
+    path: "/process",
+    seoTitle: "Our design and engineering process",
+    label: "04 / HOW WE WORK",
+    title: "Clear thinking.",
+    serif: "Shared direction.",
+    description:
+      "Discover the real problem. Make the idea tangible. Build with care. Ship, learn and keep moving.",
+    next: "process",
+  },
+  engage: {
+    path: "/engage",
+    seoTitle: "Engagement models",
+    label: "05 / WAYS TO WORK TOGETHER",
+    title: "The right",
+    serif: "partnership.",
+    description:
+      "A focused project, a dedicated team or a lasting engineering partner. Choose the shape that fits your next chapter.",
+    next: "engage",
+  },
+  about: {
+    path: "/about",
+    seoTitle: "About our software studio",
+    label: "06 / INDEPENDENT MINDS",
+    title: "Built with",
+    serif: "intent.",
+    description:
+      "Yazhnova brings considered design and practical engineering together. We care about what we build, why it matters and how it holds up in the world.",
+    next: "our-story",
+  },
+  contact: {
+    path: "/contact",
+    seoTitle: "Start a project",
+    label: "07 / A NEW CHAPTER",
+    title: "Let's make",
+    serif: "it happen.",
+    description:
+      "Bring the idea, the challenge or the question. We will find a thoughtful way forward together.",
+    next: "contact-details",
+  },
+};
+export const multiPage = {
+  home: {
+    featured: "ONE PRODUCT DIRECTION",
+    title: "Less noise.",
+    serif: "More momentum.",
+    note: "A concept in focus",
+    practice: "Our practice, in motion.",
+  },
+  agents: {
+    useLabel: "WHERE IT HELPS",
+    useTitle: "Make room for better work.",
+    cases: [
+      {
+        title: "Lead operations",
+        detail:
+          "Read the enquiry, retrieve company context and prepare the next action for review.",
+      },
+      {
+        title: "Knowledge workflows",
+        detail: "Search approved documents, connect the evidence and prepare a grounded brief.",
+      },
+      {
+        title: "Support operations",
+        detail:
+          "Bring the conversation and account history together, then draft a useful resolution.",
+      },
+    ],
+    flowLabel: "FROM CONTEXT TO ACTION",
+    flowTitle: "A core. Connected to your world.",
+    flow: [
+      "Gather the right context",
+      "Reason across connected tools",
+      "Prepare an action",
+      "Review, execute and learn",
+    ],
+    integrationsLabel: "YOUR TOOLS, CONNECTED",
+    integrationsTitle: "Useful where you already work.",
+    integrations: ["Email", "CRM", "Calendar", "Documents", "Slack", "APIs & internal systems"],
+    integrationNote:
+      "Integrations are selected and configured for each project. The workflow above is an illustrative demonstration.",
+  },
+  process: {
+    details: [
+      {
+        body: "We listen, map the existing context and agree what a useful first release needs to achieve.",
+        items: [
+          "Stakeholder conversations",
+          "System and workflow mapping",
+          "Priorities, scope and a delivery roadmap",
+        ],
+      },
+      {
+        body: "We work through structure and interaction before committing the product to code.",
+        items: [
+          "Information architecture",
+          "Interactive prototypes",
+          "A coherent, accessible design system",
+        ],
+      },
+      {
+        body: "We build in small, reviewable increments. You can see the product take shape and influence what comes next.",
+        items: [
+          "Visible delivery milestones",
+          "Working software and review sessions",
+          "Testing, security and operational foundations",
+        ],
+      },
+      {
+        body: "We prepare the release, watch what happens in real use and agree the next useful improvement.",
+        items: [
+          "Launch preparation and handover",
+          "Monitoring and feedback",
+          "A support and improvement plan",
+        ],
+      },
+    ],
+    architectureLabel: "THE SYSTEM BEHIND THE SCREEN",
+    architectureTitle: "Every connection, considered.",
+  },
+  about: {
+    storyLabel: "OUR STORY",
+    storyTitle: "Independent thinking. End-to-end engineering.",
+    story: [
+      "Yazhnova is a software solutions studio working across websites, applications, SaaS products and agentic AI systems.",
+      "We connect the experience people use with the systems that make it possible. Strategy, design and engineering belong in the same conversation.",
+      "Our approach is direct: understand the problem, make deliberate choices and stay close to the people building and using the product.",
+    ],
+    valuesLabel: "WHAT GUIDES US",
+    valuesTitle: "Principles that hold up in practice.",
+    values: [
+      {
+        title: "Clarity before complexity",
+        detail: "Start with the problem. Make the next decision easier to understand.",
+      },
+      {
+        title: "Craft with a purpose",
+        detail: "Care about the details that make a product useful, clear and resilient.",
+      },
+      {
+        title: "Visible collaboration",
+        detail: "Share the reasoning, the progress and the tradeoffs as the work develops.",
+      },
+      {
+        title: "Ownership that lasts",
+        detail: "Build foundations your team can understand, operate and grow.",
+      },
+    ],
+    globeLabel: "WHERE WE WORK",
+    globeTitle: "A shared context. Across borders.",
+    globeDescription:
+      "Good collaboration depends on clear communication, visible work and a shared direction. We shape the working rhythm around your team.",
+    globeNote: "REMOTE COLLABORATION / CONNECTED CAPABILITIES",
+    teamLabel: "OUR PEOPLE",
+    team: [] as { name: string; role: string }[],
+  },
+  caseStudy: {
+    opportunity: "The opportunity",
+    approach: "The approach",
+    scope: "The scope",
+    conceptNote: "An independent concept study. Design intent, not a claimed client result.",
+  },
+};
+
 export const serviceStories = {
   duration: 5600,
   label: "SCRIPTED PRODUCT STUDY",
@@ -204,7 +411,7 @@ export const serviceStories = {
     ] as [string, string][],
     route: ["client", "cdn", "next", "api", "db", "api", "ai", "api", "next", "cdn", "client"],
     title: "A request. An architecture. A response.",
-    note: "HOVER OR FOCUS A NODE TO TRACE ITS CONNECTIONS",
+    note: "HOVER, TAP OR FOCUS A NODE TO TRACE ITS CONNECTIONS",
   },
 };
 export const site = {
@@ -216,10 +423,12 @@ export const site = {
   description:
     "An independent software engineering studio. Websites, web apps, SaaS products and agentic AI, thoughtfully engineered end to end.",
   nav: [
-    { label: "Services", href: "/#services" },
-    { label: "Work", href: "/#work" },
-    { label: "Process", href: "/#process" },
-    { label: "Engage", href: "/#engage" },
+    { label: "Services", href: "/services" },
+    { label: "AI Agents", href: "/ai-agents" },
+    { label: "Work", href: "/work" },
+    { label: "Process", href: "/process" },
+    { label: "Engage", href: "/engage" },
+    { label: "About", href: "/about" },
   ],
   actions: {
     start: "Start a project",

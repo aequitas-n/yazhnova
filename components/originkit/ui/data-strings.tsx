@@ -1,4 +1,5 @@
 "use client"
+import { canvasPixelRatio } from "@/lib/canvas-quality";
 
 import * as React from "react"
 import { useEffect, useRef, useState } from "react"
@@ -250,7 +251,7 @@ export default function DataStrings(props: DataStringsProps) {
         const ctx = canvas.getContext("2d")
         if (!ctx) return
 
-        const dpr = isStatic ? 1 : Math.min(2, window.devicePixelRatio || 1)
+        const dpr = isStatic ? 1 : canvasPixelRatio(2)
         let model: any = null
         let raf = 0
         let started = false

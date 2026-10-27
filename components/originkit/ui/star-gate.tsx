@@ -1,4 +1,5 @@
 "use client"
+import { canvasPixelRatio } from "@/lib/canvas-quality";
 
 import * as React from "react"
 import { useEffect, useRef } from "react"
@@ -226,7 +227,7 @@ class StarGateScene {
         this.renderer = new THREE.WebGLRenderer({ antialias: true, alpha: true })
         this.renderer.setClearColor(0x000000, 0)
         this.renderer.outputColorSpace = THREE.SRGBColorSpace
-        this.renderer.setPixelRatio(Math.min(window.devicePixelRatio || 1, 2))
+        this.renderer.setPixelRatio(canvasPixelRatio(2))
         const canvas = this.renderer.domElement
         canvas.style.position = "absolute"
         canvas.style.inset = "0"

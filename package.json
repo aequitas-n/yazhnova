@@ -19,7 +19,10 @@
     "capture:stories:frames": "node scripts/capture-pass3.mjs --frames",
     "capture:pass3": "node scripts/capture-pass3.mjs",
     "inventory": "node scripts/build-inventory.mjs",
-    "format": "prettier --write app components content lib scripts tests *.ts *.json README.md docs/*.md"
+    "format": "prettier --write app components content lib scripts tests *.ts *.json README.md docs/*.md",
+    "capture:pass4": "node scripts/review-pass4.mjs",
+    "capture:pass4:frames": "node scripts/review-pass4.mjs --frames",
+    "report:pass4": "node scripts/summarize-pass4.mjs"
   },
   "dependencies": {
     "@fontsource-variable/inter-tight": "^5.3.0",

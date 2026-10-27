@@ -1,4 +1,5 @@
 "use client"
+import { canvasPixelRatio } from "@/lib/canvas-quality";
 
 import type { CSSProperties } from "react"
 import * as React from "react"
@@ -499,7 +500,7 @@ export default function SceneBallHalf(props: SceneBallHalfProps) {
             const p = propsRef.current
             const adv = { ...ADVANCED_DEFAULTS, ...(p.advanced ?? {}) }
 
-            const dpr = Math.min(window.devicePixelRatio || 1, 2)
+            const dpr = canvasPixelRatio(2)
             const q = Math.max(0.2, Math.min(1, adv.quality / 100))
             const W = Math.max(1, Math.round(cssW * dpr * q))
             const H = Math.max(1, Math.round(cssH * dpr * q))

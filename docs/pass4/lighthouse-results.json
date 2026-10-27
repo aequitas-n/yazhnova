@@ -1,0 +1,38 @@
+[
+  {
+    "page": "/",
+    "fetchTime": "2026-10-27T09:46:30.218Z",
+    "lighthouseVersion": "13.5.0",
+    "formFactor": "mobile",
+    "scores": {
+      "performance": 91,
+      "accessibility": 100,
+      "best-practices": 100,
+      "seo": 100
+    },
+    "metrics": {
+      "lcp": "3.2 s",
+      "cls": "0",
+      "tbt": "170 ms"
+    },
+    "runtimeError": null
+  },
+  {
+    "page": "/contact",
+    "fetchTime": "2026-10-27T09:46:38.429Z",
+    "lighthouseVersion": "13.5.0",
+    "formFactor": "mobile",
+    "scores": {
+      "performance": 91,
+      "accessibility": 100,
+      "best-practices": 100,
+      "seo": 100
+    },
+    "metrics": {
+      "lcp": "3.0 s",
+      "cls": "0.047",
+      "tbt": "190 ms"
+    },
+    "runtimeError": null
+  }
+]

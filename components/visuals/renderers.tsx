@@ -2,7 +2,10 @@
 import dynamic from "next/dynamic";
 import type { ComponentType } from "react";
 import { visualPresets, type VisualKind } from "@/lib/visual-presets";
+import { mobileVisualPresets } from "@/lib/mobile-visual-presets";
+import { isMobileCanvas } from "@/lib/canvas-quality";
 const renderers = {
+  iris: dynamic(() => import("@/components/originkit/ui/hero-51/grin-iris"), { ssr: false }),
   cables: dynamic(() => import("@/components/originkit/ui/light-cables"), { ssr: false }),
   globe: dynamic(() => import("@/components/originkit/ui/features-02/globe"), { ssr: false }),
   gate: dynamic(() => import("@/components/originkit/ui/star-gate"), { ssr: false }),
@@ -34,11 +37,24 @@ export default function Renderer({
   overrides?: Record<string, unknown>;
 }) {
   const Source = renderers[kind] as unknown as ComponentType<Record<string, unknown>>;
-  return (
-    <Source
-      {...visualPresets[kind]}
-      {...overrides}
-      style={{ width: "100%", height: "100%", minWidth: 0, minHeight: 0 }}
-    />
-  );
+  const props: Record<string, unknown> = { ...visualPresets[kind], ...overrides };
+  if (isMobileCanvas()) {
+    const mobile = mobileVisualPresets[kind] ?? {};
+    const advanced = { ...(props.advanced as object), ...(mobile.advanced as object) };
+    Object.assign(props, mobile);
+    if (Object.keys(advanced).length) props.advanced = advanced;
+    if (kind === "wordmark") {
+      const font = props.font as Record<string, unknown>;
+      const context = document.createElement("canvas").getContext("2d");
+      if (context) {
+        context.font = `${font.fontWeight} 100px "${font.fontFamily}"`;
+        const width = context.measureText(String(props.text)).width;
+        props.font = {
+          ...font,
+          fontSize: Math.min(175, ((window.innerWidth * 0.92) / Math.max(1, width)) * 100),
+        };
+      }
+    }
+  }
+  return <Source {...props} style={{ width: "100%", height: "100%", minWidth: 0, minHeight: 0 }} />;
 }

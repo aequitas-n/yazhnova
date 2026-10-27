@@ -11,7 +11,7 @@ test("service tabs swap one full-size native stage and support keyboard navigati
     if (message.type() === "error") errors.push(message.text());
   });
   await page.addInitScript(() => sessionStorage.setItem("yazhnova:intro:v1", "1"));
-  await page.goto("/");
+  await page.goto("/services");
   const stage = page.locator(".service-stage-visual");
   await stage.scrollIntoViewIfNeeded();
   expect(
@@ -38,87 +38,81 @@ test("service tabs swap one full-size native stage and support keyboard navigati
   expect(errors).toEqual([]);
 });
 
-test("the story has two paper breaths, truthful proof and at most two active WebGL surfaces", async ({
+test("pages keep the signal palette, truthful content and a two-context lifecycle budget", async ({
   page,
 }) => {
   const errors: string[] = [];
-  page.on("pageerror", (error) => errors.push(error.message));
-  page.on("console", (message) => {
-    if (message.type() === "error") errors.push(message.text());
+  page.on("pageerror", (e) => errors.push(e.message));
+  page.on("console", (m) => {
+    if (m.type() === "error") errors.push(m.text());
   });
   await page.addInitScript(() => {
     sessionStorage.setItem("yazhnova:intro:v1", "1");
-    const original = HTMLCanvasElement.prototype.getContext;
+    const get = HTMLCanvasElement.prototype.getContext;
+    const contexts: WebGLRenderingContext[] = [];
+    const seen = new WeakSet();
+    (window as typeof window & { __maximum: number }).__maximum = 0;
     HTMLCanvasElement.prototype.getContext = function (
       this: HTMLCanvasElement,
       ...args: Parameters<HTMLCanvasElement["getContext"]>
     ) {
-      const context = original.apply(this, args);
-      if (context) this.dataset.renderContext = String(args[0]);
+      const context = get.apply(this, args);
+      if (context && String(args[0]).startsWith("webgl") && !seen.has(context)) {
+        seen.add(context);
+        contexts.push(context as WebGLRenderingContext);
+      }
       return context;
-    } as typeof original;
-    const history: number[] = [];
-    (window as typeof window & { __glHistory: number[] }).__glHistory = history;
+    } as typeof get;
     const sample = () => {
-      history.push(document.querySelectorAll('canvas[data-render-context^="webgl"]').length);
+      const count = contexts.filter((context) => !context.isContextLost()).length;
+      const w = window as typeof window & { __maximum: number };
+      w.__maximum = Math.max(w.__maximum, count);
       requestAnimationFrame(sample);
     };
     requestAnimationFrame(sample);
   });
-  await page.goto("/");
-  await expect(page.locator("main > section.paper")).toHaveCount(2);
-  await expect(page.locator("main")).not.toContainText(
-    /TODO|pending approval|Illustrative figures|Sample client quote/i,
-  );
-  await expect(page.locator(".proof-section")).toBeAttached();
-  await expect(page.locator(".proof-capabilities > div")).toHaveCount(4);
-  await expect(page.locator(".proof-quotes, .proof-stats")).toHaveCount(0);
-  await expect(page.locator(".cta-tunnel [data-visual]")).toHaveAttribute("data-visual", "gate");
-  const agentLayout = await page.locator(".agent-layout").evaluate((node) => ({
-    width: node.getBoundingClientRect().width,
-    viewport: innerWidth,
-    visual: node.children[0].getBoundingClientRect().width,
-  }));
-  expect(Math.abs(agentLayout.width - agentLayout.viewport)).toBeLessThan(2);
-  expect(agentLayout.visual / agentLayout.width).toBeCloseTo(0.6, 1);
-  for (const selector of [
-    ".hero-stage",
-    ".manifesto-section",
-    ".services-section",
-    ".agent-visual",
-    ".process-cables",
-    ".tech-section",
-    ".work-track-viewport",
-    ".engage-section",
-    ".proof-globe",
-    ".faq-section",
-    ".cta-tunnel",
-    ".footer-wordmark",
+  let maximum = 0;
+  for (const path of [
+    "/",
+    "/services",
+    "/ai-agents",
+    "/work",
+    "/process",
+    "/engage",
+    "/about",
+    "/contact",
   ]) {
-    await page.locator(selector).scrollIntoViewIfNeeded();
-    await page.waitForTimeout(650);
-    expect(await page.locator('canvas[data-render-context^="webgl"]').count()).toBeLessThanOrEqual(
-      2,
+    await page.goto(path);
+    await expect(page.locator("main")).not.toContainText(
+      /TODO|pending approval|Illustrative figures|Sample client quote/i,
+    );
+    await page.locator(".footer-wordmark").scrollIntoViewIfNeeded();
+    await expect(page.locator('[data-visual="wordmark"] canvas')).toHaveCount(1, {
+      timeout: 20000,
+    });
+    await expect(page.locator('[data-visual="rain"] canvas')).toHaveCount(1);
+    // The last section can still intersect the viewport above the footer.
+    // Only fully off-screen surfaces must be retired.
+    await expect
+      .poll(() =>
+        page.locator("main canvas").evaluateAll((canvases) =>
+          canvases.every((canvas) => {
+            const box = canvas.getBoundingClientRect();
+            return box.bottom > 0 && box.top < innerHeight;
+          }),
+        ),
+      )
+      .toBe(true);
+    maximum = Math.max(
+      maximum,
+      await page.evaluate(() => (window as typeof window & { __maximum: number }).__maximum),
     );
   }
-  const maximum = await page.evaluate(() =>
-    Math.max(...(window as typeof window & { __glHistory: number[] }).__glHistory),
-  );
   expect(maximum).toBeLessThanOrEqual(2);
   await mkdir("artifacts", { recursive: true });
   await writeFile(
     "artifacts/cohesion-runtime.json",
     JSON.stringify({ maxActiveWebGLContexts: maximum, budget: 2, errors }, null, 2),
   );
-  await page.locator(".proof-globe").scrollIntoViewIfNeeded();
-  const globe = page.locator('[data-visual="globe"] canvas');
-  await expect(globe).toHaveCount(1, { timeout: 20000 });
-  const box = await globe.boundingBox();
-  if (box) {
-    await page.mouse.move(box.x + box.width * 0.6, box.y + box.height * 0.5);
-    await page.mouse.down();
-    await page.mouse.move(box.x + box.width * 0.75, box.y + box.height * 0.5, { steps: 8 });
-    await page.mouse.up();
-  }
   expect(errors).toEqual([]);
 });

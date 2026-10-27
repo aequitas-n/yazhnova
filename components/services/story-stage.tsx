@@ -27,7 +27,7 @@ export function StoryStage({ id }: { id: StoryId }) {
         <div
           className="service-story"
           data-story={id}
-          data-state="static"
+          data-state={allowed ? "loading" : "static"}
           data-step="3"
           data-time={copy.duration}
         >
@@ -42,7 +42,7 @@ export function StoryStage({ id }: { id: StoryId }) {
             </ul>
           )}
           <div className="service-story-scene">
-            {frameVisited && (
+            {frameVisited && !allowed && (
               <Image
                 src={"/frames/stories/" + id + ".png"}
                 alt=""

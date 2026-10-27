@@ -2,6 +2,7 @@
 // @ts-nocheck
 
 "use client";
+import { canvasPixelRatio } from "@/lib/canvas-quality";
 
 import { useEffect, useRef, type CSSProperties } from "react";
 
@@ -230,7 +231,7 @@ function __OriginkitBase_DitherReveal(props: DitherRevealProps) {
     container.addEventListener("pointerleave", onLeave);
 
     function resize() {
-      const dpr = Math.min(window.devicePixelRatio || 1, 3);
+      const dpr = canvasPixelRatio(3);
       canvas!.width = Math.max(1, Math.floor(container!.clientWidth * dpr));
       canvas!.height = Math.max(1, Math.floor(container!.clientHeight * dpr));
       gl!.viewport(0, 0, canvas!.width, canvas!.height);

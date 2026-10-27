@@ -1,0 +1,24 @@
+{
+  "files": 68,
+  "changed": [
+    "components/originkit/ui/beyond-horizon.tsx",
+    "components/originkit/ui/dithered-pixel-grid.tsx",
+    "components/originkit/ui/features-02/globe.tsx",
+    "components/originkit/ui/footer-03/light-shaft-text.tsx",
+    "components/originkit/ui/glassbound.tsx",
+    "components/originkit/ui/hero-40/dither-reveal.tsx",
+    "components/originkit/ui/hero-51/grin-iris.tsx",
+    "components/originkit/ui/hero-69/ember-husk.tsx",
+    "components/originkit/ui/network-lines.tsx",
+    "components/originkit/ui/ocean-swell.tsx",
+    "components/originkit/ui/paperline-archive.tsx",
+    "components/originkit/ui/rain-puddle.tsx",
+    "components/originkit/ui/shadow-cast.tsx",
+    "components/originkit/ui/single-glossy-sphere.tsx",
+    "components/originkit/ui/star-gate.tsx",
+    "components/originkit/ui/light-cables.tsx",
+    "components/originkit/ui/data-strings.tsx",
+    "components/originkit/ui/liquid-grid.tsx"
+  ],
+  "notes": "Documented type repairs, opt-in content/story/intro controls and shared mobile DPR policy. Source geometry and shader implementations retained."
+}

@@ -34,7 +34,7 @@ export function Footer() {
           <div className="footer-column">
             <span className="eyebrow">{site.footer.expertise}</span>
             {site.footer.capabilities.map((label) => (
-              <Link key={label} href="/#services">
+              <Link key={label} href="/services" prefetch={false}>
                 {label}
               </Link>
             ))}

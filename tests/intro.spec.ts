@@ -1,4 +1,39 @@
 import { test, expect } from "@playwright/test";
+
+test("Skip cancels a pending native shader warmup without resurrecting its canvas", async ({
+  page,
+}) => {
+  const errors: string[] = [];
+  page.on("pageerror", (error) => errors.push(error.message));
+  await page.addInitScript(() => {
+    const original = HTMLCanvasElement.prototype.getContext;
+    const seen = new WeakSet<object>();
+    HTMLCanvasElement.prototype.getContext = function (
+      this: HTMLCanvasElement,
+      ...args: Parameters<typeof original>
+    ) {
+      const context = original.apply(this, args);
+      if (context && String(args[0]).startsWith("webgl") && !seen.has(context)) {
+        seen.add(context);
+        const gl = context as WebGLRenderingContext;
+        const parameter = gl.getProgramParameter.bind(gl);
+        gl.getProgramParameter = ((program: WebGLProgram, name: number) =>
+          name === 0x91b1 && document.querySelector(".site-intro")
+            ? false
+            : parameter(program, name)) as typeof gl.getProgramParameter;
+      }
+      return context;
+    } as typeof original;
+  });
+  await page.goto("/?intro=replay");
+  await expect(page.locator(".intro-stone canvas")).toHaveCount(1, { timeout: 15000 });
+  await expect(page.locator(".site-intro")).toHaveAttribute("data-intro-phase", "loading");
+  await page.getByRole("button", { name: site.intro.skip }).click();
+  await expect(page.locator(".site-intro")).toHaveCount(0);
+  await page.waitForTimeout(350);
+  await expect(page.locator(".intro-stone canvas")).toHaveCount(0);
+  expect(errors).toEqual([]);
+});
 import { site } from "../content/site";
 
 test("real stone opens, reveals the wordmark, reforms and releases the homepage", async ({
@@ -92,8 +127,10 @@ test("reduced motion, mobile and no-JavaScript visits keep the homepage availabl
   await page.emulateMedia({ reducedMotion: "no-preference" });
   await page.setViewportSize({ width: 390, height: 844 });
   await page.goto("/?intro=replay");
-  await expect(page.locator(".site-intro")).toHaveCount(0);
-  await expect(page.locator("canvas")).toHaveCount(0);
+  await expect(page.locator(".intro-stone canvas")).toHaveCount(1, { timeout: 15000 });
+  await expect(page.locator(".site-intro")).toHaveAttribute("data-compact", "true");
+  await expect(page.locator(".site-intro")).toHaveCount(0, { timeout: 10000 });
+  await expect(page.locator(".hero-art canvas")).toHaveCount(1, { timeout: 15000 });
   const context = await browser.newContext({
     javaScriptEnabled: false,
     viewport: { width: 1440, height: 1000 },

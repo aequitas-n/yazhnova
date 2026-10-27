@@ -1,4 +1,5 @@
 "use client"
+import { canvasPixelRatio } from "@/lib/canvas-quality";
 
 import * as React from "react"
 import { useEffect, useRef } from "react"
@@ -310,7 +311,7 @@ export default function LightCables(props: Props) {
             ptr.x += ((ptr.onTarget > 0 ? ptr.tx : 0.5) - ptr.x) * k
             ptr.y += ((ptr.onTarget > 0 ? ptr.ty : 0.5) - ptr.y) * k
 
-            const dpr = Math.min(window.devicePixelRatio || 1, MAX_DPR)
+            const dpr = canvasPixelRatio(MAX_DPR)
             const cw = sizeRef.current.w || canvas.clientWidth || 1200
             const ch = sizeRef.current.h || canvas.clientHeight || 800
             const bw = Math.max(1, Math.round(cw * dpr))

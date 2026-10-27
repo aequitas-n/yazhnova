@@ -3,6 +3,7 @@
 "use client";
 
 import { useEffect, useRef, useState, type CSSProperties } from "react";
+import { canvasPixelRatio } from "@/lib/canvas-quality";
 import {
   Scene,
   PerspectiveCamera,
@@ -299,7 +300,7 @@ export default function Globe({
 
     const renderer = new WebGLRenderer({ antialias: true, alpha: true });
     renderer.setSize(containerWidth, containerHeight);
-    renderer.setPixelRatio(Math.min(window.devicePixelRatio, 1.5));
+    renderer.setPixelRatio(canvasPixelRatio(1.5));
     renderer.outputColorSpace = "srgb";
     const canvas = renderer.domElement;
     canvas.style.position = "absolute";

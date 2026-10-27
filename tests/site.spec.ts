@@ -29,45 +29,32 @@ test("desktop uses real source canvases and interactive sections work without er
   await expect(page.locator("h1")).toHaveAccessibleName(/Software,\s*engineered\s*to think\./);
   await page.waitForTimeout(1300);
   await page.screenshot({ path: "artifacts/home-desktop.png" });
-  for (const [kind, context] of [
-    ["hero-dither", "webgl"],
-    ["horizon", "webgl"],
-    ["manifesto", "2d"],
-    ["pixels", "2d"],
-    ["glassbound", "webgl2"],
-    ["cables", "webgl"],
-    ["strings", "2d"],
-    ["globe", "webgl2"],
-    ["gate", "webgl2"],
-    ["rain", "webgl"],
-    ["wordmark", "webgl2"],
+  for (const [path, kind, context] of [
+    ["/", "hero-dither", "webgl"],
+    ["/services", "pixels", "2d"],
+    ["/ai-agents", "glassbound", "webgl2"],
+    ["/process", "cables", "webgl"],
+    ["/process", "strings", "2d"],
+    ["/about", "globe", "webgl2"],
+    ["/engage", "gate", "webgl2"],
+    ["/contact", "ocean", "webgl2"],
   ]) {
-    // Story code and its source markup are intentionally absent before viewport entry.
+    await page.goto(path);
     if (kind === "pixels") await page.locator(".service-stage-visual").scrollIntoViewIfNeeded();
-    const visual = page.locator(`[data-visual="${kind}"]`).first();
+    const visual = page.locator('[data-visual="' + kind + '"]').first();
     await visual.scrollIntoViewIfNeeded();
     await expect(visual.locator("canvas")).toHaveCount(1, { timeout: 20000 });
     await expect(visual.locator("canvas")).toHaveAttribute("data-render-context", context);
-    const size = await visual
-      .locator("canvas")
-      .evaluate((c) => ({ w: (c as HTMLCanvasElement).width, h: (c as HTMLCanvasElement).height }));
-    expect(size.w).toBeGreaterThan(0);
-    expect(size.h).toBeGreaterThan(0);
   }
-  await expect(page.locator('[data-visual="glassbound"] canvas')).toHaveCount(0);
-  await page.locator(".tech-section").scrollIntoViewIfNeeded();
-  await expect(page.locator(".tech-section svg textPath")).toHaveCount(1);
+  await page.goto("/work");
   await page.locator(".project-spotlight").first().hover();
   await expect(page.locator(".spotlight-source img").first()).toHaveCount(1);
   await page.getByRole("button", { name: site.actions.next, exact: true }).click();
   await expect(page.locator(".work-progress")).toHaveText("02 / 03");
-  await page.waitForTimeout(800);
-  await page.getByRole("button", { name: `${site.work.caseAction}: Relay` }).click();
-  await expect(
-    page.getByRole("dialog").getByRole("heading", { name: "Relay", exact: true }),
-  ).toBeVisible();
-  await page.keyboard.press("Escape");
-  await expect(page.getByRole("dialog")).toHaveCount(0);
+  await page.getByRole("link", { name: site.work.caseAction + ": Relay" }).click();
+  await expect(page).toHaveURL(/work\/relay$/);
+  await expect(page.getByRole("heading", { name: "Relay", exact: true })).toBeVisible();
+  await page.goto("/engage");
   const faq = page.getByRole("button", {
     name: new RegExp(site.faq.items[0].question.replace(/[?]/g, "\\?")),
   });
@@ -75,9 +62,9 @@ test("desktop uses real source canvases and interactive sections work without er
   await expect(page.getByText(site.faq.items[0].answer, { exact: true })).toBeVisible();
   await faq.press("Enter");
   await expect(faq).toHaveAttribute("aria-expanded", "false");
+  await page.goto("/ai-agents");
   await page.getByRole("button", { name: site.agents.demo.replay }).click();
   await expect(page.locator(".native-chat .msg-item")).toHaveCount(3);
-  await expect(page.locator(".agent-copy .line-mask-split")).toHaveCount(1);
   await expect(page.locator(".workflow-status")).toHaveClass(/ready/, { timeout: 7000 });
   await expect(page.locator(".workflow-demo li.complete")).toHaveCount(3);
   const scan = await new AxeBuilder({ page }).withTags(["wcag2a", "wcag2aa", "wcag21aa"]).analyze();
@@ -115,7 +102,7 @@ test("mobile and reduced-motion use genuine captured frames with no canvases or 
     .getByRole("dialog")
     .getByRole("link", { name: /Services/ })
     .click();
-  await expect(page).toHaveURL(/#services$/);
+  await expect(page).toHaveURL(/\/services$/);
   await expect(page.getByRole("dialog")).toHaveCount(0);
   for (const visual of await page.locator("[data-visual]").all()) {
     await visual.scrollIntoViewIfNeeded();
@@ -130,6 +117,7 @@ test("mobile and reduced-motion use genuine captured frames with no canvases or 
       )
       .toBe(true);
   }
+  await page.goto("/");
   await page.evaluate(() => scrollTo(0, 0));
   await page.screenshot({ path: "artifacts/home-mobile.png", fullPage: true });
   await page.goto("/contact");

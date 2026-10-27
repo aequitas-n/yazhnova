@@ -228,7 +228,10 @@ export function ServiceStory({
             className="architecture-node"
             aria-describedby={hovered === node.id ? "architecture-tooltip" : undefined}
             onPointerEnter={() => selectNode(node.id)}
-            onPointerLeave={() => selectNode(null)}
+            onPointerLeave={(event) => {
+              if (event.pointerType === "mouse") selectNode(null);
+            }}
+            onClick={() => selectNode(node.id)}
             onFocus={() => selectNode(node.id)}
             onBlur={() => selectNode(null)}
             style={{

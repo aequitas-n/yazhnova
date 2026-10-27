@@ -1,5 +1,5 @@
 "use client";
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import { usePathname } from "next/navigation";
 import Link from "next/link";
 import * as Navigation from "@radix-ui/react-navigation-menu";
@@ -15,34 +15,7 @@ import {
 } from "@/components/ui/dialog";
 export function Navbar() {
   const [open, setOpen] = useState(false);
-  const [active, setActive] = useState("");
   const pathname = usePathname();
-  useEffect(() => {
-    if (pathname !== "/") {
-      setActive("");
-      return;
-    }
-    let frame = 0;
-    const update = () => {
-      frame = 0;
-      const current = site.nav.find((item) => {
-        const section = document.querySelector(item.href.replace("/", ""));
-        if (!section) return false;
-        const box = section.getBoundingClientRect();
-        return box.top <= innerHeight * 0.35 && box.bottom > innerHeight * 0.35;
-      });
-      setActive(current?.href ?? "");
-    };
-    const scroll = () => {
-      if (!frame) frame = requestAnimationFrame(update);
-    };
-    update();
-    window.addEventListener("scroll", scroll, { passive: true });
-    return () => {
-      cancelAnimationFrame(frame);
-      window.removeEventListener("scroll", scroll);
-    };
-  }, [pathname]);
   return (
     <header className="site-nav">
       <div className="nav-inner">
@@ -58,25 +31,18 @@ export function Navbar() {
                   <Link
                     className="nav-section-link"
                     href={item.href}
-                    aria-current={active === item.href ? "location" : undefined}
+                    prefetch={false}
+                    aria-current={
+                      pathname === item.href || pathname.startsWith(item.href + "/")
+                        ? "page"
+                        : undefined
+                    }
                   >
                     {item.label}
                   </Link>
                 </Navigation.Link>
               </Navigation.Item>
             ))}
-            <Navigation.Item>
-              <Navigation.Link asChild>
-                <Link
-                  className="nav-section-link"
-                  href="/contact"
-                  prefetch={false}
-                  aria-current={pathname === "/contact" ? "page" : undefined}
-                >
-                  {site.actions.contact}
-                </Link>
-              </Navigation.Link>
-            </Navigation.Item>
           </Navigation.List>
         </Navigation.Root>
         <div className="nav-actions">

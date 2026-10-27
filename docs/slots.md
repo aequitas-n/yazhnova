@@ -1,4 +1,4 @@
-> Pass 3 supersedes these earlier boundaries: Services now drives native pixel/liquid sources with product masks and network-lines with a structured graph. Work uses image-spotlight on an editorial scroll track; stacked-carousel and shadow-cast are inactive. Native border, fluid-field and spark-lattice remain inactive; ocean, cables, globe and tunnel retain their cohesion-pass roles. See [the current report](pass3/README.md).
+> Pass 4 supersedes these earlier boundaries: eight pages host the sources, hero-51 opens Services, and shadow-cast opens Work. Services retains the native mask/graph stories; Work retains image-spotlight on an editorial track. Mobile runs live lower-cost presets. Stacked-carousel, native border, fluid-field and spark-lattice remain inactive. See [the current report](pass4/README.md).
 
 # OriginKit integration and slot status
 

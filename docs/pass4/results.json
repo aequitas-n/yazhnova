@@ -1,0 +1,1078 @@
+{
+  "environment": "Chrome DevTools emulation: touch, DPR 3 / 2.625, 4x CPU, 4 Mbps download, 40 ms latency. Local host display cadence; not physical phone FPS.",
+  "records": [
+    {
+      "device": "desktop",
+      "path": "/",
+      "status": 200,
+      "hero": {
+        "x": 0,
+        "y": 1,
+        "width": 1440,
+        "height": 1000
+      },
+      "overflow": false,
+      "fps": [],
+      "maxContexts": 2
+    },
+    {
+      "device": "desktop",
+      "path": "/services",
+      "status": 200,
+      "hero": {
+        "x": 0,
+        "y": 1,
+        "width": 1440,
+        "height": 1000
+      },
+      "overflow": false,
+      "fps": [],
+      "maxContexts": 1
+    },
+    {
+      "device": "desktop",
+      "path": "/ai-agents",
+      "status": 200,
+      "hero": {
+        "x": 0,
+        "y": 1,
+        "width": 1440,
+        "height": 1000
+      },
+      "overflow": false,
+      "fps": [],
+      "maxContexts": 1
+    },
+    {
+      "device": "desktop",
+      "path": "/work",
+      "status": 200,
+      "hero": {
+        "x": 0,
+        "y": 1,
+        "width": 1440,
+        "height": 1000
+      },
+      "overflow": false,
+      "fps": [],
+      "maxContexts": 1
+    },
+    {
+      "device": "desktop",
+      "path": "/process",
+      "status": 200,
+      "hero": {
+        "x": 0,
+        "y": 1,
+        "width": 1440,
+        "height": 1000
+      },
+      "overflow": false,
+      "fps": [],
+      "maxContexts": 1
+    },
+    {
+      "device": "desktop",
+      "path": "/engage",
+      "status": 200,
+      "hero": {
+        "x": 0,
+        "y": 1,
+        "width": 1440,
+        "height": 1000
+      },
+      "overflow": false,
+      "fps": [],
+      "maxContexts": 1
+    },
+    {
+      "device": "desktop",
+      "path": "/about",
+      "status": 200,
+      "hero": {
+        "x": 0,
+        "y": 1,
+        "width": 1440,
+        "height": 1000
+      },
+      "overflow": false,
+      "fps": [],
+      "maxContexts": 1
+    },
+    {
+      "device": "desktop",
+      "path": "/contact",
+      "status": 200,
+      "hero": {
+        "x": 0,
+        "y": 1,
+        "width": 1440,
+        "height": 1000
+      },
+      "overflow": false,
+      "fps": [],
+      "maxContexts": 1
+    },
+    {
+      "device": "iphone-390",
+      "path": "/",
+      "status": 200,
+      "hero": {
+        "x": 0,
+        "y": 1,
+        "width": 390,
+        "height": 844
+      },
+      "overflow": false,
+      "fps": [
+        {
+          "source": "hero-dither",
+          "frames": 333,
+          "fps": 138.7,
+          "p95FrameMs": 7.4,
+          "buffer": [
+            390,
+            844
+          ],
+          "effectiveDpr": 1
+        },
+        {
+          "source": "horizon",
+          "frames": 333,
+          "fps": 138.7,
+          "p95FrameMs": 7.4,
+          "buffer": [
+            390,
+            120
+          ],
+          "effectiveDpr": 1
+        }
+      ],
+      "maxContexts": 2
+    },
+    {
+      "device": "iphone-390",
+      "path": "/services",
+      "status": 200,
+      "hero": {
+        "x": 0,
+        "y": 1,
+        "width": 390,
+        "height": 844
+      },
+      "overflow": false,
+      "fps": [
+        {
+          "source": "iris",
+          "frames": 347,
+          "fps": 144.2,
+          "p95FrameMs": 7.1,
+          "buffer": [
+            390,
+            633
+          ],
+          "effectiveDpr": 1
+        }
+      ],
+      "maxContexts": 1
+    },
+    {
+      "device": "iphone-390",
+      "path": "/ai-agents",
+      "status": 200,
+      "hero": {
+        "x": 0,
+        "y": 1,
+        "width": 390,
+        "height": 844
+      },
+      "overflow": false,
+      "fps": [
+        {
+          "source": "glassbound",
+          "frames": 346,
+          "fps": 143.8,
+          "p95FrameMs": 7.4,
+          "buffer": [
+            137,
+            222
+          ],
+          "effectiveDpr": 0.35
+        }
+      ],
+      "maxContexts": 1
+    },
+    {
+      "device": "iphone-390",
+      "path": "/work",
+      "status": 200,
+      "hero": {
+        "x": 0,
+        "y": 1,
+        "width": 390,
+        "height": 844
+      },
+      "overflow": false,
+      "fps": [
+        {
+          "source": "shadow",
+          "frames": 346,
+          "fps": 143.8,
+          "p95FrameMs": 7.4,
+          "buffer": [
+            390,
+            844
+          ],
+          "effectiveDpr": 1
+        }
+      ],
+      "maxContexts": 1
+    },
+    {
+      "device": "iphone-390",
+      "path": "/process",
+      "status": 200,
+      "hero": {
+        "x": 0,
+        "y": 1,
+        "width": 390,
+        "height": 844
+      },
+      "overflow": false,
+      "fps": [
+        {
+          "source": "cables",
+          "frames": 346,
+          "fps": 144.1,
+          "p95FrameMs": 7.3,
+          "buffer": [
+            390,
+            844
+          ],
+          "effectiveDpr": 1
+        }
+      ],
+      "maxContexts": 1
+    },
+    {
+      "device": "iphone-390",
+      "path": "/engage",
+      "status": 200,
+      "hero": {
+        "x": 0,
+        "y": 1,
+        "width": 390,
+        "height": 844
+      },
+      "overflow": false,
+      "fps": [
+        {
+          "source": "gate",
+          "frames": 346,
+          "fps": 143.8,
+          "p95FrameMs": 7.4,
+          "buffer": [
+            390,
+            844
+          ],
+          "effectiveDpr": 1
+        }
+      ],
+      "maxContexts": 1
+    },
+    {
+      "device": "iphone-390",
+      "path": "/about",
+      "status": 200,
+      "hero": {
+        "x": 0,
+        "y": 1,
+        "width": 390,
+        "height": 844
+      },
+      "overflow": false,
+      "fps": [
+        {
+          "source": "horizon",
+          "frames": 304,
+          "fps": 126.5,
+          "p95FrameMs": 13.9,
+          "buffer": [
+            390,
+            844
+          ],
+          "effectiveDpr": 1
+        }
+      ],
+      "maxContexts": 1
+    },
+    {
+      "device": "iphone-390",
+      "path": "/contact",
+      "status": 200,
+      "hero": {
+        "x": 0,
+        "y": 1,
+        "width": 390,
+        "height": 844
+      },
+      "overflow": false,
+      "fps": [
+        {
+          "source": "ocean",
+          "frames": 347,
+          "fps": 144.2,
+          "p95FrameMs": 7.2,
+          "buffer": [
+            390,
+            844
+          ],
+          "effectiveDpr": 1
+        }
+      ],
+      "maxContexts": 1
+    },
+    {
+      "device": "iphone-390",
+      "path": "/services#web",
+      "fps": [
+        {
+          "source": "pixels",
+          "frames": 132,
+          "fps": 82,
+          "p95FrameMs": 20.8,
+          "buffer": [
+            390,
+            471
+          ],
+          "effectiveDpr": 1
+        }
+      ],
+      "maxContexts": 0
+    },
+    {
+      "device": "iphone-390",
+      "path": "/services#saas",
+      "fps": [
+        {
+          "source": "liquid",
+          "frames": 231,
+          "fps": 144.2,
+          "p95FrameMs": 7.3,
+          "buffer": [
+            390,
+            471
+          ],
+          "effectiveDpr": 1
+        }
+      ],
+      "maxContexts": 0
+    },
+    {
+      "device": "iphone-390",
+      "path": "/services#ai",
+      "fps": [
+        {
+          "source": "glossy",
+          "frames": 227,
+          "fps": 141.5,
+          "p95FrameMs": 7.3,
+          "buffer": [
+            156,
+            188
+          ],
+          "effectiveDpr": 0.4
+        }
+      ],
+      "maxContexts": 1
+    },
+    {
+      "device": "iphone-390",
+      "path": "/services#mobile",
+      "fps": [
+        {
+          "source": "pixels",
+          "frames": 163,
+          "fps": 101,
+          "p95FrameMs": 14,
+          "buffer": [
+            265,
+            389
+          ],
+          "effectiveDpr": 1
+        }
+      ],
+      "maxContexts": 1
+    },
+    {
+      "device": "iphone-390",
+      "path": "/services#cloud",
+      "fps": [
+        {
+          "source": "network",
+          "frames": 231,
+          "fps": 144.2,
+          "p95FrameMs": 7.2,
+          "buffer": [
+            390,
+            471
+          ],
+          "effectiveDpr": 1
+        }
+      ],
+      "maxContexts": 1
+    },
+    {
+      "device": "iphone-390",
+      "path": "/services#design",
+      "fps": [
+        {
+          "source": "pixels",
+          "frames": 145,
+          "fps": 89.3,
+          "p95FrameMs": 14.3,
+          "buffer": [
+            390,
+            471
+          ],
+          "effectiveDpr": 1
+        }
+      ],
+      "maxContexts": 1
+    },
+    {
+      "device": "iphone-390",
+      "path": "/process .tech-section",
+      "fps": [
+        {
+          "source": "strings",
+          "frames": 148,
+          "fps": 91.1,
+          "p95FrameMs": 14.1,
+          "buffer": [
+            390,
+            420
+          ],
+          "effectiveDpr": 1
+        }
+      ],
+      "maxContexts": 0
+    },
+    {
+      "device": "iphone-390",
+      "path": "/process .architecture-stage",
+      "fps": [
+        {
+          "source": "network",
+          "frames": 167,
+          "fps": 103.9,
+          "p95FrameMs": 7.5,
+          "buffer": [
+            390,
+            513
+          ],
+          "effectiveDpr": 1
+        }
+      ],
+      "maxContexts": 2
+    },
+    {
+      "device": "android-412",
+      "path": "/",
+      "status": 200,
+      "hero": {
+        "x": 0,
+        "y": 1,
+        "width": 412,
+        "height": 915
+      },
+      "overflow": false,
+      "fps": [
+        {
+          "source": "hero-dither",
+          "frames": 331,
+          "fps": 137.8,
+          "p95FrameMs": 7.4,
+          "buffer": [
+            412,
+            915
+          ],
+          "effectiveDpr": 1
+        },
+        {
+          "source": "horizon",
+          "frames": 331,
+          "fps": 137.8,
+          "p95FrameMs": 7.4,
+          "buffer": [
+            412,
+            120
+          ],
+          "effectiveDpr": 1
+        }
+      ],
+      "maxContexts": 2
+    },
+    {
+      "device": "android-412",
+      "path": "/services",
+      "status": 200,
+      "hero": {
+        "x": 0,
+        "y": 1,
+        "width": 412,
+        "height": 915
+      },
+      "overflow": false,
+      "fps": [
+        {
+          "source": "iris",
+          "frames": 346,
+          "fps": 143.9,
+          "p95FrameMs": 7.2,
+          "buffer": [
+            412,
+            686
+          ],
+          "effectiveDpr": 1
+        }
+      ],
+      "maxContexts": 1
+    },
+    {
+      "device": "android-412",
+      "path": "/ai-agents",
+      "status": 200,
+      "hero": {
+        "x": 0,
+        "y": 1,
+        "width": 412,
+        "height": 915
+      },
+      "overflow": false,
+      "fps": [
+        {
+          "source": "glassbound",
+          "frames": 346,
+          "fps": 144,
+          "p95FrameMs": 7.3,
+          "buffer": [
+            144,
+            240
+          ],
+          "effectiveDpr": 0.35
+        }
+      ],
+      "maxContexts": 1
+    },
+    {
+      "device": "android-412",
+      "path": "/work",
+      "status": 200,
+      "hero": {
+        "x": 0,
+        "y": 1,
+        "width": 412,
+        "height": 915
+      },
+      "overflow": false,
+      "fps": [
+        {
+          "source": "shadow",
+          "frames": 347,
+          "fps": 144.3,
+          "p95FrameMs": 7.3,
+          "buffer": [
+            412,
+            915
+          ],
+          "effectiveDpr": 1
+        }
+      ],
+      "maxContexts": 1
+    },
+    {
+      "device": "android-412",
+      "path": "/process",
+      "status": 200,
+      "hero": {
+        "x": 0,
+        "y": 1,
+        "width": 412,
+        "height": 915
+      },
+      "overflow": false,
+      "fps": [
+        {
+          "source": "cables",
+          "frames": 346,
+          "fps": 143.8,
+          "p95FrameMs": 7.4,
+          "buffer": [
+            412,
+            915
+          ],
+          "effectiveDpr": 1
+        }
+      ],
+      "maxContexts": 1
+    },
+    {
+      "device": "android-412",
+      "path": "/engage",
+      "status": 200,
+      "hero": {
+        "x": 0,
+        "y": 1,
+        "width": 412,
+        "height": 915
+      },
+      "overflow": false,
+      "fps": [
+        {
+          "source": "gate",
+          "frames": 346,
+          "fps": 143.9,
+          "p95FrameMs": 7.2,
+          "buffer": [
+            412,
+            915
+          ],
+          "effectiveDpr": 1
+        }
+      ],
+      "maxContexts": 1
+    },
+    {
+      "device": "android-412",
+      "path": "/about",
+      "status": 200,
+      "hero": {
+        "x": 0,
+        "y": 1,
+        "width": 412,
+        "height": 915
+      },
+      "overflow": false,
+      "fps": [
+        {
+          "source": "horizon",
+          "frames": 270,
+          "fps": 112.2,
+          "p95FrameMs": 14,
+          "buffer": [
+            412,
+            915
+          ],
+          "effectiveDpr": 1
+        }
+      ],
+      "maxContexts": 1
+    },
+    {
+      "device": "android-412",
+      "path": "/contact",
+      "status": 200,
+      "hero": {
+        "x": 0,
+        "y": 1,
+        "width": 412,
+        "height": 915
+      },
+      "overflow": false,
+      "fps": [
+        {
+          "source": "ocean",
+          "frames": 347,
+          "fps": 144.2,
+          "p95FrameMs": 7.3,
+          "buffer": [
+            412,
+            915
+          ],
+          "effectiveDpr": 1
+        }
+      ],
+      "maxContexts": 1
+    },
+    {
+      "device": "android-412",
+      "path": "/services#web",
+      "fps": [
+        {
+          "source": "pixels",
+          "frames": 142,
+          "fps": 87.8,
+          "p95FrameMs": 20.8,
+          "buffer": [
+            412,
+            517
+          ],
+          "effectiveDpr": 1
+        }
+      ],
+      "maxContexts": 0
+    },
+    {
+      "device": "android-412",
+      "path": "/services#saas",
+      "fps": [
+        {
+          "source": "liquid",
+          "frames": 231,
+          "fps": 144.2,
+          "p95FrameMs": 7.3,
+          "buffer": [
+            412,
+            517
+          ],
+          "effectiveDpr": 1
+        }
+      ],
+      "maxContexts": 0
+    },
+    {
+      "device": "android-412",
+      "path": "/services#ai",
+      "fps": [
+        {
+          "source": "glossy",
+          "frames": 228,
+          "fps": 142.2,
+          "p95FrameMs": 7.1,
+          "buffer": [
+            165,
+            207
+          ],
+          "effectiveDpr": 0.4
+        }
+      ],
+      "maxContexts": 1
+    },
+    {
+      "device": "android-412",
+      "path": "/services#mobile",
+      "fps": [
+        {
+          "source": "pixels",
+          "frames": 167,
+          "fps": 103.2,
+          "p95FrameMs": 14.2,
+          "buffer": [
+            281,
+            428
+          ],
+          "effectiveDpr": 1
+        }
+      ],
+      "maxContexts": 1
+    },
+    {
+      "device": "android-412",
+      "path": "/services#cloud",
+      "fps": [
+        {
+          "source": "network",
+          "frames": 231,
+          "fps": 144,
+          "p95FrameMs": 7.2,
+          "buffer": [
+            412,
+            517
+          ],
+          "effectiveDpr": 1
+        }
+      ],
+      "maxContexts": 1
+    },
+    {
+      "device": "android-412",
+      "path": "/services#design",
+      "fps": [
+        {
+          "source": "pixels",
+          "frames": 143,
+          "fps": 88.7,
+          "p95FrameMs": 14.6,
+          "buffer": [
+            412,
+            517
+          ],
+          "effectiveDpr": 1
+        }
+      ],
+      "maxContexts": 1
+    },
+    {
+      "device": "android-412",
+      "path": "/process .tech-section",
+      "fps": [
+        {
+          "source": "strings",
+          "frames": 149,
+          "fps": 92.4,
+          "p95FrameMs": 14.3,
+          "buffer": [
+            412,
+            456
+          ],
+          "effectiveDpr": 1
+        }
+      ],
+      "maxContexts": 0
+    },
+    {
+      "device": "android-412",
+      "path": "/process .architecture-stage",
+      "fps": [
+        {
+          "source": "network",
+          "frames": 215,
+          "fps": 134,
+          "p95FrameMs": 7.4,
+          "buffer": [
+            412,
+            563
+          ],
+          "effectiveDpr": 1
+        }
+      ],
+      "maxContexts": 2
+    },
+    {
+      "device": "iphone-390",
+      "path": "/about .where-globe",
+      "fps": [
+        {
+          "source": "rain",
+          "frames": 87,
+          "fps": 53.3,
+          "p95FrameMs": 20.9,
+          "buffer": [
+            390,
+            881
+          ],
+          "effectiveDpr": 1
+        },
+        {
+          "source": "globe",
+          "frames": 87,
+          "fps": 53.3,
+          "p95FrameMs": 20.9,
+          "buffer": [
+            390,
+            532
+          ],
+          "effectiveDpr": 1
+        }
+      ],
+      "maxContexts": 2
+    },
+    {
+      "device": "iphone-390",
+      "path": "/about .footer-wordmark",
+      "fps": [
+        {
+          "source": "rain",
+          "frames": 231,
+          "fps": 144,
+          "p95FrameMs": 7.2,
+          "buffer": [
+            390,
+            881
+          ],
+          "effectiveDpr": 1
+        },
+        {
+          "source": "wordmark",
+          "frames": 231,
+          "fps": 144,
+          "p95FrameMs": 7.2,
+          "buffer": [
+            390,
+            220
+          ],
+          "effectiveDpr": 1
+        }
+      ],
+      "maxContexts": 2
+    },
+    {
+      "device": "android-412",
+      "path": "/about .where-globe",
+      "fps": [
+        {
+          "source": "rain",
+          "frames": 85,
+          "fps": 52.4,
+          "p95FrameMs": 21,
+          "buffer": [
+            412,
+            881
+          ],
+          "effectiveDpr": 1
+        },
+        {
+          "source": "globe",
+          "frames": 85,
+          "fps": 52.4,
+          "p95FrameMs": 21,
+          "buffer": [
+            412,
+            576
+          ],
+          "effectiveDpr": 1
+        }
+      ],
+      "maxContexts": 2
+    },
+    {
+      "device": "android-412",
+      "path": "/about .footer-wordmark",
+      "fps": [
+        {
+          "source": "rain",
+          "frames": 230,
+          "fps": 143.7,
+          "p95FrameMs": 7.4,
+          "buffer": [
+            412,
+            881
+          ],
+          "effectiveDpr": 1
+        },
+        {
+          "source": "wordmark",
+          "frames": 230,
+          "fps": 143.7,
+          "p95FrameMs": 7.4,
+          "buffer": [
+            412,
+            220
+          ],
+          "effectiveDpr": 1
+        }
+      ],
+      "maxContexts": 2
+    },
+    {
+      "device": "iphone-390",
+      "path": "intro",
+      "beats": [
+        {
+          "phase": "pending",
+          "beat": "formed",
+          "time": 132.1000000089407
+        },
+        {
+          "phase": "loading",
+          "beat": "formed",
+          "time": 1443.9000000059605
+        },
+        {
+          "phase": "playing",
+          "beat": "formed",
+          "time": 4585.5
+        },
+        {
+          "phase": "playing",
+          "beat": "opening",
+          "time": 4837
+        },
+        {
+          "phase": "playing",
+          "beat": "wordmark",
+          "time": 5489.600000008941
+        },
+        {
+          "phase": "playing",
+          "beat": "closing",
+          "time": 5680.70000000298
+        },
+        {
+          "phase": "playing",
+          "beat": "reformed",
+          "time": 6054.800000011921
+        },
+        {
+          "phase": "playing",
+          "beat": "burst",
+          "time": 6187
+        },
+        {
+          "phase": "revealing",
+          "beat": "burst",
+          "time": 6311.70000000298
+        },
+        {
+          "phase": "done",
+          "beat": "done",
+          "time": 6670.4000000059605
+        }
+      ],
+      "observedTimelineMs": 2085,
+      "renderedStoneFrames": 238,
+      "maxContexts": 1
+    },
+    {
+      "device": "android-412",
+      "path": "intro",
+      "beats": [
+        {
+          "phase": "pending",
+          "beat": "formed",
+          "time": 139.79999999701977
+        },
+        {
+          "phase": "loading",
+          "beat": "formed",
+          "time": 1412.5999999940395
+        },
+        {
+          "phase": "playing",
+          "beat": "formed",
+          "time": 2179.7999999970198
+        },
+        {
+          "phase": "playing",
+          "beat": "opening",
+          "time": 2420.7999999970198
+        },
+        {
+          "phase": "playing",
+          "beat": "wordmark",
+          "time": 2949.7000000029802
+        },
+        {
+          "phase": "playing",
+          "beat": "closing",
+          "time": 3268.5
+        },
+        {
+          "phase": "playing",
+          "beat": "reformed",
+          "time": 3649.5999999940395
+        },
+        {
+          "phase": "playing",
+          "beat": "burst",
+          "time": 3780.7999999970198
+        },
+        {
+          "phase": "revealing",
+          "beat": "burst",
+          "time": 3899.2000000029802
+        },
+        {
+          "phase": "done",
+          "beat": "done",
+          "time": 4255.9000000059605
+        }
+      ],
+      "observedTimelineMs": 2076,
+      "renderedStoneFrames": 235,
+      "maxContexts": 1
+    }
+  ],
+  "errors": []
+}

@@ -13,6 +13,7 @@ npm run dev
 
 - Website: http://localhost:3000
 - Contact: http://localhost:3000/contact
+- Chapters: `/services`, `/ai-agents`, `/work`, `/process`, `/engage`, `/about`; concept case studies at `/work/clarity`, `/work/relay`, `/work/forma`.
 - 34 paired component studies: http://localhost:3000/playground
 - Replay the stone introduction: http://localhost:3000/?intro=replay
 
@@ -29,7 +30,7 @@ npm start
 
 ## Current concept: From raw stone to signal
 
-The site uses an ink base, signal orange (#FF3B00), two deliberate paper breaths, one tabbed service stage, full-size native scenes and a shared two-WebGL-context budget. Quotes, verified stats and client locations stay empty until real data is supplied; capabilities remain visible. Mobile and reduced motion use genuine frames.
+The site uses an ink base, signal orange (#FF3B00), selective paper breaths, a tabbed service stage, full-size native scenes and a shared two-WebGL-context budget. Home is a short introduction; dedicated pages hold the full content. Quotes, verified stats, client locations and team data stay empty until real data is supplied. Mobile uses lighter live canvases; reduced motion uses genuine source frames.
 
 - [Before/after report for every section](docs/cohesion/README.md)
 - [Interactive comparison viewer](docs/cohesion/index.html)
@@ -37,6 +38,7 @@ The site uses an ink base, signal orange (#FF3B00), two deliberate paper breaths
 
 ## Review the work
 
+- [Pass 4 pages and mobile motion](docs/pass4/README.md): all page heroes, touch viewport captures, source quality controls and FPS observations. [Screenshot viewer](docs/pass4/index.html).
 - [Pass 3 service stories and editorial Work](docs/pass3/README.md): six mid-sequence screenshots, final frames, source extensions and the new horizontal track.
 - [Source inventory](docs/inventory.md): all 34 items, signature elements, complete props/defaults, interaction, performance and mobile notes.
 - [Design plan](docs/plan.md): palette, type, grid, motion and the actual source combinations for every section.
@@ -78,7 +80,7 @@ The Next.js Node handler validates the request with Zod and sends plain-text ema
 
 ## Rendering and motion
 
-`LiveVisual` imports actual sources only while visible on a desktop-style fine pointer. Leaving the viewport or hiding the tab unmounts the renderer, invoking its original cleanup and cancelling its loops. Reduced motion and mobile/coarse pointers use PNG frames captured from the same real sources. Canvas editor minimum dimensions are overridden through existing style props, never by recreating their visuals.
+`LiveVisual` imports actual sources while visible and motion is allowed, including mobile and coarse pointers. Leaving the viewport or hiding the tab unmounts the renderer, invokes cleanup and releases its context. Reduced motion uses PNG frames captured from the same real sources. Mobile DPR, resolution and density controls live in `lib/canvas-quality.ts` and `lib/mobile-visual-presets.ts`; the stone intro runs a shorter 2.1-second choreography on mobile. Canvas editor minimum dimensions are overridden through style props, never by recreating their visuals.
 
 Self-hosted Instrument Serif, Inter Tight and Geist Mono are used for production. Inter Tight's existing weights share one variable font file. The original source demos may load their own fonts or sample assets; those dependencies remain isolated to the playground.
 

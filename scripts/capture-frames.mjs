@@ -1,6 +1,7 @@
 import { chromium } from "@playwright/test";
 import { mkdir, readFile, writeFile } from "node:fs/promises";
 const kinds = [
+  "iris",
   "hero-dither",
   "manifesto",
   "pixels",

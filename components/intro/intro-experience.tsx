@@ -31,6 +31,7 @@ class IntroBoundary extends Component<
 export function IntroExperience({ children }: { children: ReactNode }) {
   const [phase, setPhase] = useState<Phase>("pending");
   const [beat, setBeat] = useState<IntroBeat>("formed");
+  const [compact, setCompact] = useState(false);
   const skip = useRef<HTMLButtonElement>(null);
   const replaying = useRef(false);
   const finish = useCallback(() => {
@@ -46,18 +47,15 @@ export function IntroExperience({ children }: { children: ReactNode }) {
   const blocking = phase === "loading" || phase === "playing" || phase === "revealing";
 
   useEffect(() => {
-    const capable = matchMedia(
-      "(min-width: 768px) and (pointer: fine) and (prefers-reduced-motion: no-preference)",
-    );
-    const dataSaver = (navigator as Navigator & { connection?: { saveData?: boolean } }).connection
-      ?.saveData;
+    const capable = matchMedia("(prefers-reduced-motion: no-preference)");
+    setCompact(matchMedia("(max-width: 767px), (pointer: coarse)").matches);
     let seen = false;
     try {
       seen = sessionStorage.getItem(SESSION_KEY) === "1";
     } catch {}
     const replay = new URLSearchParams(location.search).get("intro") === "replay";
     replaying.current = replay;
-    if (!capable.matches || dataSaver || location.hash || (seen && !replay)) setPhase("done");
+    if (!capable.matches || location.hash || (seen && !replay)) setPhase("done");
     else setPhase("loading");
     const onPreference = () => {
       if (!capable.matches) finish();
@@ -68,9 +66,9 @@ export function IntroExperience({ children }: { children: ReactNode }) {
 
   useEffect(() => {
     if (phase !== "loading") return;
-    const timeout = setTimeout(finish, replaying.current ? 12000 : 3500);
+    const timeout = setTimeout(finish, compact || replaying.current ? 12000 : 6000);
     return () => clearTimeout(timeout);
-  }, [phase, finish]);
+  }, [phase, finish, compact]);
 
   useEffect(() => {
     if (!blocking) return;
@@ -108,6 +106,7 @@ export function IntroExperience({ children }: { children: ReactNode }) {
       {active && (
         <div
           className="site-intro"
+          data-compact={compact}
           data-intro-phase={phase}
           data-intro-beat={beat}
           role="dialog"
@@ -128,6 +127,7 @@ export function IntroExperience({ children }: { children: ReactNode }) {
             {phase !== "pending" && (
               <IntroBoundary onError={finish}>
                 <CinematicIntro
+                  compact={compact}
                   onReady={onReady}
                   onBeat={onBeat}
                   onReveal={onReveal}

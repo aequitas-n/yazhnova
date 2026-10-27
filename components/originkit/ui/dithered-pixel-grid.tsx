@@ -1,4 +1,5 @@
 "use client"
+import { canvasPixelRatio } from "@/lib/canvas-quality";
 
 import { useEffect, useRef } from "react"
 import type { CSSProperties } from "react"
@@ -408,7 +409,7 @@ export default function StitchNova({
             H = 1
         let dirty = true
         const resize = () => {
-            const dpr = Math.min(2, window.devicePixelRatio || 1)
+            const dpr = canvasPixelRatio(2)
             W = Math.max(1, Math.round(root.offsetWidth * dpr))
             H = Math.max(1, Math.round(root.offsetHeight * dpr))
             canvas.width = W

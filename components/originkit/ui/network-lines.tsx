@@ -1,4 +1,5 @@
 "use client"
+import { canvasPixelRatio } from "@/lib/canvas-quality";
 
 import * as React from "react"
 import { useEffect, useRef } from "react"
@@ -339,7 +340,7 @@ export default function ConstellationField(props: ConstellationFieldProps) {
             const sp = v.speed as number
             clock = (clock + dt * sp) % 6283
 
-            const dpr = Math.min(window.devicePixelRatio || 1, MAX_DPR)
+            const dpr = canvasPixelRatio(MAX_DPR)
             const cw = sizeRef.current.w || canvas.clientWidth || 1200
             const ch = sizeRef.current.h || canvas.clientHeight || 800
             const bw = Math.max(1, Math.round(cw * dpr))

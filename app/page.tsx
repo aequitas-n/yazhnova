@@ -2,29 +2,20 @@ import { SiteShell } from "@/components/layout/site-shell";
 import { Hero } from "@/components/sections/hero";
 import { Manifesto } from "@/components/sections/manifesto";
 import { Services } from "@/components/sections/services";
-import { Agents } from "@/components/sections/agents";
-import { Process } from "@/components/sections/process";
-import { TechStack } from "@/components/sections/tech-stack";
-import { Work } from "@/components/sections/work";
-import { Engagement } from "@/components/sections/engagement";
-import { Proof, Faq } from "@/components/sections/testimonials-faq";
+import { HomeFeatured } from "@/components/pages/home-featured";
 import { FinalCta } from "@/components/sections/final-cta";
 import { IntroExperience } from "@/components/intro/intro-experience";
+import { pageMetadata } from "@/lib/page-metadata";
+export const metadata = pageMetadata("home");
 export default function Home() {
   return (
     <IntroExperience>
       <SiteShell>
-        <main id="main-content">
+        <main id="main-content" className="home-page">
           <Hero />
           <Manifesto />
-          <Services />
-          <Agents />
-          <Process />
-          <TechStack />
-          <Work />
-          <Engagement />
-          <Proof />
-          <Faq />
+          <Services teaser />
+          <HomeFeatured />
           <FinalCta />
         </main>
       </SiteShell>

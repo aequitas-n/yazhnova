@@ -10,14 +10,14 @@ test("stories progress, pause off-screen, replay and expose structured cloud too
   page.on("console", (message) => {
     if (message.type() === "error") errors.push(message.text());
   });
-  await page.goto("/");
+  await page.goto("/services");
   await page.locator(".service-stage-visual").scrollIntoViewIfNeeded();
   const story = page.locator('[data-story="web"]');
   await expect(story.locator("canvas")).toHaveCount(1, { timeout: 20000 });
   await expect
     .poll(async () => Number(await story.getAttribute("data-time")))
     .toBeGreaterThan(1200);
-  await page.locator("#hero-title").scrollIntoViewIfNeeded();
+  await page.locator("#page-title").scrollIntoViewIfNeeded();
   await expect(story).toHaveAttribute("data-state", "paused");
   const paused = Number(await story.getAttribute("data-time"));
   await page.waitForTimeout(500);
@@ -43,7 +43,7 @@ test("Work pins an editorial track, scrolls sideways and keeps nav backgrounds t
   page,
 }) => {
   await page.addInitScript(() => sessionStorage.setItem("yazhnova:intro:v1", "1"));
-  await page.goto("/");
+  await page.goto("/work");
   const scene = page.locator(".work-horizontal");
   await expect(scene).toHaveAttribute("data-pinned", "true");
   await expect(page.locator(".case-panel")).toHaveCount(3);
@@ -71,11 +71,9 @@ test("Work pins an editorial track, scrolls sideways and keeps nav backgrounds t
     { start, height: await scene.evaluate((node) => node.getBoundingClientRect().height) },
   );
   await expect(page.locator(".work-progress")).toHaveText("03 / 03");
-  await page.getByRole("button", { name: site.work.caseAction + ": Forma" }).click();
-  await expect(
-    page.getByRole("dialog").getByRole("heading", { name: "Forma", exact: true }),
-  ).toBeVisible();
-  await page.keyboard.press("Escape");
+  await page.getByRole("link", { name: site.work.caseAction + ": Forma" }).click();
+  await expect(page).toHaveURL(/work\/forma$/);
+  await expect(page.getByRole("heading", { name: "Forma", exact: true })).toBeVisible();
   for (const name of ["Services", "Work"]) {
     const link = page.locator(".desktop-nav").getByRole("link", { name, exact: true });
     await link.hover();
@@ -93,7 +91,7 @@ test("reduced motion shows each final product frame and a vertical Work layout",
 }) => {
   await page.emulateMedia({ reducedMotion: "reduce" });
   await page.setViewportSize({ width: 390, height: 844 });
-  await page.goto("/");
+  await page.goto("/services");
   for (const id of Object.keys(serviceStories.steps)) {
     await page.locator("#service-tab-" + id).click();
     const story = page.locator(".service-story");
@@ -111,6 +109,7 @@ test("reduced motion shows each final product frame and a vertical Work layout",
       .toBe(true);
     await expect(story.locator("canvas")).toHaveCount(0);
   }
+  await page.goto("/work");
   await expect(page.locator(".work-horizontal")).toHaveAttribute("data-pinned", "false");
   expect(await page.evaluate(() => document.documentElement.scrollWidth <= innerWidth)).toBe(true);
 });

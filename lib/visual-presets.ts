@@ -2,6 +2,29 @@ import { palette, editorialPresets } from "./originkit-catalog";
 import { site } from "@/content/site";
 const { ink, graphite, paper, grey, accent } = palette;
 export const visualPresets = {
+  iris: {
+    background: ink,
+    scale: 108,
+    irisColor: accent,
+    scleraColor: "#8C8A84",
+    pupilSize: 5,
+    follow: "page",
+    reach: 7,
+    dilate: 4,
+    wander: 12,
+    float: 8,
+    advanced: {
+      markColor: paper,
+      collarColor: graphite,
+      redness: 0,
+      veins: 0,
+      fiber: 55,
+      gloss: 70,
+      maxTurn: 25,
+      restX: 8,
+      restY: 2,
+    },
+  },
   "hero-dither": {
     ...editorialPresets["dither-reveal"],
     image: { src: "/originkit/hero-40/white-hands.png", alt: site.hero.imageAlt },

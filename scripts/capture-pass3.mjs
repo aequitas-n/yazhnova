@@ -44,7 +44,7 @@ try {
         .screenshot({ path: "docs/pass3/web-" + name + ".png" });
     }
   } else {
-    await page.goto(base);
+    await page.goto(base + "/services");
     await page.locator(".service-stage-visual").scrollIntoViewIfNeeded();
     for (const id of ids) {
       await page.locator("#service-tab-" + id).click();
@@ -66,6 +66,7 @@ try {
         phase: await page.locator('.story-caption [aria-current="step"]').innerText(),
       });
     }
+    await page.goto(base + "/work");
     const work = page.locator(".work-horizontal");
     await work.scrollIntoViewIfNeeded();
     const box = await work.boundingBox();

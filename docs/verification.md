@@ -1,4 +1,4 @@
-> Pass 3 builds on **From raw stone to signal**, with six service narratives and an editorial Work track. [Current screenshots and report](pass3/README.md), [source integrity](pass3/source-integrity.json) and [source controls](fixes.md) describe the current implementation. Earlier phase-specific notes below are retained as history.
+> Pass 4 expands **From raw stone to signal** into eight main pages, three case-study pages and live mobile motion. [Current screenshots and FPS report](pass4/README.md) and [source controls](fixes.md) describe the implementation. Earlier phase-specific notes below are retained as history.
 
 # Production verification
 
@@ -8,17 +8,25 @@ Verified against the optimized Next.js 15 production build on Node.js 24.12.0. T
 
 - `npm run build` passes, including TypeScript checking and static generation.
 - Prettier checks pass for the authored application, scripts, tests and documentation. Original library sources remain excluded from formatting.
-- All **14 Playwright tests pass** against the production preview.
-- Desktop checks confirm genuine rendering contexts for the hands, orange horizon, native newsprint, six service stories, glassbound, light cables, data strings, draggable globe, star-gate, rain and wordmark. Contact renders the real ocean shader. The full-width agent grid is checked at 60/40. Work now uses native image-spotlight on a pinned editorial track, with no deck or pillars canvas.
-- Off-screen glassbound unmounts its canvas. Mobile/reduced-motion pages render no canvases, and every homepage fallback image loads successfully. There is no horizontal page overflow at 390px or 320px.
-- Navigation, project controls/dialog, agent replay, keyboard-operated FAQ, contact preselection, validation, focus management and mocked submission confirmation pass. Automated WCAG A/AA scans report no violations on the checked desktop/mobile and contact states.
+- All **20 Playwright checks have passed** against the production preview. The latest addition verifies cancellation while native shader compilation is pending.
+- Desktop and touch checks confirm genuine contexts for the hands, horizon, native newsprint, six service stories, hero-51 iris, glassbound, shadow-cast, light cables, strings, globe, star-gate, rain, wordmark and ocean. Work combines the editorial track with a full-screen shadow-cast hero.
+- Off-screen sources unmount. Mobile at 390px and 412px runs actual canvases at reduced quality, without hover. Reduced-motion pages have zero canvases and genuine frames. The mobile intro and full-screen menu work, and the viewport remains within its width.
+- Navigation, case-study routes, agent replay, keyboard-operated FAQ, contact preselection, validation, focus management and mocked submission confirmation pass. Automated WCAG A/AA scans report no violations on the checked desktop/mobile and contact states.
 - No application console errors or uncaught exceptions occurred in the desktop homepage and contact checks.
 - API checks cover invalid data, malformed JSON, oversized bodies, foreign origins, honeypot handling and the honest unconfigured-mail response. No real email was sent.
 - Sitemap, robots, generated OpenGraph image, icon and 404 handling pass. Playground routes are noindex and excluded from the sitemap.
 
-## Mobile Lighthouse
+## Pass 4 mobile Lighthouse
 
-Lighthouse 13.5.0, mobile form factor, simulated throttling, local production server. Reports were captured on 27 October 2026 after Pass 3. These are local lab measurements; deployment conditions can change scores.
+The final live-mobile implementation scores **91 / 100 / 100 / 100** on both Home and Contact (performance / accessibility / best practices / SEO). Home records 3.2s LCP, 0 CLS and 170ms TBT; Contact records 3.0s LCP, 0.047 CLS and 190ms TBT. These are local Lighthouse 13.5.0 mobile/simulated-throttling measurements, not field data. The [current machine-readable summary](pass4/lighthouse-results.json) records the audit time and metrics. Remaining opportunities include framework code, render-blocking CSS and the contact form's small layout shift.
+
+The first Pass 4 audit exposed a long synchronous stone shader compile (59 performance on Home, 74 on Contact). Cancellable native shader warmup removed that long blocking task. The same geometry, material programs and drawing loops remain. Skip can cancel pending compilation; a dedicated browser check prevents the renderer restarting after disposal.
+
+The [touch render-call samples](pass4/fps-summary.md) cover 390px and 412px at 4× CPU slowdown and a 4Mbps connection. Across 42 connected-canvas samples, the lowest measured average is 52.4 fps, with at most two WebGL contexts and no application console or uncaught errors. Mobile stone choreography measures 2.085s and 2.076s after source readiness; cold/warm initialization is reported separately. Actual phone hardware is not measured.
+
+## Pass 3 mobile Lighthouse (historical)
+
+Lighthouse 13.5.0, mobile form factor, simulated throttling, local production server. These reports were captured after Pass 3's former static-mobile policy, and do not describe Pass 4's live mobile renderer cost. They remain as historical measurements.
 
 | Page       | Performance | Accessibility | Best practices | SEO     | LCP   | CLS | Total blocking time |
 | ---------- | ----------- | ------------- | -------------- | ------- | ----- | --- | ------------------- |

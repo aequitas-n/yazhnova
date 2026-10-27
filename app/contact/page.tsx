@@ -1,67 +1,61 @@
-import type { Metadata } from "next";
 import { Suspense } from "react";
-import Link from "next/link";
-import { ArrowLeft, ArrowUpRight, ShieldCheck } from "lucide-react";
-import { site } from "@/content/site";
+import { ArrowDown, ArrowUpRight } from "lucide-react";
+import { pageContent, site } from "@/content/site";
 import { SiteShell } from "@/components/layout/site-shell";
 import { LiveVisual } from "@/components/visuals/live-visual";
 import { ContactForm } from "@/components/contact/contact-form";
-import { RevealCopy } from "@/components/visuals/native-details";
-export const metadata: Metadata = {
-  title: "Start a project",
-  description: site.contact.description,
-  alternates: { canonical: "/contact" },
-  openGraph: {
-    title: "Start a project | Yazhnova",
-    url: "/contact",
-    description: site.contact.description,
-  },
-};
+import { pageMetadata } from "@/lib/page-metadata";
+export const metadata = pageMetadata("contact");
 export default function ContactPage() {
+  const copy = pageContent.contact;
   return (
     <SiteShell>
-      <main id="main-content" className="contact-page">
-        <div className="contact-water" aria-hidden="true">
-          <LiveVisual kind="ocean" priority sizes="100vw" />
-        </div>
-        <div className="container contact-layout">
-          <div className="contact-intro">
-            <Link className="contact-back" href="/">
-              <ArrowLeft size={13} />
-              {site.actions.back}
-            </Link>
-            <p className="eyebrow">{site.contact.label}</p>
-            <h1>
-              {site.contact.title}
-              <br />
-              <em>{site.contact.serif}</em>
-            </h1>
-            <RevealCopy text={site.contact.description} />
-            <div className="contact-email">
-              <p className="eyebrow">{site.contact.emailLabel}</p>
-              <a href={`mailto:${site.email}`}>
-                {site.email}
-                <ArrowUpRight size={20} />
-              </a>
+      <main id="main-content" className="contact-page-v4">
+        <section
+          className="page-hero contact-hero"
+          data-page-hero="contact"
+          aria-labelledby="page-title"
+        >
+          <div className="page-hero-art" aria-hidden="true">
+            <LiveVisual kind="ocean" priority sizes="100vw" />
+          </div>
+          <div className="page-hero-shade" aria-hidden="true" />
+          <div className="container contact-layout-v4">
+            <div className="contact-heading-v4">
+              <p className="eyebrow">{copy.label}</p>
+              <h1 id="page-title">
+                {copy.title} <em>{copy.serif}</em>
+              </h1>
+              <p>{copy.description}</p>
             </div>
-            <p className="contact-nda">
-              <ShieldCheck size={15} />
-              {site.contact.nda}
-            </p>
+            <div className="contact-form-panel">
+              <Suspense
+                fallback={
+                  <div className="form-skeleton" aria-busy="true">
+                    <h2>{site.contact.formTitle}</h2>
+                    <p>{site.contact.formNote}</p>
+                  </div>
+                }
+              >
+                <ContactForm />
+              </Suspense>
+            </div>
           </div>
-          <div className="contact-form-panel">
-            <Suspense
-              fallback={
-                <div className="form-skeleton" aria-busy="true">
-                  <h2>{site.contact.formTitle}</h2>
-                  <p className="form-note">{site.contact.formNote}</p>
-                </div>
-              }
-            >
-              <ContactForm />
-            </Suspense>
+          <a href="#contact-details" className="page-scroll mono">
+            <span>{pageContent.scroll}</span>
+            <ArrowDown size={17} />
+          </a>
+        </section>
+        <section id="contact-details" className="section contact-details ink">
+          <div className="container">
+            <p className="eyebrow">{site.contact.emailLabel}</p>
+            <a href={"mailto:" + site.email}>
+              {site.email}
+              <ArrowUpRight size={28} />
+            </a>
+            <p>{site.contact.nda}</p>
           </div>
-        </div>
+        </section>
       </main>
     </SiteShell>
   );

@@ -15,11 +15,13 @@ export default function CinematicIntro({
   onBeat,
   onReveal,
   onComplete,
+  compact = false,
 }: {
   onReady: () => void;
   onBeat: (beat: IntroBeat) => void;
   onReveal: () => void;
   onComplete: () => void;
+  compact?: boolean;
 }) {
   const root = useRef<HTMLDivElement>(null);
   const left = useRef<HTMLSpanElement>(null);
@@ -75,6 +77,7 @@ export default function CinematicIntro({
       .to(state, { opening: 1, duration: 0.95, ease: "power2.inOut" }, 4.62)
       .to(overlay!.querySelector(".intro-label"), { opacity: 0, duration: 0.25 }, 0.7)
       .to(overlay!.querySelector(".intro-controls"), { opacity: 0, duration: 0.3 }, 5.1);
+    if (compact) timeline.timeScale(5.57 / 2.1);
 
     const visibility = () => {
       cue.current.paused = document.hidden;
@@ -89,7 +92,7 @@ export default function CinematicIntro({
       layer?.style.removeProperty("--intro-opening");
       overlay?.style.removeProperty("--intro-progress");
     };
-  }, [ready, onReady, onBeat, onReveal, onComplete]);
+  }, [ready, onReady, onBeat, onReveal, onComplete, compact]);
 
   useEffect(() => {
     const layer = root.current;
@@ -106,13 +109,14 @@ export default function CinematicIntro({
       <div className="intro-stone" data-intro-stone aria-hidden="true">
         <EmberHusk
           {...visualPresets.ember}
-          size={2.2}
+          size={compact ? 1.7 : 2.2}
           quality="low"
           choreography={cue}
           entrance={{ scatter: 0, tumble: 0, stagger: 0 }}
           response={{ strength: 0, repel: 0, settle: 8 }}
           drift={{ spin: 0, bob: 1, sway: 1 }}
-          debris={{ count: 28, size: 3, spread: 3 }}
+          structure={{ ...visualPresets.ember.structure, shards: compact ? 8 : 12 }}
+          debris={{ count: compact ? 8 : 28, size: 3, spread: 3 }}
           beads={0}
           onReady={didRender}
           onError={onComplete}

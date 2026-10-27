@@ -1,4 +1,6 @@
 "use client"
+import { canvasPixelRatio } from "@/lib/canvas-quality";
+import { warmRenderer } from "@/lib/warm-renderer";
 
 import * as React from "react"
 import { useEffect, useRef } from "react"
@@ -322,7 +324,7 @@ class OceanSwellScene {
 
         this.renderer = new THREE.WebGLRenderer({ antialias: false, alpha: false })
 
-        this.renderer.setPixelRatio(Math.min(window.devicePixelRatio || 1, 1.25))
+        this.renderer.setPixelRatio(canvasPixelRatio(1.25))
         this.renderer.outputColorSpace = THREE.SRGBColorSpace
         this.renderer.setClearColor(0x000000, 1)
         const el = this.renderer.domElement
@@ -422,13 +424,14 @@ class OceanSwellScene {
 
     private unbind = () => {}
 
+    private cancelWarmup = () => {}
     start() {
         this.lastT = performance.now()
         const loop = () => {
             this.frameId = requestAnimationFrame(loop)
             this.step()
         }
-        loop()
+        this.cancelWarmup = warmRenderer(this.renderer, [() => this.renderer.compile(this.scene, this.camera)], () => { if (!this.disposed) { this.lastT = performance.now(); loop() } })
     }
 
     setSize(width: number, height: number) {
@@ -498,6 +501,7 @@ class OceanSwellScene {
 
     dispose() {
         this.disposed = true
+        this.cancelWarmup()
         cancelAnimationFrame(this.frameId)
         this.unbind()
         this.geometry.dispose()

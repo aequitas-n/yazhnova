@@ -6,14 +6,7 @@ import { site } from "@/content/site";
 import { SectionLabel } from "@/components/ui/section-label";
 import { SectionTitle } from "@/components/ui/section-title";
 import { ProjectSpotlight } from "@/components/visuals/native-details";
-import { ProjectLink } from "@/components/ui/project-link";
-import {
-  Dialog,
-  DialogTrigger,
-  DialogContent,
-  DialogTitle,
-  DialogDescription,
-} from "@/components/ui/dialog";
+import Link from "next/link";
 
 type TrackProps = {
   track: RefObject<HTMLDivElement | null>;
@@ -131,35 +124,15 @@ export function Work() {
                 <ProjectSpotlight src={project.preview} alt={project.previewAlt} />
                 <div className="case-bottom">
                   <span className="mono">{project.tags.join(" / ")}</span>
-                  <Dialog>
-                    <DialogTrigger asChild>
-                      <button
-                        className="case-study-link"
-                        aria-label={site.work.caseAction + ": " + project.name}
-                      >
-                        {site.work.caseAction}
-                        <ArrowUpRight size={18} />
-                      </button>
-                    </DialogTrigger>
-                    <DialogContent closeLabel={site.actions.close} className="project-dialog">
-                      <span className="eyebrow">
-                        {project.kind} / {site.work.concept}
-                      </span>
-                      <DialogTitle>{project.name}</DialogTitle>
-                      <DialogDescription>{project.description}</DialogDescription>
-                      <h3>{site.work.overview}</h3>
-                      <p>{project.opportunity}</p>
-                      <h3>{site.work.approach}</h3>
-                      <p>{project.approach}</p>
-                      <ul>
-                        {project.tags.map((tag) => (
-                          <li key={tag}>{tag}</li>
-                        ))}
-                      </ul>
-                      <p className="placeholder-notice">{site.work.notice}</p>
-                      <ProjectLink>{site.actions.start}</ProjectLink>
-                    </DialogContent>
-                  </Dialog>
+                  <Link
+                    href={"/work/" + project.name.toLowerCase()}
+                    prefetch={false}
+                    className="case-study-link"
+                    aria-label={site.work.caseAction + ": " + project.name}
+                  >
+                    {site.work.caseAction}
+                    <ArrowUpRight size={18} />
+                  </Link>
                 </div>
               </article>
             ))}

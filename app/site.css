@@ -423,7 +423,7 @@
     transform-origin: left;
     transform: scaleX(var(--intro-progress));
   }
-  @media (max-width: 767px), (pointer: coarse), (prefers-reduced-motion: reduce) {
+  @media (prefers-reduced-motion: reduce) {
     .site-intro {
       display: none;
     }

@@ -1,14 +1,14 @@
 "use client";
 import { useRef, useState, type KeyboardEvent } from "react";
 import { ArrowUpRight } from "lucide-react";
-import { site } from "@/content/site";
+import { site, pageContent } from "@/content/site";
 import { SectionLabel } from "@/components/ui/section-label";
 import { SectionTitle } from "@/components/ui/section-title";
 import { ProjectLink } from "@/components/ui/project-link";
 import { StoryStage } from "@/components/services/story-stage";
 import type { StoryId } from "@/lib/service-story-canvas";
 
-export function Services() {
+export function Services({ teaser = false }: { teaser?: boolean }) {
   const [active, setActive] = useState(0);
   const buttons = useRef<(HTMLButtonElement | null)[]>([]);
   const selected = site.services.tabs[active];
@@ -28,7 +28,7 @@ export function Services() {
   return (
     <section
       id="services"
-      className="section services-section ink"
+      className={"section services-section ink" + (teaser ? " home-practice" : "")}
       aria-labelledby="services-title"
     >
       <div className="container heading-row">
@@ -73,13 +73,19 @@ export function Services() {
           <div className="service-active-copy">
             <h3>{selected.title}</h3>
             <p>{selected.description}</p>
-            <ul>
-              {selected.tags.map((tag) => (
-                <li key={tag}>{tag}</li>
-              ))}
-            </ul>
-            <ProjectLink href={"/contact?service=" + encodeURIComponent(selected.service)}>
-              {site.actions.start}
+            {!teaser && (
+              <ul>
+                {selected.tags.map((tag) => (
+                  <li key={tag}>{tag}</li>
+                ))}
+              </ul>
+            )}
+            <ProjectLink
+              href={
+                teaser ? "/services" : "/contact?service=" + encodeURIComponent(selected.service)
+              }
+            >
+              {teaser ? pageContent.exploreServices : site.actions.start}
             </ProjectLink>
           </div>
         </div>

@@ -1,0 +1,170 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width,initial-scale=1" />
+    <title>Yazhnova — Pass 4 hero review</title>
+    <style>
+      * {
+        box-sizing: border-box;
+      }
+      body {
+        margin: 0;
+        background: #0a0a0a;
+        color: #f4f2ec;
+        font:
+          16px/1.6 system-ui,
+          sans-serif;
+      }
+      main {
+        max-width: 1500px;
+        margin: auto;
+        padding: 35px 24px;
+      }
+      h1 {
+        font-size: clamp(38px, 6vw, 78px);
+        line-height: 1.05;
+        letter-spacing: -0.055em;
+        font-weight: 500;
+        margin: 20px 0;
+      }
+      header {
+        border-bottom: 1px solid #414141;
+        padding-bottom: 30px;
+      }
+      p {
+        max-width: 850px;
+        color: #aaa;
+      }
+      a {
+        color: #ff8059;
+      }
+      nav {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 22px;
+        margin: 30px 0;
+      }
+      label {
+        display: block;
+        margin-bottom: 7px;
+        font:
+          11px ui-monospace,
+          monospace;
+        color: #aaa;
+      }
+      select {
+        font: inherit;
+        border: 1px solid #555;
+        color: inherit;
+        background: #141414;
+        padding: 12px 17px;
+        min-width: 190px;
+      }
+      figure {
+        margin: 0;
+      }
+      img {
+        display: block;
+        width: 100%;
+        height: auto;
+        border: 1px solid #333;
+        background: #141414;
+      }
+      .phone {
+        max-width: 430px;
+        margin: auto;
+      }
+      figcaption {
+        text-align: center;
+        font:
+          12px/1.7 ui-monospace,
+          monospace;
+        color: #aaa;
+        margin: 18px 0;
+      }
+      footer {
+        border-top: 1px solid #414141;
+        margin-top: 35px;
+        padding-top: 20px;
+      }
+      a:focus-visible,
+      select:focus-visible {
+        outline: 2px solid #ff8059;
+        outline-offset: 4px;
+      }
+    </style>
+  </head>
+  <body>
+    <main>
+      <header>
+        <span>YAZHNOVA / PASS 4</span>
+        <h1>Eight chapters.<br />Motion, on mobile.</h1>
+        <p>
+          Actual page heroes on desktop, a 390px iPhone-sized viewport and a 412px Android-sized
+          viewport. The mobile captures use touch, no reduced motion and live source canvases.
+        </p>
+        <a href="README.md">Read the full report ↗</a> ·
+        <a href="results.json">FPS and canvas observations</a>
+      </header>
+      <nav aria-label="Screenshot controls">
+        <div>
+          <label for="page">PAGE</label
+          ><select id="page">
+            <option value="home">Home</option>
+            <option value="services">Services</option>
+            <option value="ai-agents">AI Agents</option>
+            <option value="work">Work</option>
+            <option value="process">Process</option>
+            <option value="engage">Engage</option>
+            <option value="about">About</option>
+            <option value="contact">Contact</option>
+            <option value="case-clarity">Clarity — concept case</option>
+            <option value="case-relay">Relay — concept case</option>
+            <option value="case-forma">Forma — concept case</option>
+            <option value="intro">Mobile stone intro</option>
+          </select>
+        </div>
+        <div>
+          <label for="device">VIEWPORT</label
+          ><select id="device">
+            <option value="desktop">Desktop · 1440px</option>
+            <option value="iphone-390">iPhone-sized · 390px</option>
+            <option value="android-412">Android-sized · 412px</option>
+          </select>
+        </div>
+      </nav>
+      <figure>
+        <img id="shot" src="desktop/home.png" alt="Yazhnova homepage hero on desktop" />
+        <figcaption id="caption" aria-live="polite">Home / Desktop · 1440px</figcaption>
+      </figure>
+      <footer>
+        <p>
+          Local Chrome DevTools emulation with 4× CPU throttling and a 4 Mbps connection for mobile
+          profiling. These captures and draw-loop measurements are not a physical-phone benchmark.
+        </p>
+        <a href="README.md#mobile-tuning">Component tuning</a> ·
+        <a href="README.md#boundaries">Scope and remaining boundaries</a>
+      </footer>
+    </main>
+    <script>
+      const page = document.getElementById("page"),
+        device = document.getElementById("device"),
+        shot = document.getElementById("shot"),
+        caption = document.getElementById("caption");
+      function update() {
+        if (page.value === "intro" && device.value === "desktop") device.value = "iphone-390";
+        if (page.value.startsWith("case-") && device.value === "android-412")
+          device.value = "iphone-390";
+        shot.src = device.value + "/" + page.value + ".png";
+        shot.className = device.value === "desktop" ? "" : "phone";
+        const label =
+          page.options[page.selectedIndex].text + " / " + device.options[device.selectedIndex].text;
+        shot.alt = label;
+        caption.textContent = label;
+      }
+      page.addEventListener("change", update);
+      device.addEventListener("change", update);
+    </script>
+  </body>
+</html>

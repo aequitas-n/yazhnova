@@ -4,6 +4,7 @@ import "./globals.css";
 import "./site.css";
 import "./cohesion.css";
 import "./stories.css";
+import "./pages.css";
 import { site } from "@/content/site";
 export const metadata: Metadata = {
   metadataBase: new URL(site.url),
@@ -58,6 +59,11 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
         />
       </head>
       <body id="top">
+        <noscript>
+          <style>
+            {".route-wipe{display:none!important}.visual-frame{visibility:visible!important}"}
+          </style>
+        </noscript>
         {children}
         <script
           type="application/ld+json"

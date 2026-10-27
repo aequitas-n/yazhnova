@@ -49,9 +49,7 @@ export function LiveVisual({
   const [loaded, setLoaded] = useState(priority);
   const [exposure, setExposure] = useState(0);
   useEffect(() => {
-    const media = matchMedia(
-      "(min-width: 768px) and (pointer: fine) and (prefers-reduced-motion: no-preference)",
-    );
+    const media = matchMedia("(prefers-reduced-motion: no-preference)");
     const sync = () => setAllowed(media.matches);
     sync();
     media.addEventListener("change", sync);
@@ -116,9 +114,9 @@ export function LiveVisual({
       ref={ref}
       className={`live-visual ${className}`}
       data-visual={kind}
-      data-mode={live ? "live" : "static"}
+      data-mode={live ? "live" : allowed ? "waiting" : "static"}
     >
-      {loaded && (
+      {loaded && !allowed && !forceLive && (
         <Image
           src={frameSrc ?? `/frames/signal/${kind}.png`}
           alt={alt}

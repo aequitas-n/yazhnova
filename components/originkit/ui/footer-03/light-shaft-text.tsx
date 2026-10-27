@@ -1,6 +1,7 @@
 /* eslint-disable */
 // @ts-nocheck
 "use client"
+import { canvasPixelRatio } from "@/lib/canvas-quality";
 
 import React, { useEffect, useRef, useState, useLayoutEffect, useCallback, useMemo } from "react"
 
@@ -504,7 +505,7 @@ function LightShaftText(props) {
             const p = propsRef.current;
             const cssW = Math.max(1, root.clientWidth || MIN_W);
             const cssH = Math.max(1, root.clientHeight || MIN_H);
-            const nextDpr = Math.min(DPR_CAP, typeof window !== "undefined" ? window.devicePixelRatio || 1 : 1);
+            const nextDpr = canvasPixelRatio(DPR_CAP);
             const w = Math.max(1, Math.round(cssW * nextDpr));
             const h = Math.max(1, Math.round(cssH * nextDpr));
             if (w !== bufW || h !== bufH || nextDpr !== dpr) {

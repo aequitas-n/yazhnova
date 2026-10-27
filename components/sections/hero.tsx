@@ -39,7 +39,7 @@ export function Hero() {
             <p>{site.hero.description}</p>
             <div className="hero-actions">
               <ProjectLink>{site.actions.start}</ProjectLink>
-              <Link className="text-link" href="/#work">
+              <Link className="text-link" href="/work" prefetch={false}>
                 {site.actions.work}
                 <ArrowUpRight size={15} />
               </Link>

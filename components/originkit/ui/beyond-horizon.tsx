@@ -1,4 +1,5 @@
 "use client"
+import { canvasPixelRatio } from "@/lib/canvas-quality";
 
 import * as React from "react"
 import { useEffect, useMemo, useRef } from "react"
@@ -345,7 +346,7 @@ export function BeyondHorizon(props: BeyondHorizonProps) {
     const resize = () => {
       const cssW = Math.max(1, Math.round(host.offsetWidth || 1))
       const cssH = Math.max(1, Math.round(host.offsetHeight || 1))
-      const dpr = Math.min(typeof window !== "undefined" ? window.devicePixelRatio || 1 : 1, MAX_DPR)
+      const dpr = canvasPixelRatio(MAX_DPR)
 
       const scale = Math.min(Math.max(RENDER_SCALE * dpr, 1), MAX_DPR)
       let nw = Math.max(2, Math.round(cssW * scale))

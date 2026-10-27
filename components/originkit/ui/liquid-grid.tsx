@@ -1,4 +1,5 @@
 "use client";
+import { canvasPixelRatio } from "@/lib/canvas-quality";
 
 import { useEffect, useRef } from "react";
 import type { RasterStoryInput } from "@/lib/service-story-types";
@@ -102,7 +103,7 @@ export default function LiquidGrid(props: LiquidGridProps) {
         };
 
         function resize() {
-            const dpr = Math.min(window.devicePixelRatio || 1, 2);
+            const dpr = canvasPixelRatio(2);
             const W = Math.max(1, canvas.clientWidth);
             const H = Math.max(1, canvas.clientHeight);
             const pw = Math.round(W * dpr);
