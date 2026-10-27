@@ -2,8 +2,10 @@
 
 import { useEffect, useRef } from "react"
 import type { CSSProperties } from "react"
+import type { RasterStoryInput } from "@/lib/service-story-types"
 
 export interface StitchNovaProps {
+    composition?: RasterStoryInput
     pattern?: "artwork" | "generated"
 
     planet?: boolean
@@ -349,6 +351,7 @@ interface Ripple {
 }
 
 export default function StitchNova({
+    composition,
     pattern = DEFAULTS.pattern,
     planet = DEFAULTS.planet,
     background = DEFAULTS.background,
@@ -369,6 +372,7 @@ export default function StitchNova({
     const rootRef = useRef<HTMLDivElement>(null)
     const canvasRef = useRef<HTMLCanvasElement>(null)
     const live = {
+        composition,
         pattern,
         planet,
         background,
@@ -395,6 +399,10 @@ export default function StitchNova({
         if (!root || !canvas || !ctx) return
 
         const art = buildArtwork()
+        const sampler = document.createElement("canvas")
+        const sampleCtx = sampler.getContext("2d", { willReadFrequently: true })!
+        let sampleVersion = -1
+        let sampled: Uint8ClampedArray | null = null
 
         let W = 1,
             H = 1
@@ -493,6 +501,14 @@ export default function StitchNova({
 
             const p = propsRef.current
             const adv = p.adv
+            const story = p.composition?.current
+            if (story?.canvas && story.version !== sampleVersion) {
+                sampler.width = 180
+                sampler.height = Math.max(1, Math.round(180 * H / W))
+                sampleCtx.drawImage(story.canvas, 0, 0, sampler.width, sampler.height)
+                sampled = sampleCtx.getImageData(0, 0, sampler.width, sampler.height).data
+                sampleVersion = story.version
+            }
             const reduced = mq.matches
             const isArt = p.pattern !== "generated"
 
@@ -714,6 +730,7 @@ export default function StitchNova({
             const onRim = [new Path2D(), new Path2D(), new Path2D()]
             const onOuter = [new Path2D(), new Path2D(), new Path2D()]
             const onInner = [new Path2D(), new Path2D(), new Path2D()]
+            const storyPaths = [new Path2D(), new Path2D(), new Path2D()]
 
             const i0 = Math.floor(-gx / cs),
                 i1 = Math.ceil((W - gx) / cs)
@@ -752,7 +769,17 @@ export default function StitchNova({
                         glow *= glowK
                         wake *= glowK
                     }
-                    let s = field(si, sj)
+                    let bucket = 1
+                    let s = story && sampled ? -1 : field(si, sj)
+                    if (story && sampled) {
+                        const mx = Math.max(0, Math.min(sampler.width - 1, Math.floor((gx + (si + 0.5) * cs) / W * sampler.width)))
+                        const my = Math.max(0, Math.min(sampler.height - 1, Math.floor((gy + (sj + 0.5) * cs) / H * sampler.height)))
+                        const index = (my * sampler.width + mx) * 4
+                        const r = sampled[index], g = sampled[index + 1], b = sampled[index + 2]
+                        const settled = hash3(i, j, 481) < story.assemble
+                        s = settled ? (Math.max(r, g, b) > 25 ? 1 : -1) : (hash3(i, j, Math.floor(now * 8)) > 0.55 ? 1 : -1)
+                        bucket = settled ? (r > g * 1.5 && r > 90 ? 1 : Math.max(r, g, b) > 160 ? 2 : 0) : 1
+                    }
                     if (pAmp > 0.001) {
                         const ex = i - pX,
                             ey = j - pY
@@ -770,6 +797,10 @@ export default function StitchNova({
                     if (!on) {
                         offOuter.rect(x, y, w, h)
                         if (bw && w > 2 * bw && h > 2 * bw) offInner.rect(x + bw, y + bw, w - 2 * bw, h - 2 * bw)
+                        continue
+                    }
+                    if (story && sampled) {
+                        storyPaths[bucket].rect(x, y, w, h)
                         continue
                     }
                     const b = variants > 1 ? Math.min(2, (hash3(i, j, 991) * 3) | 0) : 0
@@ -810,6 +841,25 @@ export default function StitchNova({
                     ctx.fillStyle = css(body)
                     ctx.fill(onInner[b])
                 }
+            }
+            if (story?.canvas) {
+                ["#737373", p.color, "#F4F2EC"].forEach((color, index) => {
+                    ctx.fillStyle = color
+                    ctx.fill(storyPaths[index])
+                })
+                // The same native ripple field displaces the finished surface.
+                // It stays a texture input to this renderer, not a DOM cover.
+                ctx.globalAlpha = story.reveal
+                for (let row = 0; row < H; row += 14) {
+                    let dx = pAmp * cs * Math.exp(-Math.pow((row - ptr.y) / (cs * pR), 2))
+                    for (const ripple of ripples) {
+                        const age = (now - ripple.t) / adv.rippleLife
+                        dx += Math.sin((row / cs - ripple.y) * 0.7 - age * reach) * Math.max(0, 1 - age) * bend * cs * 0.25
+                    }
+                    const height = Math.min(14, H - row)
+                    ctx.drawImage(story.canvas, 0, row / H * story.canvas.height, story.canvas.width, height / H * story.canvas.height, dx, row, W, height)
+                }
+                ctx.globalAlpha = 1
             }
 
             if (adv.grain > 0) {

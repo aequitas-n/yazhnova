@@ -1,7 +1,7 @@
 "use client";
 import Image from "next/image";
 import dynamic from "next/dynamic";
-import { Component, useEffect, useRef, useState, type ReactNode } from "react";
+import { Component, useEffect, useRef, useState, type ReactNode, type CSSProperties } from "react";
 import type { VisualKind } from "@/lib/visual-presets";
 import { useIntroActive } from "@/components/intro/intro-context";
 import { useWebGLBudget } from "./webgl-budget";
@@ -24,6 +24,10 @@ export function LiveVisual({
   sizes = "(max-width:767px) 100vw, 60vw",
   frameSrc,
   overrides,
+  surfaceClassName,
+  surfaceStyle,
+  overlay,
+  forceLive = false,
 }: {
   kind: VisualKind;
   className?: string;
@@ -32,6 +36,10 @@ export function LiveVisual({
   sizes?: string;
   frameSrc?: string;
   overrides?: Record<string, unknown>;
+  surfaceClassName?: string;
+  surfaceStyle?: CSSProperties;
+  overlay?: ReactNode;
+  forceLive?: boolean;
 }) {
   const introActive = useIntroActive();
   const ref = useRef<HTMLDivElement>(null);
@@ -78,7 +86,7 @@ export function LiveVisual({
     };
   }, []);
   const live = useWebGLBudget(
-    active && allowed && visible && !introActive,
+    (forceLive || (active && allowed)) && visible && !introActive,
     exposure,
     !flatKinds.has(kind),
   );
@@ -125,10 +133,16 @@ export function LiveVisual({
       {live && (
         <div className="visual-canvas" aria-hidden="true">
           <VisualBoundary>
-            <Renderer kind={kind} overrides={overrides} />
+            <div
+              className={surfaceClassName}
+              style={{ width: "100%", height: "100%", ...surfaceStyle }}
+            >
+              <Renderer kind={kind} overrides={overrides} />
+            </div>
           </VisualBoundary>
         </div>
       )}
+      {live && overlay}
     </div>
   );
 }

@@ -1,6 +1,7 @@
 "use client";
 
 import { useEffect, useRef } from "react";
+import type { RasterStoryInput } from "@/lib/service-story-types";
 
 function parseColor(color: any): [number, number, number] {
     const s = String(color || "").trim();
@@ -59,6 +60,7 @@ function settingsFor(p: any) {
 }
 
 interface LiquidGridProps {
+    composition?: RasterStoryInput;
     mode?: "lines" | "dots";
     background?: string;
     lineColor?: string;
@@ -280,6 +282,15 @@ export default function LiquidGrid(props: LiquidGridProps) {
                 ctx.fillStyle = S.background;
                 ctx.fillRect(0, 0, W, H);
             }
+            const surface = propsRef.current.composition?.current;
+            if (surface?.canvas) {
+                for (let y = 0; y < H; y += 10) {
+                    const height = Math.min(10, H - y);
+                    const displacement = sample(W * 0.5, y) * WAVE_HEIGHT * 1.8;
+                    ctx.drawImage(surface.canvas, 0, y / H * surface.canvas.height, surface.canvas.width, height / H * surface.canvas.height, displacement, y, W, height);
+                }
+                return;
+            }
 
             const cs = S.cellSize;
             const base = new Path2D();
@@ -440,8 +451,8 @@ export default function LiquidGrid(props: LiquidGridProps) {
                     );
                     queued = null;
                 }
-                if (rip.live) {
-                    updateRipple(S.collide);
+                if (rip.live || propsRef.current.composition?.current.canvas) {
+                    if (rip.live) updateRipple(S.collide);
                     drawFrame(S);
                 }
             }

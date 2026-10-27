@@ -1,0 +1,503 @@
+/* Product stories are input surfaces for the installed renderers. */
+.service-story {
+  position: absolute;
+  inset: 0;
+  overflow: hidden;
+  background: var(--ink);
+}
+.service-story-scene {
+  position: absolute;
+  inset: 0 0 70px;
+  overflow: hidden;
+}
+.service-story-scene > .live-visual {
+  width: 100%;
+  height: 100%;
+}
+.service-story [data-mode="live"] > .visual-frame {
+  opacity: 0;
+}
+.service-story:not([data-story="mobile"]) .visual-frame {
+  object-fit: contain;
+}
+.story-native {
+  position: relative;
+}
+.story-caption {
+  position: absolute;
+  inset: auto 0 0;
+  min-height: 70px;
+  padding: 18px 28px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+  border-top: 1px solid var(--rule);
+  background: var(--ink);
+  z-index: 5;
+}
+.story-caption ol {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 15px;
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  font:
+    11px/1.6 var(--font-label),
+    monospace;
+  color: #858585;
+}
+.story-caption li {
+  display: flex;
+  align-items: center;
+  gap: 15px;
+}
+.story-caption li:not(:last-child)::after {
+  content: "\2192";
+  color: #555;
+}
+.story-caption li[aria-current] {
+  color: var(--accent);
+}
+.story-caption button {
+  flex-shrink: 0;
+  border: 1px solid var(--rule);
+  width: 34px;
+  height: 34px;
+  display: grid;
+  place-items: center;
+  color: var(--paper);
+  background: transparent;
+}
+.story-caption button:disabled {
+  opacity: 0.35;
+  cursor: default;
+}
+.story-core {
+  transform: scale(var(--core-x, 1), var(--core-y, 1));
+  transform-origin: 50% 46%;
+}
+.agent-story-overlay {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+}
+.agent-core-label {
+  position: absolute;
+  left: 50%;
+  top: 12%;
+  transform: translateX(-50%);
+  color: var(--accent);
+  white-space: nowrap;
+  font-size: 10px;
+}
+.story-tool {
+  position: absolute;
+  left: 50%;
+  top: 46%;
+  display: flex;
+  align-items: center;
+  gap: 11px;
+  padding: 13px 19px;
+  background: #141414ee;
+  color: var(--paper);
+  border: 1px solid #555;
+  border-radius: 4px;
+  font-size: 15px;
+  transition:
+    transform 90ms linear,
+    opacity 90ms linear;
+}
+.story-tool svg {
+  color: var(--accent);
+}
+.agent-story-task {
+  position: absolute;
+  top: 71%;
+  left: 50%;
+  width: min(390px, 75%);
+  padding: 23px 25px;
+  background: var(--graphite);
+  border: 1px solid #ff3b0070;
+  transition:
+    opacity 90ms linear,
+    transform 90ms linear;
+}
+.agent-story-task > span {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  font-size: 10px;
+  color: var(--accent);
+  margin-bottom: 12px;
+}
+.agent-story-task strong {
+  font-size: 24px;
+  font-weight: 500;
+  line-height: 1.2;
+  letter-spacing: -0.035em;
+}
+.agent-story-note {
+  position: absolute;
+  bottom: 5%;
+  width: 100%;
+  text-align: center;
+  font-size: 9px;
+  color: var(--grey);
+}
+.story-phone::after {
+  content: "";
+  position: absolute;
+  width: 70px;
+  height: 14px;
+  top: 6px;
+  left: 50%;
+  transform: translateX(-50%);
+  border-radius: 20px;
+  background: #080808;
+  pointer-events: none;
+}
+.architecture-overlay {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+}
+.architecture-overlay > h3 {
+  position: absolute;
+  top: 7%;
+  left: 6%;
+  max-width: 65%;
+  font-size: clamp(23px, 2.6vw, 40px);
+  line-height: 1.1;
+  letter-spacing: -0.045em;
+  font-weight: 500;
+}
+.architecture-node {
+  position: absolute;
+  transform: translate(-50%, -120%);
+  border: 1px solid #555;
+  border-radius: 3px;
+  background: #141414f5;
+  color: var(--paper);
+  padding: 10px 12px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 8px;
+  font-size: 12px;
+  white-space: nowrap;
+  pointer-events: auto;
+  transition:
+    border-color 0.15s,
+    opacity 0.12s;
+}
+.architecture-node:hover,
+.architecture-node:focus-visible {
+  border-color: var(--accent);
+}
+.architecture-logos {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 7px;
+  height: 19px;
+  font:
+    12px var(--font-label),
+    monospace;
+  color: var(--accent);
+}
+.architecture-logos img {
+  display: block;
+  object-fit: contain;
+}
+.architecture-tooltip {
+  position: absolute;
+  left: 8%;
+  right: 8%;
+  bottom: 8%;
+  padding: 16px 20px;
+  background: var(--graphite);
+  border-left: 2px solid var(--accent);
+  color: var(--paper);
+  font-size: 14px;
+  line-height: 1.5;
+}
+.architecture-note {
+  position: absolute;
+  bottom: 3%;
+  width: 100%;
+  text-align: center;
+  font-size: 8px;
+  color: var(--grey);
+}
+
+/* Every nav link shares one transparent state and a signal underline. */
+.site-nav .desktop-nav .nav-section-link,
+.site-nav .desktop-nav .nav-section-link:hover,
+.site-nav .desktop-nav .nav-section-link:focus-visible,
+.site-nav .desktop-nav .nav-section-link[aria-current] {
+  position: relative;
+  display: inline-block;
+  background: transparent;
+  background-image: none;
+  box-shadow: none;
+  border-radius: 0;
+  color: var(--paper);
+  padding: 9px 0;
+}
+.nav-section-link::after {
+  content: "";
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  height: 2px;
+  background: var(--accent);
+  transform: scaleX(0);
+  transform-origin: left;
+  transition: transform 0.2s;
+}
+.nav-section-link:hover::after,
+.nav-section-link:focus-visible::after,
+.nav-section-link[aria-current]::after {
+  transform: scaleX(1);
+}
+
+/* Editorial work: the page scroll translates a single, pinned panel track. */
+.work-section.work-editorial {
+  overflow: clip;
+  padding-bottom: 150px;
+}
+.work-heading {
+  margin-bottom: 50px;
+}
+.work-horizontal {
+  position: relative;
+}
+.work-track-viewport {
+  width: 100%;
+}
+.work-track {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  padding-inline: 4vw;
+  gap: 60px;
+}
+.case-panel {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  min-width: 0;
+  padding: 28px 0;
+  border-top: 1px solid var(--dark-rule);
+}
+.case-meta {
+  display: flex;
+  justify-content: space-between;
+  color: #56544f;
+  font-size: 10px;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+}
+.case-heading {
+  display: flex;
+  align-items: flex-end;
+  justify-content: space-between;
+  gap: 30px;
+}
+.case-heading h3 {
+  font-size: clamp(58px, 6.5vw, 112px);
+  font-weight: 500;
+  letter-spacing: -0.065em;
+  line-height: 1;
+}
+.case-heading p {
+  max-width: 280px;
+  color: #5e5c56;
+  font-size: 15px;
+  line-height: 1.6;
+}
+.case-panel .project-spotlight {
+  position: relative;
+  height: 55vh;
+  min-height: 360px;
+  width: 100%;
+  margin-top: 10px;
+  background: #e8e5dc;
+}
+.case-panel .project-preview {
+  object-fit: contain;
+}
+.case-bottom {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 25px;
+}
+.case-bottom > span {
+  color: #68665f;
+  font-size: 8px;
+  max-width: 60%;
+}
+.case-study-link {
+  display: inline-flex;
+  align-items: center;
+  gap: 14px;
+  background: transparent;
+  color: var(--ink);
+  border: 0;
+  border-bottom: 1px solid var(--ink);
+  padding: 8px 0;
+  font-size: 14px;
+  white-space: nowrap;
+}
+.case-study-link:hover {
+  border-color: var(--accent);
+}
+.work-track-footer {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 25px;
+  padding-top: 24px;
+  border-top: 1px solid var(--dark-rule);
+  margin-top: 40px;
+}
+.work-track-footer > span {
+  color: #68665f;
+  font-size: 9px;
+}
+.work-progress {
+  color: var(--ink);
+  font-size: 11px;
+  min-width: 64px;
+  text-align: center;
+}
+.work-controls {
+  align-items: center;
+}
+.work-controls button:disabled {
+  opacity: 0.3;
+  cursor: default;
+}
+.work-horizontal[data-pinned="true"] .work-track-viewport {
+  position: sticky;
+  top: 76px;
+  height: calc(100svh - 76px);
+  overflow: clip;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+.work-horizontal[data-pinned="true"] .work-track {
+  flex-direction: row;
+  width: max-content;
+  gap: 3vw;
+  padding-inline: 4vw;
+}
+.work-horizontal[data-pinned="true"] .case-panel {
+  flex: 0 0 70vw;
+  width: 70vw;
+  height: calc(100svh - 180px);
+  min-height: 600px;
+  padding: 24px 0 10px;
+}
+.work-horizontal[data-pinned="true"] .case-panel .project-spotlight {
+  flex: 1;
+  min-height: 300px;
+  height: auto;
+}
+.work-horizontal[data-pinned="true"] .case-heading h3 {
+  font-size: clamp(64px, 6vw, 104px);
+}
+.work-horizontal[data-pinned="true"] .work-track-footer {
+  margin-top: 15px;
+  padding-block: 13px;
+}
+@media (max-width: 1100px) {
+  .architecture-node {
+    padding: 9px 8px;
+    font-size: 10px;
+  }
+  .architecture-overlay > h3 {
+    font-size: 27px;
+  }
+  .story-caption {
+    padding-inline: 18px;
+  }
+  .story-caption ol,
+  .story-caption li {
+    gap: 9px;
+  }
+  .case-heading p {
+    font-size: 13px;
+    max-width: 230px;
+  }
+}
+@media (max-width: 767px) {
+  .service-story-scene {
+    bottom: 78px;
+  }
+  .story-caption {
+    min-height: 78px;
+    padding: 14px 16px;
+  }
+  .story-caption ol {
+    font-size: 9px;
+    gap: 6px 10px;
+  }
+  .story-caption li {
+    gap: 10px;
+  }
+  .agent-story-task strong {
+    font-size: 20px;
+  }
+  .work-section.work-editorial {
+    padding-bottom: 150px;
+  }
+  .work-heading {
+    margin-bottom: 25px;
+  }
+  .work-track {
+    padding-inline: 20px;
+    gap: 50px;
+  }
+  .case-heading {
+    align-items: flex-start;
+    flex-direction: column;
+    gap: 20px;
+  }
+  .case-heading h3 {
+    font-size: 70px;
+  }
+  .case-heading p {
+    font-size: 14px;
+    max-width: 320px;
+  }
+  .case-panel .project-spotlight {
+    height: 38vh;
+    min-height: 270px;
+  }
+  .case-bottom {
+    align-items: flex-start;
+    flex-direction: column;
+    gap: 12px;
+  }
+  .case-bottom > span {
+    max-width: none;
+  }
+  .work-track-footer > span {
+    max-width: 100px;
+    line-height: 1.5;
+  }
+}
+@media (prefers-reduced-motion: reduce) {
+  .story-tool,
+  .agent-story-task,
+  .nav-section-link::after {
+    transition: none;
+  }
+}

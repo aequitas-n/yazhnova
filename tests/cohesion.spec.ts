@@ -88,7 +88,7 @@ test("the story has two paper breaths, truthful proof and at most two active Web
     ".agent-visual",
     ".process-cables",
     ".tech-section",
-    ".work-gallery",
+    ".work-track-viewport",
     ".engage-section",
     ".proof-globe",
     ".faq-section",

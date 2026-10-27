@@ -55,3 +55,21 @@ The new brief requires a dark newsprint composition, a local draggable globe and
 The land GeoJSON is the same dataset requested by the original component: [Natural Earth land dataset mirror](https://raw.githubusercontent.com/martynafford/natural-earth-geojson/refs/heads/master/50m/physical/ne_50m_land.json), saved to `public/originkit/features-02/land.json`. Client-location markers remain empty. No replacement effect, shader or geometry was introduced. No downloaded component was moved to the unavailable list.
 
 Adapter fixes include isolating legacy styles in a lower-priority CSS layer, resetting the Tailwind container width limit for the full-width composition, matching the hero backdrop to paper, increasing dark-form border contrast, completing the native string draw before capturing its static frame, and explicitly retiring WebGL contexts when their viewport leases end.
+
+## Pass 3: requested story inputs
+
+These are intentional, optional feature extensions for the service narratives, rather than type repairs. The sources retain their original behavior when the new prop is absent. No downloaded component failed or moved to the unavailable list.
+
+| Source              | Opt-in input                    | How production uses the real source                                                                                                                                                                                                                             |
+| ------------------- | ------------------------------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| dithered-pixel-grid | `composition: RasterStoryInput` | The source samples a changing website/app canvas into its native pixel cells, assembles deterministic noise into the mask, and resolves to the UI surface. Native pointer ripples displace the mask and the final image strips. Used for Web, Mobile and UI-UX. |
+| liquid-grid         | `composition: RasterStoryInput` | The existing ripple simulation warps strips of the dashboard canvas. The input animates chart growth, a line graph, KPI emphasis and three tenant workspaces. No extra effect canvas is layered behind a DOM dashboard.                                         |
+| network-lines       | `graph: ArchitectureGraph`      | Supplied normalized nodes and edges replace the random topology. The original GL buffers, point sprites and line renderer show those connections, hover emphasis and a travelling request/return point. Without `graph`, the original random network remains.   |
+
+`lib/service-story-types.ts` defines the shared ref shapes; its imports into the raw components are type-only. `lib/service-story-canvas.ts` paints the requested interface masks; it is ordinary illustrative product UI, not a replacement shader or effect. The Agentic AI composition uses the unmodified installed glossy-sphere source, with labelled tool chips, a thinking deformation of the native surface wrapper and task cards.
+
+The first source-ready frame starts a 5.6-second clock. Time stops off-screen and while the document is hidden. Replay resets the narrative without allocating another renderer. Agent tasks cycle after a four-second idle; the Cloud request path continues slowly in idle. Mobile and reduced motion show genuine final scene captures. All live sources continue to use the shared two-context budget.
+
+The Work section no longer mounts stacked-carousel or shadow-cast. Its native image-spotlight overlays use the existing captured concept interfaces. Navigation now explicitly shares transparent hover/active backgrounds with a signal-orange underline.
+
+See [the screenshots and verification report](pass3/README.md).

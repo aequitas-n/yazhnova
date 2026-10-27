@@ -1,4 +1,4 @@
-> The current cohesion pass supersedes these earlier boundaries. Native border, fluid-field and spark-lattice are inactive; network, ocean, cables, globe and tunnel now serve the story. See [the current report](cohesion/README.md).
+> Pass 3 supersedes these earlier boundaries: Services now drives native pixel/liquid sources with product masks and network-lines with a structured graph. Work uses image-spotlight on an editorial scroll track; stacked-carousel and shadow-cast are inactive. Native border, fluid-field and spark-lattice remain inactive; ocean, cables, globe and tunnel retain their cohesion-pass roles. See [the current report](pass3/README.md).
 
 # OriginKit integration and slot status
 

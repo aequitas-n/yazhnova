@@ -5,7 +5,8 @@ import { site } from "@/content/site";
 import { SectionLabel } from "@/components/ui/section-label";
 import { SectionTitle } from "@/components/ui/section-title";
 import { ProjectLink } from "@/components/ui/project-link";
-import { LiveVisual } from "@/components/visuals/live-visual";
+import { StoryStage } from "@/components/services/story-stage";
+import type { StoryId } from "@/lib/service-story-canvas";
 
 export function Services() {
   const [active, setActive] = useState(0);
@@ -89,15 +90,7 @@ export function Services() {
           aria-labelledby={"service-tab-" + selected.id}
           className="service-stage-visual"
         >
-          <LiveVisual
-            key={selected.id}
-            kind={selected.visual}
-            sizes="(max-width:767px) 100vw, 70vw"
-          />
-          <div className="service-stage-caption mono">
-            <span>{site.services.stageLabel}</span>
-            <span>0{active + 1} / 06</span>
-          </div>
+          <StoryStage key={selected.id} id={selected.id as StoryId} />
         </div>
       </div>
     </section>

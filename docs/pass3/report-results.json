@@ -1,0 +1,35 @@
+{
+  "records": [
+    {
+      "id": "web",
+      "time": "3208",
+      "phase": "Build"
+    },
+    {
+      "id": "saas",
+      "time": "2770",
+      "phase": "Dashboard"
+    },
+    {
+      "id": "ai",
+      "time": "2792",
+      "phase": "Gather context"
+    },
+    {
+      "id": "mobile",
+      "time": "2889",
+      "phase": "Activity"
+    },
+    {
+      "id": "cloud",
+      "time": "2754",
+      "phase": "Process"
+    },
+    {
+      "id": "design",
+      "time": "3048",
+      "phase": "Refine"
+    }
+  ],
+  "errors": []
+}

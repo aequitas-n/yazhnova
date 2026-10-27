@@ -37,6 +37,7 @@ The site uses an ink base, signal orange (#FF3B00), two deliberate paper breaths
 
 ## Review the work
 
+- [Pass 3 service stories and editorial Work](docs/pass3/README.md): six mid-sequence screenshots, final frames, source extensions and the new horizontal track.
 - [Source inventory](docs/inventory.md): all 34 items, signature elements, complete props/defaults, interaction, performance and mobile notes.
 - [Design plan](docs/plan.md): palette, type, grid, motion and the actual source combinations for every section.
 - [34 playground screenshots](docs/shots): default and editorial versions side by side.
@@ -60,7 +61,7 @@ The original pre-change source hashes are in `docs/originkit-source-manifest.jso
 - `components/slots/*`: the live native border adapter, the unavailable cloud TODO and inactive compatibility adapters.
 - `app/site.css`: the editorial brand and responsive layout.
 
-The agent transcript is an interactive demonstration, not a connected CRM/calendar integration. Work cards are clearly labeled concept explorations. Sample quotes remain marked TODO and need approval/replacement before public launch. Review the company contact details and commercial FAQ wording before publishing.
+The agent transcript and service stories are demonstrations, not connected CRM/calendar integrations. Work panels are clearly labeled Concept. Quotes, verified company stats and client locations are empty and feature-gated. Review the company contact details and commercial FAQ wording before publishing.
 
 ## Contact delivery
 
@@ -79,7 +80,7 @@ The Next.js Node handler validates the request with Zod and sends plain-text ema
 
 `LiveVisual` imports actual sources only while visible on a desktop-style fine pointer. Leaving the viewport or hiding the tab unmounts the renderer, invoking its original cleanup and cancelling its loops. Reduced motion and mobile/coarse pointers use PNG frames captured from the same real sources. Canvas editor minimum dimensions are overridden through existing style props, never by recreating their visuals.
 
-Self-hosted Instrument Serif, Inter Tight and Geist Mono are used for production. The original source demos may load their own fonts or sample assets; those dependencies remain isolated to the playground.
+Self-hosted Instrument Serif, Inter Tight and Geist Mono are used for production. Inter Tight's existing weights share one variable font file. The original source demos may load their own fonts or sample assets; those dependencies remain isolated to the playground.
 
 The original Latin font files and licenses are in `public/fonts`; `node scripts/prepare-fonts.mjs` can recopy them from the installed Fontsource packages. Each face has one URL and the two headline faces are preloaded. Fallback images load near the viewport; the hero and contact backgrounds are present in the initial HTML with high fetch priority.
 

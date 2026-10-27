@@ -3,6 +3,7 @@ import "./fonts.css";
 import "./globals.css";
 import "./site.css";
 import "./cohesion.css";
+import "./stories.css";
 import { site } from "@/content/site";
 export const metadata: Metadata = {
   metadataBase: new URL(site.url),
@@ -43,7 +44,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
       <head>
         <link
           rel="preload"
-          href="/fonts/inter-tight-latin-500-normal.woff2"
+          href="/fonts/inter-tight-latin-wght-normal.woff2"
           as="font"
           type="font/woff2"
           crossOrigin="anonymous"

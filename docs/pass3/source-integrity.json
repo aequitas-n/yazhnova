@@ -1,0 +1,14 @@
+{
+  "files": 68,
+  "changed": [
+    "components/originkit/ui/dithered-pixel-grid.tsx",
+    "components/originkit/ui/features-02/globe.tsx",
+    "components/originkit/ui/glassbound.tsx",
+    "components/originkit/ui/hero-69/ember-husk.tsx",
+    "components/originkit/ui/network-lines.tsx",
+    "components/originkit/ui/ocean-swell.tsx",
+    "components/originkit/ui/paperline-archive.tsx",
+    "components/originkit/ui/liquid-grid.tsx"
+  ],
+  "notes": "Six previously documented modified sources plus the new optional liquid-grid and network-lines inputs. The existing pixel source also gains the requested optional mask input. Defaults remain available when inputs are absent; no source was moved to a slot."
+}

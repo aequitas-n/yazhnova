@@ -1,11 +1,12 @@
 "use client";
-import { useState } from "react";
+import { useEffect, useRef, useState, type ReactNode, type RefObject } from "react";
+import { motion, useScroll, useTransform, useMotionValueEvent } from "framer-motion";
 import { ArrowLeft, ArrowRight, ArrowUpRight } from "lucide-react";
 import { site } from "@/content/site";
 import { SectionLabel } from "@/components/ui/section-label";
 import { SectionTitle } from "@/components/ui/section-title";
-import { LiveVisual } from "@/components/visuals/live-visual";
 import { ProjectSpotlight } from "@/components/visuals/native-details";
+import { ProjectLink } from "@/components/ui/project-link";
 import {
   Dialog,
   DialogTrigger,
@@ -13,103 +14,177 @@ import {
   DialogTitle,
   DialogDescription,
 } from "@/components/ui/dialog";
-import { ProjectLink } from "@/components/ui/project-link";
-export function Work() {
-  const [index, setIndex] = useState(0);
-  const project = site.work.projects[index];
-  const move = (d: number) =>
-    setIndex((i) => (i + d + site.work.projects.length) % site.work.projects.length);
+
+type TrackProps = {
+  track: RefObject<HTMLDivElement | null>;
+  scene: RefObject<HTMLDivElement | null>;
+  distance: number;
+  onIndex: (index: number) => void;
+  children: ReactNode;
+};
+function StaticTrack({ track, children }: TrackProps) {
   return (
-    <section id="work" className="section work-section paper" aria-labelledby="work-title">
-      <div className="container">
-        <div className="heading-row">
-          <div>
-            <SectionLabel number={site.work.number}>{site.work.label}</SectionLabel>
-            <SectionTitle id="work-title">
-              {site.work.title}
-              <br />
-              <em>{site.work.serif}</em>
-            </SectionTitle>
-          </div>
-          <div className="work-heading-side">
-            <p className="section-description">{site.work.description}</p>
+    <div ref={track} className="work-track">
+      {children}
+    </div>
+  );
+}
+function PinnedTrack({ track, scene, distance, onIndex, children }: TrackProps) {
+  const { scrollYProgress } = useScroll({ target: scene, offset: ["start 76px", "end end"] });
+  const x = useTransform(scrollYProgress, [0, 1], [0, -distance]);
+  useMotionValueEvent(scrollYProgress, "change", (value) =>
+    onIndex(
+      Math.min(site.work.projects.length - 1, Math.round(value * (site.work.projects.length - 1))),
+    ),
+  );
+  return (
+    <motion.div ref={track} className="work-track" style={{ x }}>
+      {children}
+    </motion.div>
+  );
+}
+
+export function Work() {
+  const scene = useRef<HTMLDivElement>(null);
+  const track = useRef<HTMLDivElement>(null);
+  const viewport = useRef<HTMLDivElement>(null);
+  const [pinned, setPinned] = useState(false);
+  const [distance, setDistance] = useState(0);
+  const [index, setIndex] = useState(0);
+  useEffect(() => {
+    const query = matchMedia(
+      "(min-width: 1024px) and (pointer: fine) and (prefers-reduced-motion: no-preference)",
+    );
+    const sync = () => setPinned(query.matches);
+    sync();
+    query.addEventListener("change", sync);
+    return () => query.removeEventListener("change", sync);
+  }, []);
+  useEffect(() => {
+    if (!pinned) return;
+    const measure = () =>
+      setDistance(
+        Math.max(0, (track.current?.scrollWidth ?? 0) - (viewport.current?.clientWidth ?? 0)),
+      );
+    const observer = new ResizeObserver(measure);
+    if (track.current) observer.observe(track.current);
+    if (viewport.current) observer.observe(viewport.current);
+    measure();
+    return () => observer.disconnect();
+  }, [pinned]);
+  const Track = pinned ? PinnedTrack : StaticTrack;
+  const move = (next: number) => {
+    const value = Math.max(0, Math.min(site.work.projects.length - 1, next));
+    if (pinned && scene.current) {
+      const start = scene.current.getBoundingClientRect().top + scrollY - 76;
+      window.scrollTo({
+        top: start + (distance * value) / (site.work.projects.length - 1),
+        behavior: "smooth",
+      });
+    } else track.current?.children[value]?.scrollIntoView({ behavior: "auto", block: "center" });
+    setIndex(value);
+  };
+  return (
+    <section
+      id="work"
+      className="section work-section work-editorial paper"
+      aria-labelledby="work-title"
+    >
+      <div className="container heading-row work-heading">
+        <div>
+          <SectionLabel number={site.work.number}>{site.work.label}</SectionLabel>
+          <SectionTitle id="work-title">
+            {site.work.title}
+            <br />
+            <em>{site.work.serif}</em>
+          </SectionTitle>
+        </div>
+        <p className="section-description">{site.work.description}</p>
+      </div>
+      <div
+        ref={scene}
+        className="work-horizontal"
+        data-pinned={pinned}
+        style={pinned ? { height: "calc(100svh - 76px + " + distance + "px)" } : undefined}
+      >
+        <div ref={viewport} className="work-track-viewport">
+          <Track track={track} scene={scene} distance={distance} onIndex={setIndex}>
+            {site.work.projects.map((project, panel) => (
+              <article
+                key={project.name}
+                className="case-panel"
+                data-project={project.name}
+                onFocusCapture={() => {
+                  if (pinned && panel !== index) move(panel);
+                }}
+              >
+                <div className="case-meta mono">
+                  <span>
+                    {project.kind} / {site.work.concept}
+                  </span>
+                  <span>0{panel + 1}</span>
+                </div>
+                <div className="case-heading">
+                  <h3>{project.name}</h3>
+                  <p>{project.outcome}</p>
+                </div>
+                <ProjectSpotlight src={project.preview} alt={project.previewAlt} />
+                <div className="case-bottom">
+                  <span className="mono">{project.tags.join(" / ")}</span>
+                  <Dialog>
+                    <DialogTrigger asChild>
+                      <button
+                        className="case-study-link"
+                        aria-label={site.work.caseAction + ": " + project.name}
+                      >
+                        {site.work.caseAction}
+                        <ArrowUpRight size={18} />
+                      </button>
+                    </DialogTrigger>
+                    <DialogContent closeLabel={site.actions.close} className="project-dialog">
+                      <span className="eyebrow">
+                        {project.kind} / {site.work.concept}
+                      </span>
+                      <DialogTitle>{project.name}</DialogTitle>
+                      <DialogDescription>{project.description}</DialogDescription>
+                      <h3>{site.work.overview}</h3>
+                      <p>{project.opportunity}</p>
+                      <h3>{site.work.approach}</h3>
+                      <p>{project.approach}</p>
+                      <ul>
+                        {project.tags.map((tag) => (
+                          <li key={tag}>{tag}</li>
+                        ))}
+                      </ul>
+                      <p className="placeholder-notice">{site.work.notice}</p>
+                      <ProjectLink>{site.actions.start}</ProjectLink>
+                    </DialogContent>
+                  </Dialog>
+                </div>
+              </article>
+            ))}
+          </Track>
+          <div className="work-track-footer container">
+            <span className="mono">{site.work.scrollHint}</span>
             <div className="work-controls">
-              <button onClick={() => move(-1)} aria-label={site.actions.previous}>
+              <button
+                onClick={() => move(index - 1)}
+                disabled={index === 0}
+                aria-label={site.actions.previous}
+              >
                 <ArrowLeft size={18} />
               </button>
-              <button onClick={() => move(1)} aria-label={site.actions.next}>
+              <span className="work-progress mono" aria-label={site.work.label}>
+                0{index + 1} / 0{site.work.projects.length}
+              </span>
+              <button
+                onClick={() => move(index + 1)}
+                disabled={index === site.work.projects.length - 1}
+                aria-label={site.actions.next}
+              >
                 <ArrowRight size={18} />
               </button>
             </div>
-          </div>
-        </div>
-        <article className="work-card">
-          <div className="work-stage work-gallery ink">
-            <LiveVisual kind="shadow" />
-            <div className="work-stage-top mono">
-              <span>{site.work.concept}</span>
-              <span>0{index + 1} / 03</span>
-            </div>
-            <div className="work-gallery-layout">
-              <ProjectSpotlight src={project.preview} alt={project.previewAlt} />
-              <div className="work-deck" aria-hidden="true">
-                <LiveVisual kind="deck" />
-              </div>
-            </div>
-          </div>
-          <div className="work-info" aria-live="polite">
-            <div>
-              <span className="eyebrow">{project.category}</span>
-              <h3>
-                {project.name}
-                <span>{project.headline.replace("\n", " ")}</span>
-              </h3>
-              <p>{project.description}</p>
-            </div>
-            <Dialog>
-              <DialogTrigger asChild>
-                <button
-                  className="project-details"
-                  aria-label={`${site.actions.details}: ${project.name}`}
-                >
-                  <ArrowUpRight size={28} />
-                </button>
-              </DialogTrigger>
-              <DialogContent closeLabel={site.actions.close} className="project-dialog">
-                <span className="eyebrow">
-                  {site.work.concept} / {project.category}
-                </span>
-                <DialogTitle>{project.name}</DialogTitle>
-                <DialogDescription>{project.description}</DialogDescription>
-                <h3>{site.work.overview}</h3>
-                <p>{project.opportunity}</p>
-                <h3>{site.work.approach}</h3>
-                <p>{project.approach}</p>
-                <ul>
-                  {project.tags.map((tag) => (
-                    <li key={tag}>{tag}</li>
-                  ))}
-                </ul>
-                <p className="placeholder-notice">{site.work.notice}</p>
-                <ProjectLink>{site.actions.start}</ProjectLink>
-              </DialogContent>
-            </Dialog>
-          </div>
-        </article>
-        <div className="work-bottom">
-          <p className="placeholder-notice">{site.work.notice}</p>
-          <div className="work-pagination">
-            {site.work.projects.map((p, i) => (
-              <button
-                key={p.name}
-                onClick={() => setIndex(i)}
-                aria-label={`0${i + 1}: ${p.name}`}
-                aria-pressed={index === i}
-              >
-                <span className="mono">0{i + 1}</span>
-                <i />
-              </button>
-            ))}
           </div>
         </div>
       </div>

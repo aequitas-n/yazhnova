@@ -26,7 +26,7 @@ export function useMotionSurface() {
       document.removeEventListener("visibilitychange", visibility);
     };
   }, []);
-  return { ref, live: allowed && visible && foreground && !intro };
+  return { ref, allowed, visible, live: allowed && visible && foreground && !intro };
 }
 
 const loaders = {

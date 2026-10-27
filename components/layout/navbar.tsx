@@ -1,5 +1,6 @@
 "use client";
-import { useState } from "react";
+import { useEffect, useState } from "react";
+import { usePathname } from "next/navigation";
 import Link from "next/link";
 import * as Navigation from "@radix-ui/react-navigation-menu";
 import { Menu, ArrowUpRight } from "lucide-react";
@@ -14,6 +15,34 @@ import {
 } from "@/components/ui/dialog";
 export function Navbar() {
   const [open, setOpen] = useState(false);
+  const [active, setActive] = useState("");
+  const pathname = usePathname();
+  useEffect(() => {
+    if (pathname !== "/") {
+      setActive("");
+      return;
+    }
+    let frame = 0;
+    const update = () => {
+      frame = 0;
+      const current = site.nav.find((item) => {
+        const section = document.querySelector(item.href.replace("/", ""));
+        if (!section) return false;
+        const box = section.getBoundingClientRect();
+        return box.top <= innerHeight * 0.35 && box.bottom > innerHeight * 0.35;
+      });
+      setActive(current?.href ?? "");
+    };
+    const scroll = () => {
+      if (!frame) frame = requestAnimationFrame(update);
+    };
+    update();
+    window.addEventListener("scroll", scroll, { passive: true });
+    return () => {
+      cancelAnimationFrame(frame);
+      window.removeEventListener("scroll", scroll);
+    };
+  }, [pathname]);
   return (
     <header className="site-nav">
       <div className="nav-inner">
@@ -26,20 +55,33 @@ export function Navbar() {
             {site.nav.map((item) => (
               <Navigation.Item key={item.label}>
                 <Navigation.Link asChild>
-                  <Link href={item.href}>{item.label}</Link>
+                  <Link
+                    className="nav-section-link"
+                    href={item.href}
+                    aria-current={active === item.href ? "location" : undefined}
+                  >
+                    {item.label}
+                  </Link>
                 </Navigation.Link>
               </Navigation.Item>
             ))}
             <Navigation.Item>
               <Navigation.Link asChild>
-                <Link href="/contact">{site.actions.contact}</Link>
+                <Link
+                  className="nav-section-link"
+                  href="/contact"
+                  prefetch={false}
+                  aria-current={pathname === "/contact" ? "page" : undefined}
+                >
+                  {site.actions.contact}
+                </Link>
               </Navigation.Link>
             </Navigation.Item>
           </Navigation.List>
         </Navigation.Root>
         <div className="nav-actions">
           <Button asChild size="small">
-            <Link href="/contact">
+            <Link href="/contact" prefetch={false}>
               {site.actions.start}
               <ArrowUpRight size={14} />
             </Link>

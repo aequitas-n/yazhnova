@@ -1,4 +1,4 @@
-> The current website follows the **From raw stone to signal** cohesion pass. [Before/after report](cohesion/README.md), [runtime observations](cohesion/results.json) and [source controls](fixes.md) describe the current composition. Earlier phase-specific notes below are retained as history.
+> Pass 3 builds on **From raw stone to signal**, with six service narratives and an editorial Work track. [Current screenshots and report](pass3/README.md), [source integrity](pass3/source-integrity.json) and [source controls](fixes.md) describe the current implementation. Earlier phase-specific notes below are retained as history.
 
 # Production verification
 
@@ -8,8 +8,8 @@ Verified against the optimized Next.js 15 production build on Node.js 24.12.0. T
 
 - `npm run build` passes, including TypeScript checking and static generation.
 - Prettier checks pass for the authored application, scripts, tests and documentation. Original library sources remain excluded from formatting.
-- All **11 Playwright tests pass** against the production preview.
-- Desktop checks confirm genuine rendering contexts for the hands, orange horizon, native newsprint, tabbed service sources, glassbound, light cables, data strings, pillars, project deck, draggable globe, star-gate, rain and wordmark. Contact renders the real ocean shader. The full-width agent grid is checked at 60/40.
+- All **14 Playwright tests pass** against the production preview.
+- Desktop checks confirm genuine rendering contexts for the hands, orange horizon, native newsprint, six service stories, glassbound, light cables, data strings, draggable globe, star-gate, rain and wordmark. Contact renders the real ocean shader. The full-width agent grid is checked at 60/40. Work now uses native image-spotlight on a pinned editorial track, with no deck or pillars canvas.
 - Off-screen glassbound unmounts its canvas. Mobile/reduced-motion pages render no canvases, and every homepage fallback image loads successfully. There is no horizontal page overflow at 390px or 320px.
 - Navigation, project controls/dialog, agent replay, keyboard-operated FAQ, contact preselection, validation, focus management and mocked submission confirmation pass. Automated WCAG A/AA scans report no violations on the checked desktop/mobile and contact states.
 - No application console errors or uncaught exceptions occurred in the desktop homepage and contact checks.
@@ -18,14 +18,18 @@ Verified against the optimized Next.js 15 production build on Node.js 24.12.0. T
 
 ## Mobile Lighthouse
 
-Lighthouse 13.5.0, mobile form factor, simulated throttling, local production server. Reports were captured on 27 October 2026 after the cohesion pass and first-load CSS/image improvements. These are local lab measurements; deployment conditions can change scores.
+Lighthouse 13.5.0, mobile form factor, simulated throttling, local production server. Reports were captured on 27 October 2026 after Pass 3. These are local lab measurements; deployment conditions can change scores.
 
 | Page       | Performance | Accessibility | Best practices | SEO     | LCP   | CLS | Total blocking time |
 | ---------- | ----------- | ------------- | -------------- | ------- | ----- | --- | ------------------- |
-| `/`        | **90**      | **100**       | **100**        | **100** | 3.5 s | 0   | 100 ms              |
-| `/contact` | **95**      | **100**       | **100**        | **100** | 2.9 s | 0   | 60 ms               |
+| `/`        | **90**      | **100**       | **100**        | **100** | 3.4 s | 0   | 140 ms              |
+| `/contact` | **93**      | **100**       | **100**        | **100** | 3.1 s | 0   | 110 ms              |
 
 The checked-in [Lighthouse summary](lighthouse-results.json) records the latest run. Detailed machine-readable and HTML reports are in the ignored `artifacts/lighthouse-home.*` and `artifacts/lighthouse-contact.*` files. Remaining performance opportunities include render-blocking CSS, unused framework code and image delivery. There are no Lighthouse runtime errors.
+
+Pass 3 initially scored 87 on the homepage. The story module is now imported only after viewport entry on an eligible desktop, final-frame downloads wait for visibility, mobile Work skips pinned-track measurement, contact CTAs avoid automatic form-bundle prefetch, and one self-hosted variable Inter Tight file replaces three weight files without changing the family or requested weights. The latter saves 22,420 font bytes and two requests when all three weights are used.
+
+The full browser run observes at most two simultaneous WebGL canvases; mobile and reduced motion have zero. Source integrity checks cover 68 installed files, with eight intentional modified sources documented in [fixes.md](fixes.md). This pass adds the optional liquid-grid/network-lines inputs and expands the already modified pixel source. No downloaded source failed or moved to a slot.
 
 ## OriginKit results
 

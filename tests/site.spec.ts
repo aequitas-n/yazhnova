@@ -37,13 +37,13 @@ test("desktop uses real source canvases and interactive sections work without er
     ["glassbound", "webgl2"],
     ["cables", "webgl"],
     ["strings", "2d"],
-    ["shadow", "webgl"],
-    ["deck", "webgl"],
     ["globe", "webgl2"],
     ["gate", "webgl2"],
     ["rain", "webgl"],
     ["wordmark", "webgl2"],
   ]) {
+    // Story code and its source markup are intentionally absent before viewport entry.
+    if (kind === "pixels") await page.locator(".service-stage-visual").scrollIntoViewIfNeeded();
     const visual = page.locator(`[data-visual="${kind}"]`).first();
     await visual.scrollIntoViewIfNeeded();
     await expect(visual.locator("canvas")).toHaveCount(1, { timeout: 20000 });
@@ -57,11 +57,12 @@ test("desktop uses real source canvases and interactive sections work without er
   await expect(page.locator('[data-visual="glassbound"] canvas')).toHaveCount(0);
   await page.locator(".tech-section").scrollIntoViewIfNeeded();
   await expect(page.locator(".tech-section svg textPath")).toHaveCount(1);
-  await page.locator(".project-spotlight").hover();
-  await expect(page.locator(".spotlight-source img")).toHaveCount(1);
+  await page.locator(".project-spotlight").first().hover();
+  await expect(page.locator(".spotlight-source img").first()).toHaveCount(1);
   await page.getByRole("button", { name: site.actions.next, exact: true }).click();
-  await expect(page.locator(".work-info h3")).toContainText("Relay");
-  await page.getByRole("button", { name: `${site.actions.details}: Relay` }).click();
+  await expect(page.locator(".work-progress")).toHaveText("02 / 03");
+  await page.waitForTimeout(800);
+  await page.getByRole("button", { name: `${site.work.caseAction}: Relay` }).click();
   await expect(
     page.getByRole("dialog").getByRole("heading", { name: "Relay", exact: true }),
   ).toBeVisible();

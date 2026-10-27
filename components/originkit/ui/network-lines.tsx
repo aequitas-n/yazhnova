@@ -2,6 +2,7 @@
 
 import * as React from "react"
 import { useEffect, useRef } from "react"
+import type { ArchitectureGraph } from "@/lib/service-story-types"
 
 const MAX_DPR = 2
 const MAX_EDGES = 6000
@@ -185,6 +186,7 @@ interface NetworkGroup {
 const NETWORK_DEFAULTS: Required<NetworkGroup> = { lineWidth: 100, halo: 240, pulse: 100 }
 
 interface ConstellationFieldProps {
+    graph?: ArchitectureGraph
     style?: React.CSSProperties
     width?: number
     height?: number
@@ -218,6 +220,8 @@ export default function ConstellationField(props: ConstellationFieldProps) {
     const network_ = { ...NETWORK_DEFAULTS, ...(network || {}) }
 
     const canvasRef = useRef<HTMLCanvasElement>(null)
+    const graphRef = useRef(props.graph)
+    graphRef.current = props.graph
     const sizeRef = useRef({ w: 0, h: 0 })
     sizeRef.current = { w: num(width, 0), h: num(height, 0) }
 
@@ -346,7 +350,8 @@ export default function ConstellationField(props: ConstellationFieldProps) {
             }
             gl.viewport(0, 0, bw, bh)
 
-            const wantN = v.density as number
+            const graph = graphRef.current?.current
+            const wantN = graph ? graph.nodes.length + 1 : v.density as number
             if (wantN !== builtFor) {
                 build(wantN, cw, ch)
                 builtFor = wantN
@@ -366,6 +371,28 @@ export default function ConstellationField(props: ConstellationFieldProps) {
             const pull = PULL_RATE * (v.hover as number)
             const ptr = ptrRef.current
             for (let i = 0; i < nodeCount; i++) {
+                if (graph) {
+                    const node = graph.nodes[i]
+                    if (node) {
+                        nx[i] = (node.x + Math.sin(clock * 0.35 + i) * 0.002) * cw
+                        ny[i] = (node.y + Math.cos(clock * 0.3 + i) * 0.002) * ch
+                        nPos[i * 2] = nx[i]
+                        nPos[i * 2 + 1] = ny[i]
+                        nRad[i] = 3
+                        nPulse[i] = graph.hovered && graph.hovered !== node.id ? 0.28 : 1
+                    } else {
+                        const travel = graph.time < 6 ? Math.max(0, Math.min(0.999, (graph.time - 0.8) / 4.8)) : ((graph.time - 6) / 9) % 1
+                        const step = travel * (graph.route.length - 1)
+                        const a = graph.nodes.findIndex((entry) => entry.id === graph.route[Math.floor(step)])
+                        const b = graph.nodes.findIndex((entry) => entry.id === graph.route[Math.min(graph.route.length - 1, Math.floor(step) + 1)])
+                        const mix = step % 1
+                        nPos[i * 2] = nx[a] + (nx[b] - nx[a]) * mix
+                        nPos[i * 2 + 1] = ny[a] + (ny[b] - ny[a]) * mix
+                        nRad[i] = 5.5
+                        nPulse[i] = 1
+                    }
+                    continue
+                }
                 nx[i] += nvx[i] * dt * sp
                 ny[i] += nvy[i] * dt * sp
                 if (nx[i] < 0 || nx[i] > cw) nvx[i] = -nvx[i]
@@ -388,6 +415,22 @@ export default function ConstellationField(props: ConstellationFieldProps) {
             const LINKD = v.linkDistance as number
             const l2 = LINKD * LINKD
             let edges = 0
+            if (graph) {
+                for (const [from, to] of graph.edges) {
+                    const i = graph.nodes.findIndex((node) => node.id === from)
+                    const j = graph.nodes.findIndex((node) => node.id === to)
+                    if (i < 0 || j < 0) continue
+                    const highlighted = graph.hovered === from || graph.hovered === to
+                    const alpha = graph.hovered ? (highlighted ? 0.95 : 0.055) : 0.28
+                    for (let c = 0; c < 6; c++) {
+                        const k = (edges * 6 + c) * 2
+                        eP0[k] = nx[i]; eP0[k + 1] = ny[i]
+                        eP1[k] = nx[j]; eP1[k + 1] = ny[j]
+                        eAlpha[edges * 6 + c] = alpha
+                    }
+                    edges++
+                }
+            } else {
             for (let i = 0; i < nodeCount && edges < MAX_EDGES; i++) {
                 for (let j = i + 1; j < nodeCount && edges < MAX_EDGES; j++) {
                     const dx = nx[i] - nx[j]
@@ -407,6 +450,8 @@ export default function ConstellationField(props: ConstellationFieldProps) {
                 }
             }
 
+            }
+
             gl.clearColor(0, 0, 0, 0)
             gl.clear(gl.COLOR_BUFFER_BIT)
             gl.disable(gl.DEPTH_TEST)
@@ -415,6 +460,7 @@ export default function ConstellationField(props: ConstellationFieldProps) {
 
             const cb = parseColor(v.base as string, [0.902, 0.784, 0.475])
             const ca = parseColor(v.accent as string, [0.902, 0.784, 0.475])
+            if (graph) { cb[0] = ca[0]; cb[1] = ca[1]; cb[2] = ca[2] }
 
             if (edges > 0) {
                 gl.useProgram(lineProg)
