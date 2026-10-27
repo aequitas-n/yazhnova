@@ -1,5 +1,5 @@
 import type { SlotProps } from "./types";
-// TODO(originkit:spark-lattice)
+// Legacy inactive adapter for spark-lattice. See docs/component-ratings.md for the real integration or curation decision.
 export interface SparkLatticeProps extends SlotProps {
   sparkColor?: string;
   density?: number;
@@ -12,7 +12,7 @@ export function SparkLattice({ children, className, style }: SparkLatticeProps) 
       className={className}
       style={{ display: "contents", ...style }}
       data-slot="spark-lattice"
-      data-slot-status="pending"
+      data-slot-status="inactive"
     >
       {children}
     </div>

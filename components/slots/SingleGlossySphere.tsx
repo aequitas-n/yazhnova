@@ -1,5 +1,5 @@
 import type { SlotProps } from "./types";
-// TODO(originkit:single-glossy-sphere)
+// Legacy inactive adapter for single-glossy-sphere. See docs/component-ratings.md for the real integration or curation decision.
 export interface SingleGlossySphereProps extends SlotProps {
   color?: string;
   size?: number;
@@ -12,7 +12,7 @@ export function SingleGlossySphere({ children, className, style }: SingleGlossyS
       className={className}
       style={{ display: "contents", ...style }}
       data-slot="single-glossy-sphere"
-      data-slot-status="pending"
+      data-slot-status="inactive"
     >
       {children}
     </div>

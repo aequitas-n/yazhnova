@@ -1,5 +1,6 @@
 import { site } from "@/content/site";
-import { CurvedMarquee, DataStrings } from "@/components/slots";
+import { LiveVisual } from "@/components/visuals/live-visual";
+import { NativeMarquee } from "@/components/visuals/native-details";
 export function TechStack() {
   return (
     <section className="tech-section ink" aria-label={site.stack.note}>
@@ -7,27 +8,10 @@ export function TechStack() {
         <span className="eyebrow">{site.stack.label}</span>
         <p>{site.stack.note}</p>
       </div>
-      <DataStrings />
-      <CurvedMarquee items={site.stack.items}>
-        <div className="tech-marquee" tabIndex={0} role="region" aria-label={site.stack.label}>
-          <div className="tech-track">
-            {[false, true].map((duplicate) => (
-              <div
-                className="tech-row"
-                key={String(duplicate)}
-                aria-hidden={duplicate || undefined}
-              >
-                {site.stack.items.map((name) => (
-                  <span className="mono" key={name}>
-                    {name}
-                    <i aria-hidden="true">+</i>
-                  </span>
-                ))}
-              </div>
-            ))}
-          </div>
-        </div>
-      </CurvedMarquee>
+      <div className="tech-strings" aria-hidden="true">
+        <LiveVisual kind="strings" />
+      </div>
+      <NativeMarquee />
     </section>
   );
 }

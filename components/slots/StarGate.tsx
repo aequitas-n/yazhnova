@@ -1,5 +1,5 @@
 import type { SlotProps } from "./types";
-// TODO(originkit:star-gate)
+// Legacy inactive adapter for star-gate. See docs/component-ratings.md for the real integration or curation decision.
 export interface StarGateProps extends SlotProps {
   background?: string;
   color?: string;
@@ -12,7 +12,7 @@ export function StarGate({ children, className, style }: StarGateProps) {
       className={className}
       style={{ display: "contents", ...style }}
       data-slot="star-gate"
-      data-slot-status="pending"
+      data-slot-status="inactive"
     >
       {children}
     </div>

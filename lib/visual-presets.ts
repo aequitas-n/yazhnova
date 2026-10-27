@@ -1,6 +1,37 @@
 import { palette, editorialPresets } from "./originkit-catalog";
 import { site } from "@/content/site";
 export const visualPresets = {
+  liquid: { ...editorialPresets["liquid-grid"], intensity: 24, cellSize: 28 },
+  glossy: {
+    ...editorialPresets["single-glossy-sphere"],
+    speed: 8,
+    advanced: {
+      ...(editorialPresets["single-glossy-sphere"]?.advanced as object),
+      steps: 64,
+      resolution: 100,
+    },
+  },
+  sparks: {
+    ...editorialPresets["spark-lattice"],
+    background: palette.paper,
+    lineColor: "#DEDBD3",
+    accent: "#5B5851",
+    lights: 3,
+    glow: 0,
+    speed: 8,
+    size: 85,
+  },
+  strings: { ...editorialPresets["data-strings"], strands: 240, particles: 20, cursor: 0 },
+  fluid: { ...editorialPresets["fluid-field"], hover: 12, speed: 6 },
+  deck: {
+    ...editorialPresets["stacked-carousel"],
+    images: ["/work/clarity.png", "/work/relay.png", "/work/forma.png"],
+    cardWidth: 360,
+    cardHeight: 180,
+    gap: 180,
+    speed: 6,
+    camera: { tilt: 45, angle: 0 },
+  },
   "hero-dither": {
     ...editorialPresets["dither-reveal"],
     image: { src: "/originkit/hero-40/white-hands.png", alt: site.hero.imageAlt },

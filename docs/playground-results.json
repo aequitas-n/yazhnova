@@ -1,5 +1,342 @@
 [
   {
+    "slug": "live-chat",
+    "frames": [
+      {
+        "url": "http://localhost:3000/playground/render/live-chat?palette=default",
+        "canvases": []
+      },
+      {
+        "url": "http://localhost:3000/playground/render/live-chat?palette=editorial",
+        "canvases": []
+      }
+    ],
+    "errors": [],
+    "screenshot": "docs/shots/live-chat.png"
+  },
+  {
+    "slug": "aura-cursor",
+    "frames": [
+      {
+        "url": "http://localhost:3000/playground/render/aura-cursor?palette=default",
+        "canvases": [
+          {
+            "width": 676,
+            "height": 694,
+            "context": "webgl2",
+            "visible": true
+          }
+        ]
+      },
+      {
+        "url": "http://localhost:3000/playground/render/aura-cursor?palette=editorial",
+        "canvases": [
+          {
+            "width": 676,
+            "height": 694,
+            "context": "webgl2",
+            "visible": true
+          }
+        ]
+      }
+    ],
+    "errors": [],
+    "screenshot": "docs/shots/aura-cursor.png"
+  },
+  {
+    "slug": "hairline-loader",
+    "frames": [
+      {
+        "url": "http://localhost:3000/playground/render/hairline-loader?palette=default",
+        "canvases": []
+      },
+      {
+        "url": "http://localhost:3000/playground/render/hairline-loader?palette=editorial",
+        "canvases": []
+      }
+    ],
+    "errors": [],
+    "screenshot": "docs/shots/hairline-loader.png"
+  },
+  {
+    "slug": "curvedmarquee",
+    "frames": [
+      {
+        "url": "http://localhost:3000/playground/render/curvedmarquee?palette=default",
+        "canvases": []
+      },
+      {
+        "url": "http://localhost:3000/playground/render/curvedmarquee?palette=editorial",
+        "canvases": []
+      }
+    ],
+    "errors": [],
+    "screenshot": "docs/shots/curvedmarquee.png"
+  },
+  {
+    "slug": "stacked-carousel",
+    "frames": [
+      {
+        "url": "http://localhost:3000/playground/render/stacked-carousel?palette=default",
+        "canvases": [
+          {
+            "width": 676,
+            "height": 694,
+            "context": "webgl",
+            "visible": true
+          }
+        ]
+      },
+      {
+        "url": "http://localhost:3000/playground/render/stacked-carousel?palette=editorial",
+        "canvases": [
+          {
+            "width": 676,
+            "height": 694,
+            "context": "webgl",
+            "visible": true
+          }
+        ]
+      }
+    ],
+    "errors": [],
+    "screenshot": "docs/shots/stacked-carousel.png"
+  },
+  {
+    "slug": "image-spotlight",
+    "frames": [
+      {
+        "url": "http://localhost:3000/playground/render/image-spotlight?palette=default",
+        "canvases": []
+      },
+      {
+        "url": "http://localhost:3000/playground/render/image-spotlight?palette=editorial",
+        "canvases": []
+      }
+    ],
+    "errors": [],
+    "screenshot": "docs/shots/image-spotlight.png"
+  },
+  {
+    "slug": "light-cables",
+    "frames": [
+      {
+        "url": "http://localhost:3000/playground/render/light-cables?palette=default",
+        "canvases": [
+          {
+            "width": 676,
+            "height": 694,
+            "context": "webgl",
+            "visible": true
+          }
+        ]
+      },
+      {
+        "url": "http://localhost:3000/playground/render/light-cables?palette=editorial",
+        "canvases": [
+          {
+            "width": 676,
+            "height": 694,
+            "context": "webgl",
+            "visible": true
+          }
+        ]
+      }
+    ],
+    "errors": [],
+    "screenshot": "docs/shots/light-cables.png"
+  },
+  {
+    "slug": "data-strings",
+    "frames": [
+      {
+        "url": "http://localhost:3000/playground/render/data-strings?palette=default",
+        "canvases": [
+          {
+            "width": 676,
+            "height": 694,
+            "context": "2d",
+            "visible": true
+          }
+        ]
+      },
+      {
+        "url": "http://localhost:3000/playground/render/data-strings?palette=editorial",
+        "canvases": [
+          {
+            "width": 676,
+            "height": 694,
+            "context": "2d",
+            "visible": true
+          }
+        ]
+      }
+    ],
+    "errors": [],
+    "screenshot": "docs/shots/data-strings.png"
+  },
+  {
+    "slug": "liquid-grid",
+    "frames": [
+      {
+        "url": "http://localhost:3000/playground/render/liquid-grid?palette=default",
+        "canvases": [
+          {
+            "width": 676,
+            "height": 694,
+            "context": "2d",
+            "visible": true
+          }
+        ]
+      },
+      {
+        "url": "http://localhost:3000/playground/render/liquid-grid?palette=editorial",
+        "canvases": [
+          {
+            "width": 676,
+            "height": 694,
+            "context": "2d",
+            "visible": true
+          }
+        ]
+      }
+    ],
+    "errors": [],
+    "screenshot": "docs/shots/liquid-grid.png"
+  },
+  {
+    "slug": "scrambletext",
+    "frames": [
+      {
+        "url": "http://localhost:3000/playground/render/scrambletext?palette=default",
+        "canvases": []
+      },
+      {
+        "url": "http://localhost:3000/playground/render/scrambletext?palette=editorial",
+        "canvases": []
+      }
+    ],
+    "errors": [],
+    "screenshot": "docs/shots/scrambletext.png"
+  },
+  {
+    "slug": "scroll-text-reveal",
+    "frames": [
+      {
+        "url": "http://localhost:3000/playground/render/scroll-text-reveal?palette=default",
+        "canvases": []
+      },
+      {
+        "url": "http://localhost:3000/playground/render/scroll-text-reveal?palette=editorial",
+        "canvases": []
+      }
+    ],
+    "errors": [],
+    "screenshot": "docs/shots/scroll-text-reveal.png"
+  },
+  {
+    "slug": "glow-border",
+    "frames": [
+      {
+        "url": "http://localhost:3000/playground/render/glow-border?palette=default",
+        "canvases": []
+      },
+      {
+        "url": "http://localhost:3000/playground/render/glow-border?palette=editorial",
+        "canvases": []
+      }
+    ],
+    "errors": [],
+    "screenshot": "docs/shots/glow-border.png"
+  },
+  {
+    "slug": "predictive-arc-02",
+    "frames": [
+      {
+        "url": "http://localhost:3000/playground/render/predictive-arc-02?palette=default",
+        "canvases": [
+          {
+            "width": 676,
+            "height": 694,
+            "context": "webgl",
+            "visible": true
+          }
+        ]
+      },
+      {
+        "url": "http://localhost:3000/playground/render/predictive-arc-02?palette=editorial",
+        "canvases": [
+          {
+            "width": 676,
+            "height": 694,
+            "context": "webgl",
+            "visible": true
+          }
+        ]
+      }
+    ],
+    "errors": [],
+    "screenshot": "docs/shots/predictive-arc-02.png"
+  },
+  {
+    "slug": "fluid-field",
+    "frames": [
+      {
+        "url": "http://localhost:3000/playground/render/fluid-field?palette=default",
+        "canvases": [
+          {
+            "width": 676,
+            "height": 694,
+            "context": "webgl",
+            "visible": true
+          }
+        ]
+      },
+      {
+        "url": "http://localhost:3000/playground/render/fluid-field?palette=editorial",
+        "canvases": [
+          {
+            "width": 676,
+            "height": 694,
+            "context": "webgl",
+            "visible": true
+          }
+        ]
+      }
+    ],
+    "errors": [],
+    "screenshot": "docs/shots/fluid-field.png"
+  },
+  {
+    "slug": "light-bloom",
+    "frames": [
+      {
+        "url": "http://localhost:3000/playground/render/light-bloom?palette=default",
+        "canvases": [
+          {
+            "width": 676,
+            "height": 694,
+            "context": "webgl",
+            "visible": true
+          }
+        ]
+      },
+      {
+        "url": "http://localhost:3000/playground/render/light-bloom?palette=editorial",
+        "canvases": [
+          {
+            "width": 676,
+            "height": 694,
+            "context": "webgl",
+            "visible": true
+          }
+        ]
+      }
+    ],
+    "errors": [],
+    "screenshot": "docs/shots/light-bloom.png"
+  },
+  {
     "slug": "hero-40",
     "frames": [
       {
@@ -498,5 +835,92 @@
     ],
     "errors": [],
     "screenshot": "docs/shots/shadow-cast.png"
+  },
+  {
+    "slug": "single-glossy-sphere",
+    "frames": [
+      {
+        "url": "http://localhost:3000/playground/render/single-glossy-sphere?palette=default",
+        "canvases": [
+          {
+            "width": 676,
+            "height": 694,
+            "context": "webgl2",
+            "visible": true
+          }
+        ]
+      },
+      {
+        "url": "http://localhost:3000/playground/render/single-glossy-sphere?palette=editorial",
+        "canvases": [
+          {
+            "width": 473,
+            "height": 486,
+            "context": "webgl2",
+            "visible": true
+          }
+        ]
+      }
+    ],
+    "errors": [],
+    "screenshot": "docs/shots/single-glossy-sphere.png"
+  },
+  {
+    "slug": "star-gate",
+    "frames": [
+      {
+        "url": "http://localhost:3000/playground/render/star-gate?palette=default",
+        "canvases": [
+          {
+            "width": 676,
+            "height": 694,
+            "context": "webgl2",
+            "visible": true
+          }
+        ]
+      },
+      {
+        "url": "http://localhost:3000/playground/render/star-gate?palette=editorial",
+        "canvases": [
+          {
+            "width": 676,
+            "height": 694,
+            "context": "webgl2",
+            "visible": true
+          }
+        ]
+      }
+    ],
+    "errors": [],
+    "screenshot": "docs/shots/star-gate.png"
+  },
+  {
+    "slug": "spark-lattice",
+    "frames": [
+      {
+        "url": "http://localhost:3000/playground/render/spark-lattice?palette=default",
+        "canvases": [
+          {
+            "width": 676,
+            "height": 694,
+            "context": "webgl",
+            "visible": true
+          }
+        ]
+      },
+      {
+        "url": "http://localhost:3000/playground/render/spark-lattice?palette=editorial",
+        "canvases": [
+          {
+            "width": 676,
+            "height": 694,
+            "context": "webgl",
+            "visible": true
+          }
+        ]
+      }
+    ],
+    "errors": [],
+    "screenshot": "docs/shots/spark-lattice.png"
   }
 ]

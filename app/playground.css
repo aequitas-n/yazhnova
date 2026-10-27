@@ -228,3 +228,12 @@
     gap: 10px;
   }
 }
+.study-editorial.source-star-gate {
+  background: #0a0a0a;
+}
+.study-editorial.source-star-gate canvas {
+  mix-blend-mode: screen;
+}
+.study-editorial.source-image-spotlight {
+  filter: grayscale(1);
+}

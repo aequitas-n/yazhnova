@@ -1,5 +1,5 @@
 import type { SlotProps } from "./types";
-// TODO(originkit:light-cables)
+// Legacy inactive adapter for light-cables. See docs/component-ratings.md for the real integration or curation decision.
 export interface LightCablesProps extends SlotProps {
   background?: string;
   color?: string;
@@ -12,7 +12,7 @@ export function LightCables({ children, className, style }: LightCablesProps) {
       className={className}
       style={{ display: "contents", ...style }}
       data-slot="light-cables"
-      data-slot-status="pending"
+      data-slot-status="inactive"
     >
       {children}
     </div>

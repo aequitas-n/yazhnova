@@ -5,7 +5,7 @@ import { site } from "@/content/site";
 import { SectionLabel } from "@/components/ui/section-label";
 import { SectionTitle } from "@/components/ui/section-title";
 import { LiveVisual } from "@/components/visuals/live-visual";
-import { StackedCarousel, ImageSpotlight } from "@/components/slots";
+import { ProjectSpotlight } from "@/components/visuals/native-details";
 import {
   Dialog,
   DialogTrigger,
@@ -43,83 +43,59 @@ export function Work() {
             </div>
           </div>
         </div>
-        <StackedCarousel activeIndex={index} itemCount={site.work.projects.length}>
-          <article className="work-card">
-            <ImageSpotlight>
-              <div className="work-stage ink">
-                <LiveVisual kind="shadow" />
-                <div className="work-stage-top mono">
-                  <span>{site.work.concept}</span>
-                  <span>0{index + 1} / 03</span>
-                </div>
-                <div className="concept-product">
-                  <div className="concept-toolbar">
-                    <strong>{project.mock.name}</strong>
-                    <span className="mono">{project.mock.label}</span>
-                    <span className="concept-avatar">Y</span>
-                  </div>
-                  <div className="concept-main">
-                    <span className="eyebrow">{project.category}</span>
-                    <h3>{project.mock.title}</h3>
-                    <div className="concept-columns">
-                      {project.mock.columns.map((label, i) => (
-                        <div key={label}>
-                          <span className="mono">
-                            <i />
-                            {label}
-                          </span>
-                          <p>{project.mock.tasks[i]}</p>
-                          <div className="concept-rule" />
-                          <div className="concept-rule short" />
-                          <span className="concept-task-count mono">0{i + 1}</span>
-                        </div>
-                      ))}
-                    </div>
-                    <p className="concept-footer mono">{project.mock.footer}</p>
-                  </div>
-                </div>
-              </div>
-            </ImageSpotlight>
-            <div className="work-info" aria-live="polite">
-              <div>
-                <span className="eyebrow">{project.category}</span>
-                <h3>
-                  {project.name}
-                  <span>{project.headline.replace("\n", " ")}</span>
-                </h3>
-                <p>{project.description}</p>
-              </div>
-              <Dialog>
-                <DialogTrigger asChild>
-                  <button
-                    className="project-details"
-                    aria-label={`${site.actions.details}: ${project.name}`}
-                  >
-                    <ArrowUpRight size={28} />
-                  </button>
-                </DialogTrigger>
-                <DialogContent closeLabel={site.actions.close} className="project-dialog">
-                  <span className="eyebrow">
-                    {site.work.concept} / {project.category}
-                  </span>
-                  <DialogTitle>{project.name}</DialogTitle>
-                  <DialogDescription>{project.description}</DialogDescription>
-                  <h3>{site.work.overview}</h3>
-                  <p>{project.opportunity}</p>
-                  <h3>{site.work.approach}</h3>
-                  <p>{project.approach}</p>
-                  <ul>
-                    {project.tags.map((tag) => (
-                      <li key={tag}>{tag}</li>
-                    ))}
-                  </ul>
-                  <p className="placeholder-notice">{site.work.notice}</p>
-                  <ProjectLink>{site.actions.start}</ProjectLink>
-                </DialogContent>
-              </Dialog>
+        <article className="work-card">
+          <div className="work-stage work-gallery ink">
+            <LiveVisual kind="shadow" />
+            <div className="work-stage-top mono">
+              <span>{site.work.concept}</span>
+              <span>0{index + 1} / 03</span>
             </div>
-          </article>
-        </StackedCarousel>
+            <div className="work-gallery-layout">
+              <ProjectSpotlight src={project.preview} alt={project.previewAlt} />
+              <div className="work-deck" aria-hidden="true">
+                <LiveVisual kind="deck" />
+              </div>
+            </div>
+          </div>
+          <div className="work-info" aria-live="polite">
+            <div>
+              <span className="eyebrow">{project.category}</span>
+              <h3>
+                {project.name}
+                <span>{project.headline.replace("\n", " ")}</span>
+              </h3>
+              <p>{project.description}</p>
+            </div>
+            <Dialog>
+              <DialogTrigger asChild>
+                <button
+                  className="project-details"
+                  aria-label={`${site.actions.details}: ${project.name}`}
+                >
+                  <ArrowUpRight size={28} />
+                </button>
+              </DialogTrigger>
+              <DialogContent closeLabel={site.actions.close} className="project-dialog">
+                <span className="eyebrow">
+                  {site.work.concept} / {project.category}
+                </span>
+                <DialogTitle>{project.name}</DialogTitle>
+                <DialogDescription>{project.description}</DialogDescription>
+                <h3>{site.work.overview}</h3>
+                <p>{project.opportunity}</p>
+                <h3>{site.work.approach}</h3>
+                <p>{project.approach}</p>
+                <ul>
+                  {project.tags.map((tag) => (
+                    <li key={tag}>{tag}</li>
+                  ))}
+                </ul>
+                <p className="placeholder-notice">{site.work.notice}</p>
+                <ProjectLink>{site.actions.start}</ProjectLink>
+              </DialogContent>
+            </Dialog>
+          </div>
+        </article>
         <div className="work-bottom">
           <p className="placeholder-notice">{site.work.notice}</p>
           <div className="work-pagination">

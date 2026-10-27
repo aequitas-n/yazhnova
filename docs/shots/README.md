@@ -1,6 +1,8 @@
 # Playground screenshots
 
-Each PNG is a full-screen study panel: original preset on the left, Yazhnova palette on the right. These are screenshots of the installed source components, not recreated graphics. The 16 panels cover 32 rendered variants; canvas/context and console observations are in [playground-results.json](../playground-results.json).
+The integrated website has [seven production composition screenshots](production/README.md). [Component ratings](../component-ratings.md) explain which sources were selected and where they are used.
+
+Each PNG is a full-screen study panel: original preset on the left, Yazhnova palette on the right. These are screenshots of the installed source components, not recreated graphics. The 34 panels cover 68 rendered variants; canvas/context and console observations are in [playground-results.json](../playground-results.json).
 
 | Section studies | Screenshot |
 | --- | --- |
@@ -23,5 +25,23 @@ Each PNG is a full-screen study panel: original preset on the left, Yazhnova pal
 | ocean-swell | [Open PNG](ocean-swell.png) |
 | rain-puddle | [Open PNG](rain-puddle.png) |
 | shadow-cast | [Open PNG](shadow-cast.png) |
+| single-glossy-sphere | [Open PNG](single-glossy-sphere.png) |
+| star-gate | [Open PNG](star-gate.png) |
+| spark-lattice | [Open PNG](spark-lattice.png) |
+| predictive-arc-02 | [Open PNG](predictive-arc-02.png) |
+| fluid-field | [Open PNG](fluid-field.png) |
+| light-bloom | [Open PNG](light-bloom.png) |
+| light-cables | [Open PNG](light-cables.png) |
+| data-strings | [Open PNG](data-strings.png) |
+| liquid-grid | [Open PNG](liquid-grid.png) |
+| scrambletext | [Open PNG](scrambletext.png) |
+| scroll-text-reveal | [Open PNG](scroll-text-reveal.png) |
+| glow-border | [Open PNG](glow-border.png) |
+| curvedmarquee | [Open PNG](curvedmarquee.png) |
+| stacked-carousel | [Open PNG](stacked-carousel.png) |
+| image-spotlight | [Open PNG](image-spotlight.png) |
+| live-chat | [Open PNG](live-chat.png) |
+| aura-cursor | [Open PNG](aura-cursor.png) |
+| hairline-loader | [Open PNG](hairline-loader.png) |
 
 The interactive comparison is available at [localhost:3000/playground](http://localhost:3000/playground) while the local preview server is running.

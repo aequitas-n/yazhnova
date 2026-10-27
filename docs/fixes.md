@@ -25,3 +25,19 @@ The full-background hero revision also exposed a reduced-motion hydration mismat
 When choreography is absent, original spring-driven positions, pointer interactions and drift remain active. The default final CTA and playground keep their existing behavior. Controlled frames can pause while the document is hidden, and readiness is reported after the first completed frame. There are now four intentionally changed source files: the three typing repairs above and this explicit feature extension. No installed component was moved to the unavailable list.
 
 The full timing, interaction and fallback policy is documented in [intro.md](intro.md).
+
+## Latest download batch
+
+The newly downloaded `single-glossy-sphere`, `star-gate` and `spark-lattice` sources pass TypeScript and the production build without repairs or extra dependencies. Their original and editorial playground variants all render real canvases without runtime or console errors. No installed component was moved to the unavailable list. The other 16 download attempts returned the account's daily fetch quota; see [downloads.md](downloads.md).
+
+The subsequent retry also downloaded `predictive-arc-02`, `fluid-field` and `light-bloom`. They likewise need no repairs or extra packages; the build and all six new original/editorial canvas renders pass. All previously installed sources remain unchanged. The remaining 13 requests are quota-blocked; no downloaded component was moved to the unavailable list.
+
+The next retry downloaded `light-cables`, `data-strings`, `liquid-grid`, `scrambletext`, `scroll-text-reveal` and `glow-border`. All six need no repairs or additional dependencies. The production build and twelve original/editorial renders pass; the text and border effects correctly use DOM rather than canvases. No component was moved to the unavailable list. Seven downloads remain quota-blocked.
+
+The following retry downloaded `curvedmarquee`, `stacked-carousel` and `image-spotlight`. All three need no source repairs or new packages. The production build and six original/editorial renders pass. The spotlight's provided sample image was copied locally and supplied through the existing image prop, preserving the raw source and the original image content. No component was moved to the unavailable list; four entries remain quota-blocked.
+
+The next retry downloaded `live-chat`, `aura-cursor` and `hairline-loader`. No source repairs or new dependencies were needed. The build and six original/editorial renders pass, including actual pointer-driven GPU output for the cursor. No component was moved to the unavailable list. Only `cloud-sky-03` remains quota-blocked.
+
+## Native composition pass
+
+The 12 newly selected effects required no raw source edits, type repairs or dependency changes. Palette, bounded quality, lifecycle gates, spotlight visibility and hover-only border behavior are adapter-level props/composition. The process background was reduced to 10% opacity after visual review; the bounded glossy sphere uses full source resolution and 64 raymarch steps. The project deck uses captured concept interfaces and a centered 45-degree view. Its transparent live canvas initially exposed a second animation pose from the fallback poster; adapter CSS now hides the poster after the native renderer sets the canvas dimensions. The static poster remains for mobile/reduced motion. Chat fallback spacing matches the real source to limit layout movement when it mounts. All original shaders and geometry remain intact. No installed source moved to the unavailable list.

@@ -2,6 +2,7 @@ import { test, expect } from "@playwright/test";
 import AxeBuilder from "@axe-core/playwright";
 import { mkdir, readdir, readFile } from "node:fs/promises";
 import { site } from "../content/site";
+import { sourceCatalog } from "../lib/originkit-catalog";
 
 test("desktop uses real source canvases and interactive sections work without errors", async ({
   page,
@@ -33,9 +34,13 @@ test("desktop uses real source canvases and interactive sections work without er
     ["horizon", "webgl"],
     ["manifesto", "2d"],
     ["pixels", "2d"],
-    ["network", "webgl"],
+    ["liquid", "2d"],
+    ["glossy", "webgl2"],
     ["glassbound", "webgl2"],
+    ["sparks", "webgl"],
+    ["strings", "2d"],
     ["shadow", "webgl"],
+    ["deck", "webgl"],
     ["ember", "webgl2"],
     ["rain", "webgl"],
     ["wordmark", "webgl2"],
@@ -51,6 +56,10 @@ test("desktop uses real source canvases and interactive sections work without er
     expect(size.h).toBeGreaterThan(0);
   }
   await expect(page.locator('[data-visual="glassbound"] canvas')).toHaveCount(0);
+  await page.locator(".tech-section").scrollIntoViewIfNeeded();
+  await expect(page.locator(".tech-section svg textPath")).toHaveCount(1);
+  await page.locator(".project-spotlight").hover();
+  await expect(page.locator(".spotlight-source img")).toHaveCount(1);
   await page.getByRole("button", { name: site.actions.next, exact: true }).click();
   await expect(page.locator(".work-info h3")).toContainText("Relay");
   await page.getByRole("button", { name: `${site.actions.details}: Relay` }).click();
@@ -67,8 +76,15 @@ test("desktop uses real source canvases and interactive sections work without er
   await faq.press("Enter");
   await expect(faq).toHaveAttribute("aria-expanded", "false");
   await page.getByRole("button", { name: site.agents.demo.replay }).click();
+  await expect(page.locator(".native-chat .msg-item")).toHaveCount(3);
+  await expect(page.locator(".agent-copy .line-mask-split")).toHaveCount(1);
   await expect(page.locator(".workflow-status")).toHaveClass(/ready/, { timeout: 7000 });
   await expect(page.locator(".workflow-demo li.complete")).toHaveCount(3);
+  const cta = page.locator(".hero-actions .native-button-border");
+  await cta.hover();
+  await expect(cta.locator(".button-border-source > div")).toHaveCount(1);
+  await page.mouse.move(0, 0);
+  await expect(cta.locator(".button-border-source")).toHaveCount(0);
   const scan = await new AxeBuilder({ page }).withTags(["wcag2a", "wcag2aa", "wcag21aa"]).analyze();
   expect(scan.violations.map((v) => ({ id: v.id, nodes: v.nodes.map((n) => n.target) }))).toEqual(
     [],
@@ -88,6 +104,9 @@ test("mobile and reduced-motion use genuine captured frames with no canvases or 
   await page.emulateMedia({ reducedMotion: "reduce" });
   await page.goto("/");
   await expect(page.locator("main canvas")).toHaveCount(0);
+  await expect(
+    page.locator(".native-copy-overlay, .marquee-source, .spotlight-source, .button-border-source"),
+  ).toHaveCount(0);
   expect(await page.evaluate(() => document.documentElement.scrollWidth <= innerWidth)).toBe(true);
   const initialScan = await new AxeBuilder({ page })
     .withTags(["wcag2a", "wcag2aa", "wcag21aa"])
@@ -139,7 +158,7 @@ test("form preselection, accessible validation and submission confirmation work"
     if (m.type() === "error") errors.push(m.text());
   });
   await page.goto(`/contact?service=${encodeURIComponent(site.contact.services[2])}`);
-  await expect(page.locator('main [data-visual="ocean"] canvas')).toHaveCount(1, {
+  await expect(page.locator('main [data-visual="fluid"] canvas')).toHaveCount(1, {
     timeout: 20000,
   });
   await expect(page.locator("#service")).toHaveValue(site.contact.services[2]);
@@ -222,7 +241,7 @@ test("contact API rejects invalid requests without delivering mail", async ({ re
   }
 });
 
-test("SEO endpoints, noindex studies, screenshots and all 19 deferred slots exist", async ({
+test("SEO endpoints, noindex studies, current screenshots and the remaining slot exist", async ({
   request,
 }) => {
   for (const path of ["/sitemap.xml", "/robots.txt", "/opengraph-image", "/icon.svg"]) {
@@ -231,9 +250,13 @@ test("SEO endpoints, noindex studies, screenshots and all 19 deferred slots exis
   expect((await request.get("/missing-page")).status()).toBe(404);
   expect(await (await request.get("/robots.txt")).text()).toContain("Disallow: /playground");
   const shots = (await readdir("docs/shots")).filter((n) => n.endsWith(".png"));
-  expect(shots).toHaveLength(16);
+  expect(shots).toHaveLength(sourceCatalog.length);
   const slots = (await readdir("components/slots")).filter((n) => n.endsWith(".tsx"));
   expect(slots).toHaveLength(19);
-  for (const slot of slots)
-    expect(await readFile(`components/slots/${slot}`, "utf8")).toContain("TODO(originkit:");
+  expect(await readFile("components/slots/CloudSky03.tsx", "utf8")).toContain(
+    "TODO(originkit:cloud-sky/03)",
+  );
+  expect(await readFile("components/slots/GlowBorder.tsx", "utf8")).toContain(
+    'useNativeSource("border"',
+  );
 });

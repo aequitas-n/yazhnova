@@ -6,7 +6,7 @@ import { site } from "@/content/site";
 import { SectionLabel } from "@/components/ui/section-label";
 import { SectionTitle } from "@/components/ui/section-title";
 import { LiveVisual } from "@/components/visuals/live-visual";
-import { LiveChat } from "@/components/slots/LiveChat";
+import { NativeChat, RevealCopy } from "@/components/visuals/native-details";
 export function Agents() {
   const ref = useRef<HTMLDivElement>(null);
   const inView = useInView(ref, { amount: 0.3 });
@@ -43,7 +43,7 @@ export function Agents() {
               <br />
               <em>{site.agents.serif}</em>
             </SectionTitle>
-            <p className="section-description">{site.agents.description}</p>
+            <RevealCopy text={site.agents.description} />
             <ul className="agent-principles">
               {site.agents.features.map((feature) => (
                 <li key={feature}>
@@ -52,44 +52,42 @@ export function Agents() {
                 </li>
               ))}
             </ul>
-            <LiveChat>
-              <div ref={ref} className="workflow-demo">
-                <div className="workflow-head mono">
-                  <span>{site.agents.demo.label}</span>
-                  <button
-                    onClick={() => {
-                      setStep(0);
-                      setRun((v) => v + 1);
-                    }}
-                    aria-label={site.agents.demo.replay}
-                  >
-                    <RotateCcw size={12} />
-                  </button>
-                </div>
-                <p className="workflow-request">“{site.agents.demo.request}”</p>
-                <ol>
-                  {site.agents.demo.steps.map((task, i) => (
-                    <li key={task.label} className={step > i ? "complete" : "pending"}>
-                      <span className="task-indicator">
-                        {step > i ? <Check size={11} /> : <span className="mono">0{i + 1}</span>}
-                      </span>
-                      <div>
-                        <strong>{task.label}</strong>
-                        <p>{task.detail}</p>
-                      </div>
-                    </li>
-                  ))}
-                </ol>
-                <div
-                  className={`workflow-status mono ${step === 3 ? "ready" : ""}`}
-                  aria-live="polite"
+            <div ref={ref} className="workflow-demo">
+              <div className="workflow-head mono">
+                <span>{site.agents.demo.label}</span>
+                <button
+                  onClick={() => {
+                    setStep(0);
+                    setRun((v) => v + 1);
+                  }}
+                  aria-label={site.agents.demo.replay}
                 >
-                  <span className="signal" />
-                  {site.agents.demo.status}
-                </div>
-                <p className="demo-notice">{site.agents.demo.footnote}</p>
+                  <RotateCcw size={12} />
+                </button>
               </div>
-            </LiveChat>
+              <NativeChat run={run} />
+              <ol>
+                {site.agents.demo.steps.map((task, i) => (
+                  <li key={task.label} className={step > i ? "complete" : "pending"}>
+                    <span className="task-indicator">
+                      {step > i ? <Check size={11} /> : <span className="mono">0{i + 1}</span>}
+                    </span>
+                    <div>
+                      <strong>{task.label}</strong>
+                      <p>{task.detail}</p>
+                    </div>
+                  </li>
+                ))}
+              </ol>
+              <div
+                className={`workflow-status mono ${step === 3 ? "ready" : ""}`}
+                aria-live="polite"
+              >
+                <span className="signal" />
+                {site.agents.demo.status}
+              </div>
+              <p className="demo-notice">{site.agents.demo.footnote}</p>
+            </div>
           </div>
         </div>
       </div>

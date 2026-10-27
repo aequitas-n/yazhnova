@@ -1,5 +1,5 @@
 import type { SlotProps } from "./types";
-// TODO(originkit:hairline-loader)
+// Legacy inactive adapter for hairline-loader. See docs/component-ratings.md for the real integration or curation decision.
 export interface HairlineLoaderProps extends SlotProps {
   color?: string;
   duration?: number;
@@ -11,7 +11,7 @@ export function HairlineLoader({ children, className, style }: HairlineLoaderPro
       className={className}
       style={{ display: "contents", ...style }}
       data-slot="hairline-loader"
-      data-slot-status="pending"
+      data-slot-status="inactive"
     >
       {children}
     </div>

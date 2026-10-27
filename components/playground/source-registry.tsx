@@ -1,6 +1,36 @@
 "use client";
 import dynamic from "next/dynamic";
 export const sources = {
+  "live-chat": dynamic(() => import("@/components/originkit/ui/live-chat"), { ssr: false }),
+  "aura-cursor": dynamic(() => import("@/components/originkit/ui/aura-cursor"), { ssr: false }),
+  "hairline-loader": dynamic(() => import("@/components/originkit/ui/hairline-loader"), {
+    ssr: false,
+  }),
+  curvedmarquee: dynamic(() => import("@/components/originkit/ui/curvedmarquee"), { ssr: false }),
+  "stacked-carousel": dynamic(() => import("@/components/originkit/ui/stacked-carousel"), {
+    ssr: false,
+  }),
+  "image-spotlight": dynamic(() => import("@/components/originkit/ui/image-spotlight"), {
+    ssr: false,
+  }),
+  "light-cables": dynamic(() => import("@/components/originkit/ui/light-cables"), { ssr: false }),
+  "data-strings": dynamic(() => import("@/components/originkit/ui/data-strings"), { ssr: false }),
+  "liquid-grid": dynamic(() => import("@/components/originkit/ui/liquid-grid"), { ssr: false }),
+  scrambletext: dynamic(() => import("@/components/originkit/ui/scrambletext"), { ssr: false }),
+  "scroll-text-reveal": dynamic(() => import("@/components/originkit/ui/scroll-text-reveal"), {
+    ssr: false,
+  }),
+  "glow-border": dynamic(() => import("@/components/originkit/ui/glow-border"), { ssr: false }),
+  "predictive-arc-02": dynamic(() => import("@/components/originkit/ui/predictive-arc-02"), {
+    ssr: false,
+  }),
+  "fluid-field": dynamic(() => import("@/components/originkit/ui/fluid-field"), { ssr: false }),
+  "light-bloom": dynamic(() => import("@/components/originkit/ui/light-bloom"), { ssr: false }),
+  "single-glossy-sphere": dynamic(() => import("@/components/originkit/ui/single-glossy-sphere"), {
+    ssr: false,
+  }),
+  "star-gate": dynamic(() => import("@/components/originkit/ui/star-gate"), { ssr: false }),
+  "spark-lattice": dynamic(() => import("@/components/originkit/ui/spark-lattice"), { ssr: false }),
   "hero-40": dynamic(() => import("@/components/originkit/hero-40"), { ssr: false }),
   "hero-51": dynamic(() => import("@/components/originkit/hero-51"), { ssr: false }),
   "hero-69": dynamic(() => import("@/components/originkit/hero-69"), { ssr: false }),

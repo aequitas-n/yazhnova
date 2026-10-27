@@ -1,5 +1,5 @@
 import type { SlotProps } from "./types";
-// TODO(originkit:light-bloom)
+// Legacy inactive adapter for light-bloom. See docs/component-ratings.md for the real integration or curation decision.
 export interface LightBloomProps extends SlotProps {
   background?: string;
   color?: string;
@@ -12,7 +12,7 @@ export function LightBloom({ children, className, style }: LightBloomProps) {
       className={className}
       style={{ display: "contents", ...style }}
       data-slot="light-bloom"
-      data-slot-status="pending"
+      data-slot-status="inactive"
     >
       {children}
     </div>

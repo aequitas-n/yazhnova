@@ -1,10 +1,1374 @@
-# OriginKit inventory — rendered source studies
+# OriginKit inventory - rendered source studies
 
-All 16 installed items were read and rendered in original and editorial variants. `/playground` mounts only visible panels; each variant has its own document so CSS and IDs cannot collide. The exact draw contexts and runtime observations are in [playground-results.json](playground-results.json).
+All 34 installed items were read and rendered in original and editorial variants. `/playground` mounts only visible panels; each variant has its own document so CSS and IDs cannot collide. The exact draw contexts and runtime observations are in [playground-results.json](playground-results.json).
 
 Palette: ink `#0A0A0A`, graphite `#141414`, paper `#F4F2EC`, warm grey `#8C8A84`, restrained signal amber `#FFB45A`. No shaders, geometry or visual algorithms were recreated. Type-only fixes and the requested opt-in stone-intro controls are recorded in [fixes.md](fixes.md).
 
 Costs below are source-informed relative estimates, not measured frame-rate guarantees. Playground captures are desktop; mobile behavior combines the source breakpoints/controls with the production fallback policy.
+
+## live-chat
+
+Native DOM chat bubbles enter with spring motion and a typing indicator.
+
+**Signature / layout to reuse:** A vertical list of native sent/received bubbles, optional timestamps and a typing row. Font and both bubble/text palettes are exposed.
+
+**Interaction / rendering:** The installed Framer Motion source animates message entrances and typing dots. Messages, sender, stagger, transition and animation flags are configurable; it does not perform agent or messaging actions.
+
+**Performance:** Low. Low DOM animation cost for short transcripts. Production must retain readable static messages and suppress decorative motion when requested.
+
+**Yazhnova use:** Reserved agent-demo transcript. The study uses an illustrative human-reviewed qualification exchange without claiming a real backend integration.
+
+**Screenshot:** [Default + editorial palette](shots/live-chat.png).
+
+**Public props and defaults:** The original interfaces and default values below are extracted from the installed source. Settings not overridden keep these defaults.
+
+`components/originkit/ui/live-chat.tsx`
+
+```ts
+type Message = {
+  text: string;
+  sender: "me" | "them";
+  timestamp?: string;
+};
+
+type Props = {
+  messages?: Message[];
+  font?: React.CSSProperties;
+  sentBubbleColor?: string;
+  sentTextColor?: string;
+  receivedBubbleColor?: string;
+  receivedTextColor?: string;
+  showTimestamps?: boolean;
+  showTyping?: boolean;
+  typingSender?: "me" | "them";
+  animate?: boolean;
+  staggerDelay?: number;
+  transition?: Transition;
+  style?: React.CSSProperties;
+};
+
+DEFAULT_MESSAGES: Message[] = [
+  {
+    text: "Hey! Are you coming to the Framer workshop?",
+    sender: "them",
+    timestamp: "10:14 AM",
+  },
+  {
+    text: "Yeah, definitely! Just finishing up some code.",
+    sender: "me",
+    timestamp: "10:15 AM",
+  },
+  {
+    text: "Awesome, see you there! \ud83d\ude80",
+    sender: "them",
+    timestamp: "10:16 AM",
+  },
+]
+
+DEFAULT_FONT: React.CSSProperties = {
+  fontFamily: "Inter",
+  fontWeight: 400,
+  fontSize: 16,
+  lineHeight: "1.35em",
+  letterSpacing: "0em",
+  textAlign: "left",
+}
+
+DEFAULT_TRANSITION: Transition = {
+  type: "spring",
+  stiffness: 450,
+  damping: 28,
+  mass: 1,
+}
+
+function IOSMessageList({
+  messages = DEFAULT_MESSAGES,
+  font = DEFAULT_FONT,
+  sentBubbleColor = "#007AFF",
+  sentTextColor = "#FFFFFF",
+  receivedBubbleColor = "#E9E9EB",
+  receivedTextColor = "#000000",
+  showTimestamps = true,
+  showTyping = true,
+  typingSender = "them",
+  animate: doAnimate = true,
+  staggerDelay = 150,
+  transition = DEFAULT_TRANSITION,
+  style,
+}: Props)
+```
+
+**Editorial overrides:** Explicit source props:
+
+```json
+{
+  "messages": [
+    {
+      "text": "A new lead is asking about a SaaS product.",
+      "sender": "them"
+    },
+    {
+      "text": "I checked the brief and prepared a qualification summary for review.",
+      "sender": "me"
+    },
+    {
+      "text": "Approved. Prepare the meeting invitation.",
+      "sender": "them"
+    }
+  ],
+  "font": {
+    "fontFamily": "Inter Tight",
+    "fontSize": 16,
+    "lineHeight": "1.5em"
+  },
+  "sentBubbleColor": "#F4F2EC",
+  "sentTextColor": "#0A0A0A",
+  "receivedBubbleColor": "#141414",
+  "receivedTextColor": "#F4F2EC",
+  "showTimestamps": false,
+  "showTyping": false
+}
+```
+
+## aura-cursor
+
+A real WebGL fluid simulation follows the pointer with configurable dye colors.
+
+**Signature / layout to reuse:** A pointer-driven fluid surface with an optional central label. The actual source manages GPU simulation buffers rather than a CSS glow substitute.
+
+**Interaction / rendering:** WebGL fluid passes advect and shade pointer splats. Palette, dye dissipation, curl, splat radius/force and label styling are configurable. The native source pauses on visibility changes.
+
+**Performance:** High. High multipass GPU cost with a 1440-pixel dye target and 20 pressure iterations. Keep desktop-only and respect reduced motion when integrating; the current homepage slot stays untouched.
+
+**Yazhnova use:** Reserved desktop cursor enhancement. Shader presets are recolored to paper and warm gray for review.
+
+**Screenshot:** [Default + editorial palette](shots/aura-cursor.png).
+
+**Public props and defaults:** The original interfaces and default values below are extracted from the installed source. Settings not overridden keep these defaults.
+
+`components/originkit/ui/aura-cursor.tsx`
+
+```ts
+type LabelFont = {
+  fontFamily?: string;
+  fontWeight?: number;
+  fontSize?: string;
+  lineHeight?: string;
+  letterSpacing?: string;
+  textAlign?: React.CSSProperties["textAlign"];
+};
+
+type Props = {
+  label?: boolean;
+  labelText?: string;
+  labelColor?: string;
+  labelFont?: LabelFont;
+  paletteColors?: string[];
+  backdrop?: "dark" | "light";
+  densityDissipation?: number;
+  curl?: number;
+  splatRadius?: number;
+  splatForce?: number;
+  style?: React.CSSProperties;
+};
+
+DEFAULT_LABEL_FONT: LabelFont = {
+  fontFamily: "Inter",
+  fontWeight: 700,
+  fontSize: "48px",
+  lineHeight: "1.5em",
+  letterSpacing: "0em",
+  textAlign: "left",
+};
+
+DEFAULTS = {
+  backdrop: "dark" as const,
+  label: true,
+  labelText: "HOVER ME",
+  labelColor: "#FFFFFF",
+
+  densityDissipation: 7,
+  curl: 3,
+
+  splatRadius: 4,
+
+  splatForce: 6,
+};
+
+DEFAULT_PALETTE = ["#A855F7", "#EC4899", "#3B82F6"];
+
+function AuraCursor(props: Props);
+
+const {
+  backdrop = DEFAULTS.backdrop,
+  densityDissipation = DEFAULTS.densityDissipation,
+  curl = DEFAULTS.curl,
+  splatRadius = DEFAULTS.splatRadius,
+  splatForce = DEFAULTS.splatForce,
+  label = DEFAULTS.label,
+  labelText = DEFAULTS.labelText,
+  labelColor = DEFAULTS.labelColor,
+  style,
+} = props;
+```
+
+**Editorial overrides:** Explicit source props:
+
+```json
+{
+  "labelText": "MOVE TO EXPLORE",
+  "labelColor": "#F4F2EC",
+  "labelFont": {
+    "fontFamily": "Geist Mono",
+    "fontSize": "28px",
+    "fontWeight": 400
+  },
+  "paletteColors": ["#F4F2EC", "#8C8A84", "#141414"],
+  "densityDissipation": 7,
+  "curl": 2,
+  "splatRadius": 3,
+  "splatForce": 4
+}
+```
+
+## hairline-loader
+
+A native DOM ruler and percentage counter part to reveal the underlying page.
+
+**Signature / layout to reuse:** A fine ruler, animated percentage and split top/bottom covers. The original source supplies the complete DOM loading/reveal mechanism.
+
+**Interaction / rendering:** A requestAnimationFrame timeline combines minimum display time with image/font readiness, grows the rule and parts the covers. Colors, font, minimum time and completion callback are exposed.
+
+**Performance:** Low. Low DOM cost and native reduced-motion handling. Coordinate this source with the existing approved stone intro before integration to avoid stacking loading experiences.
+
+**Yazhnova use:** Reserved first-load detail; downloaded for study without replacing the approved stone introduction.
+
+**Screenshot:** [Default + editorial palette](shots/hairline-loader.png).
+
+**Public props and defaults:** The original interfaces and default values below are extracted from the installed source. Settings not overridden keep these defaults.
+
+`components/originkit/ui/hairline-loader.tsx`
+
+```ts
+interface EdFrame {
+  t: number;
+  dt: number;
+
+  progress: number;
+
+  reveal: number;
+  phase: EdPhase;
+
+  w: number;
+  h: number;
+}
+
+interface EdScene {
+  revealS: number;
+  reset?(): void;
+  frame(f: EdFrame): void;
+}
+
+interface EdOptions {
+  minTime: number;
+  onComplete?: () => void;
+}
+
+interface FramerFont {
+  fontFamily?: string;
+  fontWeight?: number | string;
+  fontStyle?: string;
+  fontSize?: number | string;
+  lineHeight?: number | string;
+  letterSpacing?: number | string;
+}
+
+interface Props {
+  minTime?: number;
+  font?: FramerFont;
+  background?: string;
+  textColor?: string;
+  onComplete?: () => void;
+  style?: CSSProperties;
+}
+
+function Hairline(props: Props);
+
+const { minTime = 4, font, background = "#000000", textColor = "#FFFFFF", style } = props;
+```
+
+**Editorial overrides:** Explicit source props:
+
+```json
+{
+  "background": "#0A0A0A",
+  "textColor": "#F4F2EC",
+  "minTime": 4,
+  "font": {
+    "fontFamily": "Geist Mono",
+    "fontWeight": 400
+  }
+}
+```
+
+## curvedmarquee
+
+Draggable SVG text moves along a genuine curved path.
+
+**Signature / layout to reuse:** An SVG textPath carrying repeated text along a quadratic curve. The curve, font, gap and fade are independently configurable.
+
+**Interaction / rendering:** The installed source advances SVG text spans each frame and supports pointer drag with inertial velocity. It is actual SVG text, not a replacement canvas.
+
+**Performance:** Low. Low draw cost for short labels. Suppress the decorative loop for reduced motion and keep a readable static technology list when integrating.
+
+**Yazhnova use:** Reserved technology marquee. The source is downloaded for review before its production slot is composed.
+
+**Screenshot:** [Default + editorial palette](shots/curvedmarquee.png).
+
+**Public props and defaults:** The original interfaces and default values below are extracted from the installed source. Settings not overridden keep these defaults.
+
+`components/originkit/ui/curvedmarquee.tsx`
+
+```ts
+interface FontValue {
+  fontFamily?: string;
+  fontWeight?: string | number;
+  fontSize?: string | number;
+  letterSpacing?: string | number;
+  lineHeight?: string | number;
+  textAlign?: string;
+}
+
+interface CurvedLoopProps {
+  text?: string;
+  font?: FontValue;
+  color?: string;
+  direction?: "left" | "right";
+  baseVelocity?: number;
+  curveAmount?: number;
+  gap?: number;
+  draggable?: boolean;
+  dragIntensity?: number;
+  fade?: boolean;
+  fadePercent?: number;
+  style?: CSSProperties;
+}
+
+function CurvedLoop({
+  text = "Originkit",
+  font = {
+    fontFamily: "Inter",
+    fontWeight: 400,
+    fontSize: 64,
+    lineHeight: "1.5em",
+    letterSpacing: "1px",
+    textAlign: "left",
+  },
+  color = "#FFFFFF",
+  direction = "right",
+  baseVelocity = 35,
+  curveAmount = -400,
+  gap = 12,
+  draggable = true,
+  dragIntensity = 10,
+  fade = true,
+  fadePercent = 12,
+  style,
+}: CurvedLoopProps);
+```
+
+**Editorial overrides:** Explicit source props:
+
+```json
+{
+  "text": "React / Next.js / Node / Python / Postgres",
+  "color": "#F4F2EC",
+  "font": {
+    "fontFamily": "Geist Mono",
+    "fontSize": 48,
+    "fontWeight": 400,
+    "letterSpacing": "-0.02em",
+    "lineHeight": "1.3em"
+  },
+  "baseVelocity": 8,
+  "curveAmount": -120,
+  "gap": 8,
+  "fadePercent": 10
+}
+```
+
+## stacked-carousel
+
+A real WebGL stack of textured cards with scrolling and hover flattening.
+
+**Signature / layout to reuse:** A perspective deck of image-textured cards rendered with the source's own WebGL matrices and geometry. Default card images are generated by the source itself.
+
+**Interaction / rendering:** Auto-scroll, wheel input and hover flattening move the actual card deck. Image URLs, size, gap, speed, direction and camera tilt/angle are exposed.
+
+**Performance:** Medium. The source keeps at least 20 cards. Limit image dimensions and use a captured frame for mobile/reduced motion when composed into the site.
+
+**Yazhnova use:** Reserved case-study presentation. The editorial study uses genuine existing source frames rather than fictional client projects.
+
+**Screenshot:** [Default + editorial palette](shots/stacked-carousel.png).
+
+**Public props and defaults:** The original interfaces and default values below are extracted from the installed source. Settings not overridden keep these defaults.
+
+`components/originkit/ui/stacked-carousel.tsx`
+
+```ts
+interface CameraGroup {
+    tilt?: number
+
+    angle?: number
+}
+
+interface Props {
+    images?: string[]
+    cardWidth?: number
+    cardHeight?: number
+
+    gap?: number
+
+    speed?: number
+
+    direction?: "forward" | "backward"
+    camera?: CameraGroup
+    style?: React.CSSProperties
+}
+
+DEFAULT_CARD_W = 420
+
+DEFAULT_CARD_H = 300
+
+DEFAULT_ITEMS: string[] = Array.from({ length: 8 }, (_, i) =>
+    dummyImage(i, 840, 600)
+)
+
+DEFAULT_CAMERA: Required<CameraGroup> = {
+    tilt: 50,
+    angle: 0,
+}
+
+interface Resolved {
+    items: string[]
+
+    mediaKey: string
+    visibleCount: number
+    imageWidth: number
+    imageHeight: number
+    zSpacing: number
+    perspective: number
+    cameraDistance: number
+    viewAngleX: number
+    viewAngleY: number
+
+    autoScrollSpeed: number
+}
+
+function StackedCarousel3D(props: Props)
+
+const {
+        images: _images,
+        cardWidth: _cardWidth,
+        cardHeight: _cardHeight,
+        gap: _gap,
+        speed: _speed,
+        direction: _direction,
+        camera: _camera,
+        style,
+        ...rest
+    } = props
+```
+
+**Editorial overrides:** Explicit source props:
+
+```json
+{
+  "images": ["/frames/ember.png", "/frames/glassbound.png", "/frames/shadow.png"],
+  "cardWidth": 360,
+  "cardHeight": 260,
+  "gap": 120,
+  "speed": 15,
+  "camera": {
+    "tilt": 35,
+    "angle": 0
+  }
+}
+```
+
+## image-spotlight
+
+A pointer-following spotlight reveals an image through a moving veil.
+
+**Signature / layout to reuse:** An image plus a CSS mask veil with a circular resting or pointer-following reveal. No project-card layout is included.
+
+**Interaction / rendering:** Real DOM pointer events move the spotlight, with spring/tween timing, image fit, focus, veil color, radius and visibility controls.
+
+**Performance:** Low. No canvas. Keep the image readable without hover on touch devices and suppress pointer motion for reduced motion in production. The default sample asset is copied locally for the study.
+
+**Yazhnova use:** Reserved case-study image treatment. Source available for later composition while the approved website stays intact.
+
+**Screenshot:** [Default + editorial palette](shots/image-spotlight.png).
+
+**Public props and defaults:** The original interfaces and default values below are extracted from the installed source. Settings not overridden keep these defaults.
+
+`components/originkit/ui/image-spotlight.tsx`
+
+```ts
+DEFAULT_IMAGE =
+  "https://imagedelivery.net/IEUjvl3YUlxY-MrTpOAWDQ/17fccb3f-a5f6-441c-d10e-a6e3c8fa7800/w=800";
+
+type Mode = "onImage" | "followCursor";
+
+DEFAULTS = {
+  mode: "followCursor" as Mode,
+  restX: 50,
+  restY: 50,
+  fit: "cover" as Fit,
+  focusY: 37,
+  veilColor: "#000000",
+  size: 400,
+  visibility: 20,
+  rounded: 37,
+  transition: {
+    type: "tween",
+    stiffness: 800,
+    damping: 60,
+    mass: 1,
+    duration: 0.4,
+    ease: "easeInOut",
+  } as any,
+};
+
+interface ResponsiveImage {
+  src: string;
+  srcSet?: string;
+  alt?: string;
+}
+
+interface SpotlightRevealProps {
+  image?: ResponsiveImage | string;
+  mode?: Mode;
+  restX?: number;
+  restY?: number;
+  fit?: Fit;
+  focusY?: number;
+  veilColor?: string;
+  size?: number;
+  visibility?: number;
+  rounded?: number;
+  transition?: any;
+  style?: CSSProperties;
+}
+
+function SpotlightReveal(props: SpotlightRevealProps);
+
+const {
+  image = {
+    src: DEFAULT_IMAGE,
+  },
+  mode = DEFAULTS.mode,
+  restX = DEFAULTS.restX,
+  restY = DEFAULTS.restY,
+  fit = DEFAULTS.fit,
+  focusY = DEFAULTS.focusY,
+  veilColor = DEFAULTS.veilColor,
+  size = DEFAULTS.size,
+  visibility = DEFAULTS.visibility,
+  rounded = DEFAULTS.rounded,
+  transition = DEFAULTS.transition,
+  style,
+} = props;
+```
+
+**Editorial overrides:** Explicit source props:
+
+```json
+{
+  "image": {
+    "src": "/originkit/hero-40/white-hands.png",
+    "alt": "Hands reaching toward each other"
+  },
+  "veilColor": "#0A0A0A",
+  "rounded": 0,
+  "visibility": 30,
+  "size": 280,
+  "mode": "onImage"
+}
+```
+
+## light-cables
+
+A WebGL bundle of curved light cables with moving pulses.
+
+**Signature / layout to reuse:** A configurable cable bundle with directional flow and moving light pulses, without a built-in content layout.
+
+**Interaction / rendering:** The installed WebGL shader bends the cables and responds to hover/grab. Bundle and flow groups expose count, bend, spread, thickness, widths and pulses.
+
+**Performance:** Medium. Reduce cable count and pointer response; use a genuine frame for a production mobile/reduced-motion fallback. The playground unmounts inactive sources.
+
+**Yazhnova use:** Reserved process connectors. The current marketing composition stays intact until its slot is integrated.
+
+**Screenshot:** [Default + editorial palette](shots/light-cables.png).
+
+**Public props and defaults:** The original interfaces and default values below are extracted from the installed source. Settings not overridden keep these defaults.
+
+`components/originkit/ui/light-cables.tsx`
+
+```ts
+type BundleGroup = {
+  count?: number;
+  bend?: number;
+  spread?: number;
+  thickness?: number;
+  widthStart?: number;
+  widthEnd?: number;
+};
+
+BUNDLE_DEFAULTS: Required<BundleGroup> = {
+  count: 34,
+  bend: 46,
+  spread: 100,
+  thickness: 100,
+  widthStart: 100,
+  widthEnd: 100,
+};
+
+type FlowGroup = { flow?: number; pulses?: number };
+
+FLOW_DEFAULTS: Required<FlowGroup> = { flow: 100, pulses: 3 };
+
+type Props = {
+  style?: React.CSSProperties;
+  background?: string;
+  baseColor?: string;
+  accentColor?: string;
+  highlight?: string;
+  speed?: number;
+  hover?: number;
+  grab?: number;
+  direction?: "ltr" | "rtl" | "ttb" | "btt";
+  positionX?: number;
+  positionY?: number;
+  bundle?: BundleGroup;
+  flow?: FlowGroup;
+  width?: number;
+  height?: number;
+};
+
+function LightCables(props: Props);
+
+const {
+  style,
+  background = "#000000",
+  baseColor = "#000000",
+  accentColor = "#FF7500",
+  highlight = "#FFD900",
+  speed = 34,
+  hover = 114,
+  grab = 100,
+  direction = "ttb",
+  positionX = -13,
+  positionY = -21,
+  bundle,
+  flow,
+  width,
+  height,
+} = props;
+```
+
+**Editorial overrides:** Explicit source props:
+
+```json
+{
+  "background": "#0A0A0A",
+  "baseColor": "#141414",
+  "accentColor": "#8C8A84",
+  "highlight": "#F4F2EC",
+  "speed": 12,
+  "hover": 25,
+  "grab": 20,
+  "bundle": {
+    "count": 16,
+    "bend": 35,
+    "spread": 80,
+    "thickness": 70
+  }
+}
+```
+
+## data-strings
+
+Canvas-drawn strands and moving particles with pointer repulsion.
+
+**Signature / layout to reuse:** A fan or stream of drawn strands, with particles running along the curves.
+
+**Interaction / rendering:** The source uses Canvas 2D, palette-based coloring and pointer repulsion. Orientation, strand geometry, particle count and cursor controls are exposed.
+
+**Performance:** Medium. The default 2000 strands and 200 particles can be expensive. The editorial study lowers both; retain the production visibility and static-frame policy when composed.
+
+**Yazhnova use:** Reserved technology-strip backdrop. Source available for composition after study.
+
+**Screenshot:** [Default + editorial palette](shots/data-strings.png).
+
+**Public props and defaults:** The original interfaces and default values below are extracted from the installed source. Settings not overridden keep these defaults.
+
+`components/originkit/ui/data-strings.tsx`
+
+```ts
+DEFAULT_PALETTE = ["#2E7DFF", "#2BD9FF", "#F72585", "#FF4FA3", "#FF8A1E"];
+
+export interface DataStringsProps {
+  orientation?: "right" | "left" | "down" | "up";
+  colorMode?: "bundles" | "flow";
+  palette?: string[];
+  background?: string;
+  strands?: number;
+  focus?: number;
+  waist?: number;
+  sweep?: number;
+  reach?: number;
+  curve?: number;
+  strandWidth?: number;
+  strandOpacity?: number;
+  particles?: number;
+  cursor?: number;
+  style?: React.CSSProperties;
+}
+
+function DataStrings(props: DataStringsProps);
+
+const {
+  orientation = "down",
+  colorMode = "flow",
+  palette = ["#FF3333", "#FF5100", "#FFA300", "#00EAFF"],
+  background = "#000000",
+  strands = 2000,
+  focus = 100,
+  waist = 0,
+  sweep = 0,
+  reach = 100,
+  curve = 100,
+  strandWidth: rawWidth = 26,
+  strandOpacity: rawOpacity = 11,
+  particles = 200,
+  cursor = 50,
+  style,
+} = props;
+```
+
+**Editorial overrides:** Explicit source props:
+
+```json
+{
+  "background": "#0A0A0A",
+  "palette": ["#8C8A84", "#F4F2EC", "#141414"],
+  "strands": 400,
+  "particles": 40,
+  "cursor": 20,
+  "strandOpacity": 16,
+  "strandWidth": 12
+}
+```
+
+## liquid-grid
+
+A real Canvas 2D wave simulation across an interactive dot or line grid.
+
+**Signature / layout to reuse:** A dot or line lattice displaced by a real finite-difference wave field.
+
+**Interaction / rendering:** Canvas 2D simulates pointer disturbances and click ripples. Grid cell size, radius, weight, collision and intensity are configurable.
+
+**Performance:** Medium. Cost follows grid density and canvas area. A coarser grid is appropriate for smaller views; capture a real static frame for reduced motion.
+
+**Yazhnova use:** Reserved SaaS service visual. The downloaded source has not replaced the current homepage presentation.
+
+**Screenshot:** [Default + editorial palette](shots/liquid-grid.png).
+
+**Public props and defaults:** The original interfaces and default values below are extracted from the installed source. Settings not overridden keep these defaults.
+
+`components/originkit/ui/liquid-grid.tsx`
+
+```ts
+DEFAULTS = {
+  mode: "dots" as "lines" | "dots",
+  background: "#000000",
+  lineColor: "#FFFFFF4D",
+  glowColor: "#FFFFFF",
+  cellSize: 16,
+  lineWidth: 1,
+  radius: 58,
+  intensity: 100,
+  collide: true,
+  clickRipple: true,
+};
+
+interface LiquidGridProps {
+  mode?: "lines" | "dots";
+  background?: string;
+  lineColor?: string;
+  glowColor?: string;
+  cellSize?: number;
+  lineWidth?: number;
+  radius?: number;
+  intensity?: number;
+  collide?: boolean;
+  clickRipple?: boolean;
+  style?: React.CSSProperties;
+}
+
+function LiquidGrid(props: LiquidGridProps);
+```
+
+**Editorial overrides:** Explicit source props:
+
+```json
+{
+  "background": "#0A0A0A",
+  "lineColor": "#8C8A84",
+  "glowColor": "#F4F2EC",
+  "cellSize": 24,
+  "lineWidth": 1,
+  "intensity": 35,
+  "radius": 120
+}
+```
+
+## scrambletext
+
+Character-based entrance scrambling and interactive hover diffusion.
+
+**Signature / layout to reuse:** DOM characters grouped into measured words and lines; the default font has very wide tracking, while the editorial preset uses the brand type.
+
+**Interaction / rendering:** Entrance scrambling and hover diffusion/waves operate on actual text. Nested entrance and hover settings control flicker, duration, character sets and replay.
+
+**Performance:** Low. Low to moderate DOM/measurement cost for short text. Preserve accessible static text and disable decorative scrambling for reduced motion when integrated.
+
+**Yazhnova use:** Reserved hero headline effect. This is text animation, not a canvas or replacement image.
+
+**Screenshot:** [Default + editorial palette](shots/scrambletext.png).
+
+**Public props and defaults:** The original interfaces and default values below are extracted from the installed source. Settings not overridden keep these defaults.
+
+`components/originkit/ui/scrambletext.tsx`
+
+```ts
+type EnterMode = "none" | "oneLine" | "multiLine" | "random";
+
+type HoverMode =
+  "none" | "diffusionOneLine" | "diffusionMultiLine" | "waveOneLine" | "waveMultiLine";
+
+function GlitchCharReveal(props: any);
+
+const { words, enterAnimation, hoverAnimation, color, font, tag } = props;
+
+COMPONENT_DEFAULTS = {
+  words: "Scramble Text",
+  enterAnimation: {
+    mode: "oneLine",
+    restState: "solid",
+    replay: true,
+    position: "above",
+    scrambleIntensity: 100,
+    ease: { type: "tween", duration: 2, ease: "linear" },
+    flickerEnabled: true,
+    flickerColor: "#333333",
+    flickerIntensity: 84,
+    flickerSpeed: 10,
+  },
+  hoverAnimation: {
+    type: "diffusion",
+    lines: "oneLine",
+    radius: 2,
+    collapse: false,
+    collapseTime: 1,
+    glitchChars: "abcdefghijklmnopqrstuvwxyz",
+    glitchShuffle: true,
+    flickerEnabled: false,
+    flickerColor: "#ff4400",
+    flickerIntensity: 50,
+    flickerSpeed: 10,
+    waveEase: { type: "tween", duration: 1.5, ease: "linear" },
+    waveShuffleLimitEnabled: false,
+    waveShuffleLimitValue: 10,
+  },
+  color: "#ffffff",
+  font: {
+    fontFamily: "Inter",
+    variant: "Bold",
+    fontSize: 120,
+    lineHeight: "1em",
+    letterSpacing: "2em",
+  } as any,
+  tag: "p",
+};
+```
+
+**Editorial overrides:** Explicit source props:
+
+```json
+{
+  "words": "Software, engineered to think.",
+  "color": "#F4F2EC",
+  "font": {
+    "fontFamily": "Inter Tight",
+    "fontSize": 72,
+    "fontWeight": 500,
+    "lineHeight": "1.05em",
+    "letterSpacing": "-0.04em"
+  },
+  "enterAnimation": {
+    "mode": "oneLine",
+    "replay": false,
+    "restState": "solid",
+    "scrambleIntensity": 50,
+    "ease": {
+      "type": "tween",
+      "duration": 1.2,
+      "ease": "easeOut"
+    },
+    "flickerEnabled": false,
+    "flickerColor": "#8C8A84"
+  },
+  "hoverAnimation": {
+    "type": "diffusion",
+    "lines": "oneLine",
+    "radius": 2,
+    "flickerEnabled": false,
+    "flickerColor": "#8C8A84"
+  }
+}
+```
+
+## scroll-text-reveal
+
+GSAP-split text revealed through line masks with scroll-driven motion.
+
+**Signature / layout to reuse:** Real text split into GSAP lines, words or characters inside clipping wrappers.
+
+**Interaction / rendering:** GSAP SplitText and ScrollTrigger combine with Framer Motion to reveal the text; font, blur, direction, splitting and transition controls are exposed.
+
+**Performance:** Low. Uses installed GSAP and Framer Motion. Short headings are inexpensive; reduce blur and retain static text for reduced motion in production.
+
+**Yazhnova use:** Reserved section-heading reveal. Its raw DOM rendering is studied independently before integration.
+
+**Screenshot:** [Default + editorial palette](shots/scroll-text-reveal.png).
+
+**Public props and defaults:** The original interfaces and default values below are extracted from the installed source. Settings not overridden keep these defaults.
+
+`components/originkit/ui/scroll-text-reveal.tsx`
+
+```ts
+interface FontConfig {
+  fontFamily?: string;
+  fontSize?: number | string;
+  fontWeight?: string | number;
+  fontStyle?: string;
+  textDecoration?: string;
+  textTransform?: string;
+  letterSpacing?: number | string;
+  lineHeight?: string | number;
+  textAlign?: "left" | "center" | "right" | "justify";
+}
+
+interface TransitionConfig {
+  type?: "tween" | "spring";
+  duration?: number;
+  ease?: string;
+  delay?: number;
+  stiffness?: number;
+  damping?: number;
+  mass?: number;
+  bounce?: number;
+  restDelta?: number;
+  restSpeed?: number;
+}
+
+interface LineMaskSplitProps {
+  text?: string;
+  color?: string;
+  font?: FontConfig;
+  tag?: "h1" | "h2" | "h3" | "h4" | "h5" | "h6" | "p" | "div" | "span";
+  className?: string;
+  style?: React.CSSProperties;
+  transition?: TransitionConfig;
+  reverse?: boolean;
+  scrollTriggerPosition?: "top" | "center" | "bottom";
+  splitMode?: "chars" | "words" | "lines";
+  blurEnabled?: boolean;
+  blurIntensity?: number;
+  translateXInitial?: number;
+  translateYInitial?: number;
+}
+
+function LineMaskSplit({
+  text = "ANIMATION ON REVEAL",
+  color = "#FFFFFF",
+  font = {
+    fontFamily: "Inter",
+    fontSize: 60,
+    fontWeight: "700",
+    lineHeight: "130%",
+    letterSpacing: 0,
+    textAlign: "center",
+  },
+  tag = "h1",
+  className = "",
+  style = {},
+  transition = {
+    type: "tween",
+    duration: 0.8,
+    ease: "easeInOut",
+    delay: 0,
+  },
+  reverse = true,
+  scrollTriggerPosition = "bottom",
+  splitMode = "chars",
+  blurEnabled = true,
+  blurIntensity = 20,
+  translateXInitial = 0,
+  translateYInitial = 100,
+}: LineMaskSplitProps);
+```
+
+**Editorial overrides:** Explicit source props:
+
+```json
+{
+  "text": "Good ideas deserve great engineering.",
+  "color": "#F4F2EC",
+  "font": {
+    "fontFamily": "Inter Tight",
+    "fontSize": 64,
+    "fontWeight": 500,
+    "lineHeight": "110%",
+    "letterSpacing": "-0.04em",
+    "textAlign": "center"
+  },
+  "reverse": false,
+  "blurIntensity": 6
+}
+```
+
+## glow-border
+
+A rotating conic light trail confined to a real DOM border.
+
+**Signature / layout to reuse:** An isolated DOM perimeter with a rotating conic-gradient trail. It supplies no CTA copy or button behavior.
+
+**Interaction / rendering:** A requestAnimationFrame loop rotates the trail; pointer presence boosts speed. Direction, colors, tail length, thickness, corner radius and multicolor mode are exposed.
+
+**Performance:** Low. No canvas or WebGL. Limit moving border area and suppress its loop for reduced motion when integrating.
+
+**Yazhnova use:** Reserved restrained CTA treatment, with monochrome one-pixel editorial settings rather than the default cyan glow.
+
+**Screenshot:** [Default + editorial palette](shots/glow-border.png).
+
+**Public props and defaults:** The original interfaces and default values below are extracted from the installed source. Settings not overridden keep these defaults.
+
+`components/originkit/ui/glow-border.tsx`
+
+```ts
+type Props = {
+  mode: "standard" | "multi";
+  direction: "clockwise" | "anti-clockwise";
+  speed: number;
+  hoverMultiplier: number;
+  rainbowColors: string[];
+  glowColor: string;
+  tailColor: string;
+  baseColor: string;
+  tailLength: number;
+  dualTails: boolean;
+  borderWidth: number;
+  rounded: number;
+  style?: React.CSSProperties;
+};
+
+DEFAULT_RAINBOW = ["#EF4444", "#F97316", "#EAB308", "#22C55E", "#3B82F6", "#6366F1", "#A855F7"];
+
+DEFAULTS = {
+  mode: "standard",
+  direction: "clockwise",
+  speed: 10,
+  hoverMultiplier: 5,
+  glowColor: "rgba(255, 255, 255, 1)",
+  tailColor: "rgba(255, 255, 255, 0.4)",
+  baseColor: "rgba(255, 255, 255, 0.04)",
+  tailLength: 60,
+  dualTails: true,
+  borderWidth: 5,
+  rounded: 0,
+};
+
+function GlowBorder(props: Props);
+
+const {
+  mode = DEFAULTS.mode,
+  direction = DEFAULTS.direction,
+  speed = DEFAULTS.speed,
+  hoverMultiplier = DEFAULTS.hoverMultiplier,
+  glowColor = "#00FFE8",
+  tailColor = "#00EDFF66",
+  baseColor = "rgba(255, 255, 255, 0.04)",
+  tailLength = DEFAULTS.tailLength,
+  dualTails = DEFAULTS.dualTails,
+  borderWidth = DEFAULTS.borderWidth,
+  rounded = DEFAULTS.rounded,
+  style,
+} = props;
+```
+
+**Editorial overrides:** Explicit source props:
+
+```json
+{
+  "glowColor": "#F4F2EC",
+  "tailColor": "#8C8A84",
+  "baseColor": "#141414",
+  "rainbowColors": ["#F4F2EC", "#8C8A84", "#141414"],
+  "borderWidth": 1,
+  "speed": 3,
+  "rounded": 0,
+  "hoverMultiplier": 2
+}
+```
+
+## predictive-arc-02
+
+An animated dotted horizon arc with pointer-controlled tilt.
+
+**Signature / layout to reuse:** A self-contained pixel arc and quiet horizon, with no built-in heading or navigation. Style overrides remove editor minimum dimensions for a responsive study.
+
+**Interaction / rendering:** A real WebGL shader animates the arc intensity and tilts it with the pointer. Density, dot size, speed, hover and the rise/radius/thickness/falloff group control the result.
+
+**Performance:** Medium. Moderate fullscreen fragment cost. Reduce density and motion, and capture a genuine frame for reduced-motion or mobile composition. The gallery unmounts inactive iframes.
+
+**Yazhnova use:** The reserved hero-rim accent. Downloaded for study; the existing approved hands hero remains composed with its current sources.
+
+**Screenshot:** [Default + editorial palette](shots/predictive-arc-02.png).
+
+**Public props and defaults:** The original interfaces and default values below are extracted from the installed source. Settings not overridden keep these defaults.
+
+`components/originkit/ui/predictive-arc-02.tsx`
+
+```ts
+interface Props {
+  style?: React.CSSProperties;
+  width?: number;
+  height?: number;
+  background?: string;
+  baseColor?: string;
+  accentColor?: string;
+  highlight?: string;
+  density?: number;
+  dotSize?: number;
+  speed?: number;
+  hover?: number;
+  horizon?: HorizonGroup;
+}
+
+type HorizonGroup = { rise?: number; radius?: number; thickness?: number; falloff?: number };
+
+HORIZON_DEFAULTS: Required<HorizonGroup> = { rise: 45, radius: 90, thickness: 100, falloff: 250 };
+
+function PredictiveArcHorizon(props: Props);
+
+const {
+  style,
+  background = "#02040A",
+  baseColor = "#0B2A5E",
+  accentColor = "#3FA9FF",
+  highlight = "#E8F6FF",
+  density = 40,
+  dotSize = 100,
+  speed = 50,
+  hover = 100,
+  horizon = { rise: 45, radius: 90, falloff: 250, thickness: 100 },
+  width,
+  height,
+} = props;
+```
+
+**Editorial overrides:** Explicit source props:
+
+```json
+{
+  "background": "#0A0A0A",
+  "baseColor": "#141414",
+  "accentColor": "#8C8A84",
+  "highlight": "#F4F2EC",
+  "density": 80,
+  "dotSize": 75,
+  "speed": 10,
+  "hover": 20,
+  "horizon": {
+    "rise": 45,
+    "radius": 90,
+    "thickness": 60,
+    "falloff": 250
+  }
+}
+```
+
+## fluid-field
+
+A flowing WebGL light field with warped beams and pointer response.
+
+**Signature / layout to reuse:** An atmospheric light field with flowing beams, turbulence and a configurable dark ground. It supplies a background rather than a content layout.
+
+**Interaction / rendering:** WebGL produces the moving field and pointer response. Base/accent/background colors and the flow group control scale, warp, beam width and glow.
+
+**Performance:** Medium. Moderate fragment cost and continuous animation. A slow, low-glow preset is appropriate for desktop; use a source-captured frame for mobile and reduced motion when composed into production.
+
+**Yazhnova use:** The reserved contact background. Keep the actual form on a legible solid panel when this source is integrated.
+
+**Screenshot:** [Default + editorial palette](shots/fluid-field.png).
+
+**Public props and defaults:** The original interfaces and default values below are extracted from the installed source. Settings not overridden keep these defaults.
+
+`components/originkit/ui/fluid-field.tsx`
+
+```ts
+type FlowGroup = { scale?: number; warp?: number; beam?: number; glow?: number };
+
+FLOW_DEFAULTS: Required<FlowGroup> = { scale: 87, warp: 100, beam: 154, glow: 400 };
+
+interface Props {
+  style?: React.CSSProperties;
+  width?: number;
+  height?: number;
+  background?: string;
+  baseColor?: string;
+  accentColor?: string;
+  speed?: number;
+  hover?: number;
+  flow?: FlowGroup;
+}
+
+function FluidField(props: Props);
+
+const {
+  style,
+  background = "#030305",
+  baseColor = "#2640D9",
+  accentColor = "#6633E6",
+  speed = 100,
+  hover = 185,
+  flow,
+  width,
+  height,
+} = props;
+```
+
+**Editorial overrides:** Explicit source props:
+
+```json
+{
+  "background": "#0A0A0A",
+  "baseColor": "#141414",
+  "accentColor": "#8C8A84",
+  "speed": 10,
+  "hover": 25,
+  "flow": {
+    "scale": 100,
+    "warp": 70,
+    "beam": 100,
+    "glow": 50
+  }
+}
+```
+
+## light-bloom
+
+A directional WebGL bloom or shaft field with drifting light.
+
+**Signature / layout to reuse:** A directional bloom or shaft field with selectable edge origin and fine finish controls. It includes no CTA text or card.
+
+**Interaction / rendering:** The actual WebGL shader moves light shafts and reacts to pointer presence. Variant, direction, light spread/rise, shaft count/amount/drift, grain and vignette are exposed.
+
+**Performance:** Medium. Moderate continuous shader cost. Reduce shaft count, speed and contrast; use a genuine captured frame for mobile/reduced-motion composition.
+
+**Yazhnova use:** Reserved atmosphere for the final CTA or contact. Editorial overrides remove the default violet light without replacing the renderer.
+
+**Screenshot:** [Default + editorial palette](shots/light-bloom.png).
+
+**Public props and defaults:** The original interfaces and default values below are extracted from the installed source. Settings not overridden keep these defaults.
+
+`components/originkit/ui/light-bloom.tsx`
+
+```ts
+type LightGroup = { rise?: number; spread?: number };
+
+type ShaftGroup = { count?: number; amount?: number; drift?: number };
+
+type FinishGroup = { grain?: number; vignette?: number };
+
+type Props = {
+  style?: React.CSSProperties;
+  variant?: "bloom" | "shafts";
+  direction?: "bottom" | "top" | "left" | "right";
+  background?: string;
+  baseColor?: string;
+  accentColor?: string;
+  speed?: number;
+  hover?: number;
+  light?: LightGroup;
+  shafts?: ShaftGroup;
+  finish?: FinishGroup;
+  width?: number;
+  height?: number;
+};
+
+D_LIGHT: Required<LightGroup> = { rise: 79, spread: 72 };
+
+D_SHAFTS: Required<ShaftGroup> = { count: 17, amount: 70, drift: 79 };
+
+D_FINISH: Required<FinishGroup> = { grain: 12, vignette: 25 };
+
+function LightBloom(props: Props);
+
+const {
+  style,
+  variant = "shafts",
+  direction = "bottom",
+  background = "#000000",
+  baseColor = "#6B2BF5",
+  accentColor = "#EFE6FF",
+  speed = 100,
+  hover = 114,
+  light,
+  shafts,
+  finish,
+  width,
+  height,
+} = props;
+```
+
+**Editorial overrides:** Explicit source props:
+
+```json
+{
+  "background": "#0A0A0A",
+  "baseColor": "#141414",
+  "accentColor": "#F4F2EC",
+  "speed": 12,
+  "hover": 25,
+  "light": {
+    "rise": 65,
+    "spread": 70
+  },
+  "shafts": {
+    "count": 8,
+    "amount": 25,
+    "drift": 10
+  },
+  "finish": {
+    "grain": 2,
+    "vignette": 15
+  }
+}
+```
 
 ## hero-40
 
@@ -1519,6 +2883,26 @@ DEFAULTS = {
   sizePercent: 200,
 };
 
+type Config = {
+  deep: string;
+  shallow: string;
+  scatter: string;
+  foam: string;
+  zenith: string;
+  horizon: string;
+  swell: number;
+  choppy: number;
+  detail: number;
+  glitter: number;
+  subsurface: number;
+  foamAmount: number;
+  cloud: number;
+  haze: number;
+  speed: number;
+  drag: number;
+  sizePercent: number;
+};
+
 export interface OceanSwellProps {
   deep?: string;
   shallow?: string;
@@ -1693,5 +3077,300 @@ interface ShadowCastProps {
   "hover": 75,
   "speed": 12,
   "grain": 1
+}
+```
+
+## single-glossy-sphere
+
+A raymarched sphere with animated folded bands and reflective surface detail.
+
+**Signature / layout to reuse:** A self-contained circular object with animated folded bands, environment reflections and fine surface shading. Its exposed style prop removes the editor's 1200-by-800 minimum for responsive windows.
+
+**Interaction / rendering:** A genuine WebGL2 raymarcher supports drag rotation, automatic rotation, evolving folds and configurable iridescence. All visual data comes from the installed shader.
+
+**Performance:** High. High fragment cost: the shader can march up to 160 steps with repeated noise sampling. Reduce steps/resolution or use a genuine captured frame when composed into production. The gallery unmounts inactive panels.
+
+**Yazhnova use:** The reserved Agentic AI service visual. Downloaded and reviewable; the current homepage slot is deliberately retained until the composition is updated.
+
+**Screenshot:** [Default + editorial palette](shots/single-glossy-sphere.png).
+
+**Public props and defaults:** The original interfaces and default values below are extracted from the installed source. Settings not overridden keep these defaults.
+
+`components/originkit/ui/single-glossy-sphere.tsx`
+
+```ts
+ADVANCED_DEFAULTS = {
+  seed: 76,
+  foldSpeed: 142,
+  bandSpeed: 15,
+  foldWidth: 12,
+  foldHeight: 50,
+  foldDepth: 70,
+  bottomFolds: 160,
+  bandWarp: 88,
+  slabVariation: 0,
+  capSmooth: 100,
+  bevel: 10,
+  centerX: 50,
+  centerY: 51,
+  skyColor: "#F4FFFF",
+  horizonColor: "#B8F6FB",
+  shadowColor: "#2F4FE0",
+  grooveColor: "#56667A",
+  lightAngle: 40,
+  lightPower: 120,
+  shininess: 10,
+  rim: 70,
+  filmBands: 120,
+  filmPatches: 60,
+  grooveDark: 75,
+  glowColor: "#3F7FA6",
+  glowSize: 8,
+  glow: 35,
+  exposure: 105,
+  steps: 96,
+  resolution: 100,
+  grain: 0,
+  vignette: 0,
+};
+
+interface AdvancedProps {
+  seed?: number;
+  foldSpeed?: number;
+  bandSpeed?: number;
+  foldWidth?: number;
+  foldHeight?: number;
+  foldDepth?: number;
+  bottomFolds?: number;
+  bandWarp?: number;
+  slabVariation?: number;
+  capSmooth?: number;
+  bevel?: number;
+  centerX?: number;
+  centerY?: number;
+  skyColor?: string;
+  horizonColor?: string;
+  shadowColor?: string;
+  grooveColor?: string;
+  lightAngle?: number;
+  lightPower?: number;
+  shininess?: number;
+  rim?: number;
+  filmBands?: number;
+  filmPatches?: number;
+  grooveDark?: number;
+  glowColor?: string;
+  glowSize?: number;
+  glow?: number;
+  exposure?: number;
+  steps?: number;
+  resolution?: number;
+  grain?: number;
+  vignette?: number;
+}
+
+interface SingleGlossySphereProps {
+  speed?: number;
+  scale?: number;
+  displacement?: number;
+  bands?: number;
+  iridescence?: number;
+  baseColor?: string;
+  background?: string;
+  dragSensitivity?: number;
+  autoRotate?: boolean;
+  rotateSpeed?: number;
+  advanced?: AdvancedProps;
+  style?: React.CSSProperties;
+}
+
+function SingleGlossySphere(props: SingleGlossySphereProps);
+
+const {
+  speed = 50,
+  scale = 71,
+  displacement = 62,
+  bands = 7,
+  iridescence = 100,
+  baseColor = "#00AFFF",
+  background = "#010103",
+  dragSensitivity = 100,
+  autoRotate = true,
+  rotateSpeed = 100,
+  advanced = {},
+  style,
+} = props;
+```
+
+**Editorial overrides:** Explicit source props:
+
+```json
+{
+  "background": "#0A0A0A",
+  "baseColor": "#F4F2EC",
+  "speed": 15,
+  "rotateSpeed": 12,
+  "iridescence": 0,
+  "advanced": {
+    "skyColor": "#F4F2EC",
+    "horizonColor": "#8C8A84",
+    "shadowColor": "#141414",
+    "grooveColor": "#8C8A84",
+    "glowColor": "#FFB45A",
+    "glow": 0,
+    "filmBands": 2,
+    "filmPatches": 0,
+    "steps": 64,
+    "resolution": 70
+  }
+}
+```
+
+## star-gate
+
+A real Three.js corridor of nested, twisting star-shaped ribbons.
+
+**Signature / layout to reuse:** A centered tunnel of repeated star-shaped ribbon geometry. Useful as a closing visual, independently of any heading or CTA layout.
+
+**Interaction / rendering:** Real Three.js geometry travels forward or backward with configurable star points, spike depth, gate count, twist, stroke gauge, light and zoom.
+
+**Performance:** Medium. Gate count grows quadratically with its control. The editorial study lowers gates, glow and speed. Production must retain the existing visibility and reduced-motion policy when the slot is composed.
+
+**Yazhnova use:** The reserved final CTA tunnel. This download does not replace the approved stone intro or change the current hero.
+
+**Screenshot:** [Default + editorial palette](shots/star-gate.png).
+
+**Public props and defaults:** The original interfaces and default values below are extracted from the installed source. Settings not overridden keep these defaults.
+
+`components/originkit/ui/star-gate.tsx`
+
+```ts
+DEFAULTS = {
+  near: "#00FFF0",
+  far: "#2A00FF",
+  points: 8,
+  spike: 20,
+  gates: 16,
+  twist: 20,
+  gauge: 5,
+  glow: 3,
+  speed: 2,
+  direction: "forward",
+  sizePercent: 136,
+};
+
+type Config = {
+  near: string;
+  far: string;
+  points: number;
+  spike: number;
+  gates: number;
+  twist: number;
+  gauge: number;
+  glow: number;
+  speed: number;
+  direction: "forward" | "reverse";
+  sizePercent: number;
+};
+
+export interface StarGateProps extends Config {
+  style?: React.CSSProperties;
+}
+
+function StarGate(props: StarGateProps);
+
+const {
+  near = DEFAULTS.near,
+  far = DEFAULTS.far,
+  points = DEFAULTS.points,
+  spike = DEFAULTS.spike,
+  gates = DEFAULTS.gates,
+  twist = DEFAULTS.twist,
+  gauge = DEFAULTS.gauge,
+  glow = DEFAULTS.glow,
+  speed = DEFAULTS.speed,
+  direction = DEFAULTS.direction as Config["direction"],
+  sizePercent = DEFAULTS.sizePercent,
+  style,
+} = props;
+```
+
+**Editorial overrides:** Explicit source props:
+
+```json
+{
+  "near": "#F4F2EC",
+  "far": "#8C8A84",
+  "gates": 6,
+  "glow": 1,
+  "speed": 0.6
+}
+```
+
+## spark-lattice
+
+Light walkers trace a hexagonal lattice and follow the pointer.
+
+**Signature / layout to reuse:** A hexagonal line field with illuminated trails. No step labels or process content are built into the source.
+
+**Interaction / rendering:** WebGL renders moving walkers and a pointer-directed trail. Cell size, light count, trail length, speed, glow and hover response are configurable.
+
+**Performance:** Medium. Moderate fragment and walker cost. Slow, sparse settings suit a process background; use a captured frame for mobile and reduced motion when integrated. Gallery iframe unmounting cancels the source loop off-screen.
+
+**Yazhnova use:** The reserved process connector behind Discover, Design, Build, and Ship & Scale. Current production composition stays intact while the real source is reviewed.
+
+**Screenshot:** [Default + editorial palette](shots/spark-lattice.png).
+
+**Public props and defaults:** The original interfaces and default values below are extracted from the installed source. Settings not overridden keep these defaults.
+
+`components/originkit/ui/spark-lattice.tsx`
+
+```ts
+interface SparkLatticeProps {
+  style?: React.CSSProperties;
+  background?: string;
+  lineColor?: string;
+  accent?: string;
+  size?: number;
+  lights?: number;
+  speed?: number;
+  trail?: number;
+  glow?: number;
+  hover?: number;
+  width?: number;
+  height?: number;
+}
+
+function SparkLattice(props: SparkLatticeProps);
+
+const {
+  style,
+  background = "#000000",
+  lineColor = "#0F0F0F",
+  accent = "#FF2A18",
+  size = 132,
+  lights = 8,
+  speed = 50,
+  trail = 2,
+  glow = 92,
+  hover = 100,
+  width,
+  height,
+} = props;
+```
+
+**Editorial overrides:** Explicit source props:
+
+```json
+{
+  "background": "#0A0A0A",
+  "lineColor": "#141414",
+  "accent": "#FFB45A",
+  "lights": 4,
+  "speed": 12,
+  "trail": 3,
+  "glow": 15,
+  "hover": 30,
+  "size": 110
 }
 ```

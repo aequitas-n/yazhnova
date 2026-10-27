@@ -4,7 +4,7 @@ import { site } from "@/content/site";
 import { SectionLabel } from "@/components/ui/section-label";
 import { SectionTitle } from "@/components/ui/section-title";
 import { LiveVisual } from "@/components/visuals/live-visual";
-import { LiquidGrid, SingleGlossySphere } from "@/components/slots";
+import { RevealCopy } from "@/components/visuals/native-details";
 export function Services() {
   return (
     <section
@@ -22,7 +22,7 @@ export function Services() {
               <em>{site.services.serif}</em>
             </SectionTitle>
           </div>
-          <p className="section-description">{site.services.description}</p>
+          <RevealCopy text={site.services.description} />
         </div>
         <div className="service-columns">
           {site.services.cards.map((service, i) => (
@@ -37,17 +37,7 @@ export function Services() {
                 </Link>
               </div>
               <div className={`service-visual service-visual-${i}`}>
-                {i === 1 ? (
-                  <LiquidGrid>
-                    <LiveVisual kind={service.visual} />
-                  </LiquidGrid>
-                ) : i === 2 ? (
-                  <SingleGlossySphere>
-                    <LiveVisual kind={service.visual} className="monochrome" />
-                  </SingleGlossySphere>
-                ) : (
-                  <LiveVisual kind={service.visual} />
-                )}
+                <LiveVisual kind={service.visual} />
               </div>
               <p className="eyebrow">{service.tag}</p>
               <h3>{service.title}</h3>

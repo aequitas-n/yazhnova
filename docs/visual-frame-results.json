@@ -53,5 +53,35 @@
     "kind": "wordmark",
     "canvases": 1,
     "errors": []
+  },
+  {
+    "kind": "liquid",
+    "canvases": 1,
+    "errors": []
+  },
+  {
+    "kind": "sparks",
+    "canvases": 1,
+    "errors": []
+  },
+  {
+    "kind": "strings",
+    "canvases": 1,
+    "errors": []
+  },
+  {
+    "kind": "fluid",
+    "canvases": 1,
+    "errors": []
+  },
+  {
+    "kind": "glossy",
+    "canvases": 1,
+    "errors": []
+  },
+  {
+    "kind": "deck",
+    "canvases": 1,
+    "errors": []
   }
 ]

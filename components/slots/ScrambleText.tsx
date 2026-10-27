@@ -1,5 +1,5 @@
 import type { SlotProps } from "./types";
-// TODO(originkit:scrambletext)
+// Legacy inactive adapter for scrambletext. See docs/component-ratings.md for the real integration or curation decision.
 export interface ScrambleTextProps extends SlotProps {
   text: string;
   speed?: number;
@@ -11,7 +11,7 @@ export function ScrambleText({ text, className, style }: ScrambleTextProps) {
       className={className}
       style={{ display: "contents", ...style }}
       data-slot="scrambletext"
-      data-slot-status="pending"
+      data-slot-status="inactive"
     >
       {text}
     </span>

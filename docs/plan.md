@@ -1,3 +1,5 @@
+> Production update: the latest user request authorizes using the newly downloaded pieces. See [the scored component review](component-ratings.md) and [current production combinations](production-integration.md). The deferred-slot portions below describe the earlier phase.
+
 # Yazhnova — editorial engineering
 
 This plan follows the completed 16-item source study in [inventory.md](inventory.md) and [shots](shots/). The current brief authorizes building after the plan; it supersedes the earlier approval pause. All 16 sources rendered in the browser. Type-only repairs and the explicitly requested optional stone-intro controls are listed in [fixes.md](fixes.md); no visual recreation is used.

@@ -1,5 +1,5 @@
 import type { SlotProps } from "./types";
-// TODO(originkit:predictive-arc-02)
+// Legacy inactive adapter for predictive-arc-02. See docs/component-ratings.md for the real integration or curation decision.
 export interface PredictiveArc02Props extends SlotProps {
   background?: string;
   color?: string;
@@ -13,7 +13,7 @@ export function PredictiveArc02({ children, className, style }: PredictiveArc02P
       className={className}
       style={{ display: "contents", ...style }}
       data-slot="predictive-arc-02"
-      data-slot-status="pending"
+      data-slot-status="inactive"
     >
       {children}
     </div>

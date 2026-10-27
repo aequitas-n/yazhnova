@@ -1,0 +1,47 @@
+{
+  "observations": [
+    {
+      "section": "hero",
+      "canvases": 1,
+      "nativeSources": [
+        "scrambletext",
+        "glow-border"
+      ]
+    },
+    {
+      "section": "services",
+      "canvases": 3,
+      "nativeSources": [
+        "scroll-text-reveal"
+      ]
+    },
+    {
+      "section": "agents",
+      "canvases": 1,
+      "nativeSources": [
+        "scroll-text-reveal",
+        "live-chat"
+      ]
+    },
+    {
+      "section": "process",
+      "canvases": 1,
+      "nativeSources": []
+    },
+    {
+      "section": "technology",
+      "canvases": 1,
+      "nativeSources": [
+        "curvedmarquee"
+      ]
+    },
+    {
+      "section": "work",
+      "canvases": 2,
+      "nativeSources": [
+        "image-spotlight"
+      ]
+    }
+  ],
+  "errors": []
+}

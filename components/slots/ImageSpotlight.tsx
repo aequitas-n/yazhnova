@@ -1,5 +1,5 @@
 import type { SlotProps } from "./types";
-// TODO(originkit:image-spotlight)
+// Legacy inactive adapter for image-spotlight. See docs/component-ratings.md for the real integration or curation decision.
 export interface ImageSpotlightProps extends SlotProps {
   src?: string;
   alt?: string;
@@ -13,7 +13,7 @@ export function ImageSpotlight({ children, className, style }: ImageSpotlightPro
       className={className}
       style={{ display: "contents", ...style }}
       data-slot="image-spotlight"
-      data-slot-status="pending"
+      data-slot-status="inactive"
     >
       {children}
     </div>

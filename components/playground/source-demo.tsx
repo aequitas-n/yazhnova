@@ -19,6 +19,9 @@ export function SourceDemo({ slug, editorial }: { slug: SourceSlug; editorial: b
       data-preset={editorial ? "editorial" : "default"}
     >
       <Source
+        {...(slug === "image-spotlight" && !editorial
+          ? { image: { src: "/originkit/image-spotlight/default.jpg" } }
+          : {})}
         {...(editorial ? editorialPresets[slug] : {})}
         {...(item.kind === "component"
           ? { style: { width: "100%", height: "100%", minWidth: 0, minHeight: 0 } }

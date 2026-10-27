@@ -6,7 +6,7 @@ import { site } from "@/content/site";
 import { SiteShell } from "@/components/layout/site-shell";
 import { LiveVisual } from "@/components/visuals/live-visual";
 import { ContactForm } from "@/components/contact/contact-form";
-import { FluidField, LightBloom, CloudSky03 } from "@/components/slots";
+import { RevealCopy } from "@/components/visuals/native-details";
 export const metadata: Metadata = {
   title: "Start a project",
   description: site.contact.description,
@@ -21,11 +21,8 @@ export default function ContactPage() {
   return (
     <SiteShell>
       <main id="main-content" className="contact-page">
-        <FluidField />
-        <LightBloom />
-        <CloudSky03 />
         <div className="contact-water" aria-hidden="true">
-          <LiveVisual kind="ocean" className="monochrome" />
+          <LiveVisual kind="fluid" />
         </div>
         <div className="container contact-layout">
           <div className="contact-intro">
@@ -39,7 +36,7 @@ export default function ContactPage() {
               <br />
               <em>{site.contact.serif}</em>
             </h1>
-            <p className="section-description">{site.contact.description}</p>
+            <RevealCopy text={site.contact.description} />
             <div className="contact-email">
               <p className="eyebrow">{site.contact.emailLabel}</p>
               <a href={`mailto:${site.email}`}>

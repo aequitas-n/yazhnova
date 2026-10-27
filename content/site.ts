@@ -79,7 +79,7 @@ export const site = {
         description:
           "From a focused MVP to a platform ready to grow. We build the product, the foundations and the room for your next chapter.",
         tags: ["MVP to scale", "Product engineering", "Multi-tenant systems"],
-        visual: "network" as const,
+        visual: "liquid" as const,
         service: "SaaS product",
       },
       {
@@ -89,7 +89,7 @@ export const site = {
         description:
           "Systems that understand context, connect your tools and take useful action. Purpose-built around the work you actually do.",
         tags: ["AI agents & RAG", "Workflow automation", "Tool integrations"],
-        visual: "hero-dither" as const,
+        visual: "glossy" as const,
         service: "Agentic AI system",
       },
     ],
@@ -114,6 +114,17 @@ export const site = {
     demo: {
       label: "WORKFLOW 001 / ILLUSTRATIVE DEMO",
       request: "Qualify this new lead and find a time to meet.",
+      messages: [
+        { text: "Qualify this new lead and find a time to meet.", sender: "them" as const },
+        {
+          text: "The brief fits a SaaS build. I have prepared the requirements and budget summary.",
+          sender: "me" as const,
+        },
+        {
+          text: "A discovery meeting is drafted. Review the summary before I send the invitation.",
+          sender: "me" as const,
+        },
+      ],
       steps: [
         { label: "Understand", detail: "Read the enquiry and retrieve CRM context." },
         { label: "Qualify", detail: "Check the project, requirements and budget." },
@@ -188,6 +199,9 @@ export const site = {
     projects: [
       {
         name: "Clarity",
+        preview: "/work/clarity.png",
+        previewAlt:
+          "Clarity concept interface: a project workspace with focus, progress and next steps",
         category: "SAAS / PRODUCT ENGINEERING",
         headline: "Less noise.\nMore momentum.",
         description:
@@ -212,6 +226,9 @@ export const site = {
       },
       {
         name: "Relay",
+        preview: "/work/relay.png",
+        previewAlt:
+          "Relay concept interface: a transparent agent workflow from understanding to action",
         category: "AGENTIC AI / AUTOMATION",
         headline: "The handoff,\nhandled.",
         description:
@@ -232,6 +249,9 @@ export const site = {
       },
       {
         name: "Forma",
+        preview: "/work/forma.png",
+        previewAlt:
+          "Forma concept interface: an editorial storefront organized by form, material and meaning",
         category: "WEB EXPERIENCE / COMMERCE",
         headline: "A considered\nfirst impression.",
         description:

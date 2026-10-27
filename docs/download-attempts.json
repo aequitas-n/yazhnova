@@ -1,0 +1,332 @@
+{
+  "checkedOn": "2026-10-27",
+  "canonicalAliases": {
+    "cloud-sky/03": "cloud-sky-03"
+  },
+  "downloaded": [
+    "single-glossy-sphere",
+    "star-gate",
+    "spark-lattice",
+    "predictive-arc-02",
+    "fluid-field",
+    "light-bloom",
+    "light-cables",
+    "data-strings",
+    "liquid-grid",
+    "scrambletext",
+    "scroll-text-reveal",
+    "glow-border",
+    "curvedmarquee",
+    "stacked-carousel",
+    "image-spotlight",
+    "live-chat",
+    "aura-cursor",
+    "hairline-loader"
+  ],
+  "blocked": ["cloud-sky-03"],
+  "attempts": [
+    {
+      "slug": "single-glossy-sphere",
+      "exit_code": 0,
+      "output": "Added components/originkit/ui/single-glossy-sphere.tsx"
+    },
+    {
+      "slug": "star-gate",
+      "exit_code": 0,
+      "output": "› Fetching star-gate…\n✓ Added components\\originkit\\ui\\star-gate.tsx\n\n✓ Done — 1 file copied to components/originkit.\nPlain source in your project — no Originkit runtime added. Import it and go.\nAgent brief → .originkit/INSTRUCTIONS.md (gitignored; for agents only).\n\n── Agent: read .originkit/INSTRUCTIONS.md next ──\n"
+    },
+    {
+      "slug": "spark-lattice",
+      "exit_code": 0,
+      "output": "› Fetching spark-lattice…\n✓ Added components\\originkit\\ui\\spark-lattice.tsx\n\n✓ Done — 1 file copied to components/originkit.\nPlain source in your project — no Originkit runtime added. Import it and go.\nAgent brief → .originkit/INSTRUCTIONS.md (gitignored; for agents only).\n\n── Agent: read .originkit/INSTRUCTIONS.md next ──\n"
+    },
+    {
+      "slug": "predictive-arc-02",
+      "exit_code": 1,
+      "output": "› Fetching predictive-arc-02…\n✕ Daily limit reached — you've used all 3 Originkit component fetches for today (resets in 16h 48m).\nUpgrade to Pro for 25 component copies a day: https://www.originkit.dev/pricing\n"
+    },
+    {
+      "slug": "fluid-field",
+      "exit_code": 1,
+      "output": "› Fetching fluid-field…\n✕ Daily limit reached — you've used all 3 Originkit component fetches for today (resets in 16h 48m).\nUpgrade to Pro for 25 component copies a day: https://www.originkit.dev/pricing\n"
+    },
+    {
+      "slug": "light-bloom",
+      "exit_code": 1,
+      "output": "› Fetching light-bloom…\n✕ Daily limit reached — you've used all 3 Originkit component fetches for today (resets in 16h 48m).\nUpgrade to Pro for 25 component copies a day: https://www.originkit.dev/pricing\n"
+    },
+    {
+      "slug": "light-cables",
+      "exit_code": 1,
+      "output": "› Fetching light-cables…\n✕ Daily limit reached — you've used all 3 Originkit component fetches for today (resets in 16h 48m).\nUpgrade to Pro for 25 component copies a day: https://www.originkit.dev/pricing\n"
+    },
+    {
+      "slug": "data-strings",
+      "exit_code": 1,
+      "output": "› Fetching data-strings…\n✕ Daily limit reached — you've used all 3 Originkit component fetches for today (resets in 16h 48m).\nUpgrade to Pro for 25 component copies a day: https://www.originkit.dev/pricing\n"
+    },
+    {
+      "slug": "liquid-grid",
+      "exit_code": 1,
+      "output": "› Fetching liquid-grid…\n✕ Daily limit reached — you've used all 3 Originkit component fetches for today (resets in 16h 48m).\nUpgrade to Pro for 25 component copies a day: https://www.originkit.dev/pricing\n"
+    },
+    {
+      "slug": "scrambletext",
+      "exit_code": 1,
+      "output": "› Fetching scrambletext…\n✕ Daily limit reached — you've used all 3 Originkit component fetches for today (resets in 16h 48m).\nUpgrade to Pro for 25 component copies a day: https://www.originkit.dev/pricing\n"
+    },
+    {
+      "slug": "scroll-text-reveal",
+      "exit_code": 1,
+      "output": "› Fetching scroll-text-reveal…\n✕ Daily limit reached — you've used all 3 Originkit component fetches for today (resets in 16h 48m).\nUpgrade to Pro for 25 component copies a day: https://www.originkit.dev/pricing\n"
+    },
+    {
+      "slug": "glow-border",
+      "exit_code": 1,
+      "output": "› Fetching glow-border…\n✕ Daily limit reached — you've used all 3 Originkit component fetches for today (resets in 16h 48m).\nUpgrade to Pro for 25 component copies a day: https://www.originkit.dev/pricing\n"
+    },
+    {
+      "slug": "curvedmarquee",
+      "exit_code": 1,
+      "output": "› Fetching curvedmarquee…\n✕ Daily limit reached — you've used all 3 Originkit component fetches for today (resets in 16h 48m).\nUpgrade to Pro for 25 component copies a day: https://www.originkit.dev/pricing\n"
+    },
+    {
+      "slug": "stacked-carousel",
+      "exit_code": 1,
+      "output": "› Fetching stacked-carousel…\n✕ Daily limit reached — you've used all 3 Originkit component fetches for today (resets in 16h 48m).\nUpgrade to Pro for 25 component copies a day: https://www.originkit.dev/pricing\n"
+    },
+    {
+      "slug": "image-spotlight",
+      "exit_code": 1,
+      "output": "› Fetching image-spotlight…\n✕ Daily limit reached — you've used all 3 Originkit component fetches for today (resets in 16h 48m).\nUpgrade to Pro for 25 component copies a day: https://www.originkit.dev/pricing\n"
+    },
+    {
+      "slug": "live-chat",
+      "exit_code": 1,
+      "output": "› Fetching live-chat…\n✕ Daily limit reached — you've used all 3 Originkit component fetches for today (resets in 16h 48m).\nUpgrade to Pro for 25 component copies a day: https://www.originkit.dev/pricing\n"
+    },
+    {
+      "slug": "aura-cursor",
+      "exit_code": 1,
+      "output": "› Fetching aura-cursor…\n✕ Daily limit reached — you've used all 3 Originkit component fetches for today (resets in 16h 48m).\nUpgrade to Pro for 25 component copies a day: https://www.originkit.dev/pricing\n"
+    },
+    {
+      "slug": "hairline-loader",
+      "exit_code": 1,
+      "output": "› Fetching hairline-loader…\n✕ Daily limit reached — you've used all 3 Originkit component fetches for today (resets in 16h 48m).\nUpgrade to Pro for 25 component copies a day: https://www.originkit.dev/pricing\n"
+    },
+    {
+      "slug": "cloud-sky-03",
+      "exit_code": 1,
+      "output": "› Fetching cloud-sky-03…\n✕ Daily limit reached — you've used all 3 Originkit component fetches for today (resets in 16h 48m).\nUpgrade to Pro for 25 component copies a day: https://www.originkit.dev/pricing\n"
+    },
+    {
+      "slug": "predictive-arc-02",
+      "exit_code": 0,
+      "output": "Added components/originkit/ui/predictive-arc-02.tsx"
+    },
+    {
+      "slug": "fluid-field",
+      "exit_code": 0,
+      "output": "› Fetching fluid-field…\n✓ Added components\\originkit\\ui\\fluid-field.tsx\n\n✓ Done — 1 file copied to components/originkit.\nPlain source in your project — no Originkit runtime added. Import it and go.\nAgent brief → .originkit/INSTRUCTIONS.md (gitignored; for agents only).\n\n── Agent: read .originkit/INSTRUCTIONS.md next ──\n"
+    },
+    {
+      "slug": "light-bloom",
+      "exit_code": 0,
+      "output": "› Fetching light-bloom…\n✓ Added components\\originkit\\ui\\light-bloom.tsx\n\n✓ Done — 1 file copied to components/originkit.\nPlain source in your project — no Originkit runtime added. Import it and go.\nAgent brief → .originkit/INSTRUCTIONS.md (gitignored; for agents only).\n\n── Agent: read .originkit/INSTRUCTIONS.md next ──\n"
+    },
+    {
+      "slug": "light-cables",
+      "exit_code": 1,
+      "output": "› Fetching light-cables…\n✕ Daily limit reached — you've used all 3 Originkit component fetches for today (resets in 16h 22m).\nUpgrade to Pro for 25 component copies a day: https://www.originkit.dev/pricing\n"
+    },
+    {
+      "slug": "data-strings",
+      "exit_code": 1,
+      "output": "› Fetching data-strings…\n✕ Daily limit reached — you've used all 3 Originkit component fetches for today (resets in 16h 22m).\nUpgrade to Pro for 25 component copies a day: https://www.originkit.dev/pricing\n"
+    },
+    {
+      "slug": "liquid-grid",
+      "exit_code": 1,
+      "output": "› Fetching liquid-grid…\n✕ Daily limit reached — you've used all 3 Originkit component fetches for today (resets in 16h 22m).\nUpgrade to Pro for 25 component copies a day: https://www.originkit.dev/pricing\n"
+    },
+    {
+      "slug": "scrambletext",
+      "exit_code": 1,
+      "output": "› Fetching scrambletext…\n✕ Daily limit reached — you've used all 3 Originkit component fetches for today (resets in 16h 22m).\nUpgrade to Pro for 25 component copies a day: https://www.originkit.dev/pricing\n"
+    },
+    {
+      "slug": "scroll-text-reveal",
+      "exit_code": 1,
+      "output": "› Fetching scroll-text-reveal…\n✕ Daily limit reached — you've used all 3 Originkit component fetches for today (resets in 16h 22m).\nUpgrade to Pro for 25 component copies a day: https://www.originkit.dev/pricing\n"
+    },
+    {
+      "slug": "glow-border",
+      "exit_code": 1,
+      "output": "› Fetching glow-border…\n✕ Daily limit reached — you've used all 3 Originkit component fetches for today (resets in 16h 22m).\nUpgrade to Pro for 25 component copies a day: https://www.originkit.dev/pricing\n"
+    },
+    {
+      "slug": "curvedmarquee",
+      "exit_code": 1,
+      "output": "› Fetching curvedmarquee…\n✕ Daily limit reached — you've used all 3 Originkit component fetches for today (resets in 16h 22m).\nUpgrade to Pro for 25 component copies a day: https://www.originkit.dev/pricing\n"
+    },
+    {
+      "slug": "stacked-carousel",
+      "exit_code": 1,
+      "output": "› Fetching stacked-carousel…\n✕ Daily limit reached — you've used all 3 Originkit component fetches for today (resets in 16h 22m).\nUpgrade to Pro for 25 component copies a day: https://www.originkit.dev/pricing\n"
+    },
+    {
+      "slug": "image-spotlight",
+      "exit_code": 1,
+      "output": "› Fetching image-spotlight…\n✕ Daily limit reached — you've used all 3 Originkit component fetches for today (resets in 16h 22m).\nUpgrade to Pro for 25 component copies a day: https://www.originkit.dev/pricing\n"
+    },
+    {
+      "slug": "live-chat",
+      "exit_code": 1,
+      "output": "› Fetching live-chat…\n✕ Daily limit reached — you've used all 3 Originkit component fetches for today (resets in 16h 22m).\nUpgrade to Pro for 25 component copies a day: https://www.originkit.dev/pricing\n"
+    },
+    {
+      "slug": "aura-cursor",
+      "exit_code": 1,
+      "output": "› Fetching aura-cursor…\n✕ Daily limit reached — you've used all 3 Originkit component fetches for today (resets in 16h 22m).\nUpgrade to Pro for 25 component copies a day: https://www.originkit.dev/pricing\n"
+    },
+    {
+      "slug": "hairline-loader",
+      "exit_code": 1,
+      "output": "› Fetching hairline-loader…\n✕ Daily limit reached — you've used all 3 Originkit component fetches for today (resets in 16h 22m).\nUpgrade to Pro for 25 component copies a day: https://www.originkit.dev/pricing\n"
+    },
+    {
+      "slug": "cloud-sky-03",
+      "exit_code": 1,
+      "output": "› Fetching cloud-sky-03…\n✕ Daily limit reached — you've used all 3 Originkit component fetches for today (resets in 16h 22m).\nUpgrade to Pro for 25 component copies a day: https://www.originkit.dev/pricing\n"
+    },
+    {
+      "slug": "light-cables",
+      "exit_code": 0,
+      "output": "Added components/originkit/ui/light-cables.tsx"
+    },
+    {
+      "slug": "data-strings",
+      "exit_code": 0,
+      "output": "› Fetching data-strings…\n✓ Added components\\originkit\\ui\\data-strings.tsx\n\n✓ Done — 1 file copied to components/originkit.\nPlain source in your project — no Originkit runtime added. Import it and go.\nAgent brief → .originkit/INSTRUCTIONS.md (gitignored; for agents only).\n\n── Agent: read .originkit/INSTRUCTIONS.md next ──\n"
+    },
+    {
+      "slug": "liquid-grid",
+      "exit_code": 0,
+      "output": "› Fetching liquid-grid…\n✓ Added components\\originkit\\ui\\liquid-grid.tsx\n\n✓ Done — 1 file copied to components/originkit.\nPlain source in your project — no Originkit runtime added. Import it and go.\nAgent brief → .originkit/INSTRUCTIONS.md (gitignored; for agents only).\n\n── Agent: read .originkit/INSTRUCTIONS.md next ──\n"
+    },
+    {
+      "slug": "scrambletext",
+      "exit_code": 0,
+      "output": "› Fetching scrambletext…\n✓ Added components\\originkit\\ui\\scrambletext.tsx\n\n✓ Done — 1 file copied to components/originkit.\nPlain source in your project — no Originkit runtime added. Import it and go.\nAgent brief → .originkit/INSTRUCTIONS.md (gitignored; for agents only).\n\n── Agent: read .originkit/INSTRUCTIONS.md next ──\n"
+    },
+    {
+      "slug": "scroll-text-reveal",
+      "exit_code": 0,
+      "output": "› Fetching scroll-text-reveal…\n✓ Added components\\originkit\\ui\\scroll-text-reveal.tsx\n\n✓ Done — 1 file copied to components/originkit.\nPlain source in your project — no Originkit runtime added. Import it and go.\nAgent brief → .originkit/INSTRUCTIONS.md (gitignored; for agents only).\n\n── Agent: read .originkit/INSTRUCTIONS.md next ──\n"
+    },
+    {
+      "slug": "glow-border",
+      "exit_code": 0,
+      "output": "› Fetching glow-border…\n✓ Added components\\originkit\\ui\\glow-border.tsx\n\n✓ Done — 1 file copied to components/originkit.\nPlain source in your project — no Originkit runtime added. Import it and go.\nAgent brief → .originkit/INSTRUCTIONS.md (gitignored; for agents only).\n\n── Agent: read .originkit/INSTRUCTIONS.md next ──\n"
+    },
+    {
+      "slug": "curvedmarquee",
+      "exit_code": 1,
+      "output": "› Fetching curvedmarquee…\n✕ Daily limit reached — you've used all 3 Originkit component fetches for today (resets in 14h 35m).\nUpgrade to Pro for 25 component copies a day: https://www.originkit.dev/pricing\n"
+    },
+    {
+      "slug": "stacked-carousel",
+      "exit_code": 1,
+      "output": "› Fetching stacked-carousel…\n✕ Daily limit reached — you've used all 3 Originkit component fetches for today (resets in 14h 35m).\nUpgrade to Pro for 25 component copies a day: https://www.originkit.dev/pricing\n"
+    },
+    {
+      "slug": "image-spotlight",
+      "exit_code": 1,
+      "output": "› Fetching image-spotlight…\n✕ Daily limit reached — you've used all 3 Originkit component fetches for today (resets in 14h 34m).\nUpgrade to Pro for 25 component copies a day: https://www.originkit.dev/pricing\n"
+    },
+    {
+      "slug": "live-chat",
+      "exit_code": 1,
+      "output": "› Fetching live-chat…\n✕ Daily limit reached — you've used all 3 Originkit component fetches for today (resets in 14h 34m).\nUpgrade to Pro for 25 component copies a day: https://www.originkit.dev/pricing\n"
+    },
+    {
+      "slug": "aura-cursor",
+      "exit_code": 1,
+      "output": "› Fetching aura-cursor…\n✕ Daily limit reached — you've used all 3 Originkit component fetches for today (resets in 14h 34m).\nUpgrade to Pro for 25 component copies a day: https://www.originkit.dev/pricing\n"
+    },
+    {
+      "slug": "hairline-loader",
+      "exit_code": 1,
+      "output": "› Fetching hairline-loader…\n✕ Daily limit reached — you've used all 3 Originkit component fetches for today (resets in 14h 34m).\nUpgrade to Pro for 25 component copies a day: https://www.originkit.dev/pricing\n"
+    },
+    {
+      "slug": "cloud-sky-03",
+      "exit_code": 1,
+      "output": "› Fetching cloud-sky-03…\n✕ Daily limit reached — you've used all 3 Originkit component fetches for today (resets in 14h 34m).\nUpgrade to Pro for 25 component copies a day: https://www.originkit.dev/pricing\n"
+    },
+    {
+      "slug": "curvedmarquee",
+      "exit_code": 0,
+      "output": "› Fetching curvedmarquee…\n✓ Added components\\originkit\\ui\\curvedmarquee.tsx\n\n✓ Done — 1 file copied to components/originkit.\nPlain source in your project — no Originkit runtime added. Import it and go.\nAgent brief → .originkit/INSTRUCTIONS.md (gitignored; for agents only).\n\n── Agent: read .originkit/INSTRUCTIONS.md next ──\n"
+    },
+    {
+      "slug": "stacked-carousel",
+      "exit_code": 0,
+      "output": "› Fetching stacked-carousel…\n✓ Added components\\originkit\\ui\\stacked-carousel.tsx\n\n✓ Done — 1 file copied to components/originkit.\nPlain source in your project — no Originkit runtime added. Import it and go.\nAgent brief → .originkit/INSTRUCTIONS.md (gitignored; for agents only).\n\n── Agent: read .originkit/INSTRUCTIONS.md next ──\n"
+    },
+    {
+      "slug": "image-spotlight",
+      "exit_code": 0,
+      "output": "› Fetching image-spotlight…\n✓ Added components\\originkit\\ui\\image-spotlight.tsx\n\n✓ Done — 1 file copied to components/originkit.\nPlain source in your project — no Originkit runtime added. Import it and go.\nAgent brief → .originkit/INSTRUCTIONS.md (gitignored; for agents only).\n\n── Agent: read .originkit/INSTRUCTIONS.md next ──\n"
+    },
+    {
+      "slug": "live-chat",
+      "exit_code": 1,
+      "output": "› Fetching live-chat…\n✕ Daily limit reached — you've used all 3 Originkit component fetches for today (resets in 14h 26m).\nUpgrade to Pro for 25 component copies a day: https://www.originkit.dev/pricing\n"
+    },
+    {
+      "slug": "aura-cursor",
+      "exit_code": 1,
+      "output": "› Fetching aura-cursor…\n✕ Daily limit reached — you've used all 3 Originkit component fetches for today (resets in 14h 25m).\nUpgrade to Pro for 25 component copies a day: https://www.originkit.dev/pricing\n"
+    },
+    {
+      "slug": "hairline-loader",
+      "exit_code": 1,
+      "output": "› Fetching hairline-loader…\n✕ Daily limit reached — you've used all 3 Originkit component fetches for today (resets in 14h 25m).\nUpgrade to Pro for 25 component copies a day: https://www.originkit.dev/pricing\n"
+    },
+    {
+      "slug": "cloud-sky-03",
+      "exit_code": 1,
+      "output": "› Fetching cloud-sky-03…\n✕ Daily limit reached — you've used all 3 Originkit component fetches for today (resets in 14h 25m).\nUpgrade to Pro for 25 component copies a day: https://www.originkit.dev/pricing\n"
+    },
+    {
+      "slug": "live-chat",
+      "exit_code": 0,
+      "output": "› Fetching live-chat…\n✓ Added components\\originkit\\ui\\live-chat.tsx\n\n✓ Done — 1 file copied to components/originkit.\nPlain source in your project — no Originkit runtime added. Import it and go.\nAgent brief → .originkit/INSTRUCTIONS.md (gitignored; for agents only).\n\n── Agent: read .originkit/INSTRUCTIONS.md next ──\n"
+    },
+    {
+      "slug": "aura-cursor",
+      "exit_code": 0,
+      "output": "› Fetching aura-cursor…\n✓ Added components\\originkit\\ui\\aura-cursor.tsx\n\n✓ Done — 1 file copied to components/originkit.\nPlain source in your project — no Originkit runtime added. Import it and go.\nAgent brief → .originkit/INSTRUCTIONS.md (gitignored; for agents only).\n\n── Agent: read .originkit/INSTRUCTIONS.md next ──\n"
+    },
+    {
+      "slug": "hairline-loader",
+      "exit_code": 0,
+      "output": "› Fetching hairline-loader…\n✓ Added components\\originkit\\ui\\hairline-loader.tsx\n\n✓ Done — 1 file copied to components/originkit.\nPlain source in your project — no Originkit runtime added. Import it and go.\nAgent brief → .originkit/INSTRUCTIONS.md (gitignored; for agents only).\n\n── Agent: read .originkit/INSTRUCTIONS.md next ──\n"
+    },
+    {
+      "slug": "cloud-sky-03",
+      "exit_code": 1,
+      "output": "› Fetching cloud-sky-03…\n✕ Daily limit reached — you've used all 3 Originkit component fetches for today (resets in 14h 18m).\nUpgrade to Pro for 25 component copies a day: https://www.originkit.dev/pricing\n"
+    }
+  ],
+  "availableTotal": 34,
+  "requestedTotal": 35,
+  "latestBatch": {
+    "checkedOn": "2026-10-27",
+    "downloaded": ["live-chat", "aura-cursor", "hairline-loader"],
+    "blocked": ["cloud-sky-03"],
+    "reportedReset": "14h 18m"
+  }
+}

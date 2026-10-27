@@ -1,5 +1,5 @@
 import type { SlotProps } from "./types";
-// TODO(originkit:liquid-grid)
+// Legacy inactive adapter for liquid-grid. See docs/component-ratings.md for the real integration or curation decision.
 export interface LiquidGridProps extends SlotProps {
   background?: string;
   color?: string;
@@ -13,7 +13,7 @@ export function LiquidGrid({ children, className, style }: LiquidGridProps) {
       className={className}
       style={{ display: "contents", ...style }}
       data-slot="liquid-grid"
-      data-slot-status="pending"
+      data-slot-status="inactive"
     >
       {children}
     </div>

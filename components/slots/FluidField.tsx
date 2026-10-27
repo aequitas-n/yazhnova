@@ -1,5 +1,5 @@
 import type { SlotProps } from "./types";
-// TODO(originkit:fluid-field)
+// Legacy inactive adapter for fluid-field. See docs/component-ratings.md for the real integration or curation decision.
 export interface FluidFieldProps extends SlotProps {
   background?: string;
   colors?: string[];
@@ -12,7 +12,7 @@ export function FluidField({ children, className, style }: FluidFieldProps) {
       className={className}
       style={{ display: "contents", ...style }}
       data-slot="fluid-field"
-      data-slot-status="pending"
+      data-slot-status="inactive"
     >
       {children}
     </div>

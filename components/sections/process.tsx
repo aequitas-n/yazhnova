@@ -3,15 +3,12 @@ import { GridRails } from "@/components/originkit/ui/hero-28/grid-frame";
 import { SectionLabel } from "@/components/ui/section-label";
 import { SectionTitle } from "@/components/ui/section-title";
 import { LiveVisual } from "@/components/visuals/live-visual";
-import { SparkLattice, LightCables } from "@/components/slots";
 export function Process() {
   return (
     <section id="process" className="section process-section paper" aria-labelledby="process-title">
       <div className="source-rails" aria-hidden="true">
         <GridRails />
       </div>
-      <SparkLattice />
-      <LightCables />
       <div className="container">
         <div className="heading-row">
           <div>
@@ -26,7 +23,7 @@ export function Process() {
         </div>
         <div className="process-steps">
           <div className="process-network" aria-hidden="true">
-            <LiveVisual kind="network" />
+            <LiveVisual kind="sparks" />
           </div>
           {site.process.steps.map((step) => (
             <article key={step.number}>

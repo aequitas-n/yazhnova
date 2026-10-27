@@ -53,7 +53,7 @@ export function LiveVisual({
           imageObserver.disconnect();
         }
       },
-      { rootMargin: "240px 0px" },
+      { rootMargin: "96px 0px" },
     );
     if (ref.current) imageObserver.observe(ref.current);
     const onVisibility = () => setVisible(!document.hidden);

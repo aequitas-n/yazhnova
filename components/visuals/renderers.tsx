@@ -3,6 +3,12 @@ import dynamic from "next/dynamic";
 import type { ComponentType } from "react";
 import { visualPresets, type VisualKind } from "@/lib/visual-presets";
 const renderers = {
+  liquid: dynamic(() => import("@/components/originkit/ui/liquid-grid"), { ssr: false }),
+  glossy: dynamic(() => import("@/components/originkit/ui/single-glossy-sphere"), { ssr: false }),
+  sparks: dynamic(() => import("@/components/originkit/ui/spark-lattice"), { ssr: false }),
+  strings: dynamic(() => import("@/components/originkit/ui/data-strings"), { ssr: false }),
+  fluid: dynamic(() => import("@/components/originkit/ui/fluid-field"), { ssr: false }),
+  deck: dynamic(() => import("@/components/originkit/ui/stacked-carousel"), { ssr: false }),
   "hero-dither": dynamic(() => import("@/components/originkit/ui/hero-40/dither-reveal"), {
     ssr: false,
   }),

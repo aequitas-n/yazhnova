@@ -1,5 +1,5 @@
 import type { SlotProps } from "./types";
-// TODO(originkit:curvedmarquee)
+// Legacy inactive adapter for curvedmarquee. See docs/component-ratings.md for the real integration or curation decision.
 export interface CurvedMarqueeProps extends SlotProps {
   items?: readonly string[];
   speed?: number;
@@ -12,7 +12,7 @@ export function CurvedMarquee({ children, className, style }: CurvedMarqueeProps
       className={className}
       style={{ display: "contents", ...style }}
       data-slot="curvedmarquee"
-      data-slot-status="pending"
+      data-slot-status="inactive"
     >
       {children}
     </div>

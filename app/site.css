@@ -692,8 +692,7 @@ em {
   overflow: hidden;
 }
 .service-visual-2 .live-visual {
-  mix-blend-mode: screen;
-  filter: grayscale(1) invert(1);
+  filter: grayscale(1);
 }
 .service-column > .eyebrow {
   font-size: 8px;
@@ -922,8 +921,7 @@ em {
 .process-network {
   position: absolute;
   inset: 0;
-  opacity: 0.16;
-  filter: invert(1);
+  opacity: 0.1;
   mix-blend-mode: multiply;
   pointer-events: none;
   overflow: hidden;
@@ -981,6 +979,8 @@ em {
   margin-top: 23px;
 }
 .tech-section {
+  position: relative;
+  isolation: isolate;
   padding-block: 37px 44px;
   border-block: 1px solid var(--rule);
   overflow: hidden;
@@ -3274,6 +3274,156 @@ em {
 .workflow-demo li.pending,
 .workflow-status {
   opacity: 1;
+}
+.native-copy {
+  position: relative;
+}
+.native-copy > p {
+  margin: 0;
+}
+.copy-underlay {
+  opacity: 0;
+}
+.native-copy-overlay {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+}
+.native-label {
+  white-space: nowrap;
+}
+.native-chat {
+  margin: 20px 0 24px;
+}
+.native-chat .msg-item > div {
+  border-radius: 3px !important;
+  box-shadow: none !important;
+}
+.chat-static {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  font-size: 14px;
+  line-height: 1.45;
+}
+.chat-static > p {
+  padding: 10px 14px;
+  max-width: 75%;
+}
+.chat-them {
+  align-self: flex-start;
+  background: var(--graphite);
+  color: var(--paper);
+}
+.chat-me {
+  align-self: flex-end;
+  background: var(--paper);
+  color: var(--ink);
+}
+.tech-intro,
+.native-marquee {
+  position: relative;
+  z-index: 1;
+}
+.tech-strings {
+  position: absolute;
+  inset: 0;
+  opacity: 0.18;
+  pointer-events: none;
+}
+.native-marquee {
+  min-height: 160px;
+  overflow: hidden;
+}
+.tech-static {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 20px 32px;
+  padding: 30px 7%;
+  list-style: none;
+  font-size: 14px;
+  color: var(--paper);
+}
+.is-live .tech-static {
+  opacity: 0;
+}
+.marquee-source {
+  position: absolute;
+  inset: 0;
+}
+.native-button-border {
+  display: inline-flex;
+  position: relative;
+  isolation: isolate;
+}
+.native-button-border > .button {
+  position: relative;
+  z-index: 1;
+}
+.button-border-source {
+  position: absolute;
+  inset: -1px;
+  pointer-events: none;
+  z-index: 0;
+}
+.engagement-model .native-button-border {
+  width: 100%;
+}
+.engagement-model .native-button-border > .button {
+  width: 100%;
+}
+/* This native source clears to transparency. Hide its poster after it sizes
+   the live canvas, so two different animation frames cannot overlap. */
+[data-visual="deck"]:has(.visual-canvas canvas[width]) > .visual-frame {
+  opacity: 0;
+}
+.work-gallery-layout {
+  display: grid;
+  grid-template-columns: minmax(0, 1.8fr) minmax(0, 1fr);
+  gap: 30px;
+  height: 350px;
+}
+.project-spotlight {
+  position: relative;
+  min-width: 0;
+  height: 100%;
+}
+.project-preview {
+  object-fit: contain;
+}
+.spotlight-source {
+  position: absolute;
+  inset: 0;
+}
+.work-deck {
+  min-width: 0;
+  position: relative;
+  overflow: hidden;
+  border-left: 1px solid var(--rule);
+}
+@media (max-width: 767px) {
+  .work-gallery.work-stage {
+    height: auto;
+    padding: 24px 20px;
+  }
+  .work-gallery-layout {
+    grid-template-columns: 1fr;
+    height: auto;
+    gap: 12px;
+  }
+  .project-spotlight {
+    aspect-ratio: 940 / 380;
+  }
+  .work-deck {
+    height: 160px;
+    border-left: 0;
+    border-top: 1px solid var(--rule);
+  }
+  .tech-static {
+    font-size: 12px;
+    gap: 20px 24px;
+  }
 }
 @media (prefers-reduced-motion: reduce) {
   html {

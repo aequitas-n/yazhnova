@@ -1,5 +1,5 @@
 import type { SlotProps } from "./types";
-// TODO(originkit:stacked-carousel)
+// Legacy inactive adapter for stacked-carousel. See docs/component-ratings.md for the real integration or curation decision.
 export interface StackedCarouselProps extends SlotProps {
   activeIndex?: number;
   itemCount?: number;
@@ -11,7 +11,7 @@ export function StackedCarousel({ children, className, style }: StackedCarouselP
       className={className}
       style={{ display: "contents", ...style }}
       data-slot="stacked-carousel"
-      data-slot-status="pending"
+      data-slot-status="inactive"
     >
       {children}
     </div>

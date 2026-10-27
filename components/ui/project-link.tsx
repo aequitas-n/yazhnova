@@ -11,7 +11,7 @@ export function ProjectLink({
   paper?: boolean;
 }) {
   return (
-    <GlowBorder color="#FFB45A">
+    <GlowBorder>
       <Link href={href} className={`button ${paper ? "button-paper" : "button-ink"}`}>
         {children}
         <ArrowUpRight size={17} />

@@ -1,5 +1,5 @@
 import type { SlotProps } from "./types";
-// TODO(originkit:data-strings)
+// Legacy inactive adapter for data-strings. See docs/component-ratings.md for the real integration or curation decision.
 export interface DataStringsProps extends SlotProps {
   color?: string;
   text?: string;
@@ -13,7 +13,7 @@ export function DataStrings({ children, className, style }: DataStringsProps) {
       className={className}
       style={{ display: "contents", ...style }}
       data-slot="data-strings"
-      data-slot-status="pending"
+      data-slot-status="inactive"
     >
       {children}
     </div>

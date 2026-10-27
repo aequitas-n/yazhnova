@@ -49,9 +49,18 @@ try {
       const frame = await handle?.contentFrame();
       if (!frame) continue;
       await frame.waitForSelector(".source-render", { timeout: 20000 });
-      try {
-        await frame.waitForSelector("canvas", { timeout: 16000 });
-      } catch {}
+      if (!("rendering" in item && item.rendering === "dom")) {
+        try {
+          await frame.waitForSelector("canvas", { timeout: 16000 });
+        } catch {}
+      }
+      if (item.slug === "aura-cursor") {
+        const box = await element.boundingBox();
+        if (box) {
+          await page.mouse.move(box.x + box.width * 0.25, box.y + box.height * 0.4);
+          await page.mouse.move(box.x + box.width * 0.7, box.y + box.height * 0.6, { steps: 8 });
+        }
+      }
       const canvases = await frame.locator("canvas").evaluateAll((nodes) =>
         nodes.map((c) => ({
           width: c.width,

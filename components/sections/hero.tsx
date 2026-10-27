@@ -4,7 +4,7 @@ import { site } from "@/content/site";
 import { GridRails } from "@/components/originkit/ui/hero-28/grid-frame";
 import { LiveVisual } from "@/components/visuals/live-visual";
 import { ProjectLink } from "@/components/ui/project-link";
-import { ScrambleText, PredictiveArc02 } from "@/components/slots";
+import { ScrambleLabel } from "@/components/visuals/native-details";
 export function Hero() {
   return (
     <section className="hero-section paper" aria-labelledby="hero-title">
@@ -24,10 +24,10 @@ export function Hero() {
         <div className="container hero-layout">
           <div className="hero-eyebrow">
             <span className="signal" />
-            {site.hero.label}
+            <ScrambleLabel text={site.hero.label} />
           </div>
           <h1 id="hero-title">
-            <ScrambleText text={site.hero.lines[0]} />
+            {site.hero.lines[0]}
             <br />
             {site.hero.lines[1]}
             <br />
@@ -60,11 +60,9 @@ export function Hero() {
           {site.hero.index}
         </span>
       </div>
-      <PredictiveArc02>
-        <div className="hero-horizon" aria-hidden="true">
-          <LiveVisual kind="horizon" />
-        </div>
-      </PredictiveArc02>
+      <div className="hero-horizon" aria-hidden="true">
+        <LiveVisual kind="horizon" />
+      </div>
     </section>
   );
 }

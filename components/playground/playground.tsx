@@ -65,10 +65,22 @@ export function Playground() {
           YAZHNOVA <span>/ COMPONENT STUDIES</span>
         </Link>
         <nav>
-          <a href="#hero-40">Sections / 07</a>
-          <a href="#dither-reveal">Visuals / 09</a>
+          <a href="#hero-40">
+            Sections /{" "}
+            {String(sourceCatalog.filter((item) => item.kind === "section").length).padStart(
+              2,
+              "0",
+            )}
+          </a>
+          <a href="#dither-reveal">
+            Visuals /{" "}
+            {String(sourceCatalog.filter((item) => item.kind === "component").length).padStart(
+              2,
+              "0",
+            )}
+          </a>
         </nav>
-        <span>PHASE A / 16 STUDIES</span>
+        <span>PHASE A / {sourceCatalog.length} STUDIES</span>
       </header>
       {sourceCatalog.map((item, index) => (
         <Panel key={item.slug} item={item} index={index} />

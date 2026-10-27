@@ -1,5 +1,5 @@
 import type { SlotProps } from "./types";
-// TODO(originkit:aura-cursor)
+// Legacy inactive adapter for aura-cursor. See docs/component-ratings.md for the real integration or curation decision.
 export interface AuraCursorProps extends SlotProps {
   color?: string;
   size?: number;
@@ -12,7 +12,7 @@ export function AuraCursor({ children, className, style }: AuraCursorProps) {
       className={className}
       style={{ display: "contents", ...style }}
       data-slot="aura-cursor"
-      data-slot-status="pending"
+      data-slot-status="inactive"
     >
       {children}
     </div>

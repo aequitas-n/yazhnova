@@ -13,7 +13,7 @@ npm run dev
 
 - Website: http://localhost:3000
 - Contact: http://localhost:3000/contact
-- 16 paired component studies: http://localhost:3000/playground
+- 34 paired component studies: http://localhost:3000/playground
 - Replay the stone introduction: http://localhost:3000/?intro=replay
 
 For the optimized production preview:
@@ -23,19 +23,24 @@ npm run build
 npm start
 ```
 
+## Download status
+
+34 of 35 requested OriginKit sources are downloaded. The latest retry added live-chat, aura-cursor and hairline-loader. Only cloud-sky-03 remains quota-blocked. Review the real sources in the playground and see [download results](docs/downloads.md). Selected pieces now run in the website; see the scored component review for production placements and deliberate exclusions.
+
 ## Review the work
 
-- [Source inventory](docs/inventory.md): all 16 items, signature elements, complete props/defaults, interaction, performance and mobile notes.
+- [Source inventory](docs/inventory.md): all 34 items, signature elements, complete props/defaults, interaction, performance and mobile notes.
 - [Design plan](docs/plan.md): palette, type, grid, motion and the actual source combinations for every section.
-- [16 playground screenshots](docs/shots): default and editorial versions side by side.
+- [34 playground screenshots](docs/shots): default and editorial versions side by side.
 - [Minimal source fixes](docs/fixes.md): exact corrections and their effects.
-- [19 deferred slots](docs/slots.md): locations, provisional contracts and exact swap steps.
+- [Component ratings](docs/component-ratings.md): scores and decisions for all 34 downloaded sources.
+- [Integration and slot status](docs/slots.md): live adapters, retired wrappers and the one unavailable source.
 - [Verification results](docs/verification.md): production build, browser checks, Lighthouse scores and launch configuration.
 - [Stone introduction](docs/intro.md): choreography, optional source controls, skipping and replay.
 - `docs/playground-results.json`: observed canvas contexts and runtime results.
 - `docs/visual-frame-results.json`: genuine production visual/frame captures.
 
-The original pre-change source hashes are in `docs/originkit-source-manifest.json`. Installed files have the small typing corrections and the explicitly requested, optional stone-intro controls listed in `fixes.md`. Original geometry, materials and shaders are preserved. All 16 currently render; none was moved to the unavailable list.
+The original pre-change source hashes are in `docs/originkit-source-manifest.json`. Installed files have the small typing corrections and the explicitly requested, optional stone-intro controls listed in `fixes.md`. Original geometry, materials and shaders are preserved. All 34 currently render; none was moved to the unavailable list.
 
 ## Edit
 
@@ -44,7 +49,7 @@ The original pre-change source hashes are in `docs/originkit-source-manifest.jso
 - `components/intro/*`: the desktop stone introduction, timeline and lifecycle gate.
 - `components/originkit/*`: installed library sources, with documented repairs and optional intro controls.
 - `components/visuals/*` and `lib/visual-presets.ts`: dynamic imports, real-source presets and responsive rendering policy.
-- `components/slots/*`: 19 explicit TODO adapters for future downloads. They do not imitate missing effects.
+- `components/slots/*`: the live native border adapter, the unavailable cloud TODO and inactive compatibility adapters.
 - `app/site.css`: the editorial brand and responsive layout.
 
 The agent transcript is an interactive demonstration, not a connected CRM/calendar integration. Work cards are clearly labeled concept explorations. Sample quotes remain marked TODO and need approval/replacement before public launch. Review the company contact details and commercial FAQ wording before publishing.
@@ -82,7 +87,7 @@ npm run capture:studies
 npm run capture:frames
 ```
 
-Browser checks cover real WebGL/Canvas contexts, mobile and reduced-motion frames, navigation, project dialogs, agent replay, accordion, form validation and mocked success, API failure cases, SEO endpoints, 16 screenshots and 19 slot files. Tests do not send real email. Set `TEST_CONTACT_UNCONFIGURED=1` only against an unconfigured server to test its 503 response.
+Browser checks cover real WebGL/Canvas contexts, mobile and reduced-motion frames, navigation, project dialogs, agent replay, accordion, form validation and mocked success, API failure cases, SEO endpoints, 34 screenshots and 19 slot files. Tests do not send real email. Set `TEST_CONTACT_UNCONFIGURED=1` only against an unconfigured server to test its 503 response.
 
 Chrome must be installed for browser captures and Lighthouse. Set `CHROME_PATH` for the audit if auto-detection is unavailable. Browser evidence and Lighthouse JSON/HTML reports go into ignored `artifacts/`.
 
