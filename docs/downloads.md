@@ -34,3 +34,7 @@ The sources use existing project dependencies. No new packages or source repairs
 This is the canonical CLI name for the requested **cloud-sky/03**. Its reserved slot keeps the original request label.
 
 [download-attempts.json](download-attempts.json) retains all individual responses. No source was fabricated or overwritten.
+
+## Later additions
+
+Hero-44 and hero-55 were subsequently installed successfully through the CLI. There are now 36 installed sources: the original 34, plus these two additions. Hero-44 supplies the six shared chapter heroes; hero-55 supplies Contact. Both have paired source studies. The earlier 34-of-35 count describes the original batch; cloud-sky/03 remains the only unavailable source from that batch.

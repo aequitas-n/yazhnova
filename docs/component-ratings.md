@@ -53,3 +53,11 @@ The page keeps paper, ink, warm grey and a small amber accent. The approved reac
 - The work images capture our existing Clarity, Relay and Forma concept interfaces. They remain explicitly labelled concept work and are not represented as shipped client projects.
 
 See [verification](verification.md) for measured checks and [fixes](fixes.md) for the four previously documented source adjustments. This integration adds no further source edits.
+
+## Shared chapter hero addition: hero-44
+
+**Fit: 9/10.** Selected by the user for Services, AI Agents, Work, Process, Engage and About. The original plasma wire mesh, hand and atmospheric assets supply one consistent visual identity. The native mesh explains the signal motif through motion; per-page typography and initial poses provide variation without adding another effect. Cost is medium at desktop density 88 and lighter at mobile density 48. Raw fixed-coordinate layouts and the default blue palette require an authored responsive composition; the live source, geometry and interactions remain. [Current screenshots and verification](chapters/README.md).
+
+## Added: hero-55 ? 9/10 for Contact
+
+Strong full-page atmosphere with useful pointer interaction; the native rain surface stays behind readable typography and an opaque form. Medium shader cost, reduced through actual drawing-buffer and drop settings on touch. Installed and used on Contact. Both raw and editorial studies render successfully.

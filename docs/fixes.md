@@ -85,3 +85,49 @@ Seventeen installed source files now import `canvasPixelRatio()` from `lib/canva
 The homepage is shortened and supporting sections move to their dedicated routes. Work's case dialogs become actual case-study routes. A legacy aspect ratio on the new featured-image placement briefly widened the intro's mobile viewport; explicit width bounds and resetting that ratio fix the source of the overflow. Small paper labels gain sufficient contrast, and the hero baseline is placed above the horizon. The route wipe is suppressed for reduced motion and no JavaScript. No component was moved to an unavailable slot.
 
 The first live-mobile load audit exposed synchronous shader compilation in the stone and ocean. Their native scene/material programs now warm before the first draw through `lib/warm-renderer.ts`. The helper queues the same compilation in small jobs and polls `KHR_parallel_shader_compile` completion where supported, then starts the existing animation loop. Cleanup cancels pending jobs and polling before disposing the source; a browser regression test deliberately holds compilation pending, presses Skip and verifies that the canvas cannot return. The shader text, geometry and render sequence are unchanged. Drivers without parallel compilation still use their available compile path; this is not a promise of uniform cold-start timing across devices.
+
+## Intro opening quality and focus cleanup
+
+The intro no longer crossfades a captured PNG to a renderer forced to low quality. It presents the native 3D scene from its first ready frame and retains high quality on desktop and medium quality on mobile (DPR caps 2 and 1.5). Geometry, materials, shader warmup and fracture physics remain native. The visible Skip button and its styles are removed; Escape and error/watchdog recovery still release the page. Focus now starts on the dialog, and outlines are suppressed only on that noninteractive dialog and the hero heading to prevent an orange box after the handoff. Interactive keyboard focus styles remain. No component was moved to an unavailable slot. See [intro.md](intro.md).
+
+## Manifesto newspaper legibility
+
+The production newspaper uses wider columns, body type approximately three times its former size, larger article headings and masthead, and a stronger paper-on-ink contrast. A directional mask keeps the newspaper clearer on the right and fades it beneath the main slogan and closing paragraph. The live canvas renders at up to DPR 2 on desktop and 1.5 on mobile; the reduced-motion capture is regenerated at high resolution and served at full viewport width with higher image quality.
+
+The installed `paperline-archive` source accepts an optional `editorial` input (authored articles, badges and edition labels) plus `advanced.headlineSize` and `advanced.pixelRatio`. Articles use its existing column geometry, serif typography, canvas and cached paper rendering. Without these inputs the original generated layout remains unchanged. Production copy lives in `site.manifesto.newspaper`. No component was replaced or moved to an unavailable slot.
+
+Verified with a production build, desktop/mobile captures and a reduced-motion browser check. The live newspaper uses 13.1px body text at 1600px wide and 11.1px on the 390px mobile viewport, instead of roughly 4px text. The mobile canvas runs at 1.5 DPR. All three capture modes reported no console errors or horizontal overflow; the reduced-motion regression test passed.
+
+## Hero hand framing
+
+The desktop dither image now uses a 69% vertical focal point, lifting the complete left palm above the horizon transition instead of clipping it at the bottom of the hero. The reduced-motion image uses the same object position, and the orange signal marker follows the new fingertip position. Phones use a contained composition in both the live canvas and static fallback so the complete pair fits the viewport.
+
+The native hero-40 `dither-reveal` contain branch inverted the cover sampling axis, which changed the image proportions. It now expands the correct UV axis for letterboxing; the cover branch, original image, dither shader and pointer interaction remain in place. No image was regenerated and no component was replaced or moved to a slot.
+
+Browser captures at 1920x1080, 1440x900, 1366x768 and 390x844 verified that the left wrist clears the horizon, with no horizontal overflow. The reduced-motion crop was also checked. The mobile review exposed an existing invalid paragraph/div nesting in the native scramble label; its adapter now requests the source's supported `div` tag, removing that development warning without changing its animation. All five capture modes then reported no console errors, and TypeScript passed.
+
+## Shared chapter heroes: hero-44
+
+The real hero-44 package and all fourteen assets were installed through the CLI. The entry forwards props and the section accepts optional content/artwork slots, retaining its original study. All six main chapter heroes now compose the native plasma mesh, hand, mist and ridge, with self-hosted studio typography and ink/paper/orange colors. The lower AI glassbound/chat composition is retained once; glassbound is no longer used in that hero.
+
+The plasma source adds opt-in initial rotation and highlight color, honors a transparent host, uses the shared capped DPR helper and deletes its native shaders, buffers and program on disposal. The existing LiveVisual lifecycle supplies lazy mounting, hidden-tab/viewport retirement and the two-context ceiling. Mobile density is 48 rather than 88; reduced motion uses a transparent capture of the real canvas. No renderer or geometry was recreated, and no source failed or moved into an unavailable slot.
+
+Chapter poses, terms and layout choices are centralized in `content/site.ts`; page entrances use Framer Motion word reveals and an ink wipe with an orange seam. Initial SSR text stays visible without JavaScript. Native images use Next Image; the large mist image is preloaded because it is the hero's largest paint candidate. External font imports added by the CLI were removed to retain the existing self-hosted fonts.
+
+The production build, TypeScript and all 24 browser tests passed. The source study renders two genuine native canvases (default/editorial), and eighteen responsive production captures show one canvas per hero with no console errors, clipped titles/actions or horizontal overflow. Full screenshots and measured results are in [the chapter hero report](chapters/README.md).
+
+Production imports the native SectionHero directly so the prototype stylesheet does not block rendering. Its new slots have an explicit `SectionHeroProps` type, correcting TypeScript's inference of the optional inputs without altering the visuals. The plasma fallback remains in the initial HTML for reduced motion/no JavaScript, but its 177 KB optimized bitmap is no longer preloaded ahead of the live scene and fonts. Final mobile Lighthouse checks score Services 93 and Work 92 for performance, both with 100 accessibility/best-practices/SEO; all four shared-hero regression tests passed again after these loading changes.
+
+## Contact hero: real hero-55
+
+Installed hero-55 through the OriginKit CLI, including its native WebGL rain street. Added optional typed content/artwork slots to the original section, preserving its default study. Production uses that section and the native rain renderer with the existing RHF/Zod form and Resend route unchanged. Removed the downloaded Google font import in favor of the existing self-hosted brand fonts.
+
+Optional highlightColor, cursorColor and colorToning controls separate the neutral wet street from the orange pointer light without replacing the shader. Defaults retain the original appearance. Optional pixelRatio caps the actual drawing buffer (desktop 1, touch 0.75); touch also reduces ripples/streaks. GPU buffers, program and shader resources are deleted on cleanup. The shared visibility/context budget unmounts it off-screen; reduced motion uses a frame captured from the real renderer. No source failures or moved components.
+
+Review: [Contact captures and checks](contact-hero55/README.md).
+
+The Contact mobile Lighthouse run initially exposed a synchronous shader-status query during hydration (78 performance, 640 ms TBT). The native rain renderer now queues compilation/linking, polls KHR_parallel_shader_compile completion before querying link status and obtaining uniforms, and cancels warmup on disposal. No shader algorithm changed. The subsequent audit scored 94 performance with 80 ms TBT. A browser regression test holds compilation pending, scrolls the scene away, releases it, and returns to the hero.
+
+## Home hero: room for the right hand
+
+Added an opt-in rightOffsetY input (default 0) to hero-40's real image shader. The Home preset offsets only the right subject by 7% of the source image height, blending through the empty gap between hands. The existing left-palm crop, image scale and native dither/pointer behavior remain intact. This uses the open lower-right space without pushing the left hand below the hero or adding a canvas. The fingertip signal follows the revised midpoint; reduced-motion frames were recaptured from the same renderer. Original component defaults remain unchanged.

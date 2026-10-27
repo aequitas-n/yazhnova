@@ -2,7 +2,7 @@
 
 # OriginKit inventory - rendered source studies
 
-All 34 installed items were read and rendered in original and editorial variants. `/playground` mounts only visible panels; each variant has its own document so CSS and IDs cannot collide. The exact draw contexts and runtime observations are in [playground-results.json](playground-results.json).
+The initial 34 installed items were read and rendered in original and editorial variants. Hero-44 is the 35th installed item and hero-55 is the 36th; its current production composition and responsive review are documented in [the chapter hero report](chapters/README.md). `/playground` mounts only visible panels; each variant has its own document so CSS and IDs cannot collide. The exact draw contexts and runtime observations are in [playground-results.json](playground-results.json).
 
 Palette: ink `#0A0A0A`, graphite `#141414`, paper `#F4F2EC`, warm grey `#8C8A84`, restrained signal amber `#FFB45A`. No shaders, geometry or visual algorithms were recreated. Type-only fixes and the requested opt-in stone-intro controls are recorded in [fixes.md](fixes.md).
 
@@ -3376,3 +3376,32 @@ const {
   "size": 110
 }
 ```
+
+## hero-44
+
+Installed through `npx originkit@latest add hero-44 --path components/originkit`, including the real WebGL plasma renderer, exported section, CSS and all fourteen local assets.
+
+| Element                       | Role / controls                                                                                                                                                                                          |
+| ----------------------------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| Plasma wire mesh              | Genuine native WebGL lines with time-driven deformation and pointer drag. Colors, density, speed, wave height, center opacity, scale and drag sensitivity are configurable.                              |
+| Hand, mist and ridge          | Original downloaded assets, recolored to monochrome through CSS and served through Next Image in production.                                                                                             |
+| Section composition           | Optional `children`, `artwork` and `className` inputs let the downloaded section host the shared Yazhnova typography and scene; the original study remains available.                                    |
+| Brand and lifecycle additions | Optional `hotspotColor` and `initialRotation`; explicit native GPU cleanup; shared capped DPR, viewport mounting and the two-context budget.                                                             |
+| Production use                | One hero component for six main chapters. The AI glassbound visual remains in the lower workflow demo.                                                                                                   |
+| Performance                   | Medium relative cost. Density 88 on desktop, 48 on mobile; mobile DPR 1. The lower-density mobile grid has roughly one third as many vertices. Reduced motion uses an actual transparent canvas capture. |
+
+[Source study](shots/hero-44.png) · [Responsive captures and verification](chapters/README.md).
+
+## hero-55
+
+**Installed source:** hero-55.tsx, hero-55.css, ui/hero-55/section-hero.tsx and ui/hero-55/rain-puddle.tsx.
+
+**Key element:** the actual procedural WebGL wet street, puddle reflections, falling rain, expanding ripples and pointer-cast light. SectionHero now accepts optional children/artwork slots for recomposition while keeping the original standalone study.
+
+**Controls:** background, baseColor, accentColor, rain, speed, tilt; puddles coverage/scale/reflection; drops ripples/streaks; cursor reach/ripple/glow. Optional highlightColor, cursorColor, colorToning, pixelRatio and preserveDrawingBuffer preserve existing defaults. Production disables the native blue/warm grade, uses graphite/paper light, and reserves orange for the pointer light.
+
+**Cost:** medium fullscreen fragment shader. Production DPR 1 desktop / 0.75 touch, fewer mobile drops, automatic playback, off-screen disposal and the shared two-context budget. Reduced motion uses a genuine frame.
+
+**Placement:** full Contact hero, heading left and existing functional form right; stacked on mobile. No stock ecommerce copy in production.
+
+[Raw + editorial study](shots/hero-55.png) ? [Contact review](contact-hero55/README.md).

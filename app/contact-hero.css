@@ -1,0 +1,55 @@
+/* Native hero-55 rain street, recomposed around the actual contact form. */
+.contact-rain-hero .contact-native {
+  position: absolute;
+  inset: 0;
+  height: 100%;
+  background: var(--ink);
+}
+.contact-rain-scene {
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+}
+.contact-rain-scene > .live-visual {
+  width: 100%;
+  height: 100%;
+}
+.contact-rain-hero .page-hero-shade {
+  z-index: 1;
+  background:
+    linear-gradient(0deg, #0a0a0af0 0%, #0a0a0a66 32%, transparent 65%),
+    linear-gradient(90deg, #0a0a0a4d, transparent 60%);
+}
+.contact-rain-hero .contact-layout-v4 {
+  position: relative;
+  z-index: 2;
+}
+.contact-rain-hero .contact-heading-v4 {
+  align-self: end;
+  padding-bottom: clamp(24px, 4svh, 48px);
+}
+.contact-rain-hero .contact-heading-v4 h1 {
+  font-size: clamp(70px, 8vw, 138px);
+  margin-bottom: 30px;
+}
+.contact-rain-hero .contact-heading-v4 > p:last-child {
+  color: #d0cdc5;
+  text-shadow: 0 2px 16px var(--ink);
+}
+.contact-rain-hero .contact-form-panel {
+  background: #141414f5;
+  border-color: #f4f2ec30;
+}
+@media (max-width: 767px) {
+  .contact-rain-hero .contact-heading-v4 {
+    align-self: auto;
+    padding-bottom: 0;
+  }
+  .contact-rain-hero .contact-heading-v4 h1 {
+    font-size: 42px;
+    margin: 0;
+  }
+  .contact-rain-hero .page-hero-shade {
+    background: linear-gradient(0deg, #0a0a0add 0%, #0a0a0a33 50%, #0a0a0a55 100%);
+  }
+}

@@ -114,10 +114,10 @@ textarea:focus-visible,
 .intro-visual-layer {
   background: var(--ink);
 }
-.intro-skip {
-  color: var(--paper);
-  border-color: #f4f2ec60;
-  background: #0a0a0a90;
+.site-intro:focus,
+#hero-title:focus {
+  /* These noninteractive landmarks receive focus after the intro handoff. */
+  outline: none;
 }
 .intro-label,
 .intro-note {
@@ -171,6 +171,9 @@ textarea:focus-visible,
 .hero-art .live-visual {
   filter: grayscale(1) contrast(1.5);
 }
+.hero-art .visual-frame {
+  object-position: center 69%;
+}
 .hero-art::after {
   display: none;
 }
@@ -178,7 +181,8 @@ textarea:focus-visible,
   position: absolute;
   z-index: 5;
   left: 47.6%;
-  top: calc(57.5% - 1.4vw);
+  /* Midpoint of the fingertips after the native right-hand source offset. */
+  top: calc(79.35% - 21.04vw);
   width: 11px;
   height: 11px;
   border-radius: 50%;
@@ -225,7 +229,7 @@ textarea:focus-visible,
   pointer-events: none;
 }
 
-/* Native newsprint becomes texture. The slogan uses the heading grotesk. */
+/* Readable native newsprint, held back beneath the main editorial copy. */
 .manifesto-section {
   min-height: 90vh;
   position: relative;
@@ -237,13 +241,22 @@ textarea:focus-visible,
 .manifesto-newsprint {
   position: absolute;
   inset: 0;
-  opacity: 0.15;
+  opacity: 0.52;
   z-index: -1;
-  mask-image: linear-gradient(transparent, #000 18%, #000 82%, transparent);
+  mask-image:
+    linear-gradient(transparent, #000 8%, #000 56%, #0003 72%, transparent 96%),
+    linear-gradient(90deg, #0004 32%, #000 65%);
+  mask-composite: intersect;
   pointer-events: none;
 }
 .manifesto-heading {
   margin-bottom: 70px;
+  text-shadow:
+    0 1px 8px var(--ink),
+    0 0 18px var(--ink);
+}
+.manifesto-newsprint .visual-frame {
+  object-position: center top;
 }
 .manifesto-slogan {
   font-family: var(--font-ui), sans-serif;
@@ -253,23 +266,30 @@ textarea:focus-visible,
   color: var(--accent);
   line-height: 0.9;
   letter-spacing: -0.065em;
+  text-shadow: 0 2px 18px var(--ink);
 }
 .manifesto-signal-note {
   display: block;
   margin-top: 30px;
   color: var(--grey);
   font-size: 10px;
+  text-shadow:
+    0 1px 8px var(--ink),
+    0 0 18px var(--ink);
 }
 .manifesto-note {
   border-top: 1px solid var(--rule);
   margin-top: 80px;
   padding-top: 25px;
+  text-shadow:
+    0 1px 8px var(--ink),
+    0 0 18px var(--ink);
 }
 .manifesto-note h3 {
   color: var(--paper);
 }
 .manifesto-note p {
-  color: var(--grey);
+  color: #c6c3bb;
 }
 .editorial-mark {
   color: var(--accent);
@@ -1039,9 +1059,13 @@ textarea:focus-visible,
   .hero-art .live-visual {
     filter: grayscale(1) contrast(1.6);
   }
+  .hero-art .visual-frame {
+    object-fit: contain;
+    object-position: center;
+  }
   .fingertip-signal {
-    left: 46.2%;
-    top: 48.9%;
+    left: 47.6%;
+    top: calc(50% + 3.03vw);
     width: 9px;
     height: 9px;
   }

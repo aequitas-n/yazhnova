@@ -1,4 +1,4 @@
-import fs from "node:fs";
+﻿import fs from "node:fs";
 import ts from "typescript";
 import { sourceCatalog, editorialPresets } from "../lib/originkit-catalog.ts";
 
@@ -190,6 +190,26 @@ const notes = {
     use: "Hero texture and a human craft cue. It is an image shader, not a 3D hand model.",
     files: ["hero-40.tsx", "ui/hero-40/dither-reveal.tsx"],
   },
+  "hero-44": {
+    layout:
+      "An interactive plasma sphere held above a native hand image, with mist and ridge assets. The Yazhnova composition exposes content and artwork slots while retaining the downloaded default study.",
+    interaction:
+      "The native WebGL wire mesh deforms over time and responds to pointer drag. Colors, density, speed, wave height, center opacity, scale and drag sensitivity are configurable. Optional initialRotation and hotspotColor adapt the pose and highlight to the brand.",
+    mobile:
+      "Production uses density 48 and DPR 1 on touch screens, viewport/document gating and the shared two-context budget. Reduced motion uses a transparent capture of the actual renderer.",
+    use: "One shared hero across Services, AI Agents, Work, Process, Engage and About, with page-specific typography and entrance motion.",
+    files: ["hero-44.tsx", "ui/hero-44/section-hero.tsx", "ui/hero-44/plasma-ring.tsx"],
+  },
+  "hero-55": {
+    layout:
+      "A full-bleed rain-slicked street and puddle shader with editorial content. Optional children/artwork slots retain the default source study.",
+    interaction:
+      "The native WebGL renderer animates rain, ripples and pointer-driven light. Base/accent/highlight/cursor colors, color toning, rain, speed, tilt, puddle/drop/cursor groups and pixel ratio are configurable.",
+    mobile:
+      "Production uses DPR 0.75 with fewer ripples/streaks; automatic motion remains enabled. Off-screen/document gating and the shared context budget dispose inactive canvases. Reduced motion uses a genuine native capture.",
+    use: "Contact page: monochrome wet street with localized orange pointer light, existing enquiry form and studio typography.",
+    files: ["hero-55.tsx", "ui/hero-55/section-hero.tsx", "ui/hero-55/rain-puddle.tsx"],
+  },
   "hero-51": {
     layout:
       "Enormous tight display type, restrained top navigation, a split below-headline content row and a compact diagnostic readout.",
@@ -317,7 +337,7 @@ const notes = {
       "WebGL nodes drift, form proximity connections and react to the pointer. Density and link distance control visual and computational load.",
     mobile:
       "Reduce node density and use a captured frame on mobile; no essential information depends on the moving lines.",
-    use: "SaaS service visual and the connective tissue behind Discover → Design → Build → Ship & Scale.",
+    use: "SaaS service visual and the connective tissue behind Discover â†’ Design â†’ Build â†’ Ship & Scale.",
     files: ["ui/network-lines.tsx"],
   },
   "ocean-swell": {
@@ -359,7 +379,7 @@ let text =
   );
 for (const item of sourceCatalog) {
   const n = notes[item.slug];
-  text += `\n## ${item.slug}\n\n${item.signature}\n\n**Signature / layout to reuse:** ${n.layout}\n\n**Interaction / rendering:** ${n.interaction}\n\n**Performance:** ${item.cost}. ${n.mobile}\n\n**Yazhnova use:** ${n.use}\n\n**Screenshot:** [Default + editorial palette](shots/${item.slug}.png).\n\n**Public props and defaults:** ${item.kind === "section" ? "The section export accepts no configurable props; copy/layout are hardcoded. The companion APIs below are the reusable controls. Production composes those genuine companions with its own content and layout." : "The original interfaces and default values below are extracted from the installed source. Settings not overridden keep these defaults."}\n`;
+  text += `\n## ${item.slug}\n\n${item.signature}\n\n**Signature / layout to reuse:** ${n.layout}\n\n**Interaction / rendering:** ${n.interaction}\n\n**Performance:** ${item.cost}. ${n.mobile}\n\n**Yazhnova use:** ${n.use}\n\n**Screenshot:** [Default + editorial palette](shots/${item.slug}.png).\n\n**Public props and defaults:** ${["hero-44", "hero-55"].includes(item.slug) ? "SectionHero accepts optional typed children and artwork slots (hero-44 also accepts className); the entry forwards these props. The native visual controls are extracted below." : item.kind === "section" ? "The section export accepts no configurable props; copy/layout are hardcoded. The companion APIs below are the reusable controls. Production composes those genuine companions with its own content and layout." : "The original interfaces and default values below are extracted from the installed source. Settings not overridden keep these defaults."}\n`;
   for (const relative of n.files) {
     const file = `components/originkit/${relative}`;
     const source = fs.readFileSync(file, "utf8");
@@ -380,7 +400,7 @@ for (const item of sourceCatalog) {
       if (
         ts.isFunctionDeclaration(node) &&
         node.name &&
-        /SlotMachine|LightShaftText|StarfieldButton|MovingGradientButton|CosmicBG|NeonBorder|SingleGlossySphere|StarGate|SparkLattice|PredictiveArcHorizon|FluidField|LightBloom|LightCables|DataStrings|LiquidGrid|GlitchCharReveal|LineMaskSplit|GlowBorder|CurvedLoop|StackedCarousel3D|SpotlightReveal|IOSMessageList|AuraCursor|Hairline/.test(
+        /RainPuddle|PlasmaRing|SectionHero|SlotMachine|LightShaftText|StarfieldButton|MovingGradientButton|CosmicBG|NeonBorder|SingleGlossySphere|StarGate|SparkLattice|PredictiveArcHorizon|FluidField|LightBloom|LightCables|DataStrings|LiquidGrid|GlitchCharReveal|LineMaskSplit|GlowBorder|CurvedLoop|StackedCarousel3D|SpotlightReveal|IOSMessageList|AuraCursor|Hairline/.test(
           node.name.text,
         )
       ) {

@@ -12,7 +12,11 @@
 | live-chat, curvedmarquee, image-spotlight, scrambletext, scroll-text-reveal                   | `components/visuals/native-details.tsx`; viewport, intro, visibility and motion gates in `use-motion-surface.ts`.                              |
 | glow-border                                                                                   | `components/slots/GlowBorder.tsx`; real native source mounts only on eligible hover/focus.                                                     |
 
-## Deliberately excluded from the live page
+## Current chapter hero update
+
+Hero-44 is installed and composed once per hero on Services, AI Agents, Work, Process, Engage and About. Its real plasma renderer uses the existing lazy renderer and two-context budget. The original glassbound visual stays in the lower AI workflow demo. The earlier curation notes below predate the multi-page and shared-hero updates; see [the current chapter report](chapters/README.md) for current placements and verification. No new unavailable slot was created.
+
+## Earlier integration curation
 
 star-gate, predictive-arc-02, light-bloom, light-cables, aura-cursor and hairline-loader are available and working in the playground. Their former empty wrappers have been removed from page sections. Reasons and scores are in the review; these are curation decisions, not installation failures. network-lines and ocean-swell also remain in the gallery after more suitable sources replaced their production roles.
 
@@ -25,3 +29,7 @@ The 17 unused legacy slot modules remain as inactive compatibility contracts. Th
 When this source is available: install the real code, inspect its props and dependencies, add paired playground captures and inventory data, then assess whether it improves the page. If selected, use the existing native lifecycle policy and capture a genuine static frame. Never add it solely to fill a slot.
 
 No downloaded component was moved to the unavailable list. No additional source repairs were needed for this integration.
+
+## Later additions
+
+Hero-44 and hero-55 were subsequently installed successfully through the CLI. There are now 36 installed sources: the original 34, plus these two additions. Hero-44 supplies the six shared chapter heroes; hero-55 supplies Contact. Both have paired source studies. The earlier 34-of-35 count describes the original batch; cloud-sky/03 remains the only unavailable source from that batch.

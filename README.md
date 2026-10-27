@@ -14,7 +14,7 @@ npm run dev
 - Website: http://localhost:3000
 - Contact: http://localhost:3000/contact
 - Chapters: `/services`, `/ai-agents`, `/work`, `/process`, `/engage`, `/about`; concept case studies at `/work/clarity`, `/work/relay`, `/work/forma`.
-- 34 paired component studies: http://localhost:3000/playground
+- 36 paired component studies: http://localhost:3000/playground
 - Replay the stone introduction: http://localhost:3000/?intro=replay
 
 For the optimized production preview:
@@ -26,11 +26,13 @@ npm start
 
 ## Download status
 
-34 of 35 requested OriginKit sources are downloaded. The latest retry added live-chat, aura-cursor and hairline-loader. Only cloud-sky-03 remains quota-blocked. Review the real sources in the playground and see [download results](docs/downloads.md). Selected pieces now run in the website; see the scored component review for production placements and deliberate exclusions.
+36 OriginKit sources are installed: the original 34 downloaded sources plus hero-44 (including all fourteen assets) and hero-55. Only cloud-sky-03 from the original request remains quota-blocked. Review the real sources in the playground and see [download results](docs/downloads.md) and [the shared chapter hero report](docs/chapters/README.md).
 
 ## Current concept: From raw stone to signal
 
 The site uses an ink base, signal orange (#FF3B00), selective paper breaths, a tabbed service stage, full-size native scenes and a shared two-WebGL-context budget. Home is a short introduction; dedicated pages hold the full content. Quotes, verified stats, client locations and team data stay empty until real data is supplied. Mobile uses lighter live canvases; reduced motion uses genuine source frames.
+
+Services, AI Agents, Work, Process, Engage and About share the actual hero-44 plasma/hand composition. Chapter-specific typography, native scene poses and word entrances replay on navigation. The original glassbound visual remains in the lower AI demo. Contact uses the actual hero-55 rain street as a full backdrop around the existing enquiry form.
 
 - [Before/after report for every section](docs/cohesion/README.md)
 - [Interactive comparison viewer](docs/cohesion/index.html)
@@ -38,20 +40,21 @@ The site uses an ink base, signal orange (#FF3B00), selective paper breaths, a t
 
 ## Review the work
 
+- [Shared hero-44 chapters](docs/chapters/README.md): current hero composition, page-change motion, desktop/phone captures and validation. [Screenshot gallery](docs/chapters/index.html).
 - [Pass 4 pages and mobile motion](docs/pass4/README.md): all page heroes, touch viewport captures, source quality controls and FPS observations. [Screenshot viewer](docs/pass4/index.html).
 - [Pass 3 service stories and editorial Work](docs/pass3/README.md): six mid-sequence screenshots, final frames, source extensions and the new horizontal track.
-- [Source inventory](docs/inventory.md): all 34 items, signature elements, complete props/defaults, interaction, performance and mobile notes.
+- [Source inventory](docs/inventory.md): the original 34 studies plus hero-44 and hero-55, signature elements, props, interaction and performance notes.
 - [Design plan](docs/plan.md): palette, type, grid, motion and the actual source combinations for every section.
-- [34 playground screenshots](docs/shots): default and editorial versions side by side.
+- [36 playground screenshots](docs/shots): default and editorial versions side by side.
 - [Minimal source fixes](docs/fixes.md): exact corrections and their effects.
-- [Component ratings](docs/component-ratings.md): scores and decisions for all 34 downloaded sources.
+- [Component ratings](docs/component-ratings.md): the original 34-source review and the hero-44/hero-55 additions.
 - [Integration and slot status](docs/slots.md): live adapters, retired wrappers and the one unavailable source.
 - [Verification results](docs/verification.md): production build, browser checks, Lighthouse scores and launch configuration.
 - [Stone introduction](docs/intro.md): choreography, optional source controls, skipping and replay.
 - `docs/playground-results.json`: observed canvas contexts and runtime results.
 - `docs/visual-frame-results.json`: genuine production visual/frame captures.
 
-The original pre-change source hashes are in `docs/originkit-source-manifest.json`. Installed files have the small typing corrections and the explicitly requested, optional stone-intro controls listed in `fixes.md`. Original geometry is preserved; the documented optional source controls support the intro, typography, local dataset and ocean light. All 34 currently render; none was moved to the unavailable list.
+The original pre-change source hashes for the initial downloads are in `docs/originkit-source-manifest.json`. Source repairs and intentional composition controls are documented in `fixes.md`. Original geometry and native renderers are retained; the catalogue now includes hero-44. No downloaded source was moved to the unavailable list.
 
 ## Edit
 
@@ -96,9 +99,10 @@ npm run test:e2e
 npm run audit
 npm run capture:studies
 npm run capture:frames
+npm run capture:chapters
 ```
 
-Browser checks cover real WebGL/Canvas contexts, mobile and reduced-motion frames, navigation, project dialogs, agent replay, accordion, form validation and mocked success, API failure cases, SEO endpoints, 34 screenshots and 19 slot files. Tests do not send real email. Set `TEST_CONTACT_UNCONFIGURED=1` only against an unconfigured server to test its 503 response.
+Browser checks cover real WebGL/Canvas contexts, mobile and reduced-motion frames, chapter transitions and back navigation, project routes, agent replay, accordion, form validation and mocked success, API failure cases, SEO endpoints, 35 source screenshots and 19 slot files. Tests do not send real email. Set `TEST_CONTACT_UNCONFIGURED=1` only against an unconfigured server to test its 503 response.
 
 Chrome must be installed for browser captures and Lighthouse. Set `CHROME_PATH` for the audit if auto-detection is unavailable. Browser evidence and Lighthouse JSON/HTML reports go into ignored `artifacts/`.
 

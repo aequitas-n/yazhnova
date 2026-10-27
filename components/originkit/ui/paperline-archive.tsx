@@ -582,7 +582,16 @@ function typeBlock(ctx: CanvasRenderingContext2D, x: number, y: number, w: numbe
     }
 }
 
-function fillColumn(ctx: CanvasRenderingContext2D, x: number, w: number, y0: number, y1: number, rng: () => number, U: number, adv: any) {
+export interface PaperlineEditorial {
+    articles: readonly { title: string; body: string }[]
+    badge?: readonly string[]
+    edition?: string
+    issue?: string
+    location?: string
+    note?: string
+}
+
+function fillColumn(ctx: CanvasRenderingContext2D, x: number, w: number, y0: number, y1: number, rng: () => number, U: number, adv: any, editorial?: PaperlineEditorial, column = 0) {
     const pad = 4 * U
     const ix = x + pad, iw = w - 2 * pad
     if (iw < 10 * U) return
@@ -593,6 +602,33 @@ function fillColumn(ctx: CanvasRenderingContext2D, x: number, w: number, y0: num
     let first = true
     ctx.textAlign = "left"
     ctx.textBaseline = "alphabetic"
+    // Optional authored articles use this same native newspaper layout and canvas.
+    // Omitting editorial retains the original generated newsprint below.
+    if (editorial?.articles.length) {
+        let block = 0
+        const headlineSize = (adv.headlineSize ?? adv.bodySize * 1.25) * U
+        while (y < y1 - lead * 2) {
+            const article = editorial.articles[(column + block * 3) % editorial.articles.length]
+            ctx.font = `700 ${headlineSize}px ${SERIF}`
+            ctx.fillStyle = adv.headColor
+            for (const line of wrapWords(ctx, article.title.split(/\s+/), iw)) {
+                y += headlineSize * 1.12
+                if (y > y1) return
+                ctx.fillText(line, ix, y)
+            }
+            y += 5 * U
+            ctx.font = bodyFont
+            ctx.fillStyle = adv.bodyColor
+            for (const line of wrapWords(ctx, article.body.split(/\s+/), iw)) {
+                y += lead
+                if (y > y1) return
+                ctx.fillText(line, ix, y)
+            }
+            y += lead * 1.3
+            block++
+        }
+        return
+    }
     while (y < y1 - lead) {
         const r = rng()
         if (first || r < 0.3) {
@@ -706,10 +742,10 @@ function bakePaper(cv: HTMLCanvasElement, W: number, H: number, dpr: number, p: 
     ctx.textAlign = "center"
     ctx.textBaseline = "middle"
     ctx.font = `${8.3 * U}px ${SERIF}`
-    ctx.fillText("\u201CAll the News", colL + lbW / 2, ebT + ebH * 0.36)
-    ctx.fillText("That's Fit to Print\u201D", colL + lbW / 2, ebT + ebH * 0.66)
+    ctx.fillText(p.editorial?.badge?.[0] ?? "\u201CAll the News", colL + lbW / 2, ebT + ebH * 0.36)
+    ctx.fillText(p.editorial?.badge?.[1] ?? "That's Fit to Print\u201D", colL + lbW / 2, ebT + ebH * 0.66)
     ctx.font = `${8.8 * U}px ${SERIF}`
-    ctx.fillText("\u201CDaily Report\u201D", colR - rbW / 2, ebT + ebH / 2)
+    ctx.fillText(p.editorial?.edition ?? "\u201CDaily Report\u201D", colR - rbW / 2, ebT + ebH / 2)
 
     const title = String(p.title ?? "").trim()
     const words = title.split(/\s+/).filter(Boolean)
@@ -767,12 +803,12 @@ function bakePaper(cv: HTMLCanvasElement, W: number, H: number, dpr: number, p: 
     ctx.textBaseline = "middle"
     const my = (r1 + r2) / 2 + 0.5 * U
     ctx.textAlign = "left"
-    ctx.fillText("VOL.CLIX..", colL, my)
-    ctx.fillText("N273011", colL + (colR - colL) * 0.29, my)
+    ctx.fillText(p.editorial?.issue ?? "VOL.CLIX..", colL, my)
+    ctx.fillText(p.editorial ? "" : "N273011", colL + (colR - colL) * 0.29, my)
     ctx.textAlign = "center"
-    ctx.fillText("NEWYORK, MONDAY, JUNE 21", colL + (colR - colL) * 0.59, my)
+    ctx.fillText(p.editorial?.location ?? "NEWYORK, MONDAY, JUNE 21", colL + (colR - colL) * 0.59, my)
     ctx.textAlign = "right"
-    ctx.fillText("$6,00", colR, my)
+    ctx.fillText(p.editorial?.note ?? "$6,00", colR, my)
     ;(ctx as any).letterSpacing = "0px"
 
     const top = py + 161 * U + hs, bot = py + 981 * U
@@ -796,9 +832,9 @@ function bakePaper(cv: HTMLCanvasElement, W: number, H: number, dpr: number, p: 
             ctx.lineTo(x, bot)
             ctx.stroke()
         }
-        const last = k === count - 1
+        const last = k === count - 1 && !p.editorial?.articles.length
         const reserve = py + 840 * U
-        fillColumn(ctx, x, w, top, last ? reserve - 4 * U : bot, rng, U, adv)
+        fillColumn(ctx, x, w, top, last ? reserve - 4 * U : bot, rng, U, adv, p.editorial, k)
         if (last) {
             ctx.strokeStyle = adv.ruleColor
             ctx.lineWidth = Math.max(0.7, 1.2 * U)
@@ -810,6 +846,7 @@ function bakePaper(cv: HTMLCanvasElement, W: number, H: number, dpr: number, p: 
 }
 
 export interface StillPosterCreamProps {
+    editorial?: PaperlineEditorial
     background?: string
     ink?: string
     paper?: string
@@ -834,6 +871,8 @@ export interface StillPosterCreamProps {
         ruleColor?: string
         borderColor?: string
         titleSize?: number
+        headlineSize?: number
+        pixelRatio?: number
         bodySize?: number
         leading?: number
         columnWidth?: number
@@ -878,6 +917,7 @@ export default function StillPosterCream(props: StillPosterCreamProps) {
         background = "#000000",
         title = "The Newyork Times",
         mastheadFont,
+        editorial,
         image = {"alt":"","src":"https://cdn.brandfetch.io/id6O2oGzv-/theme/dark/symbol.svg?c=1dxbfHSJFAPEGdCLU4o5B"},
         tint = true,
         pageScale = 100,
@@ -891,7 +931,7 @@ export default function StillPosterCream(props: StillPosterCreamProps) {
     const rootRef = useRef<HTMLDivElement>(null)
     const canvasRef = useRef<HTMLCanvasElement>(null)
     const propsRef = useRef<any>(null)
-    propsRef.current = { text, size, speed, hold, dryness, ink, paper, background, title, mastheadFont, image, tint, pageScale, pageAlign, alignX, alignY, advanced }
+    propsRef.current = { text, size, speed, hold, dryness, ink, paper, background, title, mastheadFont, editorial, image, tint, pageScale, pageAlign, alignX, alignY, advanced }
 
     useEffect(() => {
         const root = rootRef.current
@@ -953,7 +993,10 @@ export default function StillPosterCream(props: StillPosterCreamProps) {
         const measure = () => {
             W = root.offsetWidth
             H = root.offsetHeight
-            dpr = canvasPixelRatio(2)
+            const requestedDpr = Number(propsRef.current.advanced?.pixelRatio)
+            dpr = requestedDpr > 0
+                ? Math.min(window.devicePixelRatio || 1, Math.max(1, Math.min(2, requestedDpr)))
+                : canvasPixelRatio(2)
             cv.width = Math.max(1, Math.round(W * dpr))
             cv.height = Math.max(1, Math.round(H * dpr))
         }
@@ -1043,7 +1086,7 @@ export default function StillPosterCream(props: StillPosterCreamProps) {
             const areaTop = Math.max(colTop + 4 * uP, 8 * uS)
             const areaBot = Math.max(areaTop + 40 * uS, Math.min(colBot - 3 * uP, H - 8 * uS))
 
-            const pk = [VW, VH, pdpr, p.paper, p.title, p.mastheadFont, p.tint, adv.margin, adv.mastheadColor, adv.headColor, adv.bodyColor, adv.ruleColor, adv.borderColor, adv.titleSize, adv.bodySize, adv.leading, adv.columnWidth, adv.columnVary, adv.seed, fontVer, imgState.ver].join("|")
+            const pk = [VW, VH, pdpr, p.paper, p.title, p.mastheadFont, JSON.stringify(p.editorial), p.tint, adv.margin, adv.mastheadColor, adv.headColor, adv.bodyColor, adv.ruleColor, adv.borderColor, adv.titleSize, adv.headlineSize, adv.bodySize, adv.leading, adv.columnWidth, adv.columnVary, adv.seed, fontVer, imgState.ver].join("|")
             if (pk !== paperKey) {
                 bakePaper(paperCv, VW, VH, pdpr, p, adv, logo)
                 paperKey = pk

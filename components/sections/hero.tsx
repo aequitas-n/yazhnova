@@ -14,7 +14,7 @@ export function Hero() {
             kind="hero-dither"
             priority
             sizes="100vw"
-            frameSrc="/frames/signal/hero-hands.png"
+            frameSrc="/frames/signal/hero-hands.png?v=2"
             className="monochrome"
           />
         </div>

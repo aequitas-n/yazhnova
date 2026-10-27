@@ -1,37 +1,32 @@
-# Stone introduction
+﻿# Stone introduction
 
-The requested intro runs once per tab session on a desktop-style fine pointer. The real hero-69 EmberHusk appears, opens to release **YAZH / NOVA** outward from the center, draws the name back in, reforms, and bursts outward again as a growing opening reveals the existing hands hero.
+The homepage opens with the real hero-69 EmberHusk: the stone separates, releases **YAZH / NOVA** from its center, reforms, then fractures again to reveal the hands hero. It runs once per tab session. Replay at `/?intro=replay`; anchored and reduced-motion visits go directly to the page.
 
-Replay it at [localhost:3000/?intro=replay](http://localhost:3000/?intro=replay). A normal return visit skips it; the replay query deliberately requests another run. Anchored visits go directly to the requested section.
+## Consistent live rendering
 
-## Choreography
+There is no poster-to-canvas crossfade. The ink background holds while the native shaders warm, and the stone fades in only after its first genuine 3D frame. The same renderer, perspective camera, geometry and procedural material remain throughout the opening and reformation. Desktop uses the native high-quality preset (DPR capped at 2); mobile uses medium (DPR capped at 1.5), eight shards and eight debris pieces. Quality does not change mid-sequence.
 
-| Time after the first rendered frame | Action                                                           |
-| ----------------------------------- | ---------------------------------------------------------------- |
-| 0.00–0.65 s                         | The solid stone settles into view                                |
-| 0.70–1.75 s                         | Actual rock fragments separate and rotate outward                |
-| 1.15–2.10 s                         | The two wordmark halves slide out from the center and expand     |
-| 2.10–2.95 s                         | The complete wordmark holds                                      |
-| 2.95–3.60 s                         | The letters shrink and return into the center                    |
-| 3.15–3.95 s                         | The same fragments close into the stone                          |
-| 3.95–4.30 s                         | The solid form holds briefly                                     |
-| 4.30–5.57 s                         | A second real fracture clears the center; the hero opens outward |
+`components/intro/cinematic-intro.tsx` drives the optional native choreography ref. The full sequence lasts approximately 5.57 seconds after readiness, or 2.1 seconds on mobile. The two DOM wordmark halves emerge from their center clips; the final expanding mask reveals the existing homepage.
 
-The stone's geometry, materials, procedural texture, lighting and render pipeline come from the installed source. `ember-husk.tsx` has an explicit, optional `choreography` ref controlling fracture, scale, rotation and pause; `onReady` starts the clock after a genuine rendered frame, and `onError` releases the page. Without these props, its original spring/pointer behavior remains in place for the final CTA and playground. The extension is recorded in [fixes.md](fixes.md).
+| Desktop time after readiness | Action                                    |
+| ---------------------------- | ----------------------------------------- |
+| 0.00-0.65 s                  | The live stone fades in and settles       |
+| 0.70-1.75 s                  | Native rock fragments separate and rotate |
+| 1.15-2.10 s                  | YAZH / NOVA emerge outward                |
+| 2.10-2.95 s                  | Wordmark holds                            |
+| 2.95-3.95 s                  | Text retracts and fragments reassemble    |
+| 3.95-4.30 s                  | Stone holds                               |
+| 4.30-5.57 s                  | Second fracture reveals the homepage      |
 
-`components/intro/cinematic-intro.tsx` holds the single GSAP timeline. The wordmark is real DOM typography, clipped at the center so it emerges in both directions. The expanding mask opens onto the existing homepage rather than creating a replacement hero. Copy remains in `content/site.ts`.
+## Interaction and cleanup
 
-## Loading, interaction and cleanup
+- The visible Skip intro button is removed. Escape remains available and is described to screen readers. Focus stays on the dialog during playback, then returns to the hero heading. These two noninteractive landmarks do not display an outline; links, buttons and form controls retain their keyboard focus indicators.
+- Reduced motion bypasses the sequence. Mobile plays the shorter live animation. Without JavaScript, the server-rendered site remains accessible through a `noscript` rule.
+- The loading watchdog releases the page after six seconds on desktop, or twelve seconds on mobile and explicit replay. Context failures and component errors also release the page.
+- Native shader warmup is cancellable. Hidden tabs pause the renderer and timeline. Other page canvases remain suspended until the intro finishes; unmounting disposes the native resources and restores scrolling.
 
-- A genuine captured stone frame appears while the dynamic 3D module initializes, then crossfades to the live object. The source's low-quality preset caps pixel ratio and bloom passes for the fullscreen intro.
-- **Skip intro** and **Escape** release the page immediately. Focus is contained during playback and returns to the hero after dismissal. Scrolling and the page's original styles are restored on cleanup.
-- Mobile/coarse pointers, reduced motion and data saving go straight to the hero. With JavaScript disabled, a `noscript` rule removes the cover and the server-rendered site remains available.
-- Loading normally has a 3.5-second watchdog; explicit replay allows 12 seconds for shader initialization during review. Context creation failures, context loss and component errors release the page.
-- The timeline and its renderer pause when the tab is hidden. The other visual adapters are held until the reveal so they do not compete with the intro.
-- Completion, skipping and route unmounting kill the timeline and dispose the original renderer, meshes, buffers, materials and render targets.
+## Verification
 
-## Review artifacts
+`tests/intro.spec.ts` covers the complete WebGL2 sequence, no image/button in the intro, Escape during pending compilation, session persistence, focused heading without an outline, mobile/reduced-motion/no-JavaScript access and WebGL failure recovery. `npm run capture:intro` records five screenshots and a video against a running production preview in `artifacts/`.
 
-`npm run capture:intro` captures five screenshots and `artifacts/intro-preview.webm` against a running local production preview. Video capture needs Chrome and `npx playwright install ffmpeg`; neither is required to build or deploy the site.
-
-The browser suite covers the natural sequence with a genuine WebGL2 context, button/Escape dismissal, session replay behavior, mobile/reduced-motion/no-JavaScript access and an injected WebGL initialization failure. The existing site checks still cover the final CTA's original renderer.
+The opening-quality update passed the production build, TypeScript check, five intro tests and both touch-viewport integration tests. Captures at desktop DPR 2 and 390px/412px touch viewports verified that the drawing-buffer size stays constant throughout the sequence. Both mobile runs used 4x CPU throttling and 4 Mbps network emulation, finished playback in 2.08/2.06 seconds, stayed within two live WebGL contexts and reported no console errors. These are Chrome emulation checks, not physical-device measurements. Screenshots, video and measured results are saved locally under `artifacts/intro-*`.

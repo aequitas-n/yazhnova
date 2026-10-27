@@ -33,11 +33,11 @@ test("desktop uses real source canvases and interactive sections work without er
     ["/", "hero-dither", "webgl"],
     ["/services", "pixels", "2d"],
     ["/ai-agents", "glassbound", "webgl2"],
-    ["/process", "cables", "webgl"],
+    ["/process", "plasma", "webgl"],
     ["/process", "strings", "2d"],
     ["/about", "globe", "webgl2"],
-    ["/engage", "gate", "webgl2"],
-    ["/contact", "ocean", "webgl2"],
+    ["/engage", "plasma", "webgl"],
+    ["/contact", "contact-rain", "webgl"],
   ]) {
     await page.goto(path);
     if (kind === "pixels") await page.locator(".service-stage-visual").scrollIntoViewIfNeeded();
@@ -141,7 +141,7 @@ test("form preselection, accessible validation and submission confirmation work"
     if (m.type() === "error") errors.push(m.text());
   });
   await page.goto(`/contact?service=${encodeURIComponent(site.contact.services[2])}`);
-  await expect(page.locator('main [data-visual="ocean"] canvas')).toHaveCount(1, {
+  await expect(page.locator('main [data-visual="contact-rain"] canvas')).toHaveCount(1, {
     timeout: 20000,
   });
   await expect(page.locator("#service")).toHaveValue(site.contact.services[2]);

@@ -19,6 +19,7 @@ const DEFAULTS = {
   image: { src: DEFAULT_IMAGE },
   fit: "cover" as "cover" | "contain",
   focusY: 50,
+  rightOffsetY: 0,
   ditherStyle: "bayer8" as "bayer8" | "lines" | "noise",
   dotSize: 5,
   revealRadius: 100,
@@ -32,6 +33,7 @@ interface DitherRevealProps {
   image?: { src?: string; url?: string; alt?: string } | string;
   fit?: "cover" | "contain";
   focusY?: number;
+  rightOffsetY?: number;
   ditherStyle?: "bayer8" | "lines" | "noise";
   dotSize?: number;
   revealRadius?: number;
@@ -62,6 +64,7 @@ function settings(p: DitherRevealProps) {
   return {
     fit: (p?.fit ?? DEFAULTS.fit) === "contain" ? 1 : 0,
     focusY: clamp(p?.focusY, 0, 100, DEFAULTS.focusY) / 100,
+    rightOffsetY: clamp(p?.rightOffsetY, 0, 20, DEFAULTS.rightOffsetY) / 100,
     ditherStyle: p?.ditherStyle ?? DEFAULTS.ditherStyle,
     pixelSize: clamp(p?.dotSize, 1, 20, DEFAULTS.dotSize) / 2,
     revealRadius: clamp(p?.revealRadius, 20, 600, DEFAULTS.revealRadius),
@@ -79,6 +82,7 @@ function __OriginkitBase_DitherReveal(props: DitherRevealProps) {
     image = DEFAULTS.image,
     fit = DEFAULTS.fit,
     focusY = DEFAULTS.focusY,
+    rightOffsetY = DEFAULTS.rightOffsetY,
     ditherStyle = DEFAULTS.ditherStyle,
     dotSize = DEFAULTS.dotSize,
     revealRadius = DEFAULTS.revealRadius,
@@ -92,6 +96,7 @@ function __OriginkitBase_DitherReveal(props: DitherRevealProps) {
   const S = settings({
     fit,
     focusY,
+    rightOffsetY,
     ditherStyle,
     dotSize,
     revealRadius,
@@ -172,6 +177,7 @@ function __OriginkitBase_DitherReveal(props: DitherRevealProps) {
     const uResolution = u("uResolution");
     const uFit = u("uFit");
     const uFocusY = u("uFocusY");
+    const uRightOffsetY = u("uRightOffsetY");
 
     const texture = gl.createTexture();
     gl.bindTexture(gl.TEXTURE_2D, texture);
@@ -276,6 +282,7 @@ function __OriginkitBase_DitherReveal(props: DitherRevealProps) {
       );
       gl!.uniform1f(uFit, L.fit);
       gl!.uniform1f(uFocusY, L.focusY);
+      gl!.uniform1f(uRightOffsetY, L.rightOffsetY);
       gl!.drawArrays(gl!.TRIANGLES, 0, 3);
     }
     render();
@@ -345,6 +352,7 @@ uniform float uImageAspect;
 uniform vec2 uResolution;
 uniform float uFit;
 uniform float uFocusY;
+uniform float uRightOffsetY;
 
 varying vec2 vUv;
 
@@ -380,9 +388,17 @@ vec2 fitUv(vec2 uv) {
     vec2 cover = uCanvasAspect < uImageAspect
         ? vec2(uCanvasAspect / uImageAspect, 1.0)
         : vec2(1.0, uImageAspect / uCanvasAspect);
-    vec2 s = uFit > 0.5 ? 1.0 / cover : cover / (1.0 + 2.0 * uWaveMargin);
+    // Contain expands the sampling axis that needs letterboxing, keeping the
+    // original image proportions instead of inverting the cover crop axis.
+    vec2 contain = uCanvasAspect < uImageAspect
+        ? vec2(1.0, uImageAspect / uCanvasAspect)
+        : vec2(uCanvasAspect / uImageAspect, 1.0);
+    vec2 s = uFit > 0.5 ? contain : cover / (1.0 + 2.0 * uWaveMargin);
     vec2 out_ = (uv - 0.5) * s + 0.5;
     out_.y += (1.0 - s.y) * (0.5 - uFocusY) * step(s.y, 1.0);
+    // Opt-in for the hands image: its empty center separates the two subjects.
+    // Lower the right subject in source space, retaining the left palm's crop.
+    out_.y += uRightOffsetY * smoothstep(0.46, 0.49, out_.x);
     return out_;
 }
 

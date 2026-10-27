@@ -1,6 +1,6 @@
 import { test, expect } from "@playwright/test";
 
-test("Skip cancels a pending native shader warmup without resurrecting its canvas", async ({
+test("Escape cancels a pending native shader warmup without resurrecting its canvas", async ({
   page,
 }) => {
   const errors: string[] = [];
@@ -28,7 +28,7 @@ test("Skip cancels a pending native shader warmup without resurrecting its canva
   await page.goto("/?intro=replay");
   await expect(page.locator(".intro-stone canvas")).toHaveCount(1, { timeout: 15000 });
   await expect(page.locator(".site-intro")).toHaveAttribute("data-intro-phase", "loading");
-  await page.getByRole("button", { name: site.intro.skip }).click();
+  await page.keyboard.press("Escape");
   await expect(page.locator(".site-intro")).toHaveCount(0);
   await page.waitForTimeout(350);
   await expect(page.locator(".intro-stone canvas")).toHaveCount(0);
@@ -73,7 +73,9 @@ test("real stone opens, reveals the wordmark, reforms and releases the homepage"
   await expect(intro.locator("canvas")).toHaveAttribute("data-render-context", "webgl2");
   await expect(page.locator(".intro-page")).toHaveAttribute("inert", "");
   await expect(page.locator(".hero-art canvas")).toHaveCount(0);
-  await expect(page.getByRole("button", { name: site.intro.skip })).toBeFocused();
+  await expect(intro).toBeFocused();
+  await expect(intro.locator("button, img")).toHaveCount(0);
+  await expect(intro).toHaveCSS("outline-style", "none");
   await expect(intro).toHaveAttribute("data-intro-beat", "wordmark", { timeout: 5000 });
   expect(await intro.locator(".intro-word-left > span").textContent()).toBe("YAZH");
   expect(await intro.locator(".intro-word-right > span").textContent()).toBe("NOVA");
@@ -91,19 +93,22 @@ test("real stone opens, reveals the wordmark, reforms and releases the homepage"
   expect(beats).toEqual(["formed", "opening", "wordmark", "closing", "reformed", "burst"]);
   expect(history).toContain("revealing:burst");
   await expect(page.locator(".intro-page")).not.toHaveAttribute("inert");
+  await expect(page.locator("#hero-title")).toBeFocused();
+  await expect(page.locator("#hero-title")).toHaveCSS("outline-style", "none");
   await expect(page.locator(".hero-art canvas")).toHaveCount(1, { timeout: 15000 });
   expect(await page.evaluate(() => document.documentElement.style.overflow)).not.toBe("hidden");
   expect(await page.evaluate(() => sessionStorage.getItem("yazhnova:intro:v1"))).toBe("1");
   expect(errors).toEqual([]);
 });
 
-test("intro can be skipped with a button or Escape and stays skipped on return visits", async ({
+test("intro has no Skip button, supports Escape and stays skipped on return visits", async ({
   page,
 }) => {
   await page.goto("/?intro=replay");
   const intro = page.getByRole("dialog", { name: site.intro.title });
   await expect(intro).toBeVisible();
-  await page.getByRole("button", { name: site.intro.skip }).click();
+  await expect(intro.locator("button")).toHaveCount(0);
+  await page.keyboard.press("Escape");
   await expect(intro).toHaveCount(0);
   await expect(page.locator("#hero-title")).toBeVisible();
   await page.goto("/");

@@ -31,6 +31,7 @@ export function ScrambleLabel({ text }: { text: string }) {
           <Source
             {...editorialPresets.scrambletext}
             words={text}
+            tag="div"
             color="inherit"
             font={labelFont}
           />

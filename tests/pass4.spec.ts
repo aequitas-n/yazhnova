@@ -113,7 +113,11 @@ for (const width of [390, 412])
       await expect(page.locator("main canvas")).toHaveCount(0);
       await expect(page.locator(".footer-wordmark canvas")).toHaveCount(1, { timeout: 20000 });
       await page.goto("/?intro=replay");
-      await page.getByRole("button", { name: site.intro.skip }).click();
+      await expect(page.locator(".site-intro")).toHaveAttribute(
+        "data-intro-phase",
+        /loading|playing/,
+      );
+      await page.keyboard.press("Escape");
       await expect(page.locator(".site-intro")).toHaveCount(0);
       expect(errors).toEqual([]);
     } finally {

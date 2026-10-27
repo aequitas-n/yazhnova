@@ -1,9 +1,7 @@
 "use client";
 
 import dynamic from "next/dynamic";
-import Image from "next/image";
 import { Component, useCallback, useEffect, useRef, useState, type ReactNode } from "react";
-import { ArrowUpRight } from "lucide-react";
 import { site } from "@/content/site";
 import { IntroActiveContext } from "./intro-context";
 import type { IntroBeat } from "./cinematic-intro";
@@ -32,7 +30,7 @@ export function IntroExperience({ children }: { children: ReactNode }) {
   const [phase, setPhase] = useState<Phase>("pending");
   const [beat, setBeat] = useState<IntroBeat>("formed");
   const [compact, setCompact] = useState(false);
-  const skip = useRef<HTMLButtonElement>(null);
+  const dialog = useRef<HTMLDivElement>(null);
   const replaying = useRef(false);
   const finish = useCallback(() => {
     try {
@@ -77,12 +75,13 @@ export function IntroExperience({ children }: { children: ReactNode }) {
     const gutter = innerWidth - document.documentElement.clientWidth;
     document.documentElement.style.overflow = "hidden";
     if (gutter) document.body.style.paddingRight = `${gutter}px`;
-    skip.current?.focus({ preventScroll: true });
+    const overlay = dialog.current;
+    overlay?.focus({ preventScroll: true });
     const keydown = (event: KeyboardEvent) => {
       if (event.key === "Escape") finish();
       if (event.key === "Tab") {
         event.preventDefault();
-        skip.current?.focus();
+        overlay?.focus({ preventScroll: true });
       }
     };
     document.addEventListener("keydown", keydown);
@@ -90,7 +89,7 @@ export function IntroExperience({ children }: { children: ReactNode }) {
       document.documentElement.style.overflow = originalOverflow;
       document.body.style.paddingRight = originalPadding;
       document.removeEventListener("keydown", keydown);
-      if (document.activeElement === skip.current || document.activeElement === document.body) {
+      if (document.activeElement === overlay || document.activeElement === document.body) {
         const heading = document.querySelector<HTMLElement>("#hero-title");
         heading?.setAttribute("tabindex", "-1");
         heading?.focus({ preventScroll: true });
@@ -105,6 +104,8 @@ export function IntroExperience({ children }: { children: ReactNode }) {
       </div>
       {active && (
         <div
+          ref={dialog}
+          tabIndex={-1}
           className="site-intro"
           data-compact={compact}
           data-intro-phase={phase}
@@ -112,18 +113,15 @@ export function IntroExperience({ children }: { children: ReactNode }) {
           role="dialog"
           aria-modal="true"
           aria-labelledby="intro-title"
+          aria-describedby="intro-dismiss"
         >
           <p id="intro-title" className="sr-only">
             {site.intro.title}
           </p>
+          <p id="intro-dismiss" className="sr-only">
+            {site.intro.dismiss}
+          </p>
           <div className="intro-visual-layer">
-            <Image
-              src="/frames/signal/ember.png"
-              alt=""
-              fill
-              sizes="100vw"
-              className="intro-poster"
-            />
             {phase !== "pending" && (
               <IntroBoundary onError={finish}>
                 <CinematicIntro
@@ -141,10 +139,6 @@ export function IntroExperience({ children }: { children: ReactNode }) {
               <span className="signal" />
               {site.hero.label}
             </span>
-            <button ref={skip} type="button" className="intro-skip" onClick={finish}>
-              {site.intro.skip}
-              <ArrowUpRight size={15} aria-hidden="true" />
-            </button>
             <span className="intro-progress" aria-hidden="true" />
           </div>
         </div>

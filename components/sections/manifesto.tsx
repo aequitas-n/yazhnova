@@ -6,7 +6,11 @@ export function Manifesto() {
   return (
     <section id="manifesto" className="manifesto-section ink section">
       <div className="manifesto-newsprint" aria-hidden="true">
-        <LiveVisual kind="manifesto" />
+        <LiveVisual
+          kind="manifesto"
+          sizes="100vw"
+          frameSrc="/frames/signal/manifesto.png?v=editorial"
+        />
       </div>
       <div className="container">
         <div className="manifesto-heading">

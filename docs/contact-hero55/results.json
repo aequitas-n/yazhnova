@@ -1,0 +1,54 @@
+[
+  {
+    "name": "desktop",
+    "width": 1440,
+    "height": 1000,
+    "drawsPerSecond": 144.11090056803684,
+    "dpr": 1,
+    "canvasCount": 1,
+    "overflow": false,
+    "source": true,
+    "form": true,
+    "disposed": true,
+    "errors": []
+  },
+  {
+    "name": "iphone",
+    "width": 390,
+    "height": 844,
+    "drawsPerSecond": 144.0606151243002,
+    "dpr": 0.7512820512820513,
+    "canvasCount": 1,
+    "overflow": false,
+    "source": true,
+    "form": true,
+    "disposed": true,
+    "errors": []
+  },
+  {
+    "name": "android",
+    "width": 412,
+    "height": 915,
+    "drawsPerSecond": 144.073670660674,
+    "dpr": 0.75,
+    "canvasCount": 1,
+    "overflow": false,
+    "source": true,
+    "form": true,
+    "disposed": true,
+    "errors": []
+  },
+  {
+    "name": "reduced-motion",
+    "width": 390,
+    "height": 844,
+    "drawsPerSecond": 0,
+    "dpr": null,
+    "canvasCount": 0,
+    "overflow": false,
+    "source": true,
+    "form": true,
+    "disposed": null,
+    "errors": []
+  }
+]

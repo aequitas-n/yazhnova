@@ -48,6 +48,9 @@ export function LiveVisual({
   const [visible, setVisible] = useState(true);
   const [loaded, setLoaded] = useState(priority);
   const [exposure, setExposure] = useState(0);
+  // Keep the SSR/reduced-motion frame available without preloading a large
+  // decorative bitmap ahead of the live chapter scene and its fonts.
+  const preloadFrame = priority && kind !== "plasma" && kind !== "contact-rain";
   useEffect(() => {
     const media = matchMedia("(prefers-reduced-motion: no-preference)");
     const sync = () => setAllowed(media.matches);
@@ -123,9 +126,9 @@ export function LiveVisual({
           fill
           sizes={sizes}
           className="visual-frame"
-          priority={priority}
-          fetchPriority={priority ? "high" : undefined}
-          quality={kind === "pixels" || kind === "manifesto" ? 65 : 75}
+          priority={preloadFrame}
+          fetchPriority={preloadFrame ? "high" : undefined}
+          quality={kind === "manifesto" ? 90 : kind === "pixels" ? 65 : 75}
         />
       )}
       {live && (

@@ -119,11 +119,26 @@ export const sourceCatalog = [
     cost: "Medium",
   },
   {
+    slug: "hero-44",
+    kind: "section",
+    title: "Signal, in motion",
+    signature: "An interactive plasma sphere above a misted ridge, with editorial display type.",
+    cost: "Medium",
+  },
+  {
     slug: "hero-51",
     kind: "section",
     title: "Type with a point of view",
     signature: "Two ray-traced eyes embedded in an oversized headline.",
     cost: "High",
+  },
+  {
+    slug: "hero-55",
+    kind: "section",
+    title: "A conversation, in the rain",
+    signature:
+      "A native rain-slick street shader with puddle reflections and pointer-driven light.",
+    cost: "Medium",
   },
   {
     slug: "hero-69",

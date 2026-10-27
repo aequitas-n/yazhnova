@@ -54,8 +54,7 @@ export default function CinematicIntro({
     gsap.set(note.current, { opacity: 0, y: 8 });
     timeline
       .call(() => onBeat("formed"), [], 0)
-      .to(overlay!.querySelector(".intro-poster"), { opacity: 0, duration: 0.35 }, 0)
-      .to(root.current.querySelector(".intro-stone"), { opacity: 1, duration: 0.35 }, 0)
+      .to(root.current.querySelector(".intro-stone"), { opacity: 1, duration: 0.22 }, 0)
       .to(cue.current, { scale: 1, duration: 0.65, ease: "power3.out" }, 0)
       .to(cue.current, { rotation: 0.18, duration: 3, ease: "none" }, 0)
       .call(() => onBeat("opening"), [], 0.7)
@@ -110,7 +109,7 @@ export default function CinematicIntro({
         <EmberHusk
           {...visualPresets.ember}
           size={compact ? 1.7 : 2.2}
-          quality="low"
+          quality={compact ? "medium" : "high"}
           choreography={cue}
           entrance={{ scatter: 0, tumble: 0, stagger: 0 }}
           response={{ strength: 0, repel: 0, settle: 8 }}

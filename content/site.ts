@@ -82,6 +82,51 @@ export const pageContent = {
     next: "contact-details",
   },
 };
+export const chapterHeroes = {
+  services: {
+    number: "01",
+    verb: "BUILD",
+    terms: ["Web", "SaaS", "Agentic AI"],
+    align: "left",
+    rotation: 0,
+  },
+  agents: {
+    number: "02",
+    verb: "ACT",
+    terms: ["Context", "Tools", "Useful action"],
+    align: "left",
+    rotation: 42,
+  },
+  work: {
+    number: "03",
+    verb: "MAKE",
+    terms: ["Design", "Engineering", "Product"],
+    align: "center",
+    rotation: 84,
+  },
+  process: {
+    number: "04",
+    verb: "THINK",
+    terms: ["Discover", "Design", "Build", "Ship"],
+    align: "left",
+    rotation: 126,
+  },
+  engage: {
+    number: "05",
+    verb: "TOGETHER",
+    terms: ["Projects", "Teams", "Partnerships"],
+    align: "right",
+    rotation: 168,
+  },
+  about: {
+    number: "06",
+    verb: "INTENT",
+    terms: ["Independent minds", "Considered software"],
+    align: "left",
+    rotation: 210,
+  },
+} as const;
+
 export const multiPage = {
   home: {
     featured: "ONE PRODUCT DIRECTION",
@@ -446,7 +491,7 @@ export const site = {
   },
   intro: {
     title: "Yazhnova introduction",
-    skip: "Skip intro",
+    dismiss: "Press Escape to continue to the website.",
     note: "INDEPENDENT THINKING. TAKING SHAPE.",
   },
   hero: {
@@ -465,6 +510,35 @@ export const site = {
     number: "01",
     label: "THE WAY WE THINK",
     title: "THE YAZHNOVA DISPATCH",
+    newspaper: {
+      badge: ["Independent minds.", "Considered software."],
+      edition: "THE STUDIO JOURNAL",
+      issue: "VOL. 01",
+      location: "DESIGN, ENGINEERING & INTELLIGENCE",
+      note: "BUILT WITH INTENT",
+      articles: [
+        {
+          title: "A better question comes first",
+          body: "Good software begins with understanding. Before we draw a screen or write a line of code, we ask what needs to change. Who is it for? What should become easier? The answers give every decision a purpose, from the first sketch to the final release.",
+        },
+        {
+          title: "Craft lives in the details",
+          body: "A clear interface. A fast response. A workflow that feels natural. These are the small decisions that make a product useful. We bring design and engineering into the same conversation, building with care for the people who will use it every day.",
+        },
+        {
+          title: "From idea to working product",
+          body: "Websites, applications and SaaS products need more than a good first impression. They need a foundation that can grow. We connect the experience on the screen with the systems behind it, so the whole product works together from day one.",
+        },
+        {
+          title: "Intelligence with a purpose",
+          body: "An agent should move the work forward. We connect reasoning to useful tools, clear permissions and human oversight. From qualifying a lead to preparing a document, the goal is practical: fewer repetitive steps and more time for considered decisions.",
+        },
+        {
+          title: "Built to keep moving",
+          body: "Launch is a beginning. We build in room for feedback, change and growth, with thoughtful architecture and a clear path to the next release. The result is software that can evolve with the business instead of holding it back.",
+        },
+      ],
+    },
     brush: "We build\nwhat's next.",
     signalNote: "FROM RAW POTENTIAL TO REAL POSSIBILITY.",
     heading: "Thought before code.",

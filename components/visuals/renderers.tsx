@@ -5,6 +5,10 @@ import { visualPresets, type VisualKind } from "@/lib/visual-presets";
 import { mobileVisualPresets } from "@/lib/mobile-visual-presets";
 import { isMobileCanvas } from "@/lib/canvas-quality";
 const renderers = {
+  "contact-rain": dynamic(() => import("@/components/originkit/ui/hero-55/rain-puddle"), {
+    ssr: false,
+  }),
+  plasma: dynamic(() => import("@/components/originkit/ui/hero-44/plasma-ring"), { ssr: false }),
   iris: dynamic(() => import("@/components/originkit/ui/hero-51/grin-iris"), { ssr: false }),
   cables: dynamic(() => import("@/components/originkit/ui/light-cables"), { ssr: false }),
   globe: dynamic(() => import("@/components/originkit/ui/features-02/globe"), { ssr: false }),

@@ -1,0 +1,271 @@
+
+.hero-55 {
+  background: #07080b;
+  color: #f4f1ea;
+  font-family: "Barlow", system-ui, sans-serif;
+  -webkit-font-smoothing: antialiased;
+  position: relative;
+  isolation: isolate;
+}
+.hero-55,
+.hero-55 * {
+  box-sizing: border-box;
+}
+.hero-55 .hero {
+  position: relative;
+  min-height: var(--ok-design-h, 100vh);
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+  isolation: isolate;
+}
+.hero-55 #rain {
+  position: absolute;
+  inset: 0;
+  z-index: -2;
+}
+.hero-55 .hero::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  z-index: -1;
+  pointer-events: none;
+  background:
+    linear-gradient(0deg, rgba(7, 8, 11, 0.92) 0%, rgba(7, 8, 11, 0.55) 34%, rgba(7, 8, 11, 0) 62%),
+    linear-gradient(90deg, rgba(7, 8, 11, 0.55), rgba(7, 8, 11, 0) 55%),
+    linear-gradient(180deg, rgba(7, 8, 11, 0.6), rgba(7, 8, 11, 0) 18%);
+}
+.hero-55 .wrap {
+  width: 100%;
+  max-width: 1360px;
+  margin: 0 auto;
+  padding: 0 40px;
+}
+.hero-55 .hero nav,
+.hero-55 .hero .bottom {
+  pointer-events: none;
+}
+.hero-55 .hero a {
+  pointer-events: auto;
+}
+
+.hero-55 nav {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  height: 84px;
+}
+.hero-55 .logo {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  color: #f4f1ea;
+  text-decoration: none;
+  font:
+    800 26px "Barlow Condensed",
+    sans-serif;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+}
+.hero-55 .logo svg {
+  width: 22px;
+  height: 26px;
+}
+.hero-55 .links {
+  display: flex;
+  gap: 34px;
+}
+.hero-55 .links a,
+.hero-55 .bag {
+  color: rgba(244, 241, 234, 0.78);
+  text-decoration: none;
+  font:
+    600 15px "Barlow Condensed",
+    sans-serif;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+.hero-55 .links a:hover,
+.hero-55 .bag:hover {
+  color: #ffd23f;
+}
+.hero-55 .bag {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  color: #f4f1ea;
+}
+.hero-55 .bag i {
+  display: inline-grid;
+  place-items: center;
+  min-width: 20px;
+  height: 20px;
+  padding: 0 6px;
+  border-radius: 10px;
+  background: #ffd23f;
+  color: #111;
+  font:
+    600 12px "Barlow",
+    sans-serif;
+  font-style: normal;
+  letter-spacing: 0;
+}
+
+.hero-55 .bottom {
+  margin-top: auto;
+  padding-bottom: 56px;
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) auto;
+  gap: 48px;
+  align-items: end;
+}
+.hero-55 .new {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  margin: 0 0 20px;
+  font:
+    600 14px "Barlow Condensed",
+    sans-serif;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: rgba(244, 241, 234, 0.85);
+}
+.hero-55 .new b {
+  padding: 4px 9px;
+  background: #ffd23f;
+  color: #111;
+  font-weight: 600;
+}
+.hero-55 h1 {
+  margin: 0 0 22px;
+  font:
+    800 clamp(64px, 10.5vw, 168px)/0.84 "Barlow Condensed",
+    sans-serif;
+  text-transform: uppercase;
+  letter-spacing: -0.005em;
+}
+.hero-55 h1 span {
+  color: #ffd23f;
+}
+.hero-55 .lede {
+  margin: 0 0 30px;
+  max-width: 470px;
+  font-size: 18px;
+  line-height: 1.5;
+  color: rgba(244, 241, 234, 0.8);
+}
+.hero-55 .ctas {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  flex-wrap: wrap;
+}
+.hero-55 .btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 14px;
+  height: 56px;
+  padding: 0 26px;
+  background: #ffd23f;
+  color: #111;
+  text-decoration: none;
+  font:
+    600 17px "Barlow Condensed",
+    sans-serif;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+.hero-55 .btn small {
+  font:
+    500 15px "Barlow",
+    sans-serif;
+  letter-spacing: 0;
+  text-transform: none;
+  padding-left: 14px;
+  border-left: 1px solid rgba(17, 17, 17, 0.3);
+}
+.hero-55 .btn:hover {
+  background: #ffe07a;
+}
+.hero-55 .ghost {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  height: 56px;
+  padding: 0 22px;
+  border: 1.5px solid rgba(244, 241, 234, 0.45);
+  color: #f4f1ea;
+  text-decoration: none;
+  font:
+    600 17px "Barlow Condensed",
+    sans-serif;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+.hero-55 .ghost:hover {
+  border-color: #f4f1ea;
+}
+.hero-55 .ghost svg {
+  width: 12px;
+  height: 12px;
+  fill: currentColor;
+}
+.hero-55 .specs {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+  display: grid;
+  gap: 0;
+  min-width: 270px;
+  border-top: 1px solid rgba(244, 241, 234, 0.28);
+}
+.hero-55 .specs li {
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+  gap: 24px;
+  padding: 13px 0;
+  border-bottom: 1px solid rgba(244, 241, 234, 0.28);
+}
+.hero-55 .specs span {
+  font-size: 14px;
+  color: rgba(244, 241, 234, 0.7);
+}
+.hero-55 .specs b {
+  font:
+    600 24px "Barlow Condensed",
+    sans-serif;
+  color: #f4f1ea;
+}
+
+@media (max-width: 960px) {
+  .hero-55 .links {
+    display: none;
+  }
+  .hero-55 .bottom {
+    grid-template-columns: 1fr;
+    gap: 36px;
+  }
+  .hero-55 .specs {
+    min-width: 0;
+  }
+}
+@media (max-width: 560px) {
+  .hero-55 .wrap {
+    padding: 0 20px;
+  }
+  .hero-55 nav {
+    height: 68px;
+  }
+  .hero-55 .bottom {
+    padding-bottom: 32px;
+  }
+  .hero-55 .lede {
+    font-size: 16px;
+  }
+  .hero-55 .btn,
+  .hero-55 .ghost {
+    height: 52px;
+  }
+}

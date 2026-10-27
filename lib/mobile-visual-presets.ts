@@ -2,7 +2,23 @@ import type { VisualKind } from "./visual-presets";
 
 // Cost controls only. Brand colors and story/graph inputs come from the composition.
 export const mobileVisualPresets: Partial<Record<VisualKind, Record<string, unknown>>> = {
-  "hero-dither": { dotSize: 5, wave: true, waveSpeed: 8, waveDensity: 12 },
+  "contact-rain": {
+    pixelRatio: 0.75,
+    rain: 68,
+    speed: 28,
+    drops: { ripples: 25, streaks: 16 },
+    cursor: { reach: 28, ripple: 40, glow: 20 },
+  },
+  plasma: { density: 48, speed: 20, waveHeight: 12, scale: 42 },
+  manifesto: { advanced: { pixelRatio: 1.5 } },
+  "hero-dither": {
+    fit: "contain",
+    focusY: 50,
+    dotSize: 5,
+    wave: true,
+    waveSpeed: 8,
+    waveDensity: 12,
+  },
   iris: { scale: 95, advanced: { fiber: 30, veins: 0, gloss: 50 } },
   pixels: { density: 25, advanced: { cellsAcross: 72, grain: 0, halo: 0 } },
   liquid: { cellSize: 48, intensity: 28, radius: 100 },

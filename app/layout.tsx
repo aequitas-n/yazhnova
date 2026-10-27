@@ -5,6 +5,8 @@ import "./site.css";
 import "./cohesion.css";
 import "./stories.css";
 import "./pages.css";
+import "./chapters.css";
+import "./contact-hero.css";
 import { site } from "@/content/site";
 export const metadata: Metadata = {
   metadataBase: new URL(site.url),

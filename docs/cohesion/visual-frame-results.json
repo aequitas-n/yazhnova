@@ -1,10 +1,5 @@
 [
   {
-    "kind": "hero-dither",
-    "canvases": 1,
-    "errors": []
-  },
-  {
     "kind": "pixels",
     "canvases": 1,
     "errors": []
@@ -86,6 +81,11 @@
   },
   {
     "kind": "ocean",
+    "canvases": 1,
+    "errors": []
+  },
+  {
+    "kind": "hero-dither",
     "canvases": 1,
     "errors": []
   }

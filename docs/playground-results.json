@@ -366,6 +366,35 @@
     "screenshot": "docs/shots/hero-40.png"
   },
   {
+    "slug": "hero-44",
+    "frames": [
+      {
+        "url": "http://localhost:3001/playground/render/hero-44?palette=default",
+        "canvases": [
+          {
+            "width": 208,
+            "height": 208,
+            "context": "webgl",
+            "visible": true
+          }
+        ]
+      },
+      {
+        "url": "http://localhost:3001/playground/render/hero-44?palette=editorial",
+        "canvases": [
+          {
+            "width": 208,
+            "height": 208,
+            "context": "webgl",
+            "visible": true
+          }
+        ]
+      }
+    ],
+    "errors": [],
+    "screenshot": "docs/shots/hero-44.png"
+  },
+  {
     "slug": "hero-51",
     "frames": [
       {
@@ -405,6 +434,35 @@
     ],
     "errors": [],
     "screenshot": "docs/shots/hero-51.png"
+  },
+  {
+    "slug": "hero-55",
+    "frames": [
+      {
+        "url": "http://localhost:3001/playground/render/hero-55?palette=default",
+        "canvases": [
+          {
+            "width": 676,
+            "height": 696,
+            "context": "webgl",
+            "visible": true
+          }
+        ]
+      },
+      {
+        "url": "http://localhost:3001/playground/render/hero-55?palette=editorial",
+        "canvases": [
+          {
+            "width": 676,
+            "height": 696,
+            "context": "webgl",
+            "visible": true
+          }
+        ]
+      }
+    ],
+    "errors": [],
+    "screenshot": "docs/shots/hero-55.png"
   },
   {
     "slug": "hero-69",

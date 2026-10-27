@@ -324,9 +324,6 @@
     pointer-events: none;
     opacity: 0;
   }
-  .intro-poster {
-    object-fit: cover;
-  }
   .intro-wordmark {
     position: absolute;
     inset: 0;
@@ -394,24 +391,6 @@
     font-size: 8px;
     letter-spacing: 0.09em;
     color: #686157;
-  }
-  .intro-skip {
-    position: absolute;
-    right: 40px;
-    bottom: 35px;
-    display: inline-flex;
-    align-items: center;
-    gap: 25px;
-    padding: 10px 15px;
-    border: 1px solid #0a0a0a30;
-    background: var(--paper);
-    color: var(--ink);
-    font-size: 11px;
-    pointer-events: auto;
-  }
-  .intro-skip:hover {
-    background: var(--ink);
-    color: var(--paper);
   }
   .intro-progress {
     position: absolute;
