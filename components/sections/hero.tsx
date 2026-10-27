@@ -1,56 +1,70 @@
 import Link from "next/link";
-import { ArrowDown, ArrowRight, ArrowUpRight } from "lucide-react";
+import { ArrowDownRight, ArrowUpRight } from "lucide-react";
 import { site } from "@/content/site";
-import { Button } from "@/components/ui/button";
-import { ScrambleText } from "@/components/effects/scramble-text";
-import { Horizon } from "@/components/effects/horizon";
-
+import { GridRails } from "@/components/originkit/ui/hero-28/grid-frame";
+import { LiveVisual } from "@/components/visuals/live-visual";
+import { ProjectLink } from "@/components/ui/project-link";
+import { ScrambleText, PredictiveArc02 } from "@/components/slots";
 export function Hero() {
   return (
-    <section className="hero" aria-labelledby="hero-title">
-      <div className="hero-grid" aria-hidden="true" />
-      <div className="container hero-container">
-        <div className="hero-copy">
-          <div className="availability">
-            <span className="status-dot" />
-            {site.hero.availability}
-            <ArrowUpRight size={13} />
+    <section className="hero-section paper" aria-labelledby="hero-title">
+      <div className="hero-stage">
+        <div className="hero-art" aria-hidden="true">
+          <LiveVisual
+            kind="hero-dither"
+            priority
+            sizes="100vw"
+            frameSrc="/frames/hero-hands.png"
+            className="monochrome"
+          />
+        </div>
+        <div className="source-rails" aria-hidden="true">
+          <GridRails />
+        </div>
+        <div className="container hero-layout">
+          <div className="hero-eyebrow">
+            <span className="signal" />
+            {site.hero.label}
           </div>
-          <p className="eyebrow hero-eyebrow">{site.hero.eyebrow}</p>
           <h1 id="hero-title">
-            {site.hero.lineOne}
+            <ScrambleText text={site.hero.lines[0]} />
             <br />
-            <span className="hero-gradient">
-              <ScrambleText text={site.hero.lineTwo} />
-            </span>
+            {site.hero.lines[1]}
+            <br />
+            <em>{site.hero.serif}</em>
+            <span className="hero-period">.</span>
           </h1>
-          <p className="hero-description">{site.hero.description}</p>
-          <div className="hero-buttons">
-            <Button asChild className="glow-border">
-              <Link href="/contact">
-                {site.actions.start}
-                <ArrowUpRight size={17} />
-              </Link>
-            </Button>
-            <Button variant="ghost" asChild>
-              <Link href="/#work">
+          <div className="hero-bottom-copy">
+            <p>{site.hero.description}</p>
+            <div className="hero-actions">
+              <ProjectLink>{site.actions.start}</ProjectLink>
+              <Link className="text-link" href="/#work">
                 {site.actions.work}
-                <ArrowRight size={17} />
+                <ArrowUpRight size={15} />
               </Link>
-            </Button>
+            </div>
+            <span>{site.hero.note}</span>
           </div>
-          <p className="hero-note">{site.hero.note}</p>
+          <div className="hero-baseline mono">
+            <span>{site.hero.baseline[0]}</span>
+            <span>{site.hero.baseline[1]}</span>
+            <a href="#manifesto" aria-label={site.manifesto.label}>
+              <ArrowDownRight size={20} />
+            </a>
+          </div>
         </div>
-        <Horizon />
-        <div className="hero-baseline">
-          <span className="mono">{site.hero.bottomLabel}</span>
-          <a href="#services" className="scroll-hint">
-            <span>{site.hero.scroll}</span>
-            <ArrowDown size={14} />
-          </a>
-          <span className="hero-coordinates mono">{site.hero.visual.speed}</span>
-        </div>
+        <span className="hero-art-caption mono" aria-hidden="true">
+          {site.hero.side}
+        </span>
+        <span className="hero-art-index" aria-hidden="true">
+          {site.hero.index}
+        </span>
       </div>
+      <PredictiveArc02>
+        <div className="hero-horizon" aria-hidden="true">
+          <LiveVisual kind="horizon" />
+        </div>
+      </PredictiveArc02>
     </section>
   );
 }

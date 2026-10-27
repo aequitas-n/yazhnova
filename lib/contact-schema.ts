@@ -3,7 +3,7 @@ import { site } from "@/content/site";
 const { validation, budgets, services } = site.contact;
 export const contactSchema = z.object({
   name: z.string().trim().min(2, validation.name).max(80, validation.name),
-  email: z.email(validation.email).trim().max(254, validation.email),
+  email: z.string().trim().max(254, validation.email).pipe(z.email(validation.email)),
   company: z.string().trim().max(120, validation.company),
   budget: z.string().refine((value) => budgets.includes(value), validation.budget),
   service: z.string().refine((value) => services.includes(value), validation.service),

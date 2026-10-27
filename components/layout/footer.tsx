@@ -1,60 +1,63 @@
 import Link from "next/link";
-import { ArrowUp, ArrowUpRight } from "lucide-react";
+import { ArrowUpRight, ArrowUp } from "lucide-react";
 import { site } from "@/content/site";
-import { Logo } from "@/components/ui/logo";
+import { LiveVisual } from "@/components/visuals/live-visual";
 export function Footer() {
   return (
-    <footer className="footer">
+    <footer className="site-footer">
+      <div className="footer-water" aria-hidden="true">
+        <LiveVisual kind="rain" className="monochrome" />
+      </div>
       <div className="container">
-        <div className="footer-main">
-          <div className="footer-cta">
-            <Logo />
-            <p>{site.footer.title}</p>
+        <div className="footer-top">
+          <div className="footer-invitation">
+            <span className="eyebrow">{site.footer.label}</span>
+            <p>
+              {site.footer.title}
+              <br />
+              <em>{site.footer.serif}</em>
+            </p>
             <a href={`mailto:${site.email}`}>
               {site.email}
-              <ArrowUpRight size={21} />
+              <ArrowUpRight size={22} />
             </a>
           </div>
           <div className="footer-column">
-            <span className="eyebrow">{site.footer.linksLabel}</span>
-            {site.navigation.map((item) => (
-              <Link href={item.href} key={item.label}>
+            <span className="eyebrow">{site.footer.explore}</span>
+            {site.nav.map((item) => (
+              <Link key={item.label} href={item.href}>
                 {item.label}
+              </Link>
+            ))}
+            <Link href="/contact">{site.actions.contact}</Link>
+          </div>
+          <div className="footer-column">
+            <span className="eyebrow">{site.footer.expertise}</span>
+            {site.footer.capabilities.map((label) => (
+              <Link key={label} href="/#services">
+                {label}
               </Link>
             ))}
           </div>
           <div className="footer-column">
-            <span className="eyebrow">{site.footer.capabilitiesLabel}</span>
-            {site.footer.capabilities.map((item) => (
-              <Link href="/#services" key={item}>
-                {item}
-              </Link>
-            ))}
-          </div>
-          <div className="footer-column">
-            <span className="eyebrow">{site.footer.connectLabel}</span>
-            {site.footer.social.map((item) => (
-              <a href={item.href} key={item.label}>
-                {item.label}
-                <ArrowUpRight size={12} />
-              </a>
-            ))}
-            <p className="footer-made">{site.footer.made}</p>
-            <span className="footer-status">
-              <span className="status-dot" />
-              {site.hero.availability}
-            </span>
+            <span className="eyebrow">{site.footer.connect}</span>
+            <a href={`mailto:${site.email}`}>
+              {site.email}
+              <ArrowUpRight size={12} />
+            </a>
+            <p>{site.footer.note}</p>
           </div>
         </div>
-        <div className="footer-wordmark" aria-hidden="true">
-          {site.name}
+        <div className="footer-wordmark" aria-label={site.name}>
+          <LiveVisual kind="wordmark" />
+          <span className="sr-only">{site.name}</span>
         </div>
-        <div className="footer-bottom">
+        <div className="footer-baseline">
           <span>{site.footer.copyright}</span>
-          <span className="mono footer-tagline">{site.footer.tagline}</span>
+          <span className="mono">{site.footer.baseline}</span>
           <a href="#top">
-            {site.footer.top}
-            <ArrowUp size={13} />
+            {site.actions.top}
+            <ArrowUp size={12} />
           </a>
         </div>
       </div>

@@ -1,109 +1,74 @@
 import Link from "next/link";
-import {
-  ArrowUpRight,
-  AppWindow,
-  Layers3,
-  Sparkles,
-  Smartphone,
-  Cloud,
-  PenTool,
-  Workflow,
-} from "lucide-react";
+import { ArrowUpRight, Plus } from "lucide-react";
 import { site } from "@/content/site";
-import { SectionHeading } from "@/components/ui/section-heading";
-import { Ambient } from "@/components/effects/ambient";
-
-const icons = [AppWindow, Layers3, Sparkles];
-const moreIcons = [Smartphone, Cloud, PenTool, Workflow];
+import { SectionLabel } from "@/components/ui/section-label";
+import { SectionTitle } from "@/components/ui/section-title";
+import { LiveVisual } from "@/components/visuals/live-visual";
+import { LiquidGrid, SingleGlossySphere } from "@/components/slots";
 export function Services() {
   return (
-    <section id="services" className="section services-section" aria-labelledby="services-title">
+    <section
+      id="services"
+      className="section services-section ink"
+      aria-labelledby="services-title"
+    >
       <div className="container">
-        <div className="intro-statement">
-          <span className="eyebrow">{site.intro.label}</span>
-          <p>
-            {site.intro.text}
-            <br />
-            <span>{site.intro.emphasis}</span>
-          </p>
-          <span className="intro-description">{site.intro.description}</span>
-        </div>
-        <div className="section-heading-row">
+        <div className="heading-row">
           <div>
-            <p className="eyebrow">{site.services.label}</p>
-            <SectionHeading id="services-title">{site.services.title}</SectionHeading>
+            <SectionLabel number={site.services.number}>{site.services.label}</SectionLabel>
+            <SectionTitle id="services-title">
+              {site.services.title}
+              <br />
+              <em>{site.services.serif}</em>
+            </SectionTitle>
           </div>
           <p className="section-description">{site.services.description}</p>
         </div>
-        <div className="services-grid">
-          {site.services.cards.map((card, i) => {
-            const Icon = icons[i];
-            return (
-              <Link
-                key={card.title}
-                href={`/contact?service=${encodeURIComponent(site.contact.services[i])}`}
-                className={`service-card service-${card.effect}`}
-              >
-                <div className="service-card-top">
-                  <span className="mono service-number">/{card.number}</span>
-                  <ArrowUpRight size={18} className="card-arrow" />
-                </div>
-                <div className="service-art">
-                  <Ambient mode={card.effect} />
-                  <div className={`service-overlay overlay-${card.effect}`} aria-hidden="true">
-                    {i === 0 ? (
-                      <div className="mini-browser">
-                        <div className="mini-browser-bar">
-                          <i />
-                          <i />
-                          <i />
-                        </div>
-                        <div className="mini-browser-content">
-                          <div />
-                          <div />
-                          <div />
-                          <div />
-                        </div>
-                      </div>
-                    ) : i === 1 ? (
-                      <div className="product-cubes">
-                        <span />
-                        <span />
-                        <span />
-                      </div>
-                    ) : null}
-                  </div>
-                  <span className="service-art-label mono">{card.visualLabel}</span>
-                </div>
-                <div className="service-card-body">
-                  <div className="service-title">
-                    <Icon size={19} />
-                    <h3>{card.title}</h3>
-                  </div>
-                  <p>{card.description}</p>
-                  <div className="service-tags">
-                    {card.tags.map((tag) => (
-                      <span key={tag}>{tag}</span>
-                    ))}
-                  </div>
-                </div>
-              </Link>
-            );
-          })}
-        </div>
-        <div className="more-services">
-          <span className="mono">{site.services.moreLabel}</span>
-          <div>
-            {site.services.more.map((label, i) => {
-              const Icon = moreIcons[i];
-              return (
-                <Link href="/contact" key={label}>
-                  <Icon size={16} />
-                  {label}
-                  <ArrowUpRight size={13} />
+        <div className="service-columns">
+          {site.services.cards.map((service, i) => (
+            <article className="service-column" key={service.title}>
+              <div className="service-index mono">
+                <span>/{service.number}</span>
+                <Link
+                  href={`/contact?service=${encodeURIComponent(service.service)}`}
+                  aria-label={`${site.actions.start}: ${service.title}`}
+                >
+                  <ArrowUpRight size={22} />
                 </Link>
-              );
-            })}
+              </div>
+              <div className={`service-visual service-visual-${i}`}>
+                {i === 1 ? (
+                  <LiquidGrid>
+                    <LiveVisual kind={service.visual} />
+                  </LiquidGrid>
+                ) : i === 2 ? (
+                  <SingleGlossySphere>
+                    <LiveVisual kind={service.visual} className="monochrome" />
+                  </SingleGlossySphere>
+                ) : (
+                  <LiveVisual kind={service.visual} />
+                )}
+              </div>
+              <p className="eyebrow">{service.tag}</p>
+              <h3>{service.title}</h3>
+              <p className="service-description">{service.description}</p>
+              <ul>
+                {service.tags.map((tag) => (
+                  <li key={tag}>{tag}</li>
+                ))}
+              </ul>
+            </article>
+          ))}
+        </div>
+        <div className="secondary-services">
+          <span className="eyebrow">{site.services.more}</span>
+          <div>
+            {site.services.secondary.map((label) => (
+              <Link href="/contact" key={label}>
+                <Plus size={13} />
+                {label}
+              </Link>
+            ))}
           </div>
         </div>
       </div>

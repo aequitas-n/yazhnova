@@ -10,12 +10,13 @@ try {
   for (const path of ["/", "/contact"]) {
     const result = await lighthouse(`${process.env.BASE_URL || "http://localhost:3000"}${path}`, {
       port: chrome.port,
-      output: "json",
+      output: ["json", "html"],
       logLevel: "error",
       onlyCategories: ["performance", "accessibility", "best-practices", "seo"],
     });
     const label = path === "/" ? "home" : "contact";
-    await writeFile(`artifacts/lighthouse-${label}.json`, result.report);
+    await writeFile(`artifacts/lighthouse-${label}.json`, result.report[0]);
+    await writeFile(`artifacts/lighthouse-${label}.html`, result.report[1]);
     console.log(
       JSON.stringify({
         page: path,
@@ -26,10 +27,9 @@ try {
           ]),
         ),
         metrics: {
-          fcp: result.lhr.audits["first-contentful-paint"].displayValue,
           lcp: result.lhr.audits["largest-contentful-paint"].displayValue,
-          tbt: result.lhr.audits["total-blocking-time"].displayValue,
           cls: result.lhr.audits["cumulative-layout-shift"].displayValue,
+          tbt: result.lhr.audits["total-blocking-time"].displayValue,
         },
         failures: Object.values(result.lhr.audits)
           .filter((a) => a.score !== null && a.score < 0.9)

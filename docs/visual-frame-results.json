@@ -1,0 +1,57 @@
+[
+  {
+    "kind": "hero-dither",
+    "canvases": 1,
+    "errors": []
+  },
+  {
+    "kind": "manifesto",
+    "canvases": 1,
+    "errors": []
+  },
+  {
+    "kind": "pixels",
+    "canvases": 1,
+    "errors": []
+  },
+  {
+    "kind": "network",
+    "canvases": 1,
+    "errors": []
+  },
+  {
+    "kind": "horizon",
+    "canvases": 1,
+    "errors": []
+  },
+  {
+    "kind": "glassbound",
+    "canvases": 1,
+    "errors": []
+  },
+  {
+    "kind": "shadow",
+    "canvases": 1,
+    "errors": []
+  },
+  {
+    "kind": "ocean",
+    "canvases": 1,
+    "errors": []
+  },
+  {
+    "kind": "rain",
+    "canvases": 1,
+    "errors": []
+  },
+  {
+    "kind": "ember",
+    "canvases": 1,
+    "errors": []
+  },
+  {
+    "kind": "wordmark",
+    "canvases": 1,
+    "errors": []
+  }
+]

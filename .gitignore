@@ -4,9 +4,10 @@ out/
 .vercel/
 .env*
 !.env.example
-*.tsbuildinfo
-playwright-report/
-test-results/
-artifacts/
 .originkit
+*.tsbuildinfo
+artifacts/
+test-results/
+playwright-report/
 *.log
+.originkit/

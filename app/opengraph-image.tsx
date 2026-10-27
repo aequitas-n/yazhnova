@@ -1,6 +1,6 @@
 import { ImageResponse } from "next/og";
 import { site } from "@/content/site";
-export const alt = "Yazhnova — We build software that thinks.";
+export const alt = "Yazhnova — Software, engineered to think.";
 export const size = { width: 1200, height: 630 };
 export const contentType = "image/png";
 export default function Image() {
@@ -11,87 +11,86 @@ export default function Image() {
         height: "100%",
         display: "flex",
         flexDirection: "column",
-        background: "#05060A",
-        color: "#EDEFF7",
-        padding: "64px 72px",
-        overflow: "hidden",
-        position: "relative",
+        padding: "54px 70px",
+        background: "#F4F2EC",
+        color: "#0A0A0A",
         fontFamily: "sans-serif",
+        position: "relative",
       }}
     >
       <div
         style={{
           position: "absolute",
-          display: "flex",
-          width: 650,
-          height: 650,
-          right: -120,
+          left: 70,
           top: 0,
-          borderRadius: "50%",
-          background: "radial-gradient(circle, #7B5CFF66 0%, #1A2A7844 35%, transparent 68%)",
+          height: 630,
+          width: 1,
+          background: "#0A0A0A15",
         }}
       />
       <div
         style={{
           position: "absolute",
-          display: "flex",
-          width: 1000,
-          height: 650,
-          right: -360,
-          top: 240,
-          borderRadius: "50%",
-          background: "#05060A",
-          borderTop: "2px solid #9C8AFF",
-          boxShadow: "0 -15px 100px #7B5CFF77",
+          right: 70,
+          top: 0,
+          height: 630,
+          width: 1,
+          background: "#0A0A0A15",
         }}
       />
-      <div style={{ display: "flex", fontSize: 25, fontWeight: 700, letterSpacing: 4 }}>
+      <div
+        style={{
+          display: "flex",
+          alignItems: "center",
+          gap: 8,
+          fontSize: 25,
+          fontWeight: 700,
+          letterSpacing: -1,
+        }}
+      >
         {site.name}
+        <span style={{ width: 7, height: 7, background: "#FFB45A", marginTop: 12 }} />
       </div>
       <div
-        style={{ display: "flex", fontSize: 13, color: "#8A90A6", letterSpacing: 3, marginTop: 58 }}
+        style={{ display: "flex", marginTop: 49, fontSize: 11, letterSpacing: 3, color: "#8C8A84" }}
       >
-        {site.hero.eyebrow}
+        {site.hero.label}
       </div>
       <div
         style={{
           display: "flex",
-          fontSize: 79,
-          lineHeight: 1.05,
-          letterSpacing: -4,
-          fontWeight: 700,
-          marginTop: 24,
+          fontSize: 96,
+          fontWeight: 500,
+          letterSpacing: -6,
+          lineHeight: 1,
+          marginTop: 26,
         }}
       >
-        {site.hero.lineOne}
+        Software,
+      </div>
+      <div
+        style={{ display: "flex", fontSize: 96, fontWeight: 500, letterSpacing: -6, lineHeight: 1 }}
+      >
+        engineered to think.
+      </div>
+      <div
+        style={{ display: "flex", fontSize: 17, color: "#8C8A84", marginTop: 26, maxWidth: 750 }}
+      >
+        {site.description}
       </div>
       <div
         style={{
           display: "flex",
-          fontSize: 91,
-          lineHeight: 1.1,
-          letterSpacing: -5,
-          fontWeight: 700,
-          color: "#A696FF",
-        }}
-      >
-        {site.hero.lineTwo}
-      </div>
-      <div
-        style={{ display: "flex", fontSize: 21, color: "#8A90A6", marginTop: 27, maxWidth: 640 }}
-      >
-        {site.hero.description}
-      </div>
-      <div
-        style={{
-          display: "flex",
-          fontSize: 14,
-          color: "#8A90A6",
+          justifyContent: "space-between",
+          fontSize: 11,
+          color: "#8C8A84",
           marginTop: "auto",
-          letterSpacing: 1,
+          borderTop: "1px solid #0A0A0A25",
+          paddingTop: 18,
         }}
       >
-        YAZHNOVA.IN
+        <span>YAZHNOVA.IN</span>
+        <span>STRATEGY → DESIGN → ENGINEERING</span>
       </div>
     </div>,
     size,

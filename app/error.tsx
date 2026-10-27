@@ -1,17 +1,13 @@
 "use client";
 import { site } from "@/content/site";
-import { Button } from "@/components/ui/button";
-export default function Error({
-  reset,
-}: {
-  error: Error & { digest?: string };
-  reset: () => void;
-}) {
+export default function ErrorPage({ reset }: { error: Error; reset: () => void }) {
   return (
-    <main id="main-content" className="error-page container">
+    <main id="main-content" className="container error-page">
       <h1>{site.error.title}</h1>
       <p>{site.error.description}</p>
-      <Button onClick={reset}>{site.error.action}</Button>
+      <button className="button button-paper" onClick={reset}>
+        {site.error.action}
+      </button>
     </main>
   );
 }

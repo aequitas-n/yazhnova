@@ -1,37 +1,44 @@
-import { ScanSearch, PenTool, Code2, Rocket } from "lucide-react";
 import { site } from "@/content/site";
-import { SectionHeading } from "@/components/ui/section-heading";
-import { Ambient } from "@/components/effects/ambient";
-const icons = [ScanSearch, PenTool, Code2, Rocket];
+import { GridRails } from "@/components/originkit/ui/hero-28/grid-frame";
+import { SectionLabel } from "@/components/ui/section-label";
+import { SectionTitle } from "@/components/ui/section-title";
+import { LiveVisual } from "@/components/visuals/live-visual";
+import { SparkLattice, LightCables } from "@/components/slots";
 export function Process() {
   return (
-    <section id="process" className="section process-section" aria-labelledby="process-title">
-      <Ambient mode="fluid" />
-      <Ambient mode="lattice" />
+    <section id="process" className="section process-section paper" aria-labelledby="process-title">
+      <div className="source-rails" aria-hidden="true">
+        <GridRails />
+      </div>
+      <SparkLattice />
+      <LightCables />
       <div className="container">
-        <div className="center-heading">
-          <p className="eyebrow">{site.process.label}</p>
-          <SectionHeading id="process-title">{site.process.title}</SectionHeading>
+        <div className="heading-row">
+          <div>
+            <SectionLabel number={site.process.number}>{site.process.label}</SectionLabel>
+            <SectionTitle id="process-title">
+              {site.process.title}
+              <br />
+              <em>{site.process.serif}</em>
+            </SectionTitle>
+          </div>
           <p className="section-description">{site.process.description}</p>
         </div>
         <div className="process-steps">
-          <div className="process-connector" aria-hidden="true">
-            <span />
+          <div className="process-network" aria-hidden="true">
+            <LiveVisual kind="network" />
           </div>
-          {site.process.steps.map((step, i) => {
-            const Icon = icons[i];
-            return (
-              <article className="process-step" key={step.number}>
-                <div className="step-icon">
-                  <Icon size={23} />
-                  <span className="mono">{step.number}</span>
-                </div>
-                <span className="mono step-detail">{step.detail}</span>
-                <h3>{step.title}</h3>
-                <p>{step.description}</p>
-              </article>
-            );
-          })}
+          {site.process.steps.map((step) => (
+            <article key={step.number}>
+              <span className="step-number">
+                {step.number}
+                <span aria-hidden="true">↗</span>
+              </span>
+              <h3>{step.title}</h3>
+              <p>{step.detail}</p>
+              <span className="step-output mono">{step.output}</span>
+            </article>
+          ))}
         </div>
       </div>
     </section>

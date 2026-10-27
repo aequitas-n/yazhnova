@@ -1,7 +1,11 @@
 node_modules
 .next
+components/originkit
+app/originkit-section-theme.css
+app/originkit-section-themes.css
 package-lock.json
-public/work
+public
+docs/shots
+docs/originkit-source-manifest.json
 artifacts
 test-results
-vendor

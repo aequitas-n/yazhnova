@@ -3,15 +3,14 @@ import { useState } from "react";
 import { useSearchParams } from "next/navigation";
 import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
-import { ArrowUpRight, Check, LoaderCircle, LockKeyhole } from "lucide-react";
-import { contactSchema, type ContactValues } from "@/lib/contact-schema";
+import { ArrowUpRight, Check, LockKeyhole } from "lucide-react";
 import { site } from "@/content/site";
+import { contactSchema, type ContactValues } from "@/lib/contact-schema";
 import { Button } from "@/components/ui/button";
-
 export function ContactForm() {
   const params = useSearchParams();
-  const selectedService = params.get("service") || "";
-  const engagement = params.get("engagement");
+  const service = params.get("service") || "";
+  const engagement = params.get("engagement") || "";
   const [success, setSuccess] = useState(false);
   const [serverError, setServerError] = useState("");
   const {
@@ -26,11 +25,8 @@ export function ContactForm() {
       email: "",
       company: "",
       budget: "",
-      service: site.contact.services.includes(selectedService) ? selectedService : "",
-      message:
-        engagement && site.engage.models.some((model) => model.title === engagement)
-          ? `${engagement}\n\n`
-          : "",
+      service: site.contact.services.includes(service) ? service : "",
+      message: site.engage.models.some((m) => m.name === engagement) ? `${engagement}\n\n` : "",
       website: "",
     },
   });
@@ -42,45 +38,45 @@ export function ContactForm() {
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify(data),
       });
-      const body = await response.json();
+      const result = await response.json();
       if (!response.ok) {
-        setServerError(body.error || site.contact.errorMessage);
+        setServerError(result.error || site.contact.error);
         return;
       }
       reset();
       setSuccess(true);
     } catch {
-      setServerError(site.contact.errorMessage);
+      setServerError(site.contact.error);
     }
   };
   const field = (name: keyof ContactValues) => ({
     id: name,
+    ...register(name),
+    className: "form-input",
     "aria-invalid": !!errors[name],
     "aria-describedby": errors[name] ? `${name}-error` : undefined,
     disabled: isSubmitting,
-    className: "form-input",
-    ...register(name),
   });
   const error = (name: keyof ContactValues) =>
     errors[name] && (
-      <p id={`${name}-error`} className="field-error">
+      <p className="field-error" id={`${name}-error`}>
         {errors[name]?.message}
       </p>
     );
   const required = (
-    <span className="required-dot" aria-hidden="true">
+    <span className="required-marker" aria-hidden="true">
       *
     </span>
   );
   if (success)
     return (
       <div className="form-success" role="status">
-        <div className="form-success-icon">
-          <Check size={28} />
-        </div>
+        <span>
+          <Check size={25} />
+        </span>
         <h2>{site.contact.successTitle}</h2>
         <p>{site.contact.successMessage}</p>
-        <Button variant="secondary" onClick={() => setSuccess(false)}>
+        <Button variant="paper" onClick={() => setSuccess(false)}>
           {site.contact.another}
           <ArrowUpRight size={16} />
         </Button>
@@ -89,7 +85,7 @@ export function ContactForm() {
   return (
     <>
       <h2>{site.contact.formTitle}</h2>
-      <p className="form-description">{site.contact.formDescription}</p>
+      <p className="form-note">{site.contact.formNote}</p>
       <form onSubmit={handleSubmit(submit)} noValidate aria-label={site.contact.formTitle}>
         <div className="form-row">
           <div className="form-field">
@@ -99,8 +95,8 @@ export function ContactForm() {
             </label>
             <input
               {...field("name")}
-              required
               autoComplete="name"
+              required
               placeholder={site.contact.placeholders.name}
               maxLength={80}
             />
@@ -113,9 +109,9 @@ export function ContactForm() {
             </label>
             <input
               {...field("email")}
-              required
               type="email"
               autoComplete="email"
+              required
               placeholder={site.contact.placeholders.email}
               maxLength={254}
             />
@@ -146,7 +142,7 @@ export function ContactForm() {
                 {site.contact.placeholders.budget}
               </option>
               {site.contact.budgets.map((value) => (
-                <option value={value} key={value}>
+                <option key={value} value={value}>
                   {value}
                 </option>
               ))}
@@ -163,7 +159,7 @@ export function ContactForm() {
                 {site.contact.placeholders.service}
               </option>
               {site.contact.services.map((value) => (
-                <option value={value} key={value}>
+                <option key={value} value={value}>
                   {value}
                 </option>
               ))}
@@ -179,23 +175,19 @@ export function ContactForm() {
           <textarea
             {...field("message")}
             required
-            placeholder={site.contact.placeholders.message}
             rows={5}
             maxLength={5000}
+            placeholder={site.contact.placeholders.message}
           />
           {error("message")}
         </div>
         <div hidden aria-hidden="true">
           <label htmlFor="website">{site.contact.fields.website}</label>
-          <input id="website" {...register("website")} tabIndex={-1} autoComplete="off" />
+          <input id="website" {...register("website")} autoComplete="off" tabIndex={-1} />
         </div>
-        <Button type="submit" disabled={isSubmitting} className="glow-border form-submit">
+        <Button variant="paper" type="submit" disabled={isSubmitting} className="form-submit">
           {isSubmitting ? site.contact.submitting : site.contact.submit}
-          {isSubmitting ? (
-            <LoaderCircle className="animate-spin" size={16} />
-          ) : (
-            <ArrowUpRight size={16} />
-          )}
+          <ArrowUpRight size={17} />
         </Button>
         <p className="form-privacy">
           <LockKeyhole size={11} />

@@ -1,61 +1,93 @@
-import Link from "next/link";
-import { ArrowUpRight, Check, ShieldCheck } from "lucide-react";
+"use client";
+import dynamic from "next/dynamic";
+import { useReducedMotion, useInView } from "framer-motion";
+import { useRef } from "react";
+import { Check } from "lucide-react";
 import { site } from "@/content/site";
-import { SectionHeading } from "@/components/ui/section-heading";
-import { Button } from "@/components/ui/button";
+import { SectionLabel } from "@/components/ui/section-label";
+import { SectionTitle } from "@/components/ui/section-title";
+import { ProjectLink } from "@/components/ui/project-link";
+const RollingLetters = dynamic(
+  () => import("@/components/originkit/ui/pricing-04/rolling-letters"),
+  { ssr: false },
+);
+const labelFont = {
+  fontFamily: "Geist Mono,monospace",
+  fontSize: "10px",
+  fontWeight: 400,
+  lineHeight: "1.6em",
+  letterSpacing: "0.01em",
+  textAlign: "left",
+};
 export function Engagement() {
+  const reduced = useReducedMotion();
+  const ref = useRef<HTMLElement>(null);
+  const inView = useInView(ref, { once: true, amount: 0.1 });
   return (
-    <section id="engage" className="section engage-section" aria-labelledby="engage-title">
+    <section
+      ref={ref}
+      id="engage"
+      className="section engage-section paper"
+      aria-labelledby="engage-title"
+    >
       <div className="container">
-        <div className="center-heading">
-          <p className="eyebrow">{site.engage.label}</p>
-          <SectionHeading id="engage-title">{site.engage.title}</SectionHeading>
+        <div className="heading-row">
+          <div>
+            <SectionLabel number={site.engage.number}>{site.engage.label}</SectionLabel>
+            <SectionTitle id="engage-title">
+              {site.engage.title}
+              <br />
+              <em>{site.engage.serif}</em>
+            </SectionTitle>
+          </div>
           <p className="section-description">{site.engage.description}</p>
         </div>
-        <div className="engagement-grid">
+        <div className="engagement-columns">
           {site.engage.models.map((model) => (
             <article
-              key={model.title}
-              className={`engagement-card ${model.featured ? "engagement-featured" : ""}`}
+              key={model.name}
+              className={`engagement-model ${model.featured ? "featured" : ""}`}
             >
-              <div className="engagement-card-top">
-                <span className="mono">/{model.number}</span>
-                {model.featured && (
-                  <span className="featured-label">
-                    <span className="status-dot" />
-                    {site.engage.featured}
-                  </span>
+              <div className="engagement-index mono">
+                <span>/{model.number}</span>
+                {model.featured && <span className="signal" />}
+              </div>
+              <h3>{model.name}</h3>
+              <div className="engagement-fit">
+                {reduced || !inView ? (
+                  <span className="mono">{model.fit}</span>
+                ) : (
+                  <RollingLetters
+                    text={model.fit}
+                    font={labelFont}
+                    tag="span"
+                    color="#62605A"
+                    transition={{
+                      type: "tween",
+                      duration: 0.35,
+                      delay: 0,
+                      staggerChildren: 0.009,
+                      ease: "easeOut",
+                    }}
+                  />
                 )}
               </div>
-              <p className="mono engagement-fit">{model.fit}</p>
-              <h3>{model.title}</h3>
-              <p className="engagement-description">{model.description}</p>
-              <div className="engagement-divider" />
+              <p>{model.description}</p>
               <ul>
                 {model.features.map((feature) => (
                   <li key={feature}>
-                    <Check size={15} />
+                    <Check size={13} />
                     {feature}
                   </li>
                 ))}
               </ul>
-              <Button
-                variant={model.featured ? "default" : "secondary"}
-                asChild
-                className={model.featured ? "glow-border" : ""}
-              >
-                <Link href={`/contact?engagement=${encodeURIComponent(model.title)}`}>
-                  {site.actions.talk}
-                  <ArrowUpRight size={16} />
-                </Link>
-              </Button>
+              <ProjectLink href={`/contact?engagement=${encodeURIComponent(model.name)}`}>
+                {site.actions.talk}
+              </ProjectLink>
             </article>
           ))}
         </div>
-        <p className="engagement-assurance">
-          <ShieldCheck size={15} />
-          {site.engage.assurance}
-        </p>
+        <p className="engagement-assurance">{site.engage.assurance}</p>
       </div>
     </section>
   );

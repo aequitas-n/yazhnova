@@ -1,0 +1,338 @@
+@import url("https://fonts.googleapis.com/css2?family=Inter+Tight:wght@500;600&family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@400;500&display=swap");
+
+.pricing-04 {
+  background: #060708;
+  color: #eaf2ff;
+  font-family: "Inter", system-ui, sans-serif;
+  -webkit-font-smoothing: antialiased;
+  position: relative;
+  isolation: isolate;
+}
+.pricing-04,
+.pricing-04 * {
+  box-sizing: border-box;
+}
+.pricing-04 .pricing {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 120px 40px;
+}
+.pricing-04 .head {
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-bottom: 56px;
+}
+.pricing-04 .eyebrow {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  margin: 0 0 18px;
+  font-family: "JetBrains Mono", ui-monospace, monospace;
+  font-size: 12px;
+  letter-spacing: 1.4px;
+  text-transform: uppercase;
+  color: #5cc8ff;
+}
+.pricing-04 .eyebrow::before,
+.pricing-04 .eyebrow::after {
+  content: "";
+  width: 18px;
+  height: 1px;
+  background: #5cc8ff;
+}
+.pricing-04 h2 {
+  margin: 0 0 16px;
+  max-width: 760px;
+  font-family: "Inter Tight", system-ui, sans-serif;
+  font-size: clamp(36px, 4.6vw, 60px);
+  line-height: 1.02;
+  font-weight: 600;
+  letter-spacing: -0.035em;
+  text-wrap: balance;
+}
+.pricing-04 h2 span {
+  color: rgba(234, 242, 255, 0.4);
+}
+.pricing-04 .head p {
+  margin: 0 0 32px;
+  max-width: 520px;
+  font-size: 17px;
+  line-height: 1.55;
+  color: rgba(234, 242, 255, 0.6);
+}
+.pricing-04 .billing {
+  display: inline-flex;
+  padding: 4px;
+  border-radius: 999px;
+  gap: 2px;
+  background: #0b0d0f;
+  box-shadow: inset 0 0 0 1px rgba(234, 242, 255, 0.08);
+}
+.pricing-04 .billing button {
+  height: 38px;
+  padding: 0 18px;
+  border: 0;
+  border-radius: 999px;
+  cursor: pointer;
+  background: transparent;
+  color: rgba(234, 242, 255, 0.6);
+  font:
+    500 14px "Inter",
+    system-ui,
+    sans-serif;
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  transition:
+    background 0.2s ease,
+    color 0.2s ease;
+}
+.pricing-04 .billing button[aria-pressed="true"] {
+  background: #eaf2ff;
+  color: #060708;
+}
+.pricing-04 .billing button:focus-visible {
+  outline: 2px solid #5cc8ff;
+  outline-offset: 2px;
+}
+.pricing-04 .save {
+  font-family: "JetBrains Mono", ui-monospace, monospace;
+  font-size: 11px;
+  padding: 2px 7px;
+  border-radius: 999px;
+  background: rgba(92, 200, 255, 0.16);
+  color: #5cc8ff;
+}
+.pricing-04 .billing button[aria-pressed="true"] .save {
+  background: rgba(6, 7, 8, 0.1);
+  color: #1e6fa8;
+}
+
+.pricing-04 .plans {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 16px;
+  align-items: stretch;
+}
+.pricing-04 .plan {
+  position: relative;
+  border-radius: 22px;
+  padding: 30px 28px 28px;
+  background: #0b0d0f;
+  box-shadow: inset 0 0 0 1px rgba(234, 242, 255, 0.07);
+  display: flex;
+  flex-direction: column;
+}
+.pricing-04 .pro-wrap {
+  position: relative;
+  display: flex;
+}
+.pricing-04 .pro-wrap > .plan {
+  flex: 1;
+  z-index: 1;
+}
+.pricing-04 .plan.pro {
+  box-shadow: inset 0 0 0 1px rgba(92, 200, 255, 0.18);
+}
+.pricing-04 .aura {
+  position: absolute;
+  inset: -46px -70px;
+  z-index: 0;
+  pointer-events: none;
+  opacity: 0.5;
+  -webkit-mask: radial-gradient(closest-side, #000 55%, transparent);
+  mask: radial-gradient(closest-side, #000 55%, transparent);
+}
+.pricing-04 .aura > div {
+  position: absolute;
+  inset: 0;
+}
+.pricing-04 .edge {
+  position: absolute;
+  inset: 0;
+  z-index: 2;
+  pointer-events: none;
+  border-radius: inherit;
+}
+.pricing-04 .edge > div {
+  position: absolute !important;
+  inset: 0;
+}
+
+.pricing-04 .name {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 18px;
+}
+.pricing-04 .name h3 {
+  margin: 0;
+  font-family: "Inter Tight", system-ui, sans-serif;
+  font-size: 20px;
+  font-weight: 600;
+  letter-spacing: -0.01em;
+}
+.pricing-04 .tag {
+  font-family: "JetBrains Mono", ui-monospace, monospace;
+  font-size: 11px;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+  color: #060708;
+  background: #5cc8ff;
+  padding: 4px 9px;
+  border-radius: 999px;
+}
+.pricing-04 .price {
+  display: flex;
+  align-items: baseline;
+  gap: 8px;
+  height: 64px;
+}
+.pricing-04 .amount {
+  font-family: "Inter Tight", system-ui, sans-serif;
+  font-size: 56px;
+  font-weight: 600;
+  letter-spacing: -0.04em;
+  font-variant-numeric: tabular-nums;
+}
+.pricing-04 .per {
+  font-size: 14px;
+  color: rgba(234, 242, 255, 0.5);
+}
+.pricing-04 .billed {
+  margin: 6px 0 22px;
+  min-height: 20px;
+  font-size: 13.5px;
+  color: rgba(234, 242, 255, 0.45);
+}
+.pricing-04 .desc {
+  margin: 0 0 24px;
+  font-size: 15px;
+  line-height: 1.55;
+  color: rgba(234, 242, 255, 0.62);
+}
+
+.pricing-04 .cta-slot {
+  margin-bottom: 26px;
+  display: flex;
+}
+.pricing-04 .cta-slot > div {
+  width: 100%;
+}
+.pricing-04 .btn {
+  width: 100%;
+  height: 48px;
+  border-radius: 999px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 15px;
+  font-weight: 500;
+  text-decoration: none;
+  color: #eaf2ff;
+  box-shadow: inset 0 0 0 1px rgba(234, 242, 255, 0.16);
+  transition: background 0.2s ease;
+}
+.pricing-04 .btn:hover {
+  background: rgba(234, 242, 255, 0.06);
+}
+
+.pricing-04 .limits {
+  margin: 0 0 22px;
+  padding: 16px 0;
+  display: grid;
+  gap: 10px;
+  border-block: 1px solid rgba(234, 242, 255, 0.07);
+}
+.pricing-04 .limits div {
+  display: flex;
+  justify-content: space-between;
+  gap: 12px;
+  font-size: 14px;
+}
+.pricing-04 .limits dt {
+  color: rgba(234, 242, 255, 0.55);
+}
+.pricing-04 .limits dd {
+  margin: 0;
+  font-family: "JetBrains Mono", ui-monospace, monospace;
+  font-size: 13px;
+  font-variant-numeric: tabular-nums;
+}
+.pricing-04 .features {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+  display: grid;
+  gap: 11px;
+  font-size: 14.5px;
+  color: rgba(234, 242, 255, 0.78);
+}
+.pricing-04 .features li {
+  display: flex;
+  gap: 10px;
+  align-items: flex-start;
+  line-height: 1.45;
+}
+.pricing-04 .features svg {
+  flex: none;
+  margin-top: 2px;
+}
+
+.pricing-04 .fine {
+  margin-top: 28px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 24px;
+  flex-wrap: wrap;
+  padding: 20px 24px;
+  border-radius: 18px;
+  background: #0b0d0f;
+  box-shadow: inset 0 0 0 1px rgba(234, 242, 255, 0.07);
+}
+.pricing-04 .fine ul {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px 22px;
+  font-family: "JetBrains Mono", ui-monospace, monospace;
+  font-size: 12.5px;
+  color: rgba(234, 242, 255, 0.55);
+}
+.pricing-04 .fine ul b {
+  color: #eaf2ff;
+  font-weight: 500;
+}
+.pricing-04 .fine a {
+  font-size: 15px;
+  font-weight: 500;
+  color: #eaf2ff;
+  text-decoration: none;
+  display: inline-flex;
+  gap: 8px;
+  align-items: center;
+}
+.pricing-04 .fine a:hover {
+  color: #5cc8ff;
+}
+
+@media (max-width: 960px) {
+  .pricing-04 .plans {
+    grid-template-columns: minmax(0, 1fr);
+    max-width: 480px;
+    margin: 0 auto;
+  }
+  .pricing-04 .aura {
+    inset: -60px -40px;
+  }
+}
+@media (max-width: 600px) {
+  .pricing-04 .pricing {
+    padding: 80px 20px;
+  }
+}

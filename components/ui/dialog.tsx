@@ -1,28 +1,25 @@
 "use client";
-import * as React from "react";
-import * as Primitive from "@radix-ui/react-dialog";
+import * as DialogPrimitive from "@radix-ui/react-dialog";
 import { X } from "lucide-react";
-import { cn } from "@/lib/utils";
-export const Dialog = Primitive.Root;
-export const DialogTrigger = Primitive.Trigger;
-export const DialogTitle = Primitive.Title;
-export const DialogDescription = Primitive.Description;
-export const DialogClose = Primitive.Close;
+export const Dialog = DialogPrimitive.Root;
+export const DialogTrigger = DialogPrimitive.Trigger;
+export const DialogTitle = DialogPrimitive.Title;
+export const DialogDescription = DialogPrimitive.Description;
 export function DialogContent({
   children,
-  className,
   closeLabel,
+  className = "",
   ...props
-}: React.ComponentProps<typeof Primitive.Content> & { closeLabel: string }) {
+}: React.ComponentProps<typeof DialogPrimitive.Content> & { closeLabel: string }) {
   return (
-    <Primitive.Portal>
-      <Primitive.Overlay className="dialog-overlay" />
-      <Primitive.Content className={cn("dialog-content", className)} {...props}>
+    <DialogPrimitive.Portal>
+      <DialogPrimitive.Overlay className="dialog-overlay" />
+      <DialogPrimitive.Content className={`dialog-content ${className}`} {...props}>
         {children}
-        <Primitive.Close className="dialog-close" aria-label={closeLabel}>
+        <DialogPrimitive.Close aria-label={closeLabel} className="dialog-close">
           <X size={20} />
-        </Primitive.Close>
-      </Primitive.Content>
-    </Primitive.Portal>
+        </DialogPrimitive.Close>
+      </DialogPrimitive.Content>
+    </DialogPrimitive.Portal>
   );
 }

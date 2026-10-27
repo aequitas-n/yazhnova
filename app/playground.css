@@ -1,0 +1,230 @@
+.playground {
+  background: #0a0a0a;
+  color: #f4f2ec;
+  font-family: "Inter Tight", sans-serif;
+}
+.study-header {
+  position: sticky;
+  top: 0;
+  z-index: 20;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 32px;
+  height: 64px;
+  background: #0a0a0af5;
+  border-bottom: 1px solid #f4f2ec24;
+  font:
+    11px "Geist Mono",
+    monospace;
+}
+.study-header > a {
+  font-weight: 600;
+  letter-spacing: 0.05em;
+}
+.study-header > a > span {
+  color: #8c8a84;
+  font-weight: 400;
+  font-size: 9px;
+  margin-left: 12px;
+}
+.study-header nav {
+  display: flex;
+  gap: 30px;
+  color: #a5a299;
+}
+.study-header > span {
+  color: #8c8a84;
+  font-size: 9px;
+}
+.study-panel {
+  height: calc(100svh - 64px);
+  min-height: 740px;
+  padding: 27px 32px 15px;
+  border-bottom: 1px solid #f4f2ec35;
+  display: flex;
+  flex-direction: column;
+  scroll-margin-top: 64px;
+}
+.study-panel-head {
+  display: flex;
+  justify-content: space-between;
+  gap: 30px;
+  align-items: center;
+  margin-bottom: 23px;
+}
+.study-label,
+.study-cost,
+.study-panel-foot,
+.study-frame-label {
+  font-family: "Geist Mono", monospace;
+  font-size: 9px;
+  letter-spacing: 0.03em;
+  color: #8c8a84;
+}
+.study-panel-head h2 {
+  font-size: 35px;
+  font-weight: 400;
+  letter-spacing: -0.04em;
+  margin: 5px 0;
+}
+.study-panel-head p {
+  font-size: 13px;
+  color: #a6a299;
+  margin: 0;
+}
+.study-cost {
+  border: 1px solid #f4f2ec24;
+  padding: 9px 12px;
+}
+.study-pair {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 20px;
+  flex: 1;
+  min-height: 0;
+}
+.study-frame {
+  display: flex;
+  flex-direction: column;
+  border: 1px solid #f4f2ec20;
+  min-width: 0;
+  background: #141414;
+}
+.study-frame-label {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 11px 14px;
+  color: #bcb8af;
+  border-bottom: 1px solid #f4f2ec20;
+}
+.study-frame-label a {
+  color: #f4f2ec;
+}
+.study-frame iframe {
+  border: 0;
+  display: block;
+  width: 100%;
+  flex: 1;
+  min-height: 0;
+  background: #0a0a0a;
+}
+.study-frame-idle {
+  display: grid;
+  place-items: center;
+  flex: 1;
+  font:
+    11px "Geist Mono",
+    monospace;
+  color: #8c8a84;
+}
+.study-panel-foot {
+  display: flex;
+  justify-content: space-between;
+  padding-top: 13px;
+  font-size: 8px;
+}
+.source-render {
+  width: 100%;
+  height: 100svh;
+  min-height: 300px;
+  overflow: auto;
+  background: #000;
+}
+.source-render > div {
+  min-height: 100%;
+}
+.study-editorial {
+  background: #0a0a0a;
+  color: #f4f2ec;
+}
+.study-editorial.source-dither-reveal {
+  filter: grayscale(1);
+  background: #f4f2ec;
+}
+.study-editorial.source-hero-40,
+.study-editorial.source-hero-51,
+.study-editorial.source-hero-69,
+.study-editorial.source-hero-28,
+.study-editorial.source-features-02,
+.study-editorial.source-pricing-04,
+.study-editorial.source-footer-03 {
+  filter: grayscale(1);
+}
+.study-editorial .hero-40 {
+  --ink: #0a0a0a;
+  --paper: #f4f2ec;
+  --muted: #8c8a84;
+  --purple: #141414;
+  --purple-hover: #0a0a0a;
+}
+.study-editorial .hero-40 .hero {
+  background: #f4f2ec;
+}
+.study-editorial .hero-51 {
+  background: #f4f2ec;
+  color: #0a0a0a;
+}
+.study-editorial .hero-69 {
+  --ink: #0a0a0a;
+  --paper: #f4f2ec;
+  --rule: #8c8a8433;
+}
+.study-editorial .footer-03,
+.study-editorial .pricing-04 {
+  background: #0a0a0a;
+  color: #f4f2ec;
+}
+.study-editorial .footer-03 .cta,
+.study-editorial .pricing-04 .plan {
+  background: #141414;
+  border-radius: 0;
+  box-shadow: none;
+}
+.study-editorial .footer-03 .cta::before {
+  display: none;
+}
+.study-editorial .pricing-04 .pro {
+  border: 1px solid #f4f2ec55;
+}
+.study-editorial .pricing-04 .aura {
+  opacity: 0.12;
+}
+@media (max-width: 700px) {
+  .study-header {
+    padding: 0 16px;
+  }
+  .study-header nav,
+  .study-header > span,
+  .study-header > a > span {
+    display: none;
+  }
+  .study-panel {
+    padding: 22px 16px 15px;
+    height: auto;
+    min-height: 100svh;
+  }
+  .study-panel-head {
+    gap: 15px;
+  }
+  .study-panel-head h2 {
+    font-size: 28px;
+  }
+  .study-panel-head p {
+    font-size: 11px;
+  }
+  .study-cost {
+    display: none;
+  }
+  .study-pair {
+    grid-template-columns: 1fr;
+  }
+  .study-frame {
+    height: 70svh;
+  }
+  .study-panel-foot {
+    font-size: 6px;
+    gap: 10px;
+  }
+}

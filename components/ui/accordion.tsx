@@ -1,48 +1,30 @@
 "use client";
-import * as React from "react";
-import * as Primitive from "@radix-ui/react-accordion";
+import * as AccordionPrimitive from "@radix-ui/react-accordion";
 import { Plus } from "lucide-react";
-import { cn } from "@/lib/utils";
-export function Accordion(props: React.ComponentProps<typeof Primitive.Root>) {
-  return <Primitive.Root data-slot="accordion" {...props} />;
-}
-export function AccordionItem({
-  className,
-  ...props
-}: React.ComponentProps<typeof Primitive.Item>) {
-  return (
-    <Primitive.Item
-      data-slot="accordion-item"
-      className={cn("accordion-item", className)}
-      {...props}
-    />
-  );
+export const Accordion = AccordionPrimitive.Root;
+export function AccordionItem(props: React.ComponentProps<typeof AccordionPrimitive.Item>) {
+  return <AccordionPrimitive.Item className="accordion-item" {...props} />;
 }
 export function AccordionTrigger({
   children,
-  className,
   ...props
-}: React.ComponentProps<typeof Primitive.Trigger>) {
+}: React.ComponentProps<typeof AccordionPrimitive.Trigger>) {
   return (
-    <Primitive.Header>
-      <Primitive.Trigger
-        data-slot="accordion-trigger"
-        className={cn("accordion-trigger", className)}
-        {...props}
-      >
+    <AccordionPrimitive.Header>
+      <AccordionPrimitive.Trigger className="accordion-trigger" {...props}>
         {children}
-        <Plus className="accordion-plus" size={18} aria-hidden="true" />
-      </Primitive.Trigger>
-    </Primitive.Header>
+        <Plus size={18} aria-hidden="true" />
+      </AccordionPrimitive.Trigger>
+    </AccordionPrimitive.Header>
   );
 }
 export function AccordionContent({
   children,
   ...props
-}: React.ComponentProps<typeof Primitive.Content>) {
+}: React.ComponentProps<typeof AccordionPrimitive.Content>) {
   return (
-    <Primitive.Content data-slot="accordion-content" className="accordion-content" {...props}>
+    <AccordionPrimitive.Content className="accordion-content" {...props}>
       <div>{children}</div>
-    </Primitive.Content>
+    </AccordionPrimitive.Content>
   );
 }

@@ -1,78 +1,95 @@
-# Yazhnova
+# Yazhnova — editorial engineering studio
 
-An original, dark marketing site for **yazhnova.in**, built with Next.js 15 App Router, TypeScript, Tailwind CSS 4, shadcn/ui patterns on Radix, and Framer Motion. Designed for Vercel.
+A complete Next.js 15 App Router site for **yazhnova.in**, built with TypeScript, Tailwind CSS v4, Framer Motion, Three.js and actual installed OriginKit source. shadcn/Radix patterns are limited to navigation, accordion, dialog and form primitives. The palette is ink, warm paper and graphite with a restrained amber accent.
 
-## Run locally
+## Run
 
-Use Node.js **22.18+** (or Node 24) and npm.
+Use Node.js **22.18+** (Node 24 is supported) and npm.
 
 ```sh
 npm ci
 npm run dev
 ```
 
-Open http://localhost:3000. For a production preview:
+- Website: http://localhost:3000
+- Contact: http://localhost:3000/contact
+- 16 paired component studies: http://localhost:3000/playground
+- Replay the stone introduction: http://localhost:3000/?intro=replay
+
+For the optimized production preview:
 
 ```sh
 npm run build
 npm start
 ```
 
-## Edit the site
+## Review the work
 
-- `content/site.ts` — all marketing copy, navigation, service lists, FAQs, form labels and messages, concept project copy, and mockup labels.
-- `components/sections/*` — one component for each homepage section.
-- `components/effects/*` — the horizon, fine network and arc layers, desktop cursor, text effects, and shared lazy canvas renderer.
-- `app/globals.css` — the complete brand system and responsive styling.
-- `components/contact/contact-form.tsx` and `lib/contact-schema.ts` — accessible React Hook Form + Zod form and shared validation.
-- `app/api/contact/route.ts` — server-side Resend delivery.
-- `scripts/generate-project-art.mjs` — generates the three original SVG concept mockups from `content/site.ts`. Runs automatically before production builds; use `npm run assets` during development after changing mockup copy.
+- [Source inventory](docs/inventory.md): all 16 items, signature elements, complete props/defaults, interaction, performance and mobile notes.
+- [Design plan](docs/plan.md): palette, type, grid, motion and the actual source combinations for every section.
+- [16 playground screenshots](docs/shots): default and editorial versions side by side.
+- [Minimal source fixes](docs/fixes.md): exact corrections and their effects.
+- [19 deferred slots](docs/slots.md): locations, provisional contracts and exact swap steps.
+- [Verification results](docs/verification.md): production build, browser checks, Lighthouse scores and launch configuration.
+- [Stone introduction](docs/intro.md): choreography, optional source controls, skipping and replay.
+- `docs/playground-results.json`: observed canvas contexts and runtime results.
+- `docs/visual-frame-results.json`: genuine production visual/frame captures.
 
-The brand uses #05060A, #0B0D14, #3B6BFF, #7B5CFF, #6EE7FF, #EDEFF7, and #8A90A6. Fonts are self-hosted Latin Geist and Geist Mono, served with `next/font/local`.
+The original pre-change source hashes are in `docs/originkit-source-manifest.json`. Installed files have the small typing corrections and the explicitly requested, optional stone-intro controls listed in `fixes.md`. Original geometry, materials and shaders are preserved. All 16 currently render; none was moved to the unavailable list.
 
-## Enable contact delivery
+## Edit
 
-Copy `.env.example` to `.env.local`, and configure the same variables in Vercel:
+- `content/site.ts`: all authored marketing copy, project concepts, labels, FAQs, contact messages and demo text.
+- `components/sections/*`: composed homepage sections.
+- `components/intro/*`: the desktop stone introduction, timeline and lifecycle gate.
+- `components/originkit/*`: installed library sources, with documented repairs and optional intro controls.
+- `components/visuals/*` and `lib/visual-presets.ts`: dynamic imports, real-source presets and responsive rendering policy.
+- `components/slots/*`: 19 explicit TODO adapters for future downloads. They do not imitate missing effects.
+- `app/site.css`: the editorial brand and responsive layout.
 
-| Variable               | Purpose                                                     |
-| ---------------------- | ----------------------------------------------------------- |
-| `NEXT_PUBLIC_SITE_URL` | Canonical production URL; defaults to `https://yazhnova.in` |
-| `RESEND_API_KEY`       | Resend server API key                                       |
-| `RESEND_FROM`          | Sender address on a domain verified in Resend               |
-| `CONTACT_TO`           | Enquiry recipient                                           |
+The agent transcript is an interactive demonstration, not a connected CRM/calendar integration. Work cards are clearly labeled concept explorations. Sample quotes remain marked TODO and need approval/replacement before public launch. Review the company contact details and commercial FAQ wording before publishing.
 
-Restart the server after changing environment variables. The form **does not claim success** if delivery is unconfigured or Resend rejects a request. It shows an actionable email fallback. Email content is sent as plain text, with the visitor's address used only as `replyTo`.
+## Contact delivery
 
-The route validates input on the server, bounds request size, checks browser origins, includes a honeypot, and limits submissions per server instance. The in-memory limit is best-effort on Vercel; use a shared store or Vercel Firewall rules if a distributed limit becomes necessary.
+Copy `.env.example` to `.env.local`, configure these variables, and restart the server:
 
-## Content to approve before launch
+| Variable               | Purpose                                                      |
+| ---------------------- | ------------------------------------------------------------ |
+| `NEXT_PUBLIC_SITE_URL` | Canonical production origin; defaults to https://yazhnova.in |
+| `RESEND_API_KEY`       | Server-side Resend key                                       |
+| `RESEND_FROM`          | Sender on a domain verified with Resend                      |
+| `CONTACT_TO`           | Destination for project enquiries                            |
 
-Search `content/site.ts` for `TODO`. Illustrative company statistics, project concepts and sample testimonials are explicitly labeled on the site. Replace them with verified figures, approved case studies and attributed client quotes. Review contact details and the standard commercial/IP answers before publishing.
+The Next.js Node handler validates the request with Zod and sends plain-text email with the visitor as `replyTo`. It checks origins and body size, includes a honeypot, and applies best-effort per-instance throttling. It returns an honest configuration/delivery error instead of claiming success when mail cannot be sent. The in-memory limit is not distributed across Vercel instances.
 
-The agent workflow is an interactive demonstration: it does not access a CRM or book a real meeting. The project carousel opens real concept detail dialogs.
+## Rendering and motion
 
-## Motion and performance
+`LiveVisual` imports actual sources only while visible on a desktop-style fine pointer. Leaving the viewport or hiding the tab unmounts the renderer, invoking its original cleanup and cancelling its loops. Reduced motion and mobile/coarse pointers use PNG frames captured from the same real sources. Canvas editor minimum dimensions are overridden through existing style props, never by recreating their visuals.
 
-The requested OriginKit source download is blocked by the account's daily quota. The site currently runs on original branded equivalents; see [the source availability record](docs/originkit.md) for the exact status, file mapping, and remaining source integration.
+Self-hosted Instrument Serif, Inter Tight and Geist Mono are used for production. The original source demos may load their own fonts or sample assets; those dependencies remain isolated to the playground.
 
-The hero renders with CSS and SVG immediately. Below-the-fold canvases import only near the viewport and stop their animation frame loops off-screen and when the tab is hidden. Rendering is capped at 24 fps and 1.5 device pixel ratio. Reduced motion renders static effects and disables decorative CSS animation. The cursor aura is enabled only for a desktop-style fine pointer.
+The original Latin font files and licenses are in `public/fonts`; `node scripts/prepare-fonts.mjs` can recopy them from the installed Fontsource packages. Each face has one URL and the two headline faces are preloaded. Fallback images load near the viewport; the hero image is present in the initial HTML with high fetch priority.
 
-## Validation
+## Verification and captures
 
-The verified production build passes all 5 browser tests. Mobile Lighthouse: **94 home / 97 contact** for performance, **100** accessibility and SEO, **96** best practices on both. See [validation details and limits](docs/validation.md).
+Against a running production preview:
 
 ```sh
 npm run typecheck
-npm run build
-# Against a running production server:
 npm run test:e2e
 npm run audit
+npm run capture:studies
+npm run capture:frames
 ```
 
-End-to-end checks cover homepage navigation, FAQs, project carousel and dialogs, the replayable agent demo, form validation and mocked success, API failure paths, mobile layouts down to 320px, reduced motion, axe accessibility, sitemap, robots, the generated OpenGraph image and 404 handling. Tests never deliver a real email. Set `TEST_CONTACT_UNCONFIGURED=1` only against a server with no Resend credentials to additionally verify its unconfigured state. `npm run audit` writes mobile Lighthouse reports into ignored `artifacts/`. Chrome must be installed; set `CHROME_PATH` if automatic detection is unavailable.
+Browser checks cover real WebGL/Canvas contexts, mobile and reduced-motion frames, navigation, project dialogs, agent replay, accordion, form validation and mocked success, API failure cases, SEO endpoints, 16 screenshots and 19 slot files. Tests do not send real email. Set `TEST_CONTACT_UNCONFIGURED=1` only against an unconfigured server to test its 503 response.
 
-## Deploy to Vercel
+Chrome must be installed for browser captures and Lighthouse. Set `CHROME_PATH` for the audit if auto-detection is unavailable. Browser evidence and Lighthouse JSON/HTML reports go into ignored `artifacts/`.
 
-Import this repository into Vercel as a Next.js project. Use the default build command `npm run build`, configure the environment variables above, and add `yazhnova.in` in the project's domain settings. No static export: the contact route needs the Next.js Node runtime.
+After regenerating frames, restart a production preview: Next.js enumerates public assets at startup. The checked-in frames are already ready for a normal build/deploy. `npm run inventory` regenerates the source API inventory; its prose and source defaults are kept together.
 
-SEO includes per-page metadata, canonicals, generated OpenGraph artwork, Organization JSON-LD, `sitemap.xml`, `robots.txt`, and an SVG brand icon.
+## Vercel
+
+Import the repository as a Next.js project, use `npm run build`, and configure the environment variables above in Vercel. Add `yazhnova.in` in the domain settings when ready. Static export is not used because the contact endpoint requires a server runtime. Browser capture scripts are local QA utilities, not deployment build steps.
+
+Metadata, canonicals, the generated OpenGraph image, Organization JSON-LD, sitemap, robots and icon are included. Playground routes are noindex and excluded from the sitemap.

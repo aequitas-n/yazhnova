@@ -1,0 +1,502 @@
+[
+  {
+    "slug": "hero-40",
+    "frames": [
+      {
+        "url": "http://localhost:3000/playground/render/hero-40?palette=default",
+        "canvases": [
+          {
+            "width": 1190,
+            "height": 694,
+            "context": "webgl",
+            "visible": true
+          }
+        ]
+      },
+      {
+        "url": "http://localhost:3000/playground/render/hero-40?palette=editorial",
+        "canvases": [
+          {
+            "width": 1190,
+            "height": 694,
+            "context": "webgl",
+            "visible": true
+          }
+        ]
+      }
+    ],
+    "errors": [],
+    "screenshot": "docs/shots/hero-40.png"
+  },
+  {
+    "slug": "hero-51",
+    "frames": [
+      {
+        "url": "http://localhost:3000/playground/render/hero-51?palette=default",
+        "canvases": [
+          {
+            "width": 49,
+            "height": 49,
+            "context": "webgl",
+            "visible": true
+          },
+          {
+            "width": 49,
+            "height": 49,
+            "context": "webgl",
+            "visible": true
+          }
+        ]
+      },
+      {
+        "url": "http://localhost:3000/playground/render/hero-51?palette=editorial",
+        "canvases": [
+          {
+            "width": 49,
+            "height": 49,
+            "context": "webgl",
+            "visible": true
+          },
+          {
+            "width": 49,
+            "height": 49,
+            "context": "webgl",
+            "visible": true
+          }
+        ]
+      }
+    ],
+    "errors": [],
+    "screenshot": "docs/shots/hero-51.png"
+  },
+  {
+    "slug": "hero-69",
+    "frames": [
+      {
+        "url": "http://localhost:3000/playground/render/hero-69?palette=default",
+        "canvases": [
+          {
+            "width": 676,
+            "height": 375,
+            "context": "webgl2",
+            "visible": true
+          }
+        ]
+      },
+      {
+        "url": "http://localhost:3000/playground/render/hero-69?palette=editorial",
+        "canvases": [
+          {
+            "width": 676,
+            "height": 375,
+            "context": "webgl2",
+            "visible": true
+          }
+        ]
+      }
+    ],
+    "errors": [],
+    "screenshot": "docs/shots/hero-69.png"
+  },
+  {
+    "slug": "hero-28",
+    "frames": [
+      {
+        "url": "http://localhost:3000/playground/render/hero-28?palette=default",
+        "canvases": [
+          {
+            "width": 413,
+            "height": 288,
+            "context": "2d",
+            "visible": true
+          },
+          {
+            "width": 413,
+            "height": 288,
+            "context": "2d",
+            "visible": true
+          }
+        ]
+      },
+      {
+        "url": "http://localhost:3000/playground/render/hero-28?palette=editorial",
+        "canvases": [
+          {
+            "width": 413,
+            "height": 288,
+            "context": "2d",
+            "visible": true
+          },
+          {
+            "width": 413,
+            "height": 288,
+            "context": "2d",
+            "visible": true
+          }
+        ]
+      }
+    ],
+    "errors": [],
+    "screenshot": "docs/shots/hero-28.png"
+  },
+  {
+    "slug": "features-02",
+    "frames": [
+      {
+        "url": "http://localhost:3000/playground/render/features-02?palette=default",
+        "canvases": [
+          {
+            "width": 331,
+            "height": 331,
+            "context": "webgl2",
+            "visible": true
+          }
+        ]
+      },
+      {
+        "url": "http://localhost:3000/playground/render/features-02?palette=editorial",
+        "canvases": [
+          {
+            "width": 331,
+            "height": 331,
+            "context": "webgl2",
+            "visible": true
+          }
+        ]
+      }
+    ],
+    "errors": [],
+    "screenshot": "docs/shots/features-02.png"
+  },
+  {
+    "slug": "pricing-04",
+    "frames": [
+      {
+        "url": "http://localhost:3000/playground/render/pricing-04?palette=default",
+        "canvases": [
+          {
+            "width": 560,
+            "height": 744,
+            "context": "webgl",
+            "visible": true
+          }
+        ]
+      },
+      {
+        "url": "http://localhost:3000/playground/render/pricing-04?palette=editorial",
+        "canvases": [
+          {
+            "width": 560,
+            "height": 746,
+            "context": "webgl",
+            "visible": true
+          }
+        ]
+      }
+    ],
+    "errors": [],
+    "screenshot": "docs/shots/pricing-04.png"
+  },
+  {
+    "slug": "footer-03",
+    "frames": [
+      {
+        "url": "http://localhost:3000/playground/render/footer-03?palette=default",
+        "canvases": [
+          {
+            "width": 182,
+            "height": 50,
+            "context": "2d",
+            "visible": true
+          },
+          {
+            "width": 612,
+            "height": 169,
+            "context": "webgl2",
+            "visible": true
+          }
+        ]
+      },
+      {
+        "url": "http://localhost:3000/playground/render/footer-03?palette=editorial",
+        "canvases": [
+          {
+            "width": 182,
+            "height": 50,
+            "context": "2d",
+            "visible": true
+          },
+          {
+            "width": 612,
+            "height": 169,
+            "context": "webgl2",
+            "visible": true
+          }
+        ]
+      }
+    ],
+    "errors": [],
+    "screenshot": "docs/shots/footer-03.png"
+  },
+  {
+    "slug": "dither-reveal",
+    "frames": [
+      {
+        "url": "http://localhost:3000/playground/render/dither-reveal?palette=default",
+        "canvases": [
+          {
+            "width": 676,
+            "height": 694,
+            "context": "webgl",
+            "visible": true
+          }
+        ]
+      },
+      {
+        "url": "http://localhost:3000/playground/render/dither-reveal?palette=editorial",
+        "canvases": [
+          {
+            "width": 676,
+            "height": 694,
+            "context": "webgl",
+            "visible": true
+          }
+        ]
+      }
+    ],
+    "errors": [],
+    "screenshot": "docs/shots/dither-reveal.png"
+  },
+  {
+    "slug": "paperline-archive",
+    "frames": [
+      {
+        "url": "http://localhost:3000/playground/render/paperline-archive?palette=default",
+        "canvases": [
+          {
+            "width": 676,
+            "height": 694,
+            "context": "2d",
+            "visible": true
+          }
+        ]
+      },
+      {
+        "url": "http://localhost:3000/playground/render/paperline-archive?palette=editorial",
+        "canvases": [
+          {
+            "width": 676,
+            "height": 694,
+            "context": "2d",
+            "visible": true
+          }
+        ]
+      }
+    ],
+    "errors": [],
+    "screenshot": "docs/shots/paperline-archive.png"
+  },
+  {
+    "slug": "dithered-pixel-grid",
+    "frames": [
+      {
+        "url": "http://localhost:3000/playground/render/dithered-pixel-grid?palette=default",
+        "canvases": [
+          {
+            "width": 676,
+            "height": 694,
+            "context": "2d",
+            "visible": true
+          }
+        ]
+      },
+      {
+        "url": "http://localhost:3000/playground/render/dithered-pixel-grid?palette=editorial",
+        "canvases": [
+          {
+            "width": 676,
+            "height": 694,
+            "context": "2d",
+            "visible": true
+          }
+        ]
+      }
+    ],
+    "errors": [],
+    "screenshot": "docs/shots/dithered-pixel-grid.png"
+  },
+  {
+    "slug": "beyond-horizon",
+    "frames": [
+      {
+        "url": "http://localhost:3000/playground/render/beyond-horizon?palette=default",
+        "canvases": [
+          {
+            "width": 676,
+            "height": 694,
+            "context": "webgl",
+            "visible": true
+          }
+        ]
+      },
+      {
+        "url": "http://localhost:3000/playground/render/beyond-horizon?palette=editorial",
+        "canvases": [
+          {
+            "width": 676,
+            "height": 694,
+            "context": "webgl",
+            "visible": true
+          }
+        ]
+      }
+    ],
+    "errors": [],
+    "screenshot": "docs/shots/beyond-horizon.png"
+  },
+  {
+    "slug": "glassbound",
+    "frames": [
+      {
+        "url": "http://localhost:3000/playground/render/glassbound?palette=default",
+        "canvases": [
+          {
+            "width": 406,
+            "height": 416,
+            "context": "webgl2",
+            "visible": true
+          }
+        ]
+      },
+      {
+        "url": "http://localhost:3000/playground/render/glassbound?palette=editorial",
+        "canvases": [
+          {
+            "width": 406,
+            "height": 416,
+            "context": "webgl2",
+            "visible": true
+          }
+        ]
+      }
+    ],
+    "errors": [],
+    "screenshot": "docs/shots/glassbound.png"
+  },
+  {
+    "slug": "network-lines",
+    "frames": [
+      {
+        "url": "http://localhost:3000/playground/render/network-lines?palette=default",
+        "canvases": [
+          {
+            "width": 676,
+            "height": 694,
+            "context": "webgl",
+            "visible": true
+          }
+        ]
+      },
+      {
+        "url": "http://localhost:3000/playground/render/network-lines?palette=editorial",
+        "canvases": [
+          {
+            "width": 676,
+            "height": 694,
+            "context": "webgl",
+            "visible": true
+          }
+        ]
+      }
+    ],
+    "errors": [],
+    "screenshot": "docs/shots/network-lines.png"
+  },
+  {
+    "slug": "ocean-swell",
+    "frames": [
+      {
+        "url": "http://localhost:3000/playground/render/ocean-swell?palette=default",
+        "canvases": [
+          {
+            "width": 676,
+            "height": 694,
+            "context": "webgl2",
+            "visible": true
+          }
+        ]
+      },
+      {
+        "url": "http://localhost:3000/playground/render/ocean-swell?palette=editorial",
+        "canvases": [
+          {
+            "width": 676,
+            "height": 694,
+            "context": "webgl2",
+            "visible": true
+          }
+        ]
+      }
+    ],
+    "errors": [],
+    "screenshot": "docs/shots/ocean-swell.png"
+  },
+  {
+    "slug": "rain-puddle",
+    "frames": [
+      {
+        "url": "http://localhost:3000/playground/render/rain-puddle?palette=default",
+        "canvases": [
+          {
+            "width": 676,
+            "height": 694,
+            "context": "webgl",
+            "visible": true
+          }
+        ]
+      },
+      {
+        "url": "http://localhost:3000/playground/render/rain-puddle?palette=editorial",
+        "canvases": [
+          {
+            "width": 676,
+            "height": 694,
+            "context": "webgl",
+            "visible": true
+          }
+        ]
+      }
+    ],
+    "errors": [],
+    "screenshot": "docs/shots/rain-puddle.png"
+  },
+  {
+    "slug": "shadow-cast",
+    "frames": [
+      {
+        "url": "http://localhost:3000/playground/render/shadow-cast?palette=default",
+        "canvases": [
+          {
+            "width": 676,
+            "height": 694,
+            "context": "webgl",
+            "visible": true
+          }
+        ]
+      },
+      {
+        "url": "http://localhost:3000/playground/render/shadow-cast?palette=editorial",
+        "canvases": [
+          {
+            "width": 676,
+            "height": 694,
+            "context": "webgl",
+            "visible": true
+          }
+        ]
+      }
+    ],
+    "errors": [],
+    "screenshot": "docs/shots/shadow-cast.png"
+  }
+]

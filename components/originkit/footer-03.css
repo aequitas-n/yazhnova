@@ -1,0 +1,246 @@
+@import url("https://fonts.googleapis.com/css2?family=Inter+Tight:wght@500;600;700&family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@400;500&display=swap");
+
+.footer-03 {
+  background: #060708;
+  color: #eaf2ff;
+  font-family: "Inter", system-ui, sans-serif;
+  -webkit-font-smoothing: antialiased;
+  position: relative;
+  isolation: isolate;
+}
+.footer-03,
+.footer-03 * {
+  box-sizing: border-box;
+}
+.footer-03 .footer {
+  max-width: 1280px;
+  margin: 0 auto;
+  padding: 96px 40px 0;
+}
+
+.footer-03 .cta {
+  position: relative;
+  overflow: hidden;
+  border-radius: 28px;
+  padding: 64px 32px 56px;
+  background: #0b0d0f;
+  box-shadow: inset 0 0 0 1px rgba(234, 242, 255, 0.07);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+}
+.footer-03 .cta::before {
+  content: "";
+  position: absolute;
+  inset: -40% 20% auto;
+  height: 80%;
+  pointer-events: none;
+  background: radial-gradient(50% 50% at 50% 50%, rgba(92, 200, 255, 0.14), rgba(92, 200, 255, 0));
+}
+.footer-03 .cta > * {
+  position: relative;
+}
+.footer-03 .cta-eyebrow {
+  margin: 0 0 16px;
+  font-family: "JetBrains Mono", ui-monospace, monospace;
+  font-size: 12px;
+  letter-spacing: 1.4px;
+  text-transform: uppercase;
+  color: #5cc8ff;
+}
+.footer-03 .cta h2 {
+  margin: 0 0 18px;
+  max-width: 900px;
+  font-family: "Inter Tight", system-ui, sans-serif;
+  font-size: clamp(40px, 6.4vw, 88px);
+  line-height: 0.98;
+  font-weight: 700;
+  letter-spacing: -0.045em;
+  text-wrap: balance;
+}
+.footer-03 .cta h2 span {
+  color: #5cc8ff;
+}
+.footer-03 .cta p {
+  margin: 0 0 30px;
+  max-width: 520px;
+  font-size: 17px;
+  line-height: 1.55;
+  color: rgba(234, 242, 255, 0.62);
+}
+.footer-03 .actions {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: center;
+  gap: 14px;
+}
+.footer-03 .install {
+  display: inline-flex;
+  align-items: center;
+  gap: 12px;
+  height: 52px;
+  padding: 0 8px 0 18px;
+  border-radius: 999px;
+  background: #060708;
+  box-shadow: inset 0 0 0 1px rgba(234, 242, 255, 0.12);
+  font-family: "JetBrains Mono", ui-monospace, monospace;
+  font-size: 13.5px;
+  color: #eaf2ff;
+}
+.footer-03 .install span {
+  color: #5cc8ff;
+  user-select: none;
+}
+.footer-03 .copy {
+  height: 36px;
+  padding: 0 14px;
+  border: 0;
+  border-radius: 999px;
+  cursor: pointer;
+  background: rgba(234, 242, 255, 0.08);
+  color: #eaf2ff;
+  font:
+    500 13px "Inter",
+    system-ui,
+    sans-serif;
+}
+.footer-03 .copy:hover {
+  background: rgba(234, 242, 255, 0.14);
+}
+.footer-03 .copy:focus-visible {
+  outline: 2px solid #5cc8ff;
+  outline-offset: 2px;
+}
+.footer-03 .demo {
+  font-size: 15px;
+  font-weight: 500;
+  color: rgba(234, 242, 255, 0.72);
+  text-decoration: none;
+  padding: 0 6px;
+}
+.footer-03 .demo:hover {
+  color: #eaf2ff;
+}
+
+.footer-03 .links {
+  display: grid;
+  grid-template-columns: minmax(0, 1.6fr) repeat(4, minmax(0, 1fr));
+  gap: 32px;
+  padding: 72px 4px 56px;
+}
+.footer-03 .brand {
+  display: grid;
+  gap: 16px;
+  align-content: start;
+}
+.footer-03 .logo {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  font-family: "Inter Tight", system-ui, sans-serif;
+  font-size: 20px;
+  font-weight: 600;
+  letter-spacing: -0.3px;
+}
+.footer-03 .brand p {
+  margin: 0;
+  max-width: 300px;
+  font-size: 14.5px;
+  line-height: 1.55;
+  color: rgba(234, 242, 255, 0.55);
+}
+.footer-03 .status {
+  display: inline-flex;
+  align-items: center;
+  gap: 9px;
+  width: fit-content;
+  padding: 7px 12px;
+  border-radius: 999px;
+  box-shadow: inset 0 0 0 1px rgba(234, 242, 255, 0.08);
+  font-size: 13px;
+  color: rgba(234, 242, 255, 0.75);
+  text-decoration: none;
+}
+.footer-03 .status i {
+  width: 7px;
+  height: 7px;
+  border-radius: 50%;
+  background: #5cc8ff;
+  box-shadow: 0 0 0 3px rgba(92, 200, 255, 0.18);
+}
+.footer-03 .col h4 {
+  margin: 0 0 16px;
+  font-family: "JetBrains Mono", ui-monospace, monospace;
+  font-size: 11.5px;
+  font-weight: 500;
+  letter-spacing: 1.2px;
+  text-transform: uppercase;
+  color: rgba(234, 242, 255, 0.42);
+}
+.footer-03 .col ul {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+  display: grid;
+  gap: 11px;
+}
+.footer-03 .col a {
+  font-size: 14.5px;
+  color: rgba(234, 242, 255, 0.75);
+  text-decoration: none;
+}
+.footer-03 .col a:hover {
+  color: #eaf2ff;
+}
+.footer-03 .wordmark {
+  height: clamp(130px, 25vw, 340px);
+  margin: 0 -8px;
+}
+.footer-03 .wordmark > div {
+  width: 100%;
+  height: 100%;
+}
+.footer-03 .bar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 20px;
+  flex-wrap: wrap;
+  padding: 22px 4px 32px;
+  border-top: 1px solid rgba(234, 242, 255, 0.07);
+  font-size: 13.5px;
+  color: rgba(234, 242, 255, 0.45);
+}
+.footer-03 .bar nav {
+  display: flex;
+  gap: 22px;
+}
+.footer-03 .bar a {
+  color: rgba(234, 242, 255, 0.6);
+  text-decoration: none;
+}
+.footer-03 .bar a:hover {
+  color: #eaf2ff;
+}
+
+@media (max-width: 960px) {
+  .footer-03 .links {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+  .footer-03 .brand {
+    grid-column: 1 / -1;
+  }
+}
+@media (max-width: 600px) {
+  .footer-03 .footer {
+    padding: 64px 16px 0;
+  }
+  .footer-03 .cta {
+    padding: 0 18px 36px;
+  }
+  .footer-03 .install {
+    font-size: 12px;
+  }
+}
