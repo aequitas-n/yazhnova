@@ -44,7 +44,11 @@ export function StoryStage({ id }: { id: StoryId }) {
           <div className="service-story-scene">
             {frameVisited && !allowed && (
               <Image
-                src={"/frames/stories/" + (id === "mobile" ? "mobile-phone" : id) + ".png"}
+                src={
+                  "/frames/stories/" +
+                  (id === "mobile" ? "mobile-phone" : id) +
+                  ".png?v=proportions-1"
+                }
                 alt=""
                 fill
                 sizes="(max-width:767px) 100vw, 70vw"

@@ -134,8 +134,7 @@ export function ServiceStory({
         lastPaint = now;
       }
       const pulse = seconds > 2.8 && seconds < 4.2 ? Math.sin((seconds - 2.8) * 14) * 0.055 : 0;
-      scene.current?.style.setProperty("--core-x", String(1 + pulse));
-      scene.current?.style.setProperty("--core-y", String(1 - pulse * 1.6));
+      scene.current?.style.setProperty("--core-scale", String(1 + pulse));
       if (now - lastState > 80 || sampleTime !== undefined) {
         setClock(elapsed.current);
         lastState = now;
@@ -295,12 +294,20 @@ export function ServiceStory({
           frameSrc={
             forceLive
               ? "/frames/signal/" + kind + ".png"
-              : "/frames/stories/" + (id === "mobile" ? "mobile-phone" : id) + ".png"
+              : "/frames/stories/" +
+                (id === "mobile" ? "mobile-phone" : id) +
+                ".png?v=proportions-1"
           }
           sizes="(max-width:767px) 100vw, 70vw"
           overlay={overlay}
           surfaceClassName={
-            id === "ai" ? "story-core" : id === "mobile" ? "story-phone" : "story-native"
+            id === "ai"
+              ? "story-core"
+              : id === "mobile"
+                ? "story-phone"
+                : id === "cloud"
+                  ? "story-native"
+                  : "story-native story-board"
           }
         />
       </div>

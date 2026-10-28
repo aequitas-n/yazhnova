@@ -2,7 +2,7 @@ import { chromium } from "@playwright/test";
 import { mkdir, writeFile } from "node:fs/promises";
 const browser = await chromium.launch({ channel: "chrome", args: ["--enable-unsafe-swiftshader"] });
 const base = process.env.BASE_URL || "http://localhost:3000";
-const ids = ["web", "saas", "ai", "mobile", "cloud", "design"];
+const ids = (process.env.STORY_IDS || "web,saas,ai,mobile,cloud,design").split(",");
 const mode = process.argv.includes("--frames") ? "frames" : process.env.CAPTURE_PASS3 || "report";
 const errors = [],
   records = [];
@@ -23,7 +23,7 @@ try {
       await page.waitForSelector(".visual-canvas canvas");
       await page.waitForTimeout(500);
       await page
-        .locator(".service-story-scene")
+        .locator(["web", "saas", "design"].includes(id) ? ".story-board" : ".service-story-scene")
         .screenshot({ path: "public/frames/stories/" + id + ".png" });
       if (id === "mobile")
         await page

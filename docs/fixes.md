@@ -233,3 +233,9 @@ Loading/reduced-motion previews use the same hand scale; desktop portrait previe
 Removed the inner square WebGL boundary by making the intro render target viewport-sized. The source hero-69 renderer accepts an optional `viewportFraming` choreography flag, extending the camera view while preserving the existing stone scale and perspective. Fragment geometry, physics, timing and reformation are unchanged; shards can now continue to the screen edges. The same canvas docks into the responsive hero slot, with one resize on arrival.
 
 Desktop and mobile captures verify real shard pixels outside the former square, full-screen canvas bounds, continued canvas identity and no console/page errors. TypeScript, seven existing intro/hands browser tests and the production build pass. See [before/after images and measurements](intro-space/README.md).
+
+## Mobile service story aspect ratios - 28 October 2026
+
+The Web, SaaS and UI/UX source canvases are designed at 1000x760 but were being drawn into independently sized portrait stages. Their genuine native surfaces now fit a centered 1000:760 board and scale uniformly within the available space. The agent core uses a square surface and a uniform thinking pulse instead of opposing horizontal/vertical scale factors. Phone and Cloud layouts retain their existing behavior.
+
+Regenerated genuine story frames at the correct proportions, refreshed their cache key, and updated the capture helper to crop the landscape board. Native/static screenshots, aspect and bitmap scaling checks, story progression/replay/pausing tests, TypeScript and the production build pass. See [before/after review](story-proportions/README.md). No source component or animation was replaced.

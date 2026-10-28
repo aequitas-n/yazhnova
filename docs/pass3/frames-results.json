@@ -11,22 +11,12 @@
       "canvases": 1
     },
     {
-      "id": "ai",
-      "final": true,
-      "canvases": 1
-    },
-    {
-      "id": "mobile",
-      "final": true,
-      "canvases": 1
-    },
-    {
-      "id": "cloud",
-      "final": true,
-      "canvases": 1
-    },
-    {
       "id": "design",
+      "final": true,
+      "canvases": 1
+    },
+    {
+      "id": "ai",
       "final": true,
       "canvases": 1
     }

@@ -1,0 +1,182 @@
+[
+  {
+    "id": "web",
+    "viewport": {
+      "width": 390,
+      "height": 844
+    },
+    "width": 390,
+    "height": 296.390625,
+    "ratio": 1.3158310928356793,
+    "canvas": {
+      "width": 390,
+      "height": 296
+    },
+    "errors": []
+  },
+  {
+    "id": "saas",
+    "viewport": {
+      "width": 390,
+      "height": 844
+    },
+    "width": 390,
+    "height": 296.390625,
+    "ratio": 1.3158310928356793,
+    "canvas": {
+      "width": 390,
+      "height": 296
+    },
+    "errors": []
+  },
+  {
+    "id": "design",
+    "viewport": {
+      "width": 390,
+      "height": 844
+    },
+    "width": 390,
+    "height": 296.390625,
+    "ratio": 1.3158310928356793,
+    "canvas": {
+      "width": 390,
+      "height": 296
+    },
+    "errors": []
+  },
+  {
+    "id": "ai",
+    "viewport": {
+      "width": 390,
+      "height": 844
+    },
+    "width": 408.3311767578125,
+    "height": 408.33111572265625,
+    "ratio": 1.0000001494746638,
+    "canvas": {
+      "width": 156,
+      "height": 156
+    },
+    "errors": []
+  },
+  {
+    "id": "web",
+    "viewport": {
+      "width": 412,
+      "height": 915
+    },
+    "width": 412,
+    "height": 313.109375,
+    "ratio": 1.3158341234592545,
+    "canvas": {
+      "width": 412,
+      "height": 313
+    },
+    "errors": []
+  },
+  {
+    "id": "saas",
+    "viewport": {
+      "width": 412,
+      "height": 915
+    },
+    "width": 412,
+    "height": 313.109375,
+    "ratio": 1.3158341234592545,
+    "canvas": {
+      "width": 412,
+      "height": 313
+    },
+    "errors": []
+  },
+  {
+    "id": "design",
+    "viewport": {
+      "width": 412,
+      "height": 915
+    },
+    "width": 412,
+    "height": 313.109375,
+    "ratio": 1.3158341234592545,
+    "canvas": {
+      "width": 412,
+      "height": 313
+    },
+    "errors": []
+  },
+  {
+    "id": "ai",
+    "viewport": {
+      "width": 412,
+      "height": 915
+    },
+    "width": 431.365234375,
+    "height": 431.3652038574219,
+    "ratio": 1.0000000707464993,
+    "canvas": {
+      "width": 165,
+      "height": 165
+    },
+    "errors": []
+  },
+  {
+    "id": "web",
+    "viewport": {
+      "width": 1440,
+      "height": 1000
+    },
+    "width": 1223.671875,
+    "height": 929.984375,
+    "ratio": 1.3157983165039735,
+    "canvas": {
+      "width": 1224,
+      "height": 930
+    },
+    "errors": []
+  },
+  {
+    "id": "saas",
+    "viewport": {
+      "width": 1440,
+      "height": 1000
+    },
+    "width": 1223.671875,
+    "height": 929.984375,
+    "ratio": 1.3157983165039735,
+    "canvas": {
+      "width": 1224,
+      "height": 930
+    },
+    "errors": []
+  },
+  {
+    "id": "design",
+    "viewport": {
+      "width": 1440,
+      "height": 1000
+    },
+    "width": 1223.671875,
+    "height": 929.984375,
+    "ratio": 1.3157983165039735,
+    "canvas": {
+      "width": 1224,
+      "height": 930
+    },
+    "errors": []
+  },
+  {
+    "id": "ai",
+    "viewport": {
+      "width": 1440,
+      "height": 1000
+    },
+    "width": 973.712646484375,
+    "height": 973.7127075195312,
+    "ratio": 0.9999999373170795,
+    "canvas": {
+      "width": 698,
+      "height": 698
+    },
+    "errors": []
+  }
+]
