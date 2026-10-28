@@ -1,0 +1,35 @@
+/* The intro background fades independently; the real stone stays above it. */
+.site-intro .intro-visual-layer {
+  mask-image: none;
+}
+.site-intro .intro-stone {
+  inset: auto;
+  left: 50%;
+  top: 50%;
+  width: min(100vw, 100svh);
+  height: min(100vw, 100svh);
+  transform: translate(-50%, -50%);
+  will-change: transform;
+}
+.site-intro .intro-stone .live-visual,
+.site-intro .intro-stone .visual-canvas {
+  overflow: visible;
+}
+.intro-page[data-intro-state="revealing"] .hero-art {
+  animation: hands-arrive 1.15s ease-out both;
+}
+@keyframes hands-arrive {
+  from {
+    opacity: 0;
+    transform: scale(1.035);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+@media (prefers-reduced-motion: reduce) {
+  .intro-page .hero-art {
+    animation: none;
+  }
+}

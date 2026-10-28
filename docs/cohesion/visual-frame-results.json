@@ -70,11 +70,6 @@
     "errors": []
   },
   {
-    "kind": "manifesto",
-    "canvases": 1,
-    "errors": []
-  },
-  {
     "kind": "strings",
     "canvases": 1,
     "errors": []
@@ -86,6 +81,21 @@
   },
   {
     "kind": "hero-dither",
+    "canvases": 1,
+    "errors": []
+  },
+  {
+    "kind": "hero-stone",
+    "canvases": 1,
+    "errors": []
+  },
+  {
+    "kind": "manifesto",
+    "canvases": 1,
+    "errors": []
+  },
+  {
+    "kind": "ridge",
     "canvases": 1,
     "errors": []
   }

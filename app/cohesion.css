@@ -241,12 +241,10 @@ textarea:focus-visible,
 .manifesto-newsprint {
   position: absolute;
   inset: 0;
-  opacity: 0.52;
+  opacity: 1;
   z-index: -1;
-  mask-image:
-    linear-gradient(transparent, #000 8%, #000 56%, #0003 72%, transparent 96%),
-    linear-gradient(90deg, #0004 32%, #000 65%);
-  mask-composite: intersect;
+  /* Paper contrast is controlled inside the native renderer, leaving ink vivid. */
+  mask-image: none;
   pointer-events: none;
 }
 .manifesto-heading {
@@ -256,7 +254,7 @@ textarea:focus-visible,
     0 0 18px var(--ink);
 }
 .manifesto-newsprint .visual-frame {
-  object-position: center top;
+  object-position: center;
 }
 .manifesto-slogan {
   font-family: var(--font-ui), sans-serif;

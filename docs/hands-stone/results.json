@@ -1,0 +1,62 @@
+[
+  {
+    "name": "desktop",
+    "width": 1440,
+    "height": 1000,
+    "errors": [],
+    "overflow": false,
+    "canvases": 2,
+    "source": "dither-reveal",
+    "heroHeight": 1000
+  },
+  {
+    "name": "wide-desktop",
+    "width": 1920,
+    "height": 1080,
+    "errors": [],
+    "overflow": false,
+    "canvases": 2,
+    "source": "dither-reveal",
+    "heroHeight": 1113.703125
+  },
+  {
+    "name": "mobile",
+    "width": 393,
+    "height": 720,
+    "errors": [],
+    "overflow": false,
+    "canvases": 2,
+    "source": "dither-reveal",
+    "heroHeight": 762.015625
+  },
+  {
+    "name": "short-phone",
+    "width": 360,
+    "height": 640,
+    "errors": [],
+    "overflow": false,
+    "canvases": 2,
+    "source": "dither-reveal",
+    "heroHeight": 733.421875
+  },
+  {
+    "name": "reduced-motion",
+    "width": 393,
+    "height": 720,
+    "errors": [],
+    "overflow": false,
+    "canvases": 0,
+    "source": "dither-reveal",
+    "heroHeight": 762.015625
+  },
+  {
+    "name": "after-intro",
+    "width": 393,
+    "height": 720,
+    "errors": [],
+    "overflow": false,
+    "canvases": 2,
+    "source": "dither-reveal",
+    "heroHeight": 762.015625
+  }
+]

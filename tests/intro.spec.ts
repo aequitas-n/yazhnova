@@ -71,6 +71,17 @@ test("real stone opens, reveals the wordmark, reforms and releases the homepage"
   const intro = page.getByRole("dialog", { name: site.intro.title });
   await expect(intro).toHaveAttribute("data-intro-phase", "playing", { timeout: 15000 });
   await expect(intro.locator("canvas")).toHaveAttribute("data-render-context", "webgl2");
+  const centered = await page.locator(".intro-stone").evaluate((element) => {
+    const box = element.getBoundingClientRect();
+    return Math.hypot(
+      box.left + box.width / 2 - innerWidth / 2,
+      box.top + box.height / 2 - innerHeight / 2,
+    );
+  });
+  expect(centered).toBeLessThan(1);
+  await intro.locator("canvas").evaluate((canvas) => {
+    Object.assign(window, { introStoneCanvas: canvas });
+  });
   await expect(page.locator(".intro-page")).toHaveAttribute("inert", "");
   await expect(page.locator(".hero-art canvas")).toHaveCount(0);
   await expect(intro).toBeFocused();
@@ -90,8 +101,17 @@ test("real stone opens, reveals the wordmark, reforms and releases the homepage"
   const beats = history
     .map((state) => state.split(":")[1])
     .filter((beat, index, list) => index === 0 || beat !== list[index - 1]);
-  expect(beats).toEqual(["formed", "opening", "wordmark", "closing", "reformed", "burst"]);
-  expect(history).toContain("revealing:burst");
+  expect(beats).toEqual(["formed", "opening", "wordmark", "closing", "reformed", "docking"]);
+  expect(history).toContain("revealing:docking");
+  expect(
+    await page
+      .locator(".hero-stone canvas")
+      .evaluate(
+        (canvas) =>
+          canvas ===
+          (window as typeof window & { introStoneCanvas: HTMLCanvasElement }).introStoneCanvas,
+      ),
+  ).toBe(true);
   await expect(page.locator(".intro-page")).not.toHaveAttribute("inert");
   await expect(page.locator("#hero-title")).toBeFocused();
   await expect(page.locator("#hero-title")).toHaveCSS("outline-style", "none");

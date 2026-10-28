@@ -5,8 +5,8 @@ import { LiveVisual } from "@/components/visuals/live-visual";
 export function Footer() {
   return (
     <footer className="site-footer">
-      <div className="footer-water" aria-hidden="true">
-        <LiveVisual kind="rain" />
+      <div className="footer-ridges" aria-hidden="true">
+        <LiveVisual kind="ridge" sizes="100vw" initialFrame />
       </div>
       <div className="container">
         <div className="footer-top">

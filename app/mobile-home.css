@@ -1,0 +1,22 @@
+/* Keep the genuine hand preview until its texture has reached the live canvas. */
+.home-page .hero-art .live-visual[data-ready="false"] > .visual-frame,
+.home-page .hero-stone .live-visual[data-ready="false"] > .visual-frame {
+  visibility: visible;
+  opacity: 1;
+}
+
+@media (max-width: 767px) {
+  .site-nav .nav-inner {
+    gap: 12px;
+  }
+  .site-nav .brand {
+    font-size: clamp(16px, 4.6vw, 18px);
+  }
+  .site-nav .nav-actions {
+    gap: 8px;
+  }
+  .site-nav .menu-button {
+    min-width: 44px;
+    min-height: 44px;
+  }
+}

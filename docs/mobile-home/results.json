@@ -1,0 +1,110 @@
+[
+  {
+    "name": "short-phone",
+    "width": 360,
+    "height": 640,
+    "motion": "no-preference",
+    "first": false,
+    "errors": [],
+    "overflow": false,
+    "stageHeight": 641.359375,
+    "texture": [
+      {
+        "name": "/originkit/hero-40/white-hands.webp",
+        "initiator": "link",
+        "duration": 557,
+        "transferBytes": 20492
+      }
+    ]
+  },
+  {
+    "name": "android",
+    "width": 393,
+    "height": 720,
+    "motion": "no-preference",
+    "first": false,
+    "errors": [],
+    "overflow": false,
+    "stageHeight": 670.40625,
+    "texture": [
+      {
+        "name": "/originkit/hero-40/white-hands.webp",
+        "initiator": "link",
+        "duration": 556,
+        "transferBytes": 20492
+      }
+    ]
+  },
+  {
+    "name": "iphone",
+    "width": 390,
+    "height": 844,
+    "motion": "no-preference",
+    "first": false,
+    "errors": [],
+    "overflow": false,
+    "stageHeight": 777,
+    "texture": [
+      {
+        "name": "/originkit/hero-40/white-hands.webp",
+        "initiator": "link",
+        "duration": 560,
+        "transferBytes": 20492
+      }
+    ]
+  },
+  {
+    "name": "tall-phone",
+    "width": 412,
+    "height": 915,
+    "motion": "no-preference",
+    "first": false,
+    "errors": [],
+    "overflow": false,
+    "stageHeight": 848,
+    "texture": [
+      {
+        "name": "/originkit/hero-40/white-hands.webp",
+        "initiator": "link",
+        "duration": 571,
+        "transferBytes": 20492
+      }
+    ]
+  },
+  {
+    "name": "reduced-motion",
+    "width": 393,
+    "height": 720,
+    "motion": "reduce",
+    "first": false,
+    "errors": [],
+    "overflow": false,
+    "stageHeight": 670.40625,
+    "texture": [
+      {
+        "name": "/originkit/hero-40/white-hands.webp",
+        "initiator": "link",
+        "duration": 540,
+        "transferBytes": 20492
+      }
+    ]
+  },
+  {
+    "name": "first-visit",
+    "width": 393,
+    "height": 720,
+    "motion": "no-preference",
+    "first": true,
+    "errors": [],
+    "overflow": false,
+    "stageHeight": 670.40625,
+    "texture": [
+      {
+        "name": "/originkit/hero-40/white-hands.webp",
+        "initiator": "link",
+        "duration": 516,
+        "transferBytes": 20492
+      }
+    ]
+  }
+]

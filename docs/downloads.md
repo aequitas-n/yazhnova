@@ -38,3 +38,8 @@ This is the canonical CLI name for the requested **cloud-sky/03**. Its reserved 
 ## Later additions
 
 Hero-44 and hero-55 were subsequently installed successfully through the CLI. There are now 36 installed sources: the original 34, plus these two additions. Hero-44 supplies the six shared chapter heroes; hero-55 supplies Contact. Both have paired source studies. The earlier 34-of-35 count describes the original batch; cloud-sky/03 remains the only unavailable source from that batch.
+
+
+## Ridge footer addition ? 28 October 2026
+
+`npx originkit@latest add ridge-parallax --path components/originkit` succeeded. The real source is installed at `components/originkit/ui/ridge-parallax.tsx`, rendered in both playground variants and used in the shared footer. Total installed sources: **37**. No new missing dependencies, failed installs or placeholder slots. The original cloud-sky/03 slot remains unchanged. See [footer review](footer-ridge/README.md).

@@ -1,0 +1,177 @@
+.stone-hands-hero {
+  position: relative;
+}
+.stone-hands-hero::after {
+  content: "";
+  position: absolute;
+  inset: auto 0 0;
+  height: 70px;
+  background: linear-gradient(#f4f2ec00, var(--ink));
+  pointer-events: none;
+  z-index: 4;
+}
+.home-page .stone-hands-hero .hero-stage {
+  height: auto;
+  min-height: 100svh;
+}
+.stone-hands-hero .hero-composition {
+  display: flex;
+  flex-direction: column;
+  min-height: 100svh;
+  padding-top: clamp(112px, 12svh, 140px);
+  padding-bottom: 90px;
+  z-index: 2;
+}
+.stone-hands-hero h1 {
+  margin: 20px 0 0;
+  font-size: clamp(52px, 5.6vw, 108px);
+  font-weight: 500;
+  letter-spacing: -0.055em;
+  line-height: 1.05;
+  overflow-wrap: anywhere;
+}
+.stone-hands-hero h1 em {
+  margin-left: 0.15em;
+  font-size: 1.05em;
+  letter-spacing: -0.045em;
+}
+.stone-hands-hero .hero-visual-space {
+  position: relative;
+  width: 100vw;
+  align-self: center;
+  height: max(42svh, 54vw);
+  max-height: none;
+  margin-block: 18px 10px;
+}
+.stone-hands-hero .hero-art {
+  inset: 0;
+  height: 100%;
+  opacity: 1;
+  mix-blend-mode: normal;
+  mask-image: none;
+}
+.stone-hands-hero .hero-art .live-visual {
+  filter: none;
+}
+.stone-hands-hero .hero-art .visual-frame {
+  object-fit: cover;
+  object-position: center;
+}
+.stone-hands-hero .hero-stone {
+  position: absolute;
+  z-index: 2;
+  left: 50%;
+  top: 50%;
+  width: clamp(180px, 38vw, 760px);
+  aspect-ratio: 1;
+  transform: translate(-50%, -50%);
+}
+.stone-hands-hero .hero-stone .visual-frame {
+  visibility: visible;
+  object-fit: contain;
+}
+.stone-hands-hero .hero-support {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) auto;
+  align-items: start;
+  gap: 36px;
+  margin-top: 10px;
+}
+.stone-hands-hero .hero-description {
+  max-width: 44ch;
+  color: #514f49;
+  font-size: 15px;
+  line-height: 1.8;
+}
+.stone-hands-hero .hero-actions {
+  margin: 0;
+  flex-wrap: wrap;
+  justify-content: flex-end;
+  gap: 16px 28px;
+}
+.stone-hands-hero .hero-note {
+  display: block;
+  margin-top: 13px;
+  color: #77746e;
+  font-size: 11px;
+  text-align: right;
+}
+.home-page .stone-hands-hero .hero-baseline {
+  position: relative;
+  inset: auto;
+  margin-top: 30px;
+  padding-top: 18px;
+}
+@media (max-width: 767px) {
+  .home-page > .stone-hands-hero {
+    margin-top: 0;
+  }
+  .stone-hands-hero::before {
+    height: 56px;
+    background: linear-gradient(#0a0a0a33, transparent);
+  }
+  .home-page .stone-hands-hero .hero-stage,
+  .stone-hands-hero .hero-composition {
+    min-height: calc(100svh - 67px);
+  }
+  .stone-hands-hero .hero-composition {
+    padding-top: 32px;
+    padding-bottom: 80px;
+  }
+  .stone-hands-hero .hero-eyebrow {
+    font-size: clamp(6px, 1.7vw, 8px);
+    gap: 7px;
+    letter-spacing: 0.025em;
+  }
+  .stone-hands-hero h1 {
+    margin-top: 24px;
+    font-size: clamp(36px, 10.8vw, 65px);
+    line-height: 1.02;
+  }
+  .stone-hands-hero h1 > span,
+  .stone-hands-hero h1 em {
+    display: block;
+    margin-left: 0;
+  }
+  .stone-hands-hero .hero-visual-space {
+    height: max(230px, 64vw);
+    max-height: none;
+    margin-block: 20px;
+  }
+  .stone-hands-hero .hero-stone {
+    width: clamp(140px, 38vw, 290px);
+  }
+  .stone-hands-hero .hero-support {
+    grid-template-columns: 1fr;
+    gap: 24px;
+    margin-top: 0;
+  }
+  .stone-hands-hero .hero-description {
+    max-width: 34ch;
+    font-size: 14px;
+    line-height: 1.75;
+  }
+  .stone-hands-hero .hero-actions {
+    justify-content: flex-start;
+    gap: 12px 20px;
+  }
+  .stone-hands-hero .hero-actions .button,
+  .stone-hands-hero .hero-actions .text-link {
+    min-height: 48px;
+    flex: 1 1 125px;
+    justify-content: center;
+    font-size: 12px;
+  }
+  .stone-hands-hero .hero-note {
+    margin-top: 18px;
+    text-align: center;
+    font-size: 10px;
+  }
+  .home-page .stone-hands-hero .hero-baseline {
+    font-size: 8px;
+    gap: 12px;
+  }
+  .stone-hands-hero .hero-baseline > span:nth-child(2) {
+    display: none;
+  }
+}

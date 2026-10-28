@@ -1,6 +1,7 @@
 "use client";
 
 import { useEffect, useRef, type CSSProperties } from "react";
+import { canvasPixelRatio } from "@/lib/canvas-quality";
 
 const DEFAULT_IMAGE =
   "https://plus.unsplash.com/premium_photo-1726099913477-291d8ca697f8?w=600&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8NXx8YWVzdGhldGljJTIwY29sb3JmdWwlMjBwb3J0cmFpdCUyMGZ1dHVyaXN0aWN8ZW58MHx8MHx8fDA%3D";
@@ -36,6 +37,10 @@ interface DitherRevealProps {
   waveSpeed?: number;
   waveDensity?: number;
   style?: CSSProperties;
+  darkColor?: string;
+  lightColor?: string;
+  monochrome?: boolean;
+  onReady?: () => void;
 }
 
 function clamp(n: any, min: number, max: number, fallback: number) {
@@ -99,6 +104,8 @@ export default function DitherReveal(props: DitherRevealProps) {
 
   const containerRef = useRef<HTMLDivElement | null>(null);
   const canvasRef = useRef<HTMLCanvasElement | null>(null);
+  const appearance = useRef(props);
+  appearance.current = props;
 
   const liveRef = useRef(S);
   liveRef.current = S;
@@ -168,6 +175,13 @@ export default function DitherReveal(props: DitherRevealProps) {
     const uResolution = u("uResolution");
     const uFit = u("uFit");
     const uFocusY = u("uFocusY");
+    const uDark = u("uDark");
+    const uLight = u("uLight");
+    const uMonochrome = u("uMonochrome");
+    const rgb = (hex: string) => {
+      const value = parseInt(hex.replace("#", ""), 16);
+      return [((value >> 16) & 255) / 255, ((value >> 8) & 255) / 255, (value & 255) / 255];
+    };
 
     const texture = gl.createTexture();
     gl.bindTexture(gl.TEXTURE_2D, texture);
@@ -189,6 +203,8 @@ export default function DitherReveal(props: DitherRevealProps) {
     gl.texParameteri(gl.TEXTURE_2D, gl.TEXTURE_MAG_FILTER, gl.LINEAR);
 
     let imgAspect = 1.5;
+    let imageReady = false;
+    let announced = false;
     const img = new Image();
     img.crossOrigin = "anonymous";
     img.onload = () => {
@@ -204,6 +220,7 @@ export default function DitherReveal(props: DitherRevealProps) {
           gl.UNSIGNED_BYTE,
           img,
         );
+        imageReady = true;
       } catch {
       }
     };
@@ -227,7 +244,7 @@ export default function DitherReveal(props: DitherRevealProps) {
     container.addEventListener("pointerleave", onLeave);
 
     function resize() {
-      const dpr = Math.min(window.devicePixelRatio || 1, 3);
+      const dpr = canvasPixelRatio(2);
       canvas!.width = Math.max(1, Math.floor(container!.clientWidth * dpr));
       canvas!.height = Math.max(1, Math.floor(container!.clientHeight * dpr));
       gl!.viewport(0, 0, canvas!.width, canvas!.height);
@@ -247,7 +264,7 @@ export default function DitherReveal(props: DitherRevealProps) {
     function render() {
       raf = requestAnimationFrame(render);
       const L = liveRef.current;
-      if (!inViewRef.current) return;
+      if (!inViewRef.current || !imageReady) return;
 
       const now = performance.now();
       mouse.active += (mouse.target - mouse.active) * 0.08;
@@ -272,7 +289,11 @@ export default function DitherReveal(props: DitherRevealProps) {
       );
       gl!.uniform1f(uFit, L.fit);
       gl!.uniform1f(uFocusY, L.focusY);
+      gl!.uniform3fv(uDark, rgb(appearance.current.darkColor ?? "#000000"));
+      gl!.uniform3fv(uLight, rgb(appearance.current.lightColor ?? "#FFFFFF"));
+      gl!.uniform1f(uMonochrome, appearance.current.monochrome ? 1 : 0);
       gl!.drawArrays(gl!.TRIANGLES, 0, 3);
+      if (!announced) { announced = true; appearance.current.onReady?.(); }
     }
     render();
 
@@ -341,6 +362,9 @@ uniform float uImageAspect;
 uniform vec2 uResolution;
 uniform float uFit;
 uniform float uFocusY;
+uniform vec3 uDark;
+uniform vec3 uLight;
+uniform float uMonochrome;
 
 varying vec2 vUv;
 
@@ -376,7 +400,10 @@ vec2 fitUv(vec2 uv) {
     vec2 cover = uCanvasAspect < uImageAspect
         ? vec2(uCanvasAspect / uImageAspect, 1.0)
         : vec2(1.0, uImageAspect / uCanvasAspect);
-    vec2 s = uFit > 0.5 ? 1.0 / cover : cover / (1.0 + 2.0 * uWaveMargin);
+    vec2 contain = uCanvasAspect < uImageAspect
+        ? vec2(1.0, uImageAspect / uCanvasAspect)
+        : vec2(uCanvasAspect / uImageAspect, 1.0);
+    vec2 s = uFit > 0.5 ? contain : cover / (1.0 + 2.0 * uWaveMargin);
     vec2 out_ = (uv - 0.5) * s + 0.5;
     out_.y += (1.0 - s.y) * (0.5 - uFocusY) * step(s.y, 1.0);
     return out_;
@@ -412,13 +439,14 @@ void main() {
     float gray = dot(color.rgb, vec3(0.299, 0.587, 0.114));
     float ps = max(uPixelSize, 0.25);
     float tone = ditherTone(gray, ps);
-    vec3 ditherColor = vec3(tone);
+    vec3 ditherColor = mix(uDark, uLight, tone);
 
     float revealDist = distance(uv * uResolution, uMouse * uResolution);
     float innerRadius = max(0.0, uRevealRadius * (1.0 - uRevealSoftness));
     float outerRadius = uRevealRadius * (1.0 + uRevealSoftness) + 0.001;
     float revealAmount = (1.0 - smoothstep(innerRadius, outerRadius, revealDist)) * uMouseActive;
 
-    gl_FragColor = vec4(mix(ditherColor, color.rgb, revealAmount), color.a);
+    vec3 photoColor = mix(color.rgb, mix(uDark, uLight, gray), uMonochrome);
+    gl_FragColor = vec4(mix(ditherColor, photoColor, revealAmount), color.a);
 }
 `;

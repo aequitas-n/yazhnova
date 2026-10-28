@@ -14,7 +14,7 @@ npm run dev
 - Website: http://localhost:3000
 - Contact: http://localhost:3000/contact
 - Chapters: `/services`, `/ai-agents`, `/work`, `/process`, `/engage`, `/about`; concept case studies at `/work/clarity`, `/work/relay`, `/work/forma`.
-- 36 paired component studies: http://localhost:3000/playground
+- 37 paired component studies: http://localhost:3000/playground
 - Replay the stone introduction: http://localhost:3000/?intro=replay
 
 For the optimized production preview:
@@ -26,13 +26,13 @@ npm start
 
 ## Download status
 
-36 OriginKit sources are installed: the original 34 downloaded sources plus hero-44 (including all fourteen assets) and hero-55. Only cloud-sky-03 from the original request remains quota-blocked. Review the real sources in the playground and see [download results](docs/downloads.md) and [the shared chapter hero report](docs/chapters/README.md).
+37 OriginKit sources are installed: the original 34 downloaded sources plus hero-44 (including all fourteen assets), hero-55 and ridge-parallax. Only cloud-sky-03 from the original request remains quota-blocked. Review the real sources in the playground and see [download results](docs/downloads.md) and [the shared chapter hero report](docs/chapters/README.md).
 
 ## Current concept: From raw stone to signal
 
 The site uses an ink base, signal orange (#FF3B00), selective paper breaths, a tabbed service stage, full-size native scenes and a shared two-WebGL-context budget. Home is a short introduction; dedicated pages hold the full content. Quotes, verified stats, client locations and team data stay empty until real data is supplied. Mobile uses lighter live canvases; reduced motion uses genuine source frames.
 
-Services, AI Agents, Work, Process, Engage and About share the actual hero-44 plasma/hand composition. Chapter-specific typography, native scene poses and word entrances replay on navigation. The original glassbound visual remains in the lower AI demo. Contact uses the actual hero-55 rain street as a full backdrop around the existing enquiry form.
+Services, AI Agents, Work, Process, Engage and About share the actual hero-44 plasma/hand composition. Chapter-specific typography, native scene poses and word entrances replay on navigation. The original glassbound visual remains in the lower AI demo. Home now uses standalone dither-reveal with landscape hands and a live hero-69 stone between them; its headline and supporting copy sit outside the visual. Contact uses the actual hero-55 rain street as a full backdrop around the existing enquiry form. The shared footer uses a live ridge-parallax particle landscape in ink, warm grey and signal orange; see [the footer review](docs/footer-ridge/README.md).
 
 - [Before/after report for every section](docs/cohesion/README.md)
 - [Interactive comparison viewer](docs/cohesion/index.html)
@@ -45,7 +45,7 @@ Services, AI Agents, Work, Process, Engage and About share the actual hero-44 pl
 - [Pass 3 service stories and editorial Work](docs/pass3/README.md): six mid-sequence screenshots, final frames, source extensions and the new horizontal track.
 - [Source inventory](docs/inventory.md): the original 34 studies plus hero-44 and hero-55, signature elements, props, interaction and performance notes.
 - [Design plan](docs/plan.md): palette, type, grid, motion and the actual source combinations for every section.
-- [36 playground screenshots](docs/shots): default and editorial versions side by side.
+- [37 playground screenshots](docs/shots): default and editorial versions side by side.
 - [Minimal source fixes](docs/fixes.md): exact corrections and their effects.
 - [Component ratings](docs/component-ratings.md): the original 34-source review and the hero-44/hero-55 additions.
 - [Integration and slot status](docs/slots.md): live adapters, retired wrappers and the one unavailable source.

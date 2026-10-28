@@ -1,6 +1,9 @@
 "use client";
 import dynamic from "next/dynamic";
 export const sources = {
+  "ridge-parallax": dynamic(() => import("@/components/originkit/ui/ridge-parallax"), {
+    ssr: false,
+  }),
   "live-chat": dynamic(() => import("@/components/originkit/ui/live-chat"), { ssr: false }),
   "aura-cursor": dynamic(() => import("@/components/originkit/ui/aura-cursor"), { ssr: false }),
   "hairline-loader": dynamic(() => import("@/components/originkit/ui/hairline-loader"), {

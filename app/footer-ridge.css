@@ -1,0 +1,36 @@
+.site-footer {
+  background: var(--ink, #0a0a0a);
+}
+
+.footer-ridges {
+  position: absolute;
+  inset: 0;
+  z-index: -1;
+  pointer-events: none;
+  opacity: 0.72;
+}
+
+/* Keep the landscape continuous beneath both the links and the wordmark. */
+.footer-ridges::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(
+    to bottom,
+    #0a0a0a 0%,
+    rgb(10 10 10 / 85%) 25%,
+    rgb(10 10 10 / 28%) 58%,
+    rgb(10 10 10 / 12%) 85%,
+    #0a0a0a 100%
+  );
+}
+
+.site-footer .footer-wordmark {
+  mix-blend-mode: lighten;
+}
+
+@media (max-width: 767px) {
+  .footer-ridges {
+    opacity: 0.58;
+  }
+}

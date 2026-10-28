@@ -307,6 +307,19 @@ function makeStroke(dense: number[][], S: number, wS: number, B: number, rng: ()
 }
 
 function paintRange(ctx: CanvasRenderingContext2D, st: any, a: number, b: number, dry: number, ink: string) {
+    if (st.typeface) {
+        // The same native letter timeline can paint the studio's typeset glyphs.
+        ctx.save()
+        ctx.beginPath()
+        ctx.rect(st.minX, st.minY, (st.maxX - st.minX) * b / (st.n - 1), st.maxY - st.minY)
+        ctx.clip()
+        ctx.font = st.typeface
+        ctx.textBaseline = "alphabetic"
+        ctx.fillStyle = ink
+        ctx.fillText(st.text, st.textX, st.textY)
+        ctx.restore()
+        return
+    }
     ctx.strokeStyle = ink
     ctx.lineCap = "round"
     ctx.lineJoin = "round"
@@ -350,7 +363,7 @@ function buildLayout(W: number, H: number, dpr: number, p: any, adv: any, area?:
     const U = ph / 1000
 
     const bodyTop = area ? area.top : m + 165 * U
-    const bodyBot = area ? area.bot : m + 978 * U
+    const bodyBot = Math.min(area ? area.bot : m + 978 * U, H * clamp01((adv.textBottom ?? 100) / 100))
     const rng = mulberry(Math.round(adv.seed) * 9973 + 17)
     const rows = String(p.text ?? "").split("\n").map((s) => s.trim()).filter((s) => s.length > 0)
     const tracking = adv.tracking / 100
@@ -358,11 +371,20 @@ function buildLayout(W: number, H: number, dpr: number, p: any, adv: any, area?:
     const tilt = (adv.tilt * Math.PI) / 180
     const jit = adv.jitter / 100
     const B = Math.max(4, Math.round(adv.bristles))
+    const typeMeasure = p.typeface ? document.createElement("canvas").getContext("2d") : null
+    if (typeMeasure) typeMeasure.font = `${p.typeface.weight ?? 600} 100px ${p.typeface.family}`
 
     const lines = rows.map((row) => {
         const letters: any[] = []
         let w = 0
         for (const ch of Array.from(row)) {
+            if (typeMeasure) {
+                const width = typeMeasure.measureText(ch).width / 100
+                const a = width + tracking
+                letters.push({ g: { w: width }, text: ch, space: ch === " ", adv: a })
+                w += a
+                continue
+            }
             const g = ch === " " ? null : glyphFor(ch)
             if (!g) {
                 letters.push({ space: true, adv: 0.34 })
@@ -417,6 +439,18 @@ function buildLayout(W: number, H: number, dpr: number, p: any, adv: any, area?:
                 continue
             }
             const g: Glyph = lt.g
+            if (typeMeasure) {
+                const st: any = {
+                    typeface: `${p.typeface.weight ?? 600} ${S}px ${p.typeface.family}`,
+                    text: lt.text, textX: x, textY: baseline,
+                    minX: x - S * 0.08, minY: baseline - S,
+                    maxX: x + g.w * S + S * 0.08, maxY: baseline + S * 0.25,
+                    n: 101, len: Math.max(1, g.w * S), done: -1, line: lineObj,
+                }
+                letterGroups.push([st])
+                x += lt.adv * S
+                continue
+            }
             const cx = x + (g.w * lt.sx * S) / 2
             const cy = baseline - 0.5 * S * lt.sy + lt.dy * S
             const cos = Math.cos(lt.rot), sin = Math.sin(lt.rot)
@@ -846,6 +880,9 @@ function bakePaper(cv: HTMLCanvasElement, W: number, H: number, dpr: number, p: 
 }
 
 export interface StillPosterCreamProps {
+    typeface?: { family: string; weight?: number }
+    paperOpacity?: number
+    playFromStart?: boolean
     editorial?: PaperlineEditorial
     background?: string
     ink?: string
@@ -886,6 +923,7 @@ export interface StillPosterCreamProps {
         lineShift?: number
         textX?: number
         textY?: number
+        textBottom?: number
         brushRate?: number
         strokeMin?: number
         strokeMax?: number
@@ -917,6 +955,9 @@ export default function StillPosterCream(props: StillPosterCreamProps) {
         background = "#000000",
         title = "The Newyork Times",
         mastheadFont,
+        typeface,
+        paperOpacity = 1,
+        playFromStart = false,
         editorial,
         image = {"alt":"","src":"https://cdn.brandfetch.io/id6O2oGzv-/theme/dark/symbol.svg?c=1dxbfHSJFAPEGdCLU4o5B"},
         tint = true,
@@ -931,7 +972,7 @@ export default function StillPosterCream(props: StillPosterCreamProps) {
     const rootRef = useRef<HTMLDivElement>(null)
     const canvasRef = useRef<HTMLCanvasElement>(null)
     const propsRef = useRef<any>(null)
-    propsRef.current = { text, size, speed, hold, dryness, ink, paper, background, title, mastheadFont, editorial, image, tint, pageScale, pageAlign, alignX, alignY, advanced }
+    propsRef.current = { text, size, speed, hold, dryness, ink, paper, background, title, mastheadFont, typeface, paperOpacity, playFromStart, editorial, image, tint, pageScale, pageAlign, alignX, alignY, advanced }
 
     useEffect(() => {
         const root = rootRef.current
@@ -1092,10 +1133,11 @@ export default function StillPosterCream(props: StillPosterCreamProps) {
                 paperKey = pk
             }
 
-            const lk = [W, H, dpr, p.text, p.size, p.ink, p.dryness, adv.margin, adv.weight, adv.bristles, adv.tilt, adv.jitter, adv.tracking, adv.lineGap, adv.lineShift, adv.textX, adv.textY, adv.seed, adv.brushRate, adv.strokeMin, adv.strokeMax, adv.strokeGap, adv.letterGap, adv.linePause, Math.round(areaTop), Math.round(areaBot)].join("|")
+            const lk = [W, H, dpr, p.text, p.size, p.ink, p.dryness, JSON.stringify(p.typeface), fontVer, adv.margin, adv.weight, adv.bristles, adv.tilt, adv.jitter, adv.tracking, adv.lineGap, adv.lineShift, adv.textX, adv.textY, adv.textBottom, adv.seed, adv.brushRate, adv.strokeMin, adv.strokeMax, adv.strokeGap, adv.letterGap, adv.linePause, Math.round(areaTop), Math.round(areaBot)].join("|")
             if (lk !== layoutKey) {
                 layout = buildLayout(W, H, dpr, p, adv, { top: areaTop, bot: areaBot })
                 layoutKey = lk
+                if (p.playFromStart) t = -1
             }
 
             const nLines = layout.lines.length
@@ -1103,7 +1145,7 @@ export default function StillPosterCream(props: StillPosterCreamProps) {
             const holdEnd = layout.paintEnd + holdMs
             const fadeTotal = adv.fadeMs + Math.max(0, nLines - 1) * adv.fadeStagger
             const cycle = Math.max(1, holdEnd + fadeTotal + adv.blankMs)
-            if (t < 0) t = layout.paintEnd
+            if (t < 0) t = p.playFromStart ? 0 : layout.paintEnd
 
             const reduce = !!mq?.matches
             const painting = t < layout.paintEnd
@@ -1135,7 +1177,9 @@ export default function StillPosterCream(props: StillPosterCreamProps) {
                 ctx.fillStyle = p.paper || "#F4F2EC"
                 ctx.fillRect(0, 0, W, Math.min(H, pageY))
             }
+            ctx.globalAlpha = clamp01(p.paperOpacity)
             ctx.drawImage(paperCv, pageX + pOx, pageY + pOy, VW, VH)
+            ctx.globalAlpha = 1
 
             layout.lines.forEach((ln: any, i: number) => {
                 const fs = holdEnd + i * adv.fadeStagger

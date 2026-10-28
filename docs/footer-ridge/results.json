@@ -1,0 +1,70 @@
+[
+  {
+    "name": "desktop",
+    "width": 1440,
+    "height": 1000,
+    "reduced": false,
+    "mode": "live",
+    "canvas": {
+      "width": 2160,
+      "height": 1280,
+      "dpr": 1.5
+    },
+    "overflow": false,
+    "maxContexts": 2,
+    "footerCanvases": 2,
+    "animated": true,
+    "disposedOffscreen": true,
+    "errors": []
+  },
+  {
+    "name": "iphone",
+    "width": 390,
+    "height": 844,
+    "reduced": false,
+    "mode": "live",
+    "canvas": {
+      "width": 390,
+      "height": 881,
+      "dpr": 1
+    },
+    "overflow": false,
+    "maxContexts": 2,
+    "footerCanvases": 2,
+    "animated": true,
+    "disposedOffscreen": true,
+    "errors": []
+  },
+  {
+    "name": "android",
+    "width": 412,
+    "height": 915,
+    "reduced": false,
+    "mode": "live",
+    "canvas": {
+      "width": 412,
+      "height": 881,
+      "dpr": 1
+    },
+    "overflow": false,
+    "maxContexts": 2,
+    "footerCanvases": 2,
+    "animated": true,
+    "disposedOffscreen": true,
+    "errors": []
+  },
+  {
+    "name": "reduced-motion",
+    "width": 390,
+    "height": 844,
+    "reduced": true,
+    "mode": "static",
+    "canvas": null,
+    "overflow": false,
+    "maxContexts": 0,
+    "footerCanvases": 0,
+    "animated": false,
+    "disposedOffscreen": true,
+    "errors": []
+  }
+]

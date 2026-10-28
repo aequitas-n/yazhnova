@@ -173,9 +173,13 @@ export interface EmberHuskChoreography {
     scale: number
     rotation: number
     paused: boolean
+    size?: number
+    spread?: number
+    idle?: boolean
 }
 
 export interface EmberHuskProps {
+    transparent?: boolean
     choreography?: { readonly current: EmberHuskChoreography }
     onReady?: () => void
     onError?: (error: unknown) => void
@@ -967,12 +971,13 @@ precision highp float;
 uniform sampler2D tBase;
 uniform sampler2D tBloom;
 uniform float uStrength;
+uniform float uTransparent;
 varying vec2 vUv;
 
 void main() {
     vec4 base = texture2D(tBase, vUv);
     vec3 bloom = texture2D(tBloom, vUv).rgb * uStrength;
-    gl_FragColor = vec4(base.rgb + bloom, 1.0);
+    gl_FragColor = vec4(base.rgb + bloom, mix(1.0, base.a, uTransparent));
     #include <tonemapping_fragment>
     #include <colorspace_fragment>
 }
@@ -1111,7 +1116,7 @@ function __OriginkitBase_EmberHusk(props: EmberHuskProps) {
         try {
             renderer = new THREE.WebGLRenderer({
                 antialias: true,
-                alpha: false,
+                alpha: props.transparent ?? false,
                 powerPreference: "high-performance",
             })
         } catch (err) {
@@ -1123,7 +1128,7 @@ function __OriginkitBase_EmberHusk(props: EmberHuskProps) {
         const p0 = paramsRef.current
         const dprCap = p0.quality === "low" ? 1 : p0.quality === "medium" ? 1.5 : 2
         renderer.setPixelRatio(Math.min(window.devicePixelRatio || 1, dprCap))
-        renderer.setClearColor(0x000000, 1)
+        renderer.setClearColor(0x000000, props.transparent ? 0 : 1)
         renderer.toneMapping = THREE.ACESFilmicToneMapping
         renderer.toneMappingExposure = 1
         renderer.autoClear = false
@@ -1210,6 +1215,7 @@ function __OriginkitBase_EmberHusk(props: EmberHuskProps) {
         bgQuad.frustumCulled = false
         bgQuad.renderOrder = -1000
         scene.add(bgQuad)
+        bgQuad.visible = !props.transparent
 
         const rig = new THREE.Group()
         scene.add(rig)
@@ -1473,6 +1479,7 @@ function __OriginkitBase_EmberHusk(props: EmberHuskProps) {
                 tBase: { value: null },
                 tBloom: { value: null },
                 uStrength: { value: 0.4 },
+                uTransparent: { value: props.transparent ? 1 : 0 },
             },
             vertexShader: QUAD_VERT,
             fragmentShader: COMPOSITE_FRAG,
@@ -1707,7 +1714,8 @@ function __OriginkitBase_EmberHusk(props: EmberHuskProps) {
         }
 
         const poseSlabs = (restGap: number, repel: number) => {
-            const cue = choreographyRef.current?.current
+            const control = choreographyRef.current?.current
+            const cue = control?.idle ? undefined : control
             for (let i = 0; i < slabMeshes.length; i++) {
                 const piece = slabPieces[i]
                 const mesh = slabMeshes[i]
@@ -1732,13 +1740,14 @@ function __OriginkitBase_EmberHusk(props: EmberHuskProps) {
             repel: number
         ) => {
             if (!mesh) return
-            const cue = choreographyRef.current?.current
+            const control = choreographyRef.current?.current
+            const cue = control?.idle ? undefined : control
             for (let i = 0; i < list.length; i++) {
                 const piece = list[i]
                 const push = cue ? cue.fracture * (1.4 + piece.delay) : piece.push
                 tmpVec
                     .copy(piece.home)
-                    .multiplyScalar(cue ? 0.42 + cue.fracture * 0.4 : 1)
+                    .multiplyScalar(cue ? (cue.spread ?? 0.42) + cue.fracture * 0.4 : 1)
                     .addScaledVector(piece.dir, push * (1 - repel))
                     .addScaledVector(piece.lateral, push * repel)
 
@@ -1760,6 +1769,7 @@ function __OriginkitBase_EmberHusk(props: EmberHuskProps) {
         }
 
         let reportedReady = false
+        let idleStarted: number | null = null
         const renderFrame = (t: number, dt: number) => {
             const q = paramsRef.current
             applyParams()
@@ -1819,7 +1829,9 @@ function __OriginkitBase_EmberHusk(props: EmberHuskProps) {
             const bob = (q.drift.bob / 10) * 0.11
             const sway = (q.drift.sway / 10) * 0.17
             const cue = choreographyRef.current?.current
-            rig.rotation.y = cue ? cue.rotation : t * spin
+            if (cue?.size !== undefined) camera.position.z = cameraDistance(cue.size, aspect)
+            if (cue?.idle && idleStarted === null) idleStarted = t
+            rig.rotation.y = cue ? cue.rotation + (cue.idle ? (t - (idleStarted ?? t)) * spin : 0) : t * spin
             rig.rotation.z = Math.sin(t * 0.43) * sway
             rig.rotation.x = Math.sin(t * 0.31 + 1.1) * sway * 0.6
             rig.position.y = Math.sin(t * 0.6) * bob
@@ -1873,6 +1885,7 @@ function __OriginkitBase_EmberHusk(props: EmberHuskProps) {
             blit(compositeMat, null, true)
             if (!reportedReady) {
                 reportedReady = true
+                canvas.dataset.nativeReady = "true"
                 callbacksRef.current.onReady?.()
             }
         }
@@ -2001,7 +2014,7 @@ function __OriginkitBase_EmberHusk(props: EmberHuskProps) {
                 height: "100%",
                 overflow: "hidden",
 
-                background: q.background.color,
+                background: props.transparent ? "transparent" : q.background.color,
                 ...props.style,
             }}
         />

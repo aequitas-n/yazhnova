@@ -1,5 +1,12 @@
 export const sourceCatalog = [
   {
+    slug: "ridge-parallax",
+    kind: "component",
+    title: "A landscape of signals",
+    signature: "Real WebGL particle ridges drift in layered perspective with scroll parallax.",
+    cost: "Medium",
+  },
+  {
     slug: "live-chat",
     kind: "component",
     title: "A conversation in motion",
@@ -269,6 +276,17 @@ export const palette = {
   accent: "#FF3B00",
 };
 export const editorialPresets: Partial<Record<SourceSlug, Record<string, unknown>>> = {
+  "ridge-parallax": {
+    background: palette.ink,
+    baseColor: "#57534E",
+    accentColor: "#FF3B00",
+    density: 70,
+    dotSize: 24,
+    speed: 9,
+    pointer: 0,
+    range: { layers: 6, height: 120, roughness: 65, fall: 110, seed: 7 },
+    depth: { parallax: 120, haze: 70, travelStart: -120, travelEnd: 200 },
+  },
   "live-chat": {
     messages: [
       { text: "A new lead is asking about a SaaS product.", sender: "them" },

@@ -5,6 +5,7 @@ import { visualPresets, type VisualKind } from "@/lib/visual-presets";
 import { mobileVisualPresets } from "@/lib/mobile-visual-presets";
 import { isMobileCanvas } from "@/lib/canvas-quality";
 const renderers = {
+  ridge: dynamic(() => import("@/components/originkit/ui/ridge-parallax"), { ssr: false }),
   "contact-rain": dynamic(() => import("@/components/originkit/ui/hero-55/rain-puddle"), {
     ssr: false,
   }),
@@ -17,7 +18,7 @@ const renderers = {
   glossy: dynamic(() => import("@/components/originkit/ui/single-glossy-sphere"), { ssr: false }),
   strings: dynamic(() => import("@/components/originkit/ui/data-strings"), { ssr: false }),
   deck: dynamic(() => import("@/components/originkit/ui/stacked-carousel"), { ssr: false }),
-  "hero-dither": dynamic(() => import("@/components/originkit/ui/hero-40/dither-reveal"), {
+  "hero-dither": dynamic(() => import("@/components/originkit/ui/dither-reveal"), {
     ssr: false,
   }),
   manifesto: dynamic(() => import("@/components/originkit/ui/paperline-archive"), { ssr: false }),
@@ -29,6 +30,9 @@ const renderers = {
   ocean: dynamic(() => import("@/components/originkit/ui/ocean-swell"), { ssr: false }),
   rain: dynamic(() => import("@/components/originkit/ui/rain-puddle"), { ssr: false }),
   ember: dynamic(() => import("@/components/originkit/ui/hero-69/ember-husk"), { ssr: false }),
+  "hero-stone": dynamic(() => import("@/components/originkit/ui/hero-69/ember-husk"), {
+    ssr: false,
+  }),
   wordmark: dynamic(() => import("@/components/originkit/ui/footer-03/light-shaft-text"), {
     ssr: false,
   }),
@@ -36,9 +40,11 @@ const renderers = {
 export default function Renderer({
   kind,
   overrides = {},
+  onReady,
 }: {
   kind: VisualKind;
   overrides?: Record<string, unknown>;
+  onReady?: () => void;
 }) {
   const Source = renderers[kind] as unknown as ComponentType<Record<string, unknown>>;
   const props: Record<string, unknown> = { ...visualPresets[kind], ...overrides };
@@ -60,5 +66,11 @@ export default function Renderer({
       }
     }
   }
-  return <Source {...props} style={{ width: "100%", height: "100%", minWidth: 0, minHeight: 0 }} />;
+  return (
+    <Source
+      {...props}
+      {...(["hero-dither", "hero-stone"].includes(kind) ? { onReady } : {})}
+      style={{ width: "100%", height: "100%", minWidth: 0, minHeight: 0 }}
+    />
+  );
 }

@@ -1,14 +1,11 @@
 "use client";
 
-import { useCallback, useEffect, useRef, useState } from "react";
+import { useContext, useEffect, useRef } from "react";
 import { gsap } from "gsap";
-import EmberHusk, {
-  type EmberHuskChoreography,
-} from "@/components/originkit/ui/hero-69/ember-husk";
 import { site } from "@/content/site";
-import { visualPresets } from "@/lib/visual-presets";
+import { StoneContinuityContext } from "./intro-context";
 
-export type IntroBeat = "formed" | "opening" | "wordmark" | "closing" | "reformed" | "burst";
+export type IntroBeat = "formed" | "opening" | "wordmark" | "closing" | "reformed" | "docking";
 
 export default function CinematicIntro({
   onReady,
@@ -27,25 +24,46 @@ export default function CinematicIntro({
   const left = useRef<HTMLSpanElement>(null);
   const right = useRef<HTMLSpanElement>(null);
   const note = useRef<HTMLParagraphElement>(null);
-  const [ready, setReady] = useState(false);
-  const cue = useRef<EmberHuskChoreography>({
-    fracture: 0,
-    scale: 0.86,
-    rotation: -0.14,
-    paused: false,
-  });
-  const didRender = useCallback(() => setReady(true), []);
+  const continuity = useContext(StoneContinuityContext);
+  const ready = continuity?.ready;
+  const cue = continuity?.cue;
 
   useEffect(() => {
-    if (!ready || !root.current) return;
-    onReady();
-    const state = { opening: 0 };
-    const layer = root.current.closest<HTMLElement>(".intro-visual-layer");
+    if (!ready || !cue || !root.current) return;
     const overlay = root.current.closest<HTMLElement>(".site-intro");
+    const layer = overlay?.querySelector<HTMLElement>(".intro-visual-layer");
+    const frame = overlay?.querySelector<HTMLElement>(".intro-stone");
+    const destination = document.querySelector<HTMLElement>(".hero-stone");
+    if (!overlay || !layer || !frame || !destination) {
+      onComplete();
+      return;
+    }
+    onReady();
+    // A square native render target retains its resolution while only its outer
+    // transform moves. No per-frame GPU target allocation or canvas replacement.
+    const size = Math.min(innerWidth, innerHeight);
+    const state = { dock: 0 };
+    gsap.set(frame, {
+      width: size,
+      height: size,
+      left: innerWidth / 2,
+      top: innerHeight / 2,
+      xPercent: -50,
+      yPercent: -50,
+      scale: 1,
+    });
     const timeline = gsap.timeline({
       onUpdate: () => {
-        layer?.style.setProperty("--intro-opening", `${state.opening * 80}vmax`);
-        overlay?.style.setProperty("--intro-progress", String(timeline.progress()));
+        overlay.style.setProperty("--intro-progress", String(timeline.progress()));
+        if (!state.dock) return;
+        const target = destination.getBoundingClientRect();
+        const centerX = innerWidth / 2;
+        const centerY = innerHeight / 2;
+        gsap.set(frame, {
+          left: centerX + (target.left + target.width / 2 - centerX) * state.dock,
+          top: centerY + (target.top + target.height / 2 - centerY) * state.dock,
+          scale: 1 + (target.width / size - 1) * state.dock,
+        });
       },
       onComplete,
     });
@@ -54,7 +72,7 @@ export default function CinematicIntro({
     gsap.set(note.current, { opacity: 0, y: 8 });
     timeline
       .call(() => onBeat("formed"), [], 0)
-      .to(root.current.querySelector(".intro-stone"), { opacity: 1, duration: 0.22 }, 0)
+      .to(frame, { opacity: 1, duration: 0.22 }, 0)
       .to(cue.current, { scale: 1, duration: 0.65, ease: "power3.out" }, 0)
       .to(cue.current, { rotation: 0.18, duration: 3, ease: "none" }, 0)
       .call(() => onBeat("opening"), [], 0.7)
@@ -70,14 +88,20 @@ export default function CinematicIntro({
       .to(cue.current, { fracture: 0, duration: 0.8, ease: "power3.inOut" }, 3.15)
       .to(cue.current, { rotation: 0.36, duration: 1.05, ease: "power2.out" }, 3)
       .call(() => onBeat("reformed"), [], 3.95)
-      .call(() => onBeat("burst"), [], 4.3)
-      .to(cue.current, { fracture: 5.2, rotation: 0.7, duration: 1.2, ease: "power3.in" }, 4.3)
-      .call(onReveal, [], 4.62)
-      .to(state, { opening: 1, duration: 0.95, ease: "power2.inOut" }, 4.62)
-      .to(overlay!.querySelector(".intro-label"), { opacity: 0, duration: 0.25 }, 0.7)
-      .to(overlay!.querySelector(".intro-controls"), { opacity: 0, duration: 0.3 }, 5.1);
-    if (compact) timeline.timeScale(5.57 / 2.1);
-
+      .call(
+        () => {
+          onBeat("docking");
+          onReveal();
+        },
+        [],
+        4.18,
+      )
+      .to(layer, { opacity: 0, duration: 1.22, ease: "power2.inOut" }, 4.18)
+      .to(state, { dock: 1, duration: 1.22, ease: "power3.inOut" }, 4.18)
+      .to(cue.current, { size: 4.5, spread: 1, duration: 1.22, ease: "power3.inOut" }, 4.18)
+      .to(overlay.querySelector(".intro-label"), { opacity: 0, duration: 0.25 }, 0.7)
+      .to(overlay.querySelector(".intro-controls"), { opacity: 0, duration: 0.3 }, 4.9);
+    if (compact) timeline.timeScale(5.4 / 2.1);
     const visibility = () => {
       cue.current.paused = document.hidden;
       if (document.hidden) timeline.pause();
@@ -88,40 +112,12 @@ export default function CinematicIntro({
     return () => {
       timeline.kill();
       document.removeEventListener("visibilitychange", visibility);
-      layer?.style.removeProperty("--intro-opening");
-      overlay?.style.removeProperty("--intro-progress");
+      overlay.style.removeProperty("--intro-progress");
     };
-  }, [ready, onReady, onBeat, onReveal, onComplete, compact]);
-
-  useEffect(() => {
-    const layer = root.current;
-    const lost = (event: Event) => {
-      event.preventDefault();
-      onComplete();
-    };
-    layer?.addEventListener("webglcontextlost", lost, true);
-    return () => layer?.removeEventListener("webglcontextlost", lost, true);
-  }, [onComplete]);
+  }, [ready, cue, onReady, onBeat, onReveal, onComplete, compact]);
 
   return (
     <div className="intro-scene" ref={root}>
-      <div className="intro-stone" data-intro-stone aria-hidden="true">
-        <EmberHusk
-          {...visualPresets.ember}
-          size={compact ? 1.7 : 2.2}
-          quality={compact ? "medium" : "high"}
-          choreography={cue}
-          entrance={{ scatter: 0, tumble: 0, stagger: 0 }}
-          response={{ strength: 0, repel: 0, settle: 8 }}
-          drift={{ spin: 0, bob: 1, sway: 1 }}
-          structure={{ ...visualPresets.ember.structure, shards: compact ? 8 : 12 }}
-          debris={{ count: compact ? 8 : 28, size: 3, spread: 3 }}
-          beads={0}
-          onReady={didRender}
-          onError={onComplete}
-          style={{ width: "100%", height: "100%", minWidth: 0, minHeight: 0 }}
-        />
-      </div>
       <div className="intro-wordmark" aria-hidden="true">
         <div className="intro-word-half intro-word-left">
           <span ref={left}>{site.name.slice(0, 4)}</span>

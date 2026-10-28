@@ -1,0 +1,9 @@
+# Landscape hands asset
+
+Created with the built-in image generation tool in edit mode, using the existing `public/originkit/hero-40/white-hands.png` as the edit target. The original image remains unchanged. The selected landscape result is stored in the project as [hands-landscape.webp](../../public/originkit/dither-reveal/hands-landscape.webp), 1942 × 809 pixels, 49,568 bytes (WebP quality 88).
+
+The image supplies only the photograph. The actual installed standalone dither-reveal shader supplies the reveal, dithering, wave and pointer response. The central stone is actual hero-69 geometry rendered separately, never baked into the image.
+
+## Final edit prompt
+
+Edit target: the supplied hand photograph. Create a very wide landscape website hero asset, aspect ratio 2.4:1. Preserve the two original reaching hand poses, their anatomy, natural fingers and photographic skin detail. Recompose the arms horizontally so the left forearm enters cleanly from the left edge and the right forearm enters cleanly from the right edge; both hands and every finger are fully visible. Rotate/reposition the hands only enough to put their opposing fingertips around the horizontal midline, facing toward the center. Leave an empty central gap approximately 18% of the image width between the nearest fingertips for a separately rendered 3D stone. Keep this gap centered at x=50%, y=50%. Do not add a stone or particles. Monochrome black-and-white photography with clean charcoal-gray shadows on a flat warm off-white #F4F2EC background. Strong enough contrast to survive a dither shader. Preserve the source pose and human anatomy. No type, logos, UI, gradients, extra hands, neon, colored light or frame. The image is only the full-bleed photographic source; the actual website text and animation will be implemented in code.

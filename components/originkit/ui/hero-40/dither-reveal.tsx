@@ -42,6 +42,7 @@ interface DitherRevealProps {
   waveSpeed?: number;
   waveDensity?: number;
   style?: CSSProperties;
+  onReady?: () => void;
 }
 
 function clamp(n: any, min: number, max: number, fallback: number) {
@@ -108,6 +109,8 @@ function __OriginkitBase_DitherReveal(props: DitherRevealProps) {
 
   const containerRef = useRef<HTMLDivElement | null>(null);
   const canvasRef = useRef<HTMLCanvasElement | null>(null);
+  const readyRef = useRef(props.onReady);
+  readyRef.current = props.onReady;
 
   const liveRef = useRef(S);
   liveRef.current = S;
@@ -199,6 +202,8 @@ function __OriginkitBase_DitherReveal(props: DitherRevealProps) {
     gl.texParameteri(gl.TEXTURE_2D, gl.TEXTURE_MAG_FILTER, gl.LINEAR);
 
     let imgAspect = 1.5;
+    let imageReady = false;
+    let announced = false;
     const img = new Image();
     img.crossOrigin = "anonymous";
     img.onload = () => {
@@ -214,6 +219,7 @@ function __OriginkitBase_DitherReveal(props: DitherRevealProps) {
           gl.UNSIGNED_BYTE,
           img,
         );
+        imageReady = true;
       } catch {
       }
     };
@@ -257,7 +263,7 @@ function __OriginkitBase_DitherReveal(props: DitherRevealProps) {
     function render() {
       raf = requestAnimationFrame(render);
       const L = liveRef.current;
-      if (!inViewRef.current) return;
+      if (!inViewRef.current || !imageReady) return;
 
       const now = performance.now();
       mouse.active += (mouse.target - mouse.active) * 0.08;
@@ -284,6 +290,10 @@ function __OriginkitBase_DitherReveal(props: DitherRevealProps) {
       gl!.uniform1f(uFocusY, L.focusY);
       gl!.uniform1f(uRightOffsetY, L.rightOffsetY);
       gl!.drawArrays(gl!.TRIANGLES, 0, 3);
+      if (!announced) {
+        announced = true;
+        readyRef.current?.();
+      }
     }
     render();
 

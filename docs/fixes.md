@@ -131,3 +131,62 @@ The Contact mobile Lighthouse run initially exposed a synchronous shader-status 
 ## Home hero: room for the right hand
 
 Added an opt-in rightOffsetY input (default 0) to hero-40's real image shader. The Home preset offsets only the right subject by 7% of the source image height, blending through the empty gap between hands. The existing left-palm crop, image scale and native dither/pointer behavior remain intact. This uses the open lower-right space without pushing the left hand below the hero or adding a canvas. The fingertip signal follows the revised midpoint; reduced-motion frames were recaptured from the same renderer. Original component defaults remain unchanged.
+
+## Full-screen manifesto and restored live text
+
+The Home overrides had reduced the manifesto to 65svh and its headline to 6vw. The production paperline preset also supplied an empty text string and speed 0, so only a static DOM statement remained. The section now fills 100svh, with a single full-size paperline canvas and a much larger orange statement.
+
+The original paperline letter scheduling, easing, hold, staggered fade and loop now drive the headline. Optional typeface controls let that same native painting pipeline use measured Inter Tight glyphs instead of the source's marker alphabet. paperOpacity controls only the baked newspaper, preserving full-strength orange ink; playFromStart begins the first draw on entry; advanced.textBottom reserves the closing-copy area. Defaults retain the original study behavior.
+
+The native masthead sits below the sticky navigation; section labels now live in the actual newspaper issue line instead of overlapping its articles. The accessible H2 remains in HTML. Reduced-motion/no-JavaScript frames are genuine native captures, with an additional portrait frame selected only for this section. Desktop and mobile browser tests sample orange canvas pixels through paint, fade and repeat, and verify off-screen disposal.
+
+[Full-screen manifesto review](manifesto/README.md).
+
+## Mobile Home typography and hand loading
+
+The mobile Home layout combined a fixed 100svh height with an absolutely positioned baseline and a second decorative caption. With the browser chrome reducing available height, these collided with the actions and closing note. The Home mobile override now uses a minimum height and normal content flow, smaller responsive headline type, wrapping actions, explicit vertical spacing and one baseline. Decorative duplicate captions are omitted on phones. The hand/signal position follows the space after the three headline lines instead of the viewport center. Root text-size-adjust is 100% to prevent browser text inflation; pinch zoom remains available.
+
+The live texture previously loaded a 1,043,155-byte PNG after hydration, while LiveVisual removed/hid the initial preview as soon as motion was allowed. A visually equivalent full-dimension WebP is 20,192 bytes (98% smaller) and preloads from the Home server render with matching CORS mode. The native dither source accepts an optional onReady callback, raised only after texture upload and the first actual draw, and avoids drawing its placeholder texture. Home keeps the real captured preview visible until that signal, then continues with the same live native animation. A failed or delayed texture can no longer expose a blank hand backdrop. Other source defaults and their renderer layout are preserved.
+
+[Responsive captures and delayed-resource checks](mobile-home/README.md).
+
+## Landscape hands with a persistent live stone
+
+The Home hero now imports the real standalone ui/dither-reveal.tsx through the native renderer registry, replacing the hero-40 companion. A new wide photographic asset keeps hands reaching from opposite sides, leaving the center for an actual hero-69 stone. Typography is above the visual and supporting copy/actions below. The former dot and third WebGL horizon are removed from this composition; there are two live contexts.
+
+Standalone dither-reveal receives optional darkColor/lightColor/monochrome controls, an onReady callback after the first textured draw, the shared mobile DPR cap and the previously verified contain-UV correction. Its actual dither, wave and pointer algorithms remain in use. Original default colors remain black/white. EmberHusk receives an optional transparent flag: alpha-enabled output, hidden background quad, and the base scene alpha in its final composite. The default intro remains opaque. This prevents a rectangle obscuring the hands while retaining the source's genuine geometry and orange veins.
+
+The stone uses the same source as the intro, persists after the intro is dismissed, and pauses/disposes with the existing visibility/context budget. Both live surfaces retain genuine native loading captures. The source retry requested in this turn returned a signed-out CLI error; the already installed genuine standalone source was used. No component was faked or moved to a failure slot.
+
+[Composition review](hands-stone/README.md) ? [Image asset and exact edit prompt](hands-stone/asset.md).
+
+## Diagonal hands reference refinement
+
+Replaced the earlier level-hand photograph with a new imagegen edit of the supplied reference: left palm lower and open upward; right hand higher, reaching down. The image contains no stone, particles or dither. The standalone native dither shader still generates the actual effect. The live hero-69 stone is enlarged through its size input (1.8 to 4.5) and a wider responsive canvas; it remains separate real geometry. A taller full-bleed stage preserves both palms and every fingertip.
+
+Static captures were regenerated for this exact pose and scale. EmberHusk now marks its actual first rendered frame with a data-native-ready attribute. The capture helper waits for that frame, captures the continuously rendered transparent canvas, and rejects an image without visible alpha before generating the WebP. This corrects the empty-buffer capture found during the refinement and protects the reduced-motion/loading stone preview. Source visuals and the intro's behavior are unchanged by this diagnostic attribute.
+
+[Reference refinement review](hands-stone/diagonal/README.md) ? [New image asset and prompt](hands-stone/diagonal/asset.md).
+
+The diagonal hand preview's three-color PNG is now palette-packed to 19,386 bytes; an exact raw-pixel comparison verified no visual change. The live texture still preloads, at lower priority than fonts/the visible preview. This removed the load competition exposed by the enlarged composition; the final mobile Lighthouse run scored 91 with CLS 0.
+
+## Quieter manifesto typography
+
+Reduced the native orange statement's size cap from 360 to 300 and its text-area bottom from 80% to 74%, giving a modest reduction on height-constrained desktop layouts. Touch uses a 64px cap. The newspaper layer opacity is reduced from 38% to 12%; the orange text and closing HTML copy retain their full contrast. The original letter paint/hold/fade/repeat sequence is unchanged. Source-captured desktop and portrait frames were regenerated with refreshed cache keys.
+
+
+## Ridge footer ? 28 October 2026
+
+- Installed the genuine `ridge-parallax` source through the CLI; no install failures or moved components. Kept native geometry, shader noise, scroll travel and drift.
+- Wired its three palette props to ink, warm grey and signal orange; added desktop and lighter touch presets. Replaced the footer rain backdrop, retaining links and the genuine footer-03 wordmark. Lighten blending lets the existing wordmark sit above the ridge landscape without a black rectangular cut.
+- Two minimal integration changes to the source: use the shared DPR helper (desktop cap 1.5, touch 1), and release both GPU buffers, attached shaders and the program during native effect cleanup. Existing LiveVisual handles visibility, reduced motion and the two-context budget.
+- Added source/playground registration and a real renderer capture for reduced motion. See [footer review](footer-ridge/README.md) for validation and screenshots.
+
+
+## Continuous intro-to-hero stone ? 28 October 2026
+
+Removed the final burst and expanding radial mask. HomeStone now owns one stable portal surface that is temporarily mounted inside the intro, then moved into the hero slot without replacing the WebGL canvas, geometry or material. The same LiveVisual budget/visibility policy still governs it. The hands may start during docking while the opaque ink layer fades.
+
+EmberHusk receives three optional choreography fields: camera `size` for the smooth framing change, debris `spread` to ease into the home orbit, and `idle` to resume the original hover physics/rotation from the final intro pose. Existing source defaults stay unchanged. The intro frame uses a constant square canvas and CSS transforms, avoiding render-target allocations every animation frame. Its final move triggers one resize into the hero dimensions.
+
+Fixed a positioning issue found during visual review: the GSAP `inset` shorthand was clearing the explicitly set opening coordinates. The opening now stays centered, covered by a browser assertion. Seven focused browser checks and the production build pass; see [continuity report](intro-continuity/README.md).

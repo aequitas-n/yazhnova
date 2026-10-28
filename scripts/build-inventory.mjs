@@ -3,6 +3,16 @@ import ts from "typescript";
 import { sourceCatalog, editorialPresets } from "../lib/originkit-catalog.ts";
 
 const notes = {
+  "ridge-parallax": {
+    layout:
+      "Procedural mountain ridges drawn as genuine WebGL particles in six depth layers. No external assets or baked geometry.",
+    interaction:
+      "Native shader noise shapes each ridge; drift, scroll travel, perspective depth, haze and optional pointer parallax are configurable. Background, base and accent colors, density, dot size, range and depth groups are exposed.",
+    mobile:
+      "Production reduces six layers to four and density 70 to 36, with touch DPR 1 instead of desktop 1.5. LiveVisual unmounts off-screen, shares the two-context budget and uses a native captured frame only for reduced motion.",
+    use: "Shared footer landscape. Ink background, warm grey distance and signal orange foreground replace the previous rain wash; the existing grotesk wordmark remains above the terrain.",
+    files: ["ui/ridge-parallax.tsx"],
+  },
   "live-chat": {
     layout:
       "A vertical list of native sent/received bubbles, optional timestamps and a typing row. Font and both bubble/text palettes are exposed.",
@@ -400,7 +410,7 @@ for (const item of sourceCatalog) {
       if (
         ts.isFunctionDeclaration(node) &&
         node.name &&
-        /RainPuddle|PlasmaRing|SectionHero|SlotMachine|LightShaftText|StarfieldButton|MovingGradientButton|CosmicBG|NeonBorder|SingleGlossySphere|StarGate|SparkLattice|PredictiveArcHorizon|FluidField|LightBloom|LightCables|DataStrings|LiquidGrid|GlitchCharReveal|LineMaskSplit|GlowBorder|CurvedLoop|StackedCarousel3D|SpotlightReveal|IOSMessageList|AuraCursor|Hairline/.test(
+        /RidgeParallax|RainPuddle|PlasmaRing|SectionHero|SlotMachine|LightShaftText|StarfieldButton|MovingGradientButton|CosmicBG|NeonBorder|SingleGlossySphere|StarGate|SparkLattice|PredictiveArcHorizon|FluidField|LightBloom|LightCables|DataStrings|LiquidGrid|GlitchCharReveal|LineMaskSplit|GlowBorder|CurvedLoop|StackedCarousel3D|SpotlightReveal|IOSMessageList|AuraCursor|Hairline/.test(
           node.name.text,
         )
       ) {

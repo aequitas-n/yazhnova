@@ -90,7 +90,7 @@ test("pages keep the signal palette, truthful content and a two-context lifecycl
     await expect(page.locator('[data-visual="wordmark"] canvas')).toHaveCount(1, {
       timeout: 20000,
     });
-    await expect(page.locator('[data-visual="rain"] canvas')).toHaveCount(1);
+    await expect(page.locator('[data-visual="ridge"] canvas')).toHaveCount(1);
     // The last section can still intersect the viewport above the footer.
     // Only fully off-screen surfaces must be retired.
     await expect

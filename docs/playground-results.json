@@ -1,5 +1,34 @@
 [
   {
+    "slug": "ridge-parallax",
+    "frames": [
+      {
+        "url": "http://localhost:3001/playground/render/ridge-parallax?palette=default",
+        "canvases": [
+          {
+            "width": 676,
+            "height": 694,
+            "context": "webgl",
+            "visible": true
+          }
+        ]
+      },
+      {
+        "url": "http://localhost:3001/playground/render/ridge-parallax?palette=editorial",
+        "canvases": [
+          {
+            "width": 676,
+            "height": 694,
+            "context": "webgl",
+            "visible": true
+          }
+        ]
+      }
+    ],
+    "errors": [],
+    "screenshot": "docs/shots/ridge-parallax.png"
+  },
+  {
     "slug": "live-chat",
     "frames": [
       {

@@ -27,7 +27,7 @@ test("each chapter has its own hero, metadata, OG image and shared shell", async
     expect(response?.status()).toBe(200);
     await expect(page.locator("main h1")).toHaveCount(1);
     await expect(page.locator(".site-nav")).toHaveCount(1);
-    await expect(page.locator('.site-footer [data-visual="rain"]')).toHaveCount(1);
+    await expect(page.locator('.site-footer [data-visual="ridge"]')).toHaveCount(1);
     await expect(page.locator('.site-footer [data-visual="wordmark"]')).toHaveCount(1);
     await expect(page.locator(".page-scroll, .hero-baseline a")).toHaveCount(1);
     titles.add(await page.title());

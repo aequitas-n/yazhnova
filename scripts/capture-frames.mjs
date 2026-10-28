@@ -1,8 +1,11 @@
 import { chromium } from "@playwright/test";
 import { mkdir, readFile, writeFile } from "node:fs/promises";
+import sharp from "sharp";
 const kinds = [
+  "ridge",
   "iris",
   "hero-dither",
+  "hero-stone",
   "manifesto",
   "pixels",
   "liquid",
@@ -36,6 +39,7 @@ try {
   await page.emulateMedia({ reducedMotion: "reduce" });
   for (const kind of kinds) {
     if (process.env.FRAME_KINDS && !process.env.FRAME_KINDS.split(",").includes(kind)) continue;
+    await page.emulateMedia({ reducedMotion: kind === "hero-stone" ? "no-preference" : "reduce" });
     await page.setViewportSize({ width: 1200, height: 700 });
     let errors = [];
     const listener = (e) => errors.push(e.message);
@@ -50,11 +54,41 @@ try {
     );
     await page.locator(".visual-export").screenshot({ path: `public/frames/signal/${kind}.png` });
     if (kind === "hero-dither") {
-      await page.setViewportSize({ width: 1114, height: 1411 });
+      await page.setViewportSize({ width: 1280, height: 800 });
       await page.waitForTimeout(300);
       await page
         .locator(".visual-export")
-        .screenshot({ path: "public/frames/signal/hero-hands.png" });
+        .screenshot({ path: "public/frames/signal/hero-hands-diagonal.png" });
+      const packed = await sharp("public/frames/signal/hero-hands-diagonal.png")
+        .png({ palette: true, colors: 256, dither: 0, effort: 10, compressionLevel: 9 })
+        .toBuffer();
+      await writeFile("public/frames/signal/hero-hands-diagonal.png", packed);
+    }
+    if (kind === "hero-stone") {
+      await page.waitForSelector('canvas[data-native-ready="true"]', { timeout: 30000 });
+      await page.setViewportSize({ width: 500, height: 500 });
+      await page.addStyleTag({
+        content: "html,body,.visual-export{background:transparent!important}",
+      });
+      await page.waitForTimeout(300);
+      await page
+        .locator("canvas")
+        .screenshot({ path: "public/frames/signal/hero-stone.png", omitBackground: true });
+      const stats = await sharp("public/frames/signal/hero-stone.png").stats();
+      if (!stats.channels[3]?.max) throw new Error("Native stone capture has no visible geometry");
+      await sharp("public/frames/signal/hero-stone.png")
+        .webp({ quality: 85 })
+        .toFile("public/frames/signal/hero-stone.webp");
+    }
+    if (kind === "manifesto") {
+      await page.setViewportSize({ width: 390, height: 844 });
+      await page.waitForTimeout(300);
+      await page
+        .locator(".visual-export")
+        .screenshot({ path: "public/frames/signal/manifesto-mobile.png" });
+      await sharp("public/frames/signal/manifesto-mobile.png")
+        .webp({ quality: 85 })
+        .toFile("public/frames/signal/manifesto-mobile.webp");
     }
     report.push({ kind, canvases: await page.locator("canvas").count(), errors });
     page.off("pageerror", listener);

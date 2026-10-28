@@ -1,7 +1,16 @@
 "use client";
 import Image from "next/image";
 import dynamic from "next/dynamic";
-import { Component, useEffect, useRef, useState, type ReactNode, type CSSProperties } from "react";
+import {
+  Component,
+  Fragment,
+  useCallback,
+  useEffect,
+  useRef,
+  useState,
+  type ReactNode,
+  type CSSProperties,
+} from "react";
 import type { VisualKind } from "@/lib/visual-presets";
 import { useIntroActive } from "@/components/intro/intro-context";
 import { useWebGLBudget } from "./webgl-budget";
@@ -21,33 +30,47 @@ export function LiveVisual({
   className = "",
   alt = "",
   priority = false,
+  initialFrame = false,
   sizes = "(max-width:767px) 100vw, 60vw",
   frameSrc,
+  mobileFrameSrc,
   overrides,
   surfaceClassName,
   surfaceStyle,
   overlay,
   forceLive = false,
+  playDuringIntro = false,
+  onNativeReady,
 }: {
   kind: VisualKind;
   className?: string;
   alt?: string;
   priority?: boolean;
+  initialFrame?: boolean;
   sizes?: string;
   frameSrc?: string;
+  mobileFrameSrc?: string;
   overrides?: Record<string, unknown>;
   surfaceClassName?: string;
   surfaceStyle?: CSSProperties;
   overlay?: ReactNode;
   forceLive?: boolean;
+  playDuringIntro?: boolean;
+  onNativeReady?: () => void;
 }) {
   const introActive = useIntroActive();
   const ref = useRef<HTMLDivElement>(null);
   const [active, setActive] = useState(false);
   const [allowed, setAllowed] = useState(false);
   const [visible, setVisible] = useState(true);
-  const [loaded, setLoaded] = useState(priority);
+  const [loaded, setLoaded] = useState(priority || initialFrame);
   const [exposure, setExposure] = useState(0);
+  const keepPreview = kind === "hero-dither" || kind === "hero-stone";
+  const [ready, setReady] = useState(false);
+  const onReady = useCallback(() => {
+    setReady(true);
+    onNativeReady?.();
+  }, [onNativeReady]);
   // Keep the SSR/reduced-motion frame available without preloading a large
   // decorative bitmap ahead of the live chapter scene and its fonts.
   const preloadFrame = priority && kind !== "plasma" && kind !== "contact-rain";
@@ -87,10 +110,13 @@ export function LiveVisual({
     };
   }, []);
   const live = useWebGLBudget(
-    (forceLive || (active && allowed)) && visible && !introActive,
+    (forceLive || (active && allowed)) && visible && (!introActive || playDuringIntro),
     exposure,
     !flatKinds.has(kind),
   );
+  useEffect(() => {
+    if (!live) setReady(false);
+  }, [live]);
   useEffect(() => {
     if (!live || flatKinds.has(kind) || !ref.current) return;
     const host = ref.current;
@@ -101,9 +127,16 @@ export function LiveVisual({
     observer.observe(host, { childList: true, subtree: true });
     return () => {
       observer.disconnect();
-      const type = ["glossy", "glassbound", "globe", "gate", "ocean", "ember", "wordmark"].includes(
-        kind,
-      )
+      const type = [
+        "glossy",
+        "glassbound",
+        "globe",
+        "gate",
+        "ocean",
+        "ember",
+        "hero-stone",
+        "wordmark",
+      ].includes(kind)
         ? "webgl2"
         : "webgl";
       for (const canvas of canvases) {
@@ -112,33 +145,47 @@ export function LiveVisual({
       }
     };
   }, [live, kind]);
+  const Frame = mobileFrameSrc ? "picture" : Fragment;
   return (
     <div
       ref={ref}
       className={`live-visual ${className}`}
       data-visual={kind}
       data-mode={live ? "live" : allowed ? "waiting" : "static"}
+      data-ready={keepPreview ? String(ready) : undefined}
     >
-      {loaded && !allowed && !forceLive && (
-        <Image
-          src={frameSrc ?? `/frames/signal/${kind}.png`}
-          alt={alt}
-          fill
-          sizes={sizes}
-          className="visual-frame"
-          priority={preloadFrame}
-          fetchPriority={preloadFrame ? "high" : undefined}
-          quality={kind === "manifesto" ? 90 : kind === "pixels" ? 65 : 75}
-        />
+      {loaded && (!allowed || (keepPreview && (!live || !ready))) && !forceLive && (
+        <Frame>
+          {mobileFrameSrc && <source media="(max-width: 767px)" srcSet={mobileFrameSrc} />}
+          <Image
+            src={frameSrc ?? `/frames/signal/${kind}.png`}
+            alt={alt}
+            fill
+            sizes={sizes}
+            className="visual-frame"
+            priority={preloadFrame}
+            fetchPriority={preloadFrame ? "high" : undefined}
+            quality={kind === "manifesto" ? 90 : kind === "pixels" ? 65 : 75}
+            unoptimized={keepPreview}
+          />
+        </Frame>
       )}
       {live && (
-        <div className="visual-canvas" aria-hidden="true">
+        <div
+          className="visual-canvas"
+          aria-hidden="true"
+          style={keepPreview && !ready ? { visibility: "hidden" } : undefined}
+        >
           <VisualBoundary>
             <div
               className={surfaceClassName}
               style={{ width: "100%", height: "100%", ...surfaceStyle }}
             >
-              <Renderer kind={kind} overrides={overrides} />
+              <Renderer
+                kind={kind}
+                overrides={overrides}
+                onReady={keepPreview ? onReady : undefined}
+              />
             </div>
           </VisualBoundary>
         </div>

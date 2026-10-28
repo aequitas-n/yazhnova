@@ -2,7 +2,7 @@
 
 # OriginKit inventory - rendered source studies
 
-The initial 34 installed items were read and rendered in original and editorial variants. Hero-44 is the 35th installed item and hero-55 is the 36th; its current production composition and responsive review are documented in [the chapter hero report](chapters/README.md). `/playground` mounts only visible panels; each variant has its own document so CSS and IDs cannot collide. The exact draw contexts and runtime observations are in [playground-results.json](playground-results.json).
+The initial 34 installed items were read and rendered in original and editorial variants. Hero-44 is the 35th installed item, hero-55 is the 36th and ridge-parallax is the 37th; its current production composition and responsive review are documented in [the chapter hero report](chapters/README.md). `/playground` mounts only visible panels; each variant has its own document so CSS and IDs cannot collide. The exact draw contexts and runtime observations are in [playground-results.json](playground-results.json).
 
 Palette: ink `#0A0A0A`, graphite `#141414`, paper `#F4F2EC`, warm grey `#8C8A84`, restrained signal amber `#FFB45A`. No shaders, geometry or visual algorithms were recreated. Type-only fixes and the requested opt-in stone-intro controls are recorded in [fixes.md](fixes.md).
 
@@ -3405,3 +3405,26 @@ Installed through `npx originkit@latest add hero-44 --path components/originkit`
 **Placement:** full Contact hero, heading left and existing functional form right; stacked on mobile. No stock ecommerce copy in production.
 
 [Raw + editorial study](shots/hero-55.png) ? [Contact review](contact-hero55/README.md).
+
+### paperline-archive: full-screen Home composition
+
+The current Home preset restores live text with speed 50, a 3.2-second hold, native staggered fade and repeat. Optional typeface (family/weight), paperOpacity, playFromStart and advanced.textBottom controls preserve original defaults and let the native timeline paint the studio's large grotesk headline over separately toned newspaper type. The statement is accessible through a real HTML H2. [Screenshots and animation](manifesto/README.md).
+
+### Current Home: standalone dither-reveal + hero-69
+
+Home now uses the installed standalone dither-reveal rather than hero-40's copy. Optional darkColor/lightColor/monochrome inputs recolor the actual shader to ink/paper; onReady preserves the loading preview until its first textured draw. The hand photograph is a landscape edit, with no stone or effects baked in. A separately rendered, alpha-composited hero-69 stone occupies the center. The latter's optional transparent input leaves its opaque intro default unchanged. [Review and source notes](hands-stone/README.md).
+
+
+## ridge-parallax
+
+**Rating: 9/10 for the shared footer.** Genuine WebGL layered particle ridges fit the raw-stone-to-signal story without adding another boxed hero. Installed successfully through the OriginKit CLI on 28 October 2026.
+
+**Key element:** six procedural mountain layers with depth haze, native horizontal drift and scroll parallax. No external texture or image dependencies.
+
+**Public controls:** `background`, `baseColor`, `accentColor`, `density`, `dotSize`, `speed`, `pointer`; `range` exposes `layers`, `height`, `roughness`, `fall`, `seed`; `depth` exposes `parallax`, `haze`, `travelStart`, `travelEnd`; optional width/height/style. All production colors are explicit: ink #0A0A0A, distant warm grey #57534E and signal orange #FF3B00.
+
+**Performance:** medium, source-informed estimate. Desktop density 70 across six layers produces approximately 109,000 points at DPR ?1.5. Phone density 36 across four layers produces approximately 37,400 points at DPR 1. The existing visibility wrapper retires off-screen surfaces and enforces two live contexts, including the wordmark. Reduced motion uses a frame captured from this real renderer; touch screens retain animation.
+
+**Software-company use:** a continuous footer landscape, suggesting the signal moving through raw material. Links stay readable above an ink fade; the existing grotesk wordmark blends over the terrain.
+
+**Source study:** [Original and editorial side by side](shots/ridge-parallax.png). [Footer screenshots and checks](footer-ridge/README.md). No rendering algorithms were recreated.

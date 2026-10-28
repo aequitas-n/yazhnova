@@ -179,14 +179,35 @@
   height: 120px;
 }
 .home-page .manifesto-section {
-  min-height: 65svh;
-  padding-block: 75px;
+  min-height: 100svh;
+  padding-block: 0;
 }
-.home-page .manifesto-slogan {
-  font-size: clamp(50px, 6vw, 100px);
+.home-page .manifesto-newsprint {
+  top: 76px;
+}
+.home-page .manifesto-content {
+  display: flex;
+  flex-direction: column;
+  min-height: 100svh;
+  padding-top: clamp(160px, 19svh, 220px);
+  padding-bottom: clamp(40px, 5svh, 64px);
+  pointer-events: none;
+}
+.home-page .manifesto-heading {
+  margin-bottom: 0;
+}
+.home-page .manifesto-title-space {
+  flex: 1;
+  min-height: 48svh;
+}
+.home-page .manifesto-signal-note {
+  margin-top: 20px;
+  color: #b8b5ad;
 }
 .home-page .manifesto-note {
-  margin-top: 35px;
+  margin-top: 24px;
+  padding-top: 24px;
+  background: linear-gradient(#0a0a0ab3, #0a0a0a00);
 }
 .home-practice {
   padding-top: 65px;
@@ -764,15 +785,22 @@
     font-size: 7px;
   }
   .home-page .manifesto-section {
-    min-height: 65svh;
-    padding-block: 55px;
+    min-height: 100svh;
+    padding-block: 0;
   }
-  .home-page .manifesto-slogan {
-    font-size: clamp(42px, 11vw, 60px);
-    margin-top: 45px;
+  .home-page .manifesto-newsprint {
+    top: 67px;
+  }
+  .home-page .manifesto-content {
+    padding-top: 155px;
+    padding-bottom: 32px;
+  }
+  .home-page .manifesto-title-space {
+    min-height: 35svh;
   }
   .home-page .manifesto-note {
-    margin-top: 30px;
+    margin-top: 20px;
+    padding-top: 20px;
   }
   .home-page .manifesto-heading > .eyebrow {
     display: none;
@@ -784,7 +812,7 @@
     font-size: 13px;
   }
   .home-page .manifesto-signal-note {
-    margin-top: 25px;
+    margin-top: 16px;
   }
   .home-practice {
     padding-top: 55px;
