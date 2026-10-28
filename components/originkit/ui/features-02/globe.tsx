@@ -2,8 +2,11 @@
 
 "use client";
 
+import { requestVisualFrame as requestAnimationFrame, cancelVisualFrame as cancelAnimationFrame } from "@/lib/visual-runtime";
 import { useEffect, useRef, useState, type CSSProperties } from "react";
 import { canvasPixelRatio } from "@/lib/canvas-quality";
+import { getVisualTier, yieldVisualTask } from "@/lib/visual-runtime";
+import { warmRenderer } from "@/lib/warm-renderer";
 import {
   Scene,
   PerspectiveCamera,
@@ -209,6 +212,7 @@ interface DotsConfig {
   allDots: boolean;
 }
 interface GlobeProps {
+  onReady?: () => void;
   landDataUrl?: string;
   speed?: number;
   smoothing?: number;
@@ -234,6 +238,7 @@ interface GlobeProps {
 }
 
 export default function Globe({
+  onReady,
   landDataUrl,
   speed = 2,
   smoothing = 8,
@@ -258,6 +263,8 @@ export default function Globe({
   style,
 }: GlobeProps) {
   const containerRef = useRef<HTMLDivElement>(null);
+  const readyRef = useRef(onReady);
+  readyRef.current = onReady;
   const [error, setError] = useState<string | null>(null);
 
   const dotColor = dots.color;
@@ -280,6 +287,10 @@ export default function Globe({
   useEffect(() => {
     if (!containerRef.current) return;
     const container = containerRef.current;
+    let disposed = false;
+    let loaded = false;
+    let cancelCompile: (() => void) | undefined;
+    const tier = getVisualTier();
     const containerWidth =
       container.clientWidth || container.offsetWidth || 800;
     const containerHeight =
@@ -298,7 +309,7 @@ export default function Globe({
     camera.position.set(0, 0, cameraDistance);
     camera.lookAt(0, 0, 0);
 
-    const renderer = new WebGLRenderer({ antialias: true, alpha: true });
+    const renderer = new WebGLRenderer({ antialias: tier.name === "high", alpha: true, stencil: false, powerPreference: "high-performance" });
     renderer.setSize(containerWidth, containerHeight);
     renderer.setPixelRatio(canvasPixelRatio(1.5));
     renderer.outputColorSpace = "srgb";
@@ -325,7 +336,8 @@ export default function Globe({
     const fillRgba = parseColorToRgba(resolvedFillColor);
     void markerRgba;
 
-    const oceanGeometry = new SphereGeometry(globeRadius, 64, 64);
+    const segments = tier.name === "low" ? 32 : tier.name === "mid" ? 48 : 64;
+    const oceanGeometry = new SphereGeometry(globeRadius, segments, segments);
     const oceanColorObj = resolvedOceanColor
       ? new Color(resolvedOceanColor)
       : new Color(0, 0, 0);
@@ -373,7 +385,7 @@ export default function Globe({
 `,
     });
     const rimMesh = new Mesh(
-      new SphereGeometry(globeRadius * 1.003, 64, 64),
+      new SphereGeometry(globeRadius * 1.003, segments, segments),
       rimMaterial,
     );
 
@@ -511,6 +523,7 @@ export default function Globe({
     const loadWorldData = async () => {
       try {
         const landFeatures = await getLandData(landDataUrl);
+        if (disposed) return;
 
         while (continentOutlineGroup.children.length > 0) {
           continentOutlineGroup.remove(continentOutlineGroup.children[0]);
@@ -528,7 +541,8 @@ export default function Globe({
           const pathGenerator = geoPath().projection(projection);
           let processedCount = 0;
           let skippedCount = 0;
-          landFeatures.features.forEach((feature: any) => {
+          let yielded = performance.now();
+          for (const feature of landFeatures.features) {
             const featureType =
               feature.properties?.featurecla || feature.properties?.type || "";
             const featureName = feature.properties?.name || "";
@@ -541,16 +555,11 @@ export default function Globe({
               featureName.toLowerCase().includes("line")
             ) {
               skippedCount++;
-              return;
+              continue;
             }
             processedCount++;
-            const pathString = pathGenerator(feature);
-            if (!pathString) return;
-            const commands = pathString.match(/[ML][^MLZ]*/g) || [];
-            if (commands.length === 0) return;
-
             const geometry = feature.geometry;
-            if (!geometry || !geometry.coordinates) return;
+            if (!geometry || !geometry.coordinates) continue;
 
             const processRing = (ring: number[][]) => {
               if (ring.length < 2) return;
@@ -604,16 +613,20 @@ export default function Globe({
             ) {
               processRing(geometry.coordinates[0]);
             } else if (geometry.type === "MultiPolygon") {
-              geometry.coordinates.forEach((polygon: any) => {
+              for (const polygon of geometry.coordinates) {
                 if (polygon.length > 0) {
                   processRing(polygon[0]);
                 }
-              });
+                if (performance.now() - yielded > 6) { await yieldVisualTask(); if (disposed) return; yielded = performance.now(); }
+              }
             }
-          });
+            if (performance.now() - yielded > 6) { await yieldVisualTask(); if (disposed) return; yielded = performance.now(); }
+          }
           console.log(
             `[Globe] Processed ${processedCount} land features, skipped ${skippedCount} grid features`,
           );
+          await yieldVisualTask();
+          if (disposed) return;
         }
 
         const bitmapWidth = 2048;
@@ -695,6 +708,10 @@ export default function Globe({
           const dotCoordinates: number[][] = [];
           const baseStep = dotSpacing * 0.08;
           for (let lat = -90; lat <= 90; lat += baseStep) {
+            if (Math.round((lat + 90) / baseStep) % 8 === 0) {
+              await yieldVisualTask();
+              if (disposed) return;
+            }
             const latRad = (Math.abs(lat) * Math.PI) / 180;
             const cosLat = Math.cos(latRad);
             const lngStep =
@@ -727,6 +744,10 @@ export default function Globe({
             );
             const matrix = new Matrix4();
             for (let i = 0; i < dotCoordinates.length; i++) {
+              if (i % 800 === 0) {
+                await yieldVisualTask();
+                if (disposed) { instanced.geometry.dispose(); dotMaterial.dispose(); return; }
+              }
               const [lng, lat] = dotCoordinates[i];
               const pos = latLngToPosition(lat, lng);
               matrix.makeScale(1, 1, 1);
@@ -744,9 +765,15 @@ export default function Globe({
         }
 
         updateMarkers();
+        await new Promise<void>((resolve) => {
+          cancelCompile = warmRenderer(renderer, [() => renderer.compile(scene, camera)], resolve);
+        });
+        if (disposed) return;
+        loaded = true;
         renderer.render(scene, camera);
+        readyRef.current?.();
       } catch (err) {
-        setError("Failed to load land map data");
+        if (!disposed) setError("Failed to load land map data");
       }
     };
 
@@ -817,8 +844,6 @@ export default function Globe({
     }
     globeGroup.add(continentOutlineGroup);
     markerMeshes.forEach((mesh) => globeGroup.add(mesh));
-    renderer.render(scene, camera);
-
     const animate = () => {
       let needsRender = false;
       const threshold = 0.01;
@@ -856,10 +881,10 @@ export default function Globe({
         rotation.y = Math.max(-Math.PI / 2, Math.min(Math.PI / 2, rotation.y));
         needsRender = true;
       }
-      if (needsRender || rotationSpeed !== 0 || isDragging) {
+      if (loaded && (needsRender || rotationSpeed !== 0 || isDragging)) {
         globeGroup.rotation.y = rotation.x;
         globeGroup.rotation.x = rotation.y;
-        renderer.render(scene, camera);
+        if (loaded) renderer.render(scene, camera);
       }
       const hasVelocity =
         Math.abs(velocity.x) > threshold || Math.abs(velocity.y) > threshold;
@@ -944,7 +969,7 @@ export default function Globe({
         const newCameraDistance = 2.5 / scaleMultiplier;
         camera.position.set(0, 0, newCameraDistance);
         camera.lookAt(0, 0, 0);
-        renderer.render(scene, camera);
+        if (loaded) renderer.render(scene, camera);
       });
     };
     const resizeObserver = new ResizeObserver(handleResize);
@@ -953,6 +978,8 @@ export default function Globe({
     loadWorldData();
 
     return () => {
+      disposed = true;
+      cancelCompile?.();
       if (animationFrameId !== null) cancelAnimationFrame(animationFrameId);
       if (resizeFrame !== null) cancelAnimationFrame(resizeFrame);
       canvas.removeEventListener("pointerdown", handlePointerDown);
@@ -961,8 +988,25 @@ export default function Globe({
       canvas.removeEventListener("pointercancel", handlePointerUp);
       canvas.removeEventListener("mousemove", handleMouseMove);
       resizeObserver.disconnect();
+      const geometries = new Set<{ dispose: () => void }>();
+      const materials = new Set<MeshBasicMaterial | MeshStandardMaterial | ShaderMaterial>();
+      scene.traverse((object) => {
+        if (!(object instanceof Mesh)) return;
+        geometries.add(object.geometry);
+        for (const material of Array.isArray(object.material) ? object.material : [object.material]) materials.add(material);
+      });
+      if (globeOutlineMesh) { geometries.add(globeOutlineMesh.geometry); materials.add(globeOutlineMesh.material as MeshBasicMaterial); }
+      for (const geometry of geometries) geometry.dispose();
+      for (const material of materials) {
+        for (const value of Object.values(material)) {
+          const texture = value as { isTexture?: boolean; dispose?: () => void } | null;
+          if (texture?.isTexture) texture.dispose?.();
+        }
+        material.dispose();
+      }
       renderer.dispose();
-      container.removeChild(canvas);
+      renderer.forceContextLoss();
+      canvas.remove();
     };
   }, [
     speed,

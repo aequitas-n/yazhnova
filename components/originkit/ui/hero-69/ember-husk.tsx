@@ -4,6 +4,8 @@
 
 "use client"
 import { warmRenderer } from "@/lib/warm-renderer"
+import { getVisualTier } from "@/lib/visual-runtime"
+import { canvasPixelRatio } from "@/lib/canvas-quality"
 
 import { useEffect, useRef } from "react"
 import type { CSSProperties } from "react"
@@ -1114,10 +1116,13 @@ function __OriginkitBase_EmberHusk(props: EmberHuskProps) {
         const container = containerRef.current
         if (!container) return
 
+        const tier = getVisualTier()
+        const post = tier.post
         let renderer: THREE.WebGLRenderer
         try {
             renderer = new THREE.WebGLRenderer({
-                antialias: true,
+                antialias: tier.name === "high",
+                stencil: false,
                 alpha: props.transparent ?? false,
                 powerPreference: "high-performance",
             })
@@ -1129,7 +1134,7 @@ function __OriginkitBase_EmberHusk(props: EmberHuskProps) {
 
         const p0 = paramsRef.current
         const dprCap = p0.quality === "low" ? 1 : p0.quality === "medium" ? 1.5 : 2
-        renderer.setPixelRatio(Math.min(window.devicePixelRatio || 1, dprCap))
+        renderer.setPixelRatio(canvasPixelRatio(dprCap))
         renderer.setClearColor(0x000000, props.transparent ? 0 : 1)
         renderer.toneMapping = THREE.ACESFilmicToneMapping
         renderer.toneMappingExposure = 1
@@ -1531,6 +1536,7 @@ function __OriginkitBase_EmberHusk(props: EmberHuskProps) {
             }
             bgMat.uniforms.uAspect.value = aspect
 
+            if (!post) { dirty = true; return }
             const dpr = renderer.getPixelRatio()
             const pw = Math.max(1, Math.round(w * dpr))
             const ph = Math.max(1, Math.round(h * dpr))
@@ -1634,7 +1640,7 @@ function __OriginkitBase_EmberHusk(props: EmberHuskProps) {
             if (lastQuality !== q.quality) {
                 lastQuality = q.quality
                 const cap = q.quality === "low" ? 1 : q.quality === "medium" ? 1.5 : 2
-                renderer.setPixelRatio(Math.min(window.devicePixelRatio || 1, cap))
+                renderer.setPixelRatio(canvasPixelRatio(cap))
 
                 sizeW = 0
                 sizeH = 0
@@ -1866,6 +1872,17 @@ function __OriginkitBase_EmberHusk(props: EmberHuskProps) {
 
             rockMat.uniforms.uTime.value = t * (0.12 + (q.core.flow / 10) * 1.3)
 
+            if (!post) {
+                renderer.setRenderTarget(null)
+                renderer.clear(true, true, false)
+                renderer.render(scene, camera)
+                if (!reportedReady) {
+                    reportedReady = true
+                    canvas.dataset.nativeReady = "true"
+                    callbacksRef.current.onReady?.()
+                }
+                return
+            }
             renderer.setRenderTarget(rtScene)
             renderer.clear(true, true, false)
             renderer.render(scene, camera)
@@ -1919,8 +1936,14 @@ function __OriginkitBase_EmberHusk(props: EmberHuskProps) {
 
         const clock = new THREE.Clock()
         let last = 0
+        let lastRender = -100
 
         const loop = () => {
+            const now = performance.now()
+            const interval = 1000 / tier.fps
+            const elapsed = now - lastRender
+            if (elapsed < interval - 1) return
+            lastRender += Math.max(1, Math.floor((elapsed + 1) / interval)) * interval
             if (choreographyRef.current?.current.paused) return
             if (prefersReduced) {
                 if (!dirty) return
@@ -1938,11 +1961,11 @@ function __OriginkitBase_EmberHusk(props: EmberHuskProps) {
         }
 
         const cancelWarmup = warmRenderer(renderer, [
-            () => { renderer.setRenderTarget(rtScene); renderer.compile(scene, camera) },
-            ...[prefilterMat, downMat, upMat].map(mat => () => {
+            () => { renderer.setRenderTarget(post ? rtScene : null); renderer.compile(scene, camera) },
+            ...(post ? [prefilterMat, downMat, upMat].map(mat => () => {
                 renderer.setRenderTarget(rtScene); quad.material = mat; renderer.compile(quadScene, quadCam)
-            }),
-            () => { renderer.setRenderTarget(null); quad.material = compositeMat; renderer.compile(quadScene, quadCam) },
+            }) : []),
+            ...(post ? [() => { renderer.setRenderTarget(null); quad.material = compositeMat; renderer.compile(quadScene, quadCam) }] : []),
         ], () => { clock.start(); last = 0; renderer.setAnimationLoop(loop) }, () => callbacksRef.current.onError?.())
 
         apiRef.current = {

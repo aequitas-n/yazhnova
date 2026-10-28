@@ -1,36 +1,20 @@
 "use client";
 
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import Image from "next/image";
-import { motion, useAnimationControls, useReducedMotion, type Variants } from "framer-motion";
 import { ArrowDown } from "lucide-react";
 import { SectionHero as Hero44 } from "@/components/originkit/ui/hero-44/section-hero";
 import { chapterHeroes, pageContent, site } from "@/content/site";
 import { LiveVisual } from "@/components/visuals/live-visual";
 import { ProjectLink } from "@/components/ui/project-link";
+import { scheduleVisualStart } from "@/lib/visual-runtime";
 
 type HeroKey = keyof typeof chapterHeroes;
-const ease = [0.22, 1, 0.36, 1] as const;
-const heading: Variants = {
-  hidden: {},
-  show: { transition: { delayChildren: 0.22, staggerChildren: 0.075 } },
-};
-const word: Variants = {
-  hidden: { y: "112%", rotate: 3, opacity: 0 },
-  show: { y: "0%", rotate: 0, opacity: 1, transition: { duration: 0.85, ease } },
-};
-const details: Variants = {
-  hidden: { y: 16, opacity: 0 },
-  show: { y: 0, opacity: 1, transition: { delay: 0.6, duration: 0.65, ease } },
-};
-
 function Words({ text }: { text: string }) {
   return text.split(" ").map((value, index, words) => (
     <span key={`${value}-${index}`}>
       <span className="chapter-word-clip">
-        <motion.span className="chapter-word" variants={word}>
-          {value}
-        </motion.span>
+        <span className="chapter-word">{value}</span>
       </span>
       {index < words.length - 1 ? " " : null}
     </span>
@@ -40,30 +24,69 @@ function Words({ text }: { text: string }) {
 export function PageHero({ page }: { page: HeroKey }) {
   const copy = pageContent[page];
   const chapter = chapterHeroes[page];
-  const controls = useAnimationControls();
-  const reduced = useReducedMotion();
+  const root = useRef<HTMLElement>(null);
   const [entered, setEntered] = useState(false);
-
   useEffect(() => {
-    let cancelled = false;
-    if (reduced) {
-      controls.set("show");
+    if (matchMedia("(prefers-reduced-motion:reduce)").matches) {
       setEntered(true);
       return;
     }
-    setEntered(false);
-    controls.set("hidden");
-    void controls.start("show").then(() => {
-      if (!cancelled) setEntered(true);
+    const animations: Animation[] = [];
+    const cancel = scheduleVisualStart(() => {
+      const element = root.current;
+      if (!element) return;
+      const easing = "cubic-bezier(0.22, 1, 0.36, 1)";
+      const play = (node: Element, frames: Keyframe[], duration: number, delay = 0) => {
+        const animation = node.animate(frames, { duration, delay, easing, fill: "backwards" });
+        animations.push(animation);
+      };
+      const object = element.querySelector(".chapter-object");
+      if (object)
+        play(
+          object,
+          [
+            { transform: "scale(0.82) rotate(-12deg)", opacity: 0 },
+            { transform: "scale(1) rotate(0deg)", opacity: chapter.align === "center" ? 0.6 : 1 },
+          ],
+          1250,
+        );
+      element.querySelectorAll(".chapter-line").forEach((line) => {
+        line.querySelectorAll(".chapter-word").forEach((word, index) =>
+          play(
+            word,
+            [
+              { transform: "translateY(112%) rotate(3deg)", opacity: 0 },
+              { transform: "translateY(0) rotate(0deg)", opacity: 1 },
+            ],
+            850,
+            220 + index * 75,
+          ),
+        );
+      });
+      element.querySelectorAll(".chapter-eyebrow,.chapter-description").forEach((node) =>
+        play(
+          node,
+          [
+            { transform: "translateY(16px)", opacity: 0 },
+            { transform: "translateY(0)", opacity: 1 },
+          ],
+          650,
+          600,
+        ),
+      );
+      void Promise.all(animations.map((animation) => animation.finished))
+        .then(() => setEntered(true))
+        .catch(() => {});
     });
     return () => {
-      cancelled = true;
-      controls.stop();
+      cancel();
+      animations.forEach((animation) => animation.cancel());
     };
-  }, [controls, page, reduced]);
+  }, [page, chapter.align]);
 
   return (
     <section
+      ref={root}
       className={`page-hero chapter-hero chapter-${chapter.align} chapter-${page}`}
       aria-labelledby="page-title"
       data-page-hero={page}
@@ -71,30 +94,17 @@ export function PageHero({ page }: { page: HeroKey }) {
     >
       <Hero44
         artwork={
-          <motion.div
-            className="chapter-object"
-            initial={false}
-            animate={controls}
-            variants={{
-              hidden: { scale: 0.82, rotate: -12, opacity: 0 },
-              show: {
-                scale: 1,
-                rotate: 0,
-                opacity: chapter.align === "center" ? 0.6 : 1,
-                transition: { duration: 1.25, ease },
-              },
-            }}
-          >
+          <div className="chapter-object">
             <LiveVisual
               key={page}
               kind="plasma"
               priority
-              sizes="(max-width:767px) 100vw, 60vw"
+              sizes="(max-width:767px) 135vw, 60vw"
               overrides={{ initialRotation: chapter.rotation }}
             />
             <Image
               className="chapter-hand"
-              src="/originkit/hero-44/hand.png"
+              src="/originkit/hero-44/hand.webp"
               alt=""
               aria-hidden="true"
               width={1024}
@@ -102,43 +112,27 @@ export function PageHero({ page }: { page: HeroKey }) {
               sizes="(max-width:767px) 50vw, 25vw"
               quality={70}
             />
-          </motion.div>
+          </div>
         }
       >
         <div className="chapter-shade" aria-hidden="true" />
         <div className="container chapter-content">
-          <motion.div
-            className="chapter-eyebrow mono"
-            initial={false}
-            animate={controls}
-            variants={details}
-          >
+          <div className="chapter-eyebrow mono">
             <span className="signal" />
             {copy.label}
-          </motion.div>
-          <motion.h1
-            id="page-title"
-            initial={false}
-            animate={controls}
-            variants={heading}
-            aria-label={`${copy.title} ${copy.serif}`}
-          >
+          </div>
+          <h1 id="page-title" aria-label={`${copy.title} ${copy.serif}`}>
             <span className="chapter-line">
               <Words text={copy.title} />
             </span>
             <em className="chapter-line chapter-serif">
               <Words text={copy.serif} />
             </em>
-          </motion.h1>
-          <motion.div
-            className="chapter-description"
-            initial={false}
-            animate={controls}
-            variants={details}
-          >
+          </h1>
+          <div className="chapter-description">
             <p>{copy.description}</p>
             <ProjectLink>{site.actions.start}</ProjectLink>
-          </motion.div>
+          </div>
         </div>
         <div className="chapter-folio mono" aria-hidden="true">
           <span>

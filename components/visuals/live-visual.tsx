@@ -5,6 +5,7 @@ import {
   Component,
   Fragment,
   useCallback,
+  useId,
   useEffect,
   useRef,
   useState,
@@ -13,7 +14,7 @@ import {
 } from "react";
 import type { VisualKind } from "@/lib/visual-presets";
 import { useIntroActive } from "@/components/intro/intro-context";
-import { useWebGLBudget } from "./webgl-budget";
+import { scheduleVisualStart, useVisualSlot } from "@/lib/visual-runtime";
 const flatKinds = new Set<VisualKind>(["manifesto", "pixels", "liquid", "strings"]);
 const Renderer = dynamic(() => import("./renderers"), { ssr: false });
 class VisualBoundary extends Component<{ children: ReactNode }, { failed: boolean }> {
@@ -42,6 +43,7 @@ export function LiveVisual({
   forceLive = false,
   playDuringIntro = false,
   onNativeReady,
+  runtimeGroup,
 }: {
   kind: VisualKind;
   className?: string;
@@ -59,6 +61,7 @@ export function LiveVisual({
   forceLive?: boolean;
   playDuringIntro?: boolean;
   onNativeReady?: () => void;
+  runtimeGroup?: string;
 }) {
   const introActive = useIntroActive();
   const ref = useRef<HTMLDivElement>(null);
@@ -67,7 +70,11 @@ export function LiveVisual({
   const [visible, setVisible] = useState(true);
   const [loaded, setLoaded] = useState(priority || initialFrame);
   const [exposure, setExposure] = useState(0);
-  const keepPreview = kind === "hero-dither" || kind === "hero-stone";
+  const id = useId();
+  const [armed, setArmed] = useState(false);
+  const keepPreview = ["hero-dither", "hero-stone", "contact-rain", "plasma", "globe"].includes(
+    kind,
+  );
   const [ready, setReady] = useState(false);
   const onReady = useCallback(() => {
     setReady(true);
@@ -75,8 +82,7 @@ export function LiveVisual({
   }, [onNativeReady]);
   // Keep the SSR/reduced-motion frame available without preloading a large
   // decorative bitmap ahead of the live chapter scene and its fonts.
-  const preloadFrame =
-    priority && kind !== "plasma" && kind !== "contact-rain" && !frameSources?.length;
+  const preloadFrame = priority && !frameSources?.length;
   useEffect(() => {
     const media = matchMedia("(prefers-reduced-motion: no-preference)");
     const sync = () => setAllowed(media.matches);
@@ -100,7 +106,7 @@ export function LiveVisual({
           imageObserver.disconnect();
         }
       },
-      { rootMargin: "96px 0px" },
+      { rootMargin: "200px 0px" },
     );
     if (ref.current) imageObserver.observe(ref.current);
     const onVisibility = () => setVisible(!document.hidden);
@@ -112,10 +118,19 @@ export function LiveVisual({
       document.removeEventListener("visibilitychange", onVisibility);
     };
   }, []);
-  const live = useWebGLBudget(
-    (forceLive || (active && allowed)) && visible && (!introActive || playDuringIntro),
-    exposure,
-    !flatKinds.has(kind),
+  const eligible = (forceLive || active) && allowed && visible && (!introActive || playDuringIntro);
+  useEffect(() => {
+    if (!eligible) {
+      setArmed(false);
+      return;
+    }
+    return scheduleVisualStart(() => setArmed(true));
+  }, [eligible]);
+  const live = useVisualSlot(
+    id,
+    eligible && armed,
+    exposure + (forceLive ? 10 : 0) + (kind === "wordmark" && exposure > 0.2 ? 2 : 0),
+    runtimeGroup,
   );
   useEffect(() => {
     if (!live) setReady(false);
@@ -157,14 +172,14 @@ export function LiveVisual({
       data-mode={live ? "live" : allowed ? "waiting" : "static"}
       data-ready={keepPreview ? String(ready) : undefined}
     >
-      {loaded && (!allowed || (keepPreview && (!live || !ready))) && !forceLive && (
+      {loaded && (!live || (keepPreview && !ready)) && !forceLive && (
         <Frame>
           {mobileFrameSrc && <source media="(max-width: 767px)" srcSet={mobileFrameSrc} />}
           {frameSources?.map((source) => (
             <source key={source.media} {...source} />
           ))}
           <Image
-            src={frameSrc ?? `/frames/signal/${kind}.png`}
+            src={frameSrc ?? `/frames/signal/${kind}.webp`}
             alt={alt}
             fill
             sizes={sizes}
@@ -173,7 +188,7 @@ export function LiveVisual({
             fetchPriority={preloadFrame || (priority && frameSources?.length) ? "high" : undefined}
             loading={priority && frameSources?.length ? "eager" : undefined}
             quality={kind === "manifesto" ? 90 : kind === "pixels" ? 65 : 75}
-            unoptimized={keepPreview}
+            unoptimized={kind === "hero-dither" || kind === "hero-stone"}
           />
         </Frame>
       )}

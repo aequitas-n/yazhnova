@@ -1,5 +1,6 @@
 "use client"
 
+import { requestVisualFrame as requestAnimationFrame, cancelVisualFrame as cancelAnimationFrame } from "@/lib/visual-runtime";
 import { useState, useEffect, useRef, useLayoutEffect, Fragment } from "react"
 
 const GLITCH_CHARS_UPPER = "ABCDEFGHIJKLMNOPQRSTUVWXYZ"

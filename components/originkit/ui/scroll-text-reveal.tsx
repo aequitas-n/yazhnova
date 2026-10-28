@@ -1,12 +1,13 @@
 "use client";
 
+import { requestVisualFrame as requestAnimationFrame, cancelVisualFrame as cancelAnimationFrame } from "@/lib/visual-runtime";
 import React, { useRef, useEffect, useState } from "react";
 import { animate } from "framer-motion";
 import { gsap } from "gsap";
 import { SplitText } from "gsap/SplitText";
-import { ScrollTrigger } from "gsap/ScrollTrigger";
 
-gsap.registerPlugin(SplitText, ScrollTrigger);
+// This source uses its own passive alignment observer; no ScrollTrigger instance.
+gsap.registerPlugin(SplitText);
 
 interface FontConfig {
   fontFamily?: string;

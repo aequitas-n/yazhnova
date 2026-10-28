@@ -6,7 +6,7 @@ export function Footer() {
   return (
     <footer className="site-footer">
       <div className="footer-ridges" aria-hidden="true">
-        <LiveVisual kind="ridge" sizes="100vw" initialFrame />
+        <LiveVisual kind="ridge" sizes="100vw" initialFrame runtimeGroup="footer" />
       </div>
       <div className="container">
         <div className="footer-top">
@@ -25,11 +25,13 @@ export function Footer() {
           <div className="footer-column">
             <span className="eyebrow">{site.footer.explore}</span>
             {site.nav.map((item) => (
-              <Link key={item.label} href={item.href}>
+              <Link key={item.label} href={item.href} prefetch={false}>
                 {item.label}
               </Link>
             ))}
-            <Link href="/contact">{site.actions.contact}</Link>
+            <Link href="/contact" prefetch={false}>
+              {site.actions.contact}
+            </Link>
           </div>
           <div className="footer-column">
             <span className="eyebrow">{site.footer.expertise}</span>
@@ -49,7 +51,7 @@ export function Footer() {
           </div>
         </div>
         <div className="footer-wordmark" aria-label={site.name}>
-          <LiveVisual kind="wordmark" />
+          <LiveVisual kind="wordmark" runtimeGroup="footer" />
           <span className="sr-only">{site.name}</span>
         </div>
         <div className="footer-baseline">

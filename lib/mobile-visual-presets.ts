@@ -3,13 +3,13 @@ import type { VisualKind } from "./visual-presets";
 // Cost controls only. Brand colors and story/graph inputs come from the composition.
 export const mobileVisualPresets: Partial<Record<VisualKind, Record<string, unknown>>> = {
   "contact-rain": {
-    pixelRatio: 0.75,
-    rain: 68,
+    pixelRatio: 0.5,
+    rain: 32,
     speed: 28,
-    drops: { ripples: 25, streaks: 16 },
+    drops: { ripples: 12, streaks: 7 },
     cursor: { reach: 28, ripple: 40, glow: 20 },
   },
-  plasma: { density: 48, speed: 20, waveHeight: 12, scale: 42 },
+  plasma: { density: 32, speed: 20, waveHeight: 12, scale: 42 },
   manifesto: { size: 64, advanced: { pixelRatio: 1.5 } },
   "hero-dither": {
     fit: "cover",

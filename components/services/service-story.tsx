@@ -296,7 +296,7 @@ export function ServiceStory({
               ? "/frames/signal/" + kind + ".png"
               : "/frames/stories/" +
                 (id === "mobile" ? "mobile-phone" : id) +
-                ".png?v=proportions-1"
+                ".webp?v=pass5"
           }
           sizes="(max-width:767px) 100vw, 70vw"
           overlay={overlay}

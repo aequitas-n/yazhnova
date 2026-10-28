@@ -1,25 +1,26 @@
 "use client";
-import { useState } from "react";
+import { useState, useRef } from "react";
 import { usePathname } from "next/navigation";
 import Link from "next/link";
 import * as Navigation from "@radix-ui/react-navigation-menu";
 import { Menu, ArrowUpRight } from "lucide-react";
 import { site } from "@/content/site";
 import { Button } from "@/components/ui/button";
-import {
-  Dialog,
-  DialogTrigger,
-  DialogContent,
-  DialogTitle,
-  DialogDescription,
-} from "@/components/ui/dialog";
+import dynamic from "next/dynamic";
+const MobileMenu = dynamic(() => import("./mobile-menu"), { ssr: false });
 export function Navbar() {
+  const menuButton = useRef<HTMLButtonElement>(null);
   const [open, setOpen] = useState(false);
   const pathname = usePathname();
   return (
     <header className="site-nav">
       <div className="nav-inner">
-        <Link className="brand" href="/" aria-label={`${site.name} — ${site.actions.back}`}>
+        <Link
+          className="brand"
+          href="/"
+          prefetch={false}
+          aria-label={`${site.name} — ${site.actions.back}`}
+        >
           {site.name}
           <span className="brand-period" />
         </Link>
@@ -52,26 +53,19 @@ export function Navbar() {
               <ArrowUpRight size={14} />
             </Link>
           </Button>
-          <Dialog open={open} onOpenChange={setOpen}>
-            <DialogTrigger asChild>
-              <button className="menu-button" aria-label={site.actions.menu}>
-                <Menu size={22} />
-              </button>
-            </DialogTrigger>
-            <DialogContent className="mobile-nav-dialog" closeLabel={site.actions.close}>
-              <DialogTitle className="brand">{site.name}</DialogTitle>
-              <DialogDescription className="sr-only">{site.description}</DialogDescription>
-              <nav>
-                {[...site.nav, { label: site.actions.contact, href: "/contact" }].map((item, i) => (
-                  <Link href={item.href} key={item.label} onClick={() => setOpen(false)}>
-                    <span className="mono">0{i + 1}</span>
-                    {item.label}
-                    <ArrowUpRight size={23} />
-                  </Link>
-                ))}
-              </nav>
-            </DialogContent>
-          </Dialog>
+          <button
+            ref={menuButton}
+            className="menu-button"
+            aria-label={site.actions.menu}
+            aria-haspopup="dialog"
+            aria-expanded={open}
+            onClick={() => setOpen(true)}
+          >
+            <Menu size={22} />
+          </button>
+          {open && (
+            <MobileMenu setOpen={setOpen} restoreFocus={() => menuButton.current?.focus()} />
+          )}
         </div>
       </div>
     </header>

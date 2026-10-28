@@ -47,7 +47,7 @@ export function StoryStage({ id }: { id: StoryId }) {
                 src={
                   "/frames/stories/" +
                   (id === "mobile" ? "mobile-phone" : id) +
-                  ".png?v=proportions-1"
+                  ".webp?v=pass5"
                 }
                 alt=""
                 fill

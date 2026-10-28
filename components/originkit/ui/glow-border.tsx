@@ -1,5 +1,6 @@
 "use client"
 
+import { requestVisualFrame as requestAnimationFrame, cancelVisualFrame as cancelAnimationFrame } from "@/lib/visual-runtime";
 import * as React from "react"
 import { useEffect, useRef, useState } from "react"
 

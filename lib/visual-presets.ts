@@ -272,7 +272,7 @@ export const visualPresets = {
     initialLongitude: 20,
     interactive: true,
     stopOnHover: true,
-    landDataUrl: "/originkit/features-02/land.json",
+    landDataUrl: "/originkit/features-02/land-lite.json",
   },
   gate: {
     near: accent,

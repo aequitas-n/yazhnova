@@ -1,0 +1,76 @@
+{
+  "mobile": [
+    {
+      "path": "/",
+      "score": 92,
+      "tbt": 78.5,
+      "lcp": 3269.938225,
+      "cls": 0
+    },
+    {
+      "path": "/contact",
+      "score": 95,
+      "tbt": 28.5,
+      "lcp": 2894.3972,
+      "cls": 0
+    },
+    {
+      "path": "/services",
+      "score": 91,
+      "tbt": 77.5,
+      "lcp": 3383.3252,
+      "cls": 0.00002547641731290986
+    },
+    {
+      "path": "/ai-agents",
+      "score": 91,
+      "tbt": 67,
+      "lcp": 3384.3647,
+      "cls": 0.00005010103390191115
+    },
+    {
+      "path": "/work",
+      "score": 91,
+      "tbt": 70,
+      "lcp": 3460.3186999999994,
+      "cls": 0.00004656264260845144
+    },
+    {
+      "path": "/process",
+      "score": 92,
+      "tbt": 62.5,
+      "lcp": 3383.085,
+      "cls": 0.00004703565993018808
+    },
+    {
+      "path": "/engage",
+      "score": 91,
+      "tbt": 81.49999999999977,
+      "lcp": 3384.4751999999994,
+      "cls": 0.00005010103390191115
+    },
+    {
+      "path": "/about",
+      "score": 92,
+      "tbt": 56,
+      "lcp": 3384.5701,
+      "cls": 0.00009279269491255681
+    }
+  ],
+  "targets": {
+    "everyMobileScore85": true,
+    "otherRoutes90": true,
+    "everyMobileTbt200": true,
+    "everyMobileLcp2500": false,
+    "everyMobileCls01": true
+  },
+  "desktopFPS": [
+    59.922599975032256,
+    60.10769294986852
+  ],
+  "mobileFPS": [
+    29.97931005362496,
+    30.077099042616286
+  ],
+  "longestProfiledTask": 96
+}

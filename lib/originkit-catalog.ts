@@ -336,7 +336,7 @@ export const editorialPresets: Partial<Record<SourceSlug, Record<string, unknown
     fadePercent: 10,
   },
   "stacked-carousel": {
-    images: ["/frames/ember.png", "/frames/glassbound.png", "/frames/shadow.png"],
+    images: ["/frames/ember.webp", "/frames/glassbound.webp", "/frames/shadow.webp"],
     cardWidth: 360,
     cardHeight: 260,
     gap: 120,
@@ -344,7 +344,7 @@ export const editorialPresets: Partial<Record<SourceSlug, Record<string, unknown
     camera: { tilt: 35, angle: 0 },
   },
   "image-spotlight": {
-    image: { src: "/originkit/hero-40/white-hands.png", alt: "Hands reaching toward each other" },
+    image: { src: "/originkit/hero-40/white-hands.webp", alt: "Hands reaching toward each other" },
     veilColor: palette.ink,
     rounded: 0,
     visibility: 30,
@@ -492,7 +492,7 @@ export const editorialPresets: Partial<Record<SourceSlug, Record<string, unknown
   },
   "dither-reveal": {
     image: {
-      src: "/originkit/hero-40/white-hands.png",
+      src: "/originkit/hero-40/white-hands.webp",
       alt: "Sculptural hands, revealed through the original dither shader",
     },
     fit: "contain",

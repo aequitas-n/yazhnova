@@ -1,0 +1,20 @@
+[
+  {
+    "url": "/fonts/inter-tight-latin-wght-normal.woff2",
+    "status": 200,
+    "cache": "public, max-age=31536000, immutable",
+    "bytes": "44872"
+  },
+  {
+    "url": "/frames/signal/contact-rain.webp",
+    "status": 200,
+    "cache": "public, max-age=31536000, immutable",
+    "bytes": "17638"
+  },
+  {
+    "url": "/originkit/hero-44/hand.webp",
+    "status": 200,
+    "cache": "public, max-age=31536000, immutable",
+    "bytes": "157914"
+  }
+]

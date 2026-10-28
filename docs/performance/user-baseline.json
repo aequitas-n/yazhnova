@@ -1,0 +1,30 @@
+{
+  "source": "User-supplied Pass 5 baseline; audit environment not supplied",
+  "home": {
+    "mobile": {
+      "performance": 60,
+      "tbt": 5880,
+      "si": 7700,
+      "javascriptKB": 409
+    },
+    "desktop": {
+      "performance": 60,
+      "tbt": 2050
+    }
+  },
+  "contact": {
+    "mobile": {
+      "performance": 70,
+      "tbt": 2210
+    },
+    "desktop": {
+      "performance": 70,
+      "tbt": 23260
+    }
+  },
+  "servicesFPS": [
+    17,
+    32
+  ],
+  "aboutGlobeLongTask": 1500
+}

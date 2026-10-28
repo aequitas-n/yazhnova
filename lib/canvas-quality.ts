@@ -1,3 +1,4 @@
+import { getVisualTier } from "./visual-runtime";
 // Shared by the installed renderers: touch screens animate, at a bounded cost.
 export function isMobileCanvas() {
   return (
@@ -6,5 +7,5 @@ export function isMobileCanvas() {
 }
 export function canvasPixelRatio(cap = 2) {
   if (typeof window === "undefined") return 1;
-  return Math.min(window.devicePixelRatio || 1, isMobileCanvas() ? 1 : cap, cap);
+  return Math.min(window.devicePixelRatio || 1, getVisualTier().dprCap, cap);
 }

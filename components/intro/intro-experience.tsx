@@ -1,6 +1,7 @@
 "use client";
 
 import dynamic from "next/dynamic";
+import Image from "next/image";
 import { Component, useCallback, useEffect, useRef, useState, type ReactNode } from "react";
 import { site } from "@/content/site";
 import { IntroActiveContext, StoneContinuityContext } from "./intro-context";
@@ -165,6 +166,11 @@ export function IntroExperience({ children }: { children: ReactNode }) {
               {site.intro.dismiss}
             </p>
             <div className="intro-visual-layer">
+              {(phase === "pending" || phase === "loading") && (
+                <div className="intro-loading-poster" aria-hidden="true">
+                  <Image src="/frames/signal/hero-stone.webp?v=pass5" alt="" fill priority unoptimized sizes="100vw" />
+                </div>
+              )}
               {phase !== "pending" && (
                 <IntroBoundary onError={finish}>
                   <CinematicIntro

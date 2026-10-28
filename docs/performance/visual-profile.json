@@ -1,0 +1,254 @@
+[
+  {
+    "route": "/",
+    "form": "mobile",
+    "period": 2401,
+    "maximumCanvases": 2,
+    "maximumContexts": 2,
+    "tasks": [
+      {
+        "label": "startup",
+        "duration": 64,
+        "start": 44.19999998807907
+      },
+      {
+        "label": "/",
+        "duration": 79,
+        "start": 614.7999999821186
+      }
+    ],
+    "canvases": [
+      {
+        "kind": "hero-dither",
+        "framesPerSecond": 29.97931005362496,
+        "submittedFrames": 72,
+        "bufferWidth": 390,
+        "displayWidth": 390
+      },
+      {
+        "kind": "hero-stone",
+        "framesPerSecond": 30.05008347245409,
+        "submittedFrames": 73,
+        "bufferWidth": 108,
+        "displayWidth": 108
+      }
+    ],
+    "errors": []
+  },
+  {
+    "route": "/contact",
+    "form": "mobile",
+    "period": 2408,
+    "maximumCanvases": 1,
+    "maximumContexts": 1,
+    "tasks": [],
+    "canvases": [
+      {
+        "kind": "contact-rain",
+        "framesPerSecond": 30.077099042616286,
+        "submittedFrames": 72,
+        "bufferWidth": 195,
+        "displayWidth": 390
+      }
+    ],
+    "errors": []
+  },
+  {
+    "route": "/services",
+    "tab": "web",
+    "form": "mobile",
+    "period": 2401,
+    "maximumCanvases": 1,
+    "maximumContexts": 1,
+    "tasks": [
+      {
+        "label": "/services",
+        "duration": 53,
+        "start": 821.1000000238419
+      }
+    ],
+    "canvases": [
+      {
+        "kind": "pixels",
+        "framesPerSecond": 29.98184198302436,
+        "submittedFrames": 72,
+        "bufferWidth": 390,
+        "displayWidth": 390
+      }
+    ],
+    "errors": []
+  },
+  {
+    "route": "/services",
+    "tab": "saas",
+    "form": "mobile",
+    "period": 2401,
+    "maximumCanvases": 1,
+    "maximumContexts": 1,
+    "tasks": [],
+    "canvases": [
+      {
+        "kind": "liquid",
+        "framesPerSecond": 29.9831081081081,
+        "submittedFrames": 72,
+        "bufferWidth": 390,
+        "displayWidth": 390
+      }
+    ],
+    "errors": []
+  },
+  {
+    "route": "/about",
+    "form": "mobile",
+    "period": 2408,
+    "maximumCanvases": 2,
+    "maximumContexts": 2,
+    "tasks": [
+      {
+        "label": "/about",
+        "duration": 54,
+        "start": 433.19999998807907
+      },
+      {
+        "label": "/about",
+        "duration": 90,
+        "start": 803.1999999880791
+      }
+    ],
+    "canvases": [
+      {
+        "kind": "globe",
+        "framesPerSecond": 30.053846474934254,
+        "submittedFrames": 73,
+        "bufferWidth": 390,
+        "displayWidth": 390
+      },
+      {
+        "kind": "ridge",
+        "framesPerSecond": 30.053846474934254,
+        "submittedFrames": 73,
+        "bufferWidth": 390,
+        "displayWidth": 390
+      }
+    ],
+    "errors": []
+  },
+  {
+    "route": "/",
+    "form": "desktop",
+    "period": 2402,
+    "maximumCanvases": 2,
+    "maximumContexts": 2,
+    "tasks": [
+      {
+        "label": "startup",
+        "duration": 74,
+        "start": 30.400000005960464
+      }
+    ],
+    "canvases": [
+      {
+        "kind": "hero-dither",
+        "framesPerSecond": 60.03610562995929,
+        "submittedFrames": 144,
+        "bufferWidth": 1440,
+        "displayWidth": 1440
+      },
+      {
+        "kind": "hero-stone",
+        "framesPerSecond": 60.03610562995929,
+        "submittedFrames": 144,
+        "bufferWidth": 389,
+        "displayWidth": 389
+      }
+    ],
+    "errors": []
+  },
+  {
+    "route": "/contact",
+    "form": "desktop",
+    "period": 2401,
+    "maximumCanvases": 1,
+    "maximumContexts": 1,
+    "tasks": [],
+    "canvases": [
+      {
+        "kind": "contact-rain",
+        "framesPerSecond": 60.03862624905533,
+        "submittedFrames": 144,
+        "bufferWidth": 1440,
+        "displayWidth": 1440
+      }
+    ],
+    "errors": []
+  },
+  {
+    "route": "/services",
+    "tab": "web",
+    "form": "desktop",
+    "period": 2402,
+    "maximumCanvases": 1,
+    "maximumContexts": 0,
+    "tasks": [],
+    "canvases": [
+      {
+        "kind": "pixels",
+        "framesPerSecond": 60.02602526969735,
+        "submittedFrames": 144,
+        "bufferWidth": 961,
+        "displayWidth": 960.515625
+      }
+    ],
+    "errors": []
+  },
+  {
+    "route": "/services",
+    "tab": "saas",
+    "form": "desktop",
+    "period": 2408,
+    "maximumCanvases": 1,
+    "maximumContexts": 0,
+    "tasks": [],
+    "canvases": [
+      {
+        "kind": "liquid",
+        "framesPerSecond": 60.10769294986852,
+        "submittedFrames": 145,
+        "bufferWidth": 961,
+        "displayWidth": 960.515625
+      }
+    ],
+    "errors": []
+  },
+  {
+    "route": "/about",
+    "form": "desktop",
+    "period": 2412,
+    "maximumCanvases": 2,
+    "maximumContexts": 2,
+    "tasks": [
+      {
+        "label": "/about",
+        "duration": 96,
+        "start": 797.5
+      }
+    ],
+    "canvases": [
+      {
+        "kind": "globe",
+        "framesPerSecond": 59.922599975032256,
+        "submittedFrames": 145,
+        "bufferWidth": 936,
+        "displayWidth": 936
+      },
+      {
+        "kind": "ridge",
+        "framesPerSecond": 59.922599975032256,
+        "submittedFrames": 145,
+        "bufferWidth": 1440,
+        "displayWidth": 1440
+      }
+    ],
+    "errors": []
+  }
+]

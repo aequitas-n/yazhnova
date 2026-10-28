@@ -1,4 +1,5 @@
 "use client"
+import { requestVisualFrame as requestAnimationFrame, cancelVisualFrame as cancelAnimationFrame } from "@/lib/visual-runtime";
 import { canvasPixelRatio } from "@/lib/canvas-quality";
 
 import * as React from "react"
@@ -525,12 +526,12 @@ export default function DataStrings(props: DataStringsProps) {
         const startLoop = () => {
             let last = performance.now()
             const loop = (now: number) => {
-                raf = window.requestAnimationFrame(loop)
+                raf = requestAnimationFrame(loop)
                 const dt = Math.min(0.05, (now - last) / 1000 || 0)
                 last = now
                 tick(dt)
             }
-            raf = window.requestAnimationFrame(loop)
+            raf = requestAnimationFrame(loop)
         }
 
         const onPointerMove = (event: PointerEvent) => {
@@ -558,7 +559,7 @@ export default function DataStrings(props: DataStringsProps) {
             resizeObserver.disconnect()
             container.removeEventListener("pointermove", onPointerMove)
             container.removeEventListener("pointerleave", onPointerLeave)
-            if (raf) window.cancelAnimationFrame(raf)
+            if (raf) cancelAnimationFrame(raf)
         }
     }, [
         orientation,

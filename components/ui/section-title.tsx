@@ -1,6 +1,5 @@
 "use client";
-import { motion, useInView, useReducedMotion } from "framer-motion";
-import { useRef } from "react";
+import { useEffect, useRef, useState } from "react";
 export function SectionTitle({
   children,
   id,
@@ -11,18 +10,20 @@ export function SectionTitle({
   className?: string;
 }) {
   const ref = useRef<HTMLHeadingElement>(null);
-  const seen = useInView(ref, { once: true });
-  const reduced = useReducedMotion();
+  const [seen, setSeen] = useState(false);
+  useEffect(() => {
+    const observer = new IntersectionObserver(([entry]) => {
+      if (entry.isIntersecting) {
+        setSeen(true);
+        observer.disconnect();
+      }
+    });
+    if (ref.current) observer.observe(ref.current);
+    return () => observer.disconnect();
+  }, []);
   return (
-    <motion.h2
-      ref={ref}
-      id={id}
-      className={`section-title ${className}`}
-      initial={{ y: 12 }}
-      animate={{ y: seen || reduced ? 0 : 12 }}
-      transition={{ duration: reduced ? 0 : 0.6, ease: [0.22, 0.61, 0.36, 1] }}
-    >
+    <h2 ref={ref} id={id} className={`section-title ${className}`} data-revealed={seen}>
       {children}
-    </motion.h2>
+    </h2>
   );
 }

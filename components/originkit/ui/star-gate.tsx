@@ -1,5 +1,7 @@
 "use client"
+import { requestVisualFrame as requestAnimationFrame, cancelVisualFrame as cancelAnimationFrame } from "@/lib/visual-runtime";
 import { canvasPixelRatio } from "@/lib/canvas-quality";
+import { getVisualTier } from "@/lib/visual-runtime";
 
 import * as React from "react"
 import { useEffect, useRef } from "react"
@@ -224,7 +226,7 @@ class StarGateScene {
     constructor(container: HTMLElement, cfg: Config) {
         this.container = container
         this.cfg = cfg
-        this.renderer = new THREE.WebGLRenderer({ antialias: true, alpha: true })
+        this.renderer = new THREE.WebGLRenderer({ antialias: getVisualTier().name === "high", alpha: true, stencil: false, powerPreference: "high-performance" })
         this.renderer.setClearColor(0x000000, 0)
         this.renderer.outputColorSpace = THREE.SRGBColorSpace
         this.renderer.setPixelRatio(canvasPixelRatio(2))

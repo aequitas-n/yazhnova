@@ -239,3 +239,11 @@ Desktop and mobile captures verify real shard pixels outside the former square, 
 The Web, SaaS and UI/UX source canvases are designed at 1000x760 but were being drawn into independently sized portrait stages. Their genuine native surfaces now fit a centered 1000:760 board and scale uniformly within the available space. The agent core uses a square surface and a uniform thinking pulse instead of opposing horizontal/vertical scale factors. Phone and Cloud layouts retain their existing behavior.
 
 Regenerated genuine story frames at the correct proportions, refreshed their cache key, and updated the capture helper to crop the landscape board. Native/static screenshots, aspect and bitmap scaling checks, story progression/replay/pausing tests, TypeScript and the production build pass. See [before/after review](story-proportions/README.md). No source component or animation was replaced.
+
+## Pass 5 — Performance
+
+Implemented the shared two-slot heavy visual governor, idle/paint-first startup, device tiers, 60/30fps frame scheduling, native disposal, exclusive footer scheduling, image variants/caching, lazy validation and desktop-only Work motion loading. Every component is retained and mobile animation stays live. Home initial JS is 211 → 158 KB; Contact is 201 → 150 KB. The native contact poster is 18 KB, and the 77 optimized variants total 3.36 MB versus 26.34 MB for their PNG inputs.
+
+Final Lighthouse mobile scores: / 92, /contact 95, /services 91, /ai-agents 91, /work 91, /process 92, /engage 91, /about 92. Home TBT 79ms; Contact TBT 29ms. Mobile LCP under 2.5s remains unmet; any other failed threshold is listed in [the target checks](performance/summary.json). Desktop Home/Contact scores: / 100, /contact 100.
+
+The supplied baseline and controlled local before/after results are both documented in [the full report](performance/README.md). Twenty-two relevant browser checks, additional mobile chapter checks, TypeScript and the production build pass. Profiles record about 60fps desktop / 30fps mobile, at most two heavy canvases and live WebGL contexts, no leaked contexts after navigation/teardown, no multi-second long tasks, and proper hidden-tab pause/resume. Chrome emulation measurements do not claim physical-device certification. No failed source components or slots were added.

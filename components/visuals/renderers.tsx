@@ -4,6 +4,7 @@ import type { ComponentType } from "react";
 import { visualPresets, type VisualKind } from "@/lib/visual-presets";
 import { mobileVisualPresets } from "@/lib/mobile-visual-presets";
 import { isMobileCanvas } from "@/lib/canvas-quality";
+import { getVisualTier } from "@/lib/visual-runtime";
 const renderers = {
   ridge: dynamic(() => import("@/components/originkit/ui/ridge-parallax"), { ssr: false }),
   "contact-rain": dynamic(() => import("@/components/originkit/ui/hero-55/rain-puddle"), {
@@ -48,7 +49,8 @@ export default function Renderer({
 }) {
   const Source = renderers[kind] as unknown as ComponentType<Record<string, unknown>>;
   const props: Record<string, unknown> = { ...visualPresets[kind], ...overrides };
-  if (isMobileCanvas()) {
+  const tier = getVisualTier();
+  if (tier.name === "low" || isMobileCanvas()) {
     const mobile = mobileVisualPresets[kind] ?? {};
     const advanced = { ...(props.advanced as object), ...(mobile.advanced as object) };
     Object.assign(props, mobile);
@@ -66,6 +68,12 @@ export default function Renderer({
       }
     }
   }
+  if (tier.name === "mid") {
+    for (const key of ["density", "strands", "particles"]) {
+      if (typeof props[key] === "number")
+        props[key] = Math.max(1, Math.round((props[key] as number) * tier.density));
+    }
+  }
   // Composition follows the CSS viewport breakpoint; touch tablets still use
   // the desktop frame while retaining the lighter mobile rendering controls.
   if (kind === "hero-dither" && typeof window !== "undefined" && window.innerWidth < 768) {
@@ -75,7 +83,9 @@ export default function Renderer({
   return (
     <Source
       {...props}
-      {...(["hero-dither", "hero-stone"].includes(kind) ? { onReady } : {})}
+      {...(["hero-dither", "hero-stone", "contact-rain", "plasma", "globe"].includes(kind)
+        ? { onReady }
+        : {})}
       style={{ width: "100%", height: "100%", minWidth: 0, minHeight: 0 }}
     />
   );

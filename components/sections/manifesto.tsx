@@ -12,7 +12,7 @@ export function Manifesto() {
           kind="manifesto"
           initialFrame
           sizes="100vw"
-          frameSrc="/frames/signal/manifesto.png?v=quiet-type-2"
+          frameSrc="/frames/signal/manifesto.webp?v=quiet-type-2"
           mobileFrameSrc="/frames/signal/manifesto-mobile.webp?v=quiet-type-2"
         />
       </div>

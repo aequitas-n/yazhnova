@@ -19,7 +19,7 @@ export function SectionHero() {
           <div className="noise" aria-hidden="true" />
 
           <div className="dither-layer" aria-hidden="true">
-            <DitherReveal image={{ src: "/originkit/hero-40/white-hands.png", alt: "" }} />
+            <DitherReveal image={{ src: "/originkit/hero-40/white-hands.webp", alt: "" }} />
           </div>
 
           <header className="site-header">

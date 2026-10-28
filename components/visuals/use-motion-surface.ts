@@ -1,6 +1,7 @@
 "use client";
 import { useEffect, useRef, useState, type ComponentType } from "react";
 import { useIntroActive } from "@/components/intro/intro-context";
+import { scheduleVisualStart } from "@/lib/visual-runtime";
 
 export function useMotionSurface() {
   const ref = useRef<HTMLDivElement>(null);
@@ -42,15 +43,18 @@ export function useNativeSource(kind: keyof typeof loaders, enabled: boolean) {
   useEffect(() => {
     if (!enabled) return;
     let cancelled = false;
-    loaders[kind]()
-      .then((module) => {
-        if (!cancelled) setSource(() => module.default as unknown as Source);
-      })
-      .catch(() => {
-        /* The semantic/static content remains available. */
-      });
+    const cancel = scheduleVisualStart(() => {
+      void loaders[kind]()
+        .then((module) => {
+          if (!cancelled) setSource(() => module.default as unknown as Source);
+        })
+        .catch(() => {
+          /* The semantic/static content remains available. */
+        });
+    });
     return () => {
       cancelled = true;
+      cancel();
     };
   }, [kind, enabled]);
   return enabled ? Source : null;

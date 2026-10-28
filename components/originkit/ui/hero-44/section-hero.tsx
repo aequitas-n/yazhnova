@@ -1,7 +1,8 @@
 /* eslint-disable */
 // @ts-nocheck
 "use client"
-import PlasmaRing from "@/components/originkit/ui/hero-44/plasma-ring";
+import dynamic from "next/dynamic";
+const PlasmaRing = dynamic(() => import("@/components/originkit/ui/hero-44/plasma-ring"), { ssr: false });
 import Image from "next/image";
 import type { ReactNode } from "react";
 
@@ -17,8 +18,8 @@ export function SectionHero({ children, artwork, className = "" }: SectionHeroPr
   if (children) return (
     <div className={`hero-44 chapter-native ${className}`} data-originkit="hero-44">
       <div className="chapter-atmosphere" aria-hidden="true">
-        <Image className="chapter-mist" src="/originkit/hero-44/mist-overlay.png" alt="" width={1440} height={810} sizes="(max-width:767px) 50vw, 100vw" quality={60} priority fetchPriority="high" />
-        <Image className="chapter-ridge" src="/originkit/hero-44/ridge.png" alt="" width={3440} height={952} sizes="100vw" quality={60} />
+        <Image className="chapter-mist" src="/originkit/hero-44/mist-overlay.webp" alt="" width={1440} height={810} sizes="(max-width:767px) 50vw, 100vw" quality={60} priority fetchPriority="high" />
+        <Image className="chapter-ridge" src="/originkit/hero-44/ridge.webp" alt="" width={3440} height={952} sizes="100vw" quality={60} />
       </div>
       {artwork}
       {children}
@@ -51,7 +52,7 @@ export function SectionHero({ children, artwork, className = "" }: SectionHeroPr
             <img
               className="fill cover"
               style={{ mixBlendMode: "soft-light" }}
-              src="/originkit/hero-44/mist-overlay.png"
+              src="/originkit/hero-44/mist-overlay.webp"
               alt=""
             />
           </div>
@@ -72,14 +73,14 @@ export function SectionHero({ children, artwork, className = "" }: SectionHeroPr
             style={{ left: "1842px", top: "55px", width: "290px", height: "379px" }}
             data-node-id="1712:853"
           >
-            <img className="fill cover" src="/originkit/hero-44/side-art.png" alt="" />
+            <img className="fill cover" src="/originkit/hero-44/side-art.webp" alt="" />
           </div>
           <div
             className="abs"
             style={{ left: "-79px", top: "626px", width: "1595px", height: "441px" }}
             data-node-id="1712:855"
           >
-            <img className="fill cover lum" src="/originkit/hero-44/ridge.png" alt="" />
+            <img className="fill cover lum" src="/originkit/hero-44/ridge.webp" alt="" />
           </div>
           <div
             className="abs ctr"
@@ -261,7 +262,7 @@ export function SectionHero({ children, artwork, className = "" }: SectionHeroPr
               className="rel"
               style={{ width: "254px", height: "381px", transform: "rotate(180deg) scaleY(-1)" }}
             >
-              <img className="fill cover" src="/originkit/hero-44/hand.png" alt="" />
+              <img className="fill cover" src="/originkit/hero-44/hand.webp" alt="" />
             </div>
           </div>
           <p

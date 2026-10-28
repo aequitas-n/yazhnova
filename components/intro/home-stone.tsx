@@ -27,7 +27,7 @@ export function HomeStone() {
       kind="hero-stone"
       priority
       sizes="38vw"
-      frameSrc="/frames/signal/hero-stone.webp?v=diagonal"
+      frameSrc="/frames/signal/hero-stone.webp?v=pass5"
       forceLive={continuity?.staging}
       playDuringIntro
       onNativeReady={continuity?.onReady}

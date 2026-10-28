@@ -162,7 +162,7 @@ test("reduced motion, mobile and no-JavaScript visits keep the homepage availabl
   });
   try {
     const staticPage = await context.newPage();
-    await staticPage.goto("http://localhost:3000/");
+    await staticPage.goto(`${process.env.BASE_URL || "http://localhost:3000"}/`);
     await expect(staticPage.locator(".site-intro")).toBeHidden();
     await expect(staticPage.locator(".intro-page")).not.toHaveAttribute("inert");
     await expect(staticPage.locator("#hero-title")).toBeVisible();

@@ -1,6 +1,12 @@
 "use client";
-import { useEffect, useRef, useState, type ReactNode, type RefObject } from "react";
-import { motion, useScroll, useTransform, useMotionValueEvent } from "framer-motion";
+import {
+  useEffect,
+  useRef,
+  useState,
+  type ReactNode,
+  type RefObject,
+  type ComponentType,
+} from "react";
 import { ArrowLeft, ArrowRight, ArrowUpRight } from "lucide-react";
 import { site } from "@/content/site";
 import { SectionLabel } from "@/components/ui/section-label";
@@ -8,7 +14,7 @@ import { SectionTitle } from "@/components/ui/section-title";
 import { ProjectSpotlight } from "@/components/visuals/native-details";
 import Link from "next/link";
 
-type TrackProps = {
+export type TrackProps = {
   track: RefObject<HTMLDivElement | null>;
   scene: RefObject<HTMLDivElement | null>;
   distance: number;
@@ -22,25 +28,12 @@ function StaticTrack({ track, children }: TrackProps) {
     </div>
   );
 }
-function PinnedTrack({ track, scene, distance, onIndex, children }: TrackProps) {
-  const { scrollYProgress } = useScroll({ target: scene, offset: ["start 76px", "end end"] });
-  const x = useTransform(scrollYProgress, [0, 1], [0, -distance]);
-  useMotionValueEvent(scrollYProgress, "change", (value) =>
-    onIndex(
-      Math.min(site.work.projects.length - 1, Math.round(value * (site.work.projects.length - 1))),
-    ),
-  );
-  return (
-    <motion.div ref={track} className="work-track" style={{ x }}>
-      {children}
-    </motion.div>
-  );
-}
 
 export function Work() {
   const scene = useRef<HTMLDivElement>(null);
   const track = useRef<HTMLDivElement>(null);
   const viewport = useRef<HTMLDivElement>(null);
+  const [PinnedTrack, setPinnedTrack] = useState<ComponentType<TrackProps> | null>(null);
   const [pinned, setPinned] = useState(false);
   const [distance, setDistance] = useState(0);
   const [index, setIndex] = useState(0);
@@ -65,7 +58,17 @@ export function Work() {
     measure();
     return () => observer.disconnect();
   }, [pinned]);
-  const Track = pinned ? PinnedTrack : StaticTrack;
+  useEffect(() => {
+    if (!pinned) return;
+    let cancelled = false;
+    void import("./pinned-work-track").then((module) => {
+      if (!cancelled) setPinnedTrack(() => module.default);
+    });
+    return () => {
+      cancelled = true;
+    };
+  }, [pinned]);
+  const Track = pinned && PinnedTrack ? PinnedTrack : StaticTrack;
   const move = (next: number) => {
     const value = Math.max(0, Math.min(site.work.projects.length - 1, next));
     if (pinned && scene.current) {

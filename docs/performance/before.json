@@ -1,0 +1,255 @@
+[
+  {
+    "path": "/",
+    "form": "mobile",
+    "time": "2026-10-28T06:47:30.858Z",
+    "version": "13.5.0",
+    "scores": {
+      "performance": 91,
+      "accessibility": 100,
+      "best-practices": 100,
+      "seo": 100
+    },
+    "lcp": 3401.9866000000006,
+    "tbt": 115.5,
+    "cls": 0,
+    "si": 1592.9140002444,
+    "longTasks": [
+      {
+        "url": "http://localhost:3002/_next/static/chunks/8156-b276e5e6044f2f62.js",
+        "duration": 128,
+        "startTime": 3470.2399500000006
+      },
+      {
+        "url": "http://localhost:3002/",
+        "duration": 92,
+        "startTime": 614.74665
+      },
+      {
+        "url": "http://localhost:3002/_next/static/chunks/e8018d56.545336f87dc8d45a.js",
+        "duration": 75,
+        "startTime": 5212.479900000001
+      },
+      {
+        "url": "http://localhost:3002/_next/static/chunks/8156-b276e5e6044f2f62.js",
+        "duration": 72,
+        "startTime": 5287.479900000001
+      },
+      {
+        "url": "http://localhost:3002/_next/static/chunks/8156-b276e5e6044f2f62.js",
+        "duration": 64,
+        "startTime": 3626.9866000000006
+      }
+    ],
+    "boot": [
+      {
+        "url": "http://localhost:3002/_next/static/chunks/8156-b276e5e6044f2f62.js",
+        "total": 656.5600000000018,
+        "scripting": 613.2280000000018,
+        "scriptParseCompile": 9.236
+      },
+      {
+        "url": "http://localhost:3002/",
+        "total": 280.0879999999999,
+        "scripting": 7.5520000000000005,
+        "scriptParseCompile": 10.015999999999993
+      },
+      {
+        "url": "http://localhost:3002/_next/static/chunks/723-a31311004a9f4b43.js",
+        "total": 206.7519999999999,
+        "scripting": 91.91999999999992,
+        "scriptParseCompile": 4.56
+      },
+      {
+        "url": "Unattributable",
+        "total": 186.39200000000037,
+        "scripting": 5.884000000000001,
+        "scriptParseCompile": 0
+      },
+      {
+        "url": "http://localhost:3002/_next/static/chunks/e8018d56.545336f87dc8d45a.js",
+        "total": 74.92799999999997,
+        "scripting": 57.51199999999997,
+        "scriptParseCompile": 17.144
+      }
+    ],
+    "runtimeError": null
+  },
+  {
+    "path": "/contact",
+    "form": "mobile",
+    "time": "2026-10-28T06:47:38.856Z",
+    "version": "13.5.0",
+    "scores": {
+      "performance": 91,
+      "accessibility": 100,
+      "best-practices": 100,
+      "seo": 100
+    },
+    "lcp": 3199.6404,
+    "tbt": 138.5,
+    "cls": 0.04692302671184718,
+    "si": 1270.4601760050034,
+    "longTasks": [
+      {
+        "url": "http://localhost:3002/_next/static/chunks/8156-b276e5e6044f2f62.js",
+        "duration": 164,
+        "startTime": 3018.61515
+      },
+      {
+        "url": "http://localhost:3002/_next/static/chunks/app/contact/page-ec93f5e01e44fdf4.js",
+        "duration": 76,
+        "startTime": 3182.61515
+      },
+      {
+        "url": "http://localhost:3002/_next/static/chunks/8156-b276e5e6044f2f62.js",
+        "duration": 73,
+        "startTime": 3258.61515
+      },
+      {
+        "url": "http://localhost:3002/contact",
+        "duration": 54,
+        "startTime": 614.20505
+      }
+    ],
+    "boot": [
+      {
+        "url": "http://localhost:3002/_next/static/chunks/1999-53e55739f2666edd.js",
+        "total": 580.8640000000003,
+        "scripting": 227.35600000000002,
+        "scriptParseCompile": 1.508
+      },
+      {
+        "url": "http://localhost:3002/_next/static/chunks/8156-b276e5e6044f2f62.js",
+        "total": 415.160000000001,
+        "scripting": 396.508000000001,
+        "scriptParseCompile": 12.36
+      },
+      {
+        "url": "http://localhost:3002/_next/static/chunks/723-a31311004a9f4b43.js",
+        "total": 199.92799999999994,
+        "scripting": 77.824,
+        "scriptParseCompile": 3.8160000000000003
+      },
+      {
+        "url": "http://localhost:3002/contact",
+        "total": 187.916,
+        "scripting": 6.235999999999999,
+        "scriptParseCompile": 5.399999999999993
+      },
+      {
+        "url": "Unattributable",
+        "total": 180.34000000000142,
+        "scripting": 5.783999999999999,
+        "scriptParseCompile": 0
+      },
+      {
+        "url": "http://localhost:3002/_next/static/chunks/app/contact/page-ec93f5e01e44fdf4.js",
+        "total": 75.44800000000009,
+        "scripting": 73.82000000000009,
+        "scriptParseCompile": 1.252
+      }
+    ],
+    "runtimeError": null
+  },
+  {
+    "path": "/",
+    "form": "desktop",
+    "time": "2026-10-28T06:47:46.959Z",
+    "version": "13.5.0",
+    "scores": {
+      "performance": 100,
+      "accessibility": 100,
+      "best-practices": 100,
+      "seo": 100
+    },
+    "lcp": 763.9317999999998,
+    "tbt": 0,
+    "cls": 0.000118316750127244,
+    "si": 684.3103261131566,
+    "longTasks": [],
+    "boot": [
+      {
+        "url": "http://localhost:3002/_next/static/chunks/e8018d56.545336f87dc8d45a.js",
+        "total": 447.8359999999996,
+        "scripting": 267.22599999999926,
+        "scriptParseCompile": 4.507
+      },
+      {
+        "url": "http://localhost:3002/",
+        "total": 224.42699999999996,
+        "scripting": 2.1889999999999996,
+        "scriptParseCompile": 1.5079999999999987
+      },
+      {
+        "url": "http://localhost:3002/_next/static/chunks/8156-b276e5e6044f2f62.js",
+        "total": 151.3510000000006,
+        "scripting": 137.4770000000006,
+        "scriptParseCompile": 3.255
+      },
+      {
+        "url": "http://localhost:3002/_next/static/chunks/1e60002b.529449cf394375bd.js",
+        "total": 59.44599999999998,
+        "scripting": 58.641999999999975,
+        "scriptParseCompile": 0.743
+      },
+      {
+        "url": "Unattributable",
+        "total": 55.195000000000896,
+        "scripting": 1.8239999999999998,
+        "scriptParseCompile": 0
+      },
+      {
+        "url": "http://localhost:3002/_next/static/chunks/723-a31311004a9f4b43.js",
+        "total": 52.411999999999985,
+        "scripting": 22.686,
+        "scriptParseCompile": 1.0859999999999999
+      }
+    ],
+    "runtimeError": null
+  },
+  {
+    "path": "/contact",
+    "form": "desktop",
+    "time": "2026-10-28T06:47:56.231Z",
+    "version": "13.5.0",
+    "scores": {
+      "performance": 100,
+      "accessibility": 100,
+      "best-practices": 100,
+      "seo": 100
+    },
+    "lcp": 657.8306499999999,
+    "tbt": 0,
+    "cls": 0.01736305592190971,
+    "si": 437.2260369188904,
+    "longTasks": [],
+    "boot": [
+      {
+        "url": "http://localhost:3002/_next/static/chunks/1999-53e55739f2666edd.js",
+        "total": 211.71800000000076,
+        "scripting": 81.93300000000018,
+        "scriptParseCompile": 0.37200000000000005
+      },
+      {
+        "url": "http://localhost:3002/_next/static/chunks/8156-b276e5e6044f2f62.js",
+        "total": 72.78799999999997,
+        "scripting": 68.89799999999997,
+        "scriptParseCompile": 2.4339999999999997
+      },
+      {
+        "url": "http://localhost:3002/_next/static/chunks/723-a31311004a9f4b43.js",
+        "total": 61.62699999999997,
+        "scripting": 30.18099999999999,
+        "scriptParseCompile": 0.9800000000000001
+      },
+      {
+        "url": "Unattributable",
+        "total": 58.05500000000067,
+        "scripting": 1.6859999999999997,
+        "scriptParseCompile": 0
+      }
+    ],
+    "runtimeError": null
+  }
+]

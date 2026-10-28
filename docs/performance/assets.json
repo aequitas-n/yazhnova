@@ -1,0 +1,464 @@
+[
+  {
+    "from": "/originkit/hero-44/hand.png",
+    "to": "/originkit/hero-44/hand.webp",
+    "before": 2540076,
+    "after": 157914
+  },
+  {
+    "from": "/originkit/hero-44/mist-overlay.png",
+    "to": "/originkit/hero-44/mist-overlay.webp",
+    "before": 1980485,
+    "after": 98888
+  },
+  {
+    "from": "/originkit/hero-44/ridge.png",
+    "to": "/originkit/hero-44/ridge.webp",
+    "before": 1153382,
+    "after": 136876
+  },
+  {
+    "from": "/originkit/hero-44/side-art.png",
+    "to": "/originkit/hero-44/side-art.webp",
+    "before": 1266061,
+    "after": 55462
+  },
+  {
+    "from": "/originkit/hero-40/white-hands.png",
+    "to": "/originkit/hero-40/white-hands.webp",
+    "before": 1043155,
+    "after": 16722
+  },
+  {
+    "from": "/originkit/hero-28/hand.png",
+    "to": "/originkit/hero-28/hand.webp",
+    "before": 1060946,
+    "after": 307836
+  },
+  {
+    "from": "/frames/beyond-horizon.png",
+    "to": "/frames/beyond-horizon.webp",
+    "before": 133641,
+    "after": 1620
+  },
+  {
+    "from": "/frames/deck.png",
+    "to": "/frames/deck.webp",
+    "before": 17486,
+    "after": 8314
+  },
+  {
+    "from": "/frames/dither-reveal.png",
+    "to": "/frames/dither-reveal.webp",
+    "before": 7943,
+    "after": 2916
+  },
+  {
+    "from": "/frames/dithered-pixel-grid.png",
+    "to": "/frames/dithered-pixel-grid.webp",
+    "before": 21299,
+    "after": 9926
+  },
+  {
+    "from": "/frames/ember.png",
+    "to": "/frames/ember.webp",
+    "before": 275637,
+    "after": 14766
+  },
+  {
+    "from": "/frames/features-02.png",
+    "to": "/frames/features-02.webp",
+    "before": 88646,
+    "after": 21096
+  },
+  {
+    "from": "/frames/fluid.png",
+    "to": "/frames/fluid.webp",
+    "before": 65154,
+    "after": 2762
+  },
+  {
+    "from": "/frames/footer-03.png",
+    "to": "/frames/footer-03.webp",
+    "before": 39054,
+    "after": 17282
+  },
+  {
+    "from": "/frames/glassbound.png",
+    "to": "/frames/glassbound.webp",
+    "before": 193850,
+    "after": 22380
+  },
+  {
+    "from": "/frames/glossy.png",
+    "to": "/frames/glossy.webp",
+    "before": 82593,
+    "after": 11462
+  },
+  {
+    "from": "/frames/hero-28.png",
+    "to": "/frames/hero-28.webp",
+    "before": 69940,
+    "after": 23692
+  },
+  {
+    "from": "/frames/hero-40.png",
+    "to": "/frames/hero-40.webp",
+    "before": 154426,
+    "after": 36570
+  },
+  {
+    "from": "/frames/hero-51.png",
+    "to": "/frames/hero-51.webp",
+    "before": 48884,
+    "after": 20664
+  },
+  {
+    "from": "/frames/hero-69.png",
+    "to": "/frames/hero-69.webp",
+    "before": 104451,
+    "after": 35260
+  },
+  {
+    "from": "/frames/hero-dither.png",
+    "to": "/frames/hero-dither.webp",
+    "before": 47484,
+    "after": 21220
+  },
+  {
+    "from": "/frames/hero-hands.png",
+    "to": "/frames/hero-hands.webp",
+    "before": 49278,
+    "after": 43934
+  },
+  {
+    "from": "/frames/horizon.png",
+    "to": "/frames/horizon.webp",
+    "before": 258201,
+    "after": 2524
+  },
+  {
+    "from": "/frames/liquid.png",
+    "to": "/frames/liquid.webp",
+    "before": 5041,
+    "after": 3830
+  },
+  {
+    "from": "/frames/manifesto.png",
+    "to": "/frames/manifesto.webp",
+    "before": 748716,
+    "after": 165254
+  },
+  {
+    "from": "/frames/network-lines.png",
+    "to": "/frames/network-lines.webp",
+    "before": 137142,
+    "after": 26564
+  },
+  {
+    "from": "/frames/network.png",
+    "to": "/frames/network.webp",
+    "before": 38857,
+    "after": 8562
+  },
+  {
+    "from": "/frames/ocean-swell.png",
+    "to": "/frames/ocean-swell.webp",
+    "before": 559368,
+    "after": 99118
+  },
+  {
+    "from": "/frames/ocean.png",
+    "to": "/frames/ocean.webp",
+    "before": 914295,
+    "after": 153504
+  },
+  {
+    "from": "/frames/paperline-archive.png",
+    "to": "/frames/paperline-archive.webp",
+    "before": 440700,
+    "after": 88968
+  },
+  {
+    "from": "/frames/pixels.png",
+    "to": "/frames/pixels.webp",
+    "before": 18869,
+    "after": 7578
+  },
+  {
+    "from": "/frames/pricing-04.png",
+    "to": "/frames/pricing-04.webp",
+    "before": 36873,
+    "after": 15314
+  },
+  {
+    "from": "/frames/rain-puddle.png",
+    "to": "/frames/rain-puddle.webp",
+    "before": 692312,
+    "after": 110912
+  },
+  {
+    "from": "/frames/rain.png",
+    "to": "/frames/rain.webp",
+    "before": 1241424,
+    "after": 191858
+  },
+  {
+    "from": "/frames/shadow-cast.png",
+    "to": "/frames/shadow-cast.webp",
+    "before": 371526,
+    "after": 14438
+  },
+  {
+    "from": "/frames/shadow.png",
+    "to": "/frames/shadow.webp",
+    "before": 639163,
+    "after": 23058
+  },
+  {
+    "from": "/frames/sparks.png",
+    "to": "/frames/sparks.webp",
+    "before": 403862,
+    "after": 40124
+  },
+  {
+    "from": "/frames/strings.png",
+    "to": "/frames/strings.webp",
+    "before": 406721,
+    "after": 36270
+  },
+  {
+    "from": "/frames/wordmark.png",
+    "to": "/frames/wordmark.webp",
+    "before": 164380,
+    "after": 10220
+  },
+  {
+    "from": "/frames/stories/ai.png",
+    "to": "/frames/stories/ai.webp",
+    "before": 132023,
+    "after": 18094
+  },
+  {
+    "from": "/frames/stories/cloud.png",
+    "to": "/frames/stories/cloud.webp",
+    "before": 46653,
+    "after": 17390
+  },
+  {
+    "from": "/frames/stories/design.png",
+    "to": "/frames/stories/design.webp",
+    "before": 64442,
+    "after": 14938
+  },
+  {
+    "from": "/frames/stories/mobile-phone.png",
+    "to": "/frames/stories/mobile-phone.webp",
+    "before": 30803,
+    "after": 8318
+  },
+  {
+    "from": "/frames/stories/mobile.png",
+    "to": "/frames/stories/mobile.webp",
+    "before": 34990,
+    "after": 10188
+  },
+  {
+    "from": "/frames/stories/saas.png",
+    "to": "/frames/stories/saas.webp",
+    "before": 100995,
+    "after": 22262
+  },
+  {
+    "from": "/frames/stories/web.png",
+    "to": "/frames/stories/web.webp",
+    "before": 68525,
+    "after": 15200
+  },
+  {
+    "from": "/frames/signal/cables.png",
+    "to": "/frames/signal/cables.webp",
+    "before": 472704,
+    "after": 9792
+  },
+  {
+    "from": "/frames/signal/contact-rain.png",
+    "to": "/frames/signal/contact-rain.webp",
+    "before": 1530507,
+    "after": 17638
+  },
+  {
+    "from": "/frames/signal/deck.png",
+    "to": "/frames/signal/deck.webp",
+    "before": 30454,
+    "after": 12526
+  },
+  {
+    "from": "/frames/signal/ember.png",
+    "to": "/frames/signal/ember.webp",
+    "before": 490711,
+    "after": 17094
+  },
+  {
+    "from": "/frames/signal/gate.png",
+    "to": "/frames/signal/gate.webp",
+    "before": 122525,
+    "after": 17204
+  },
+  {
+    "from": "/frames/signal/glassbound.png",
+    "to": "/frames/signal/glassbound.webp",
+    "before": 259564,
+    "after": 31004
+  },
+  {
+    "from": "/frames/signal/globe.png",
+    "to": "/frames/signal/globe.webp",
+    "before": 93133,
+    "after": 45224
+  },
+  {
+    "from": "/frames/signal/glossy.png",
+    "to": "/frames/signal/glossy.webp",
+    "before": 159209,
+    "after": 17128
+  },
+  {
+    "from": "/frames/signal/hero-dither.png",
+    "to": "/frames/signal/hero-dither.webp",
+    "before": 35155,
+    "after": 14040
+  },
+  {
+    "from": "/frames/signal/hero-hands-diagonal.png",
+    "to": "/frames/signal/hero-hands-diagonal.webp",
+    "before": 19385,
+    "after": 15630
+  },
+  {
+    "from": "/frames/signal/hero-hands-edge-portrait.png",
+    "to": "/frames/signal/hero-hands-edge-portrait.webp",
+    "before": 43822,
+    "after": 34406
+  },
+  {
+    "from": "/frames/signal/hero-hands-edge-short.png",
+    "to": "/frames/signal/hero-hands-edge-short.webp",
+    "before": 69193,
+    "after": 54068
+  },
+  {
+    "from": "/frames/signal/hero-hands-edge-wide.png",
+    "to": "/frames/signal/hero-hands-edge-wide.webp",
+    "before": 99803,
+    "after": 77562
+  },
+  {
+    "from": "/frames/signal/hero-hands-edge.png",
+    "to": "/frames/signal/hero-hands-edge.webp",
+    "before": 76607,
+    "after": 57994
+  },
+  {
+    "from": "/frames/signal/hero-hands-landscape.png",
+    "to": "/frames/signal/hero-hands-landscape.webp",
+    "before": 25680,
+    "after": 11372
+  },
+  {
+    "from": "/frames/signal/hero-hands.png",
+    "to": "/frames/signal/hero-hands.webp",
+    "before": 48942,
+    "after": 41980
+  },
+  {
+    "from": "/frames/signal/hero-stone.png",
+    "to": "/frames/signal/hero-stone.webp",
+    "before": 334005,
+    "after": 26698
+  },
+  {
+    "from": "/frames/signal/horizon.png",
+    "to": "/frames/signal/horizon.webp",
+    "before": 326130,
+    "after": 3214
+  },
+  {
+    "from": "/frames/signal/iris.png",
+    "to": "/frames/signal/iris.webp",
+    "before": 245365,
+    "after": 16004
+  },
+  {
+    "from": "/frames/signal/liquid.png",
+    "to": "/frames/signal/liquid.webp",
+    "before": 4864,
+    "after": 3626
+  },
+  {
+    "from": "/frames/signal/manifesto-mobile.png",
+    "to": "/frames/signal/manifesto-mobile.webp",
+    "before": 64704,
+    "after": 21006
+  },
+  {
+    "from": "/frames/signal/manifesto.png",
+    "to": "/frames/signal/manifesto.webp",
+    "before": 181549,
+    "after": 62306
+  },
+  {
+    "from": "/frames/signal/network.png",
+    "to": "/frames/signal/network.webp",
+    "before": 82574,
+    "after": 17188
+  },
+  {
+    "from": "/frames/signal/ocean.png",
+    "to": "/frames/signal/ocean.webp",
+    "before": 357149,
+    "after": 35232
+  },
+  {
+    "from": "/frames/signal/pixels.png",
+    "to": "/frames/signal/pixels.webp",
+    "before": 131680,
+    "after": 68574
+  },
+  {
+    "from": "/frames/signal/plasma.png",
+    "to": "/frames/signal/plasma.webp",
+    "before": 564328,
+    "after": 159896
+  },
+  {
+    "from": "/frames/signal/rain.png",
+    "to": "/frames/signal/rain.webp",
+    "before": 773988,
+    "after": 35924
+  },
+  {
+    "from": "/frames/signal/ridge.png",
+    "to": "/frames/signal/ridge.webp",
+    "before": 519591,
+    "after": 175300
+  },
+  {
+    "from": "/frames/signal/shadow.png",
+    "to": "/frames/signal/shadow.webp",
+    "before": 635244,
+    "after": 20074
+  },
+  {
+    "from": "/frames/signal/strings.png",
+    "to": "/frames/signal/strings.webp",
+    "before": 427140,
+    "after": 59766
+  },
+  {
+    "from": "/frames/signal/wordmark.png",
+    "to": "/frames/signal/wordmark.webp",
+    "before": 116246,
+    "after": 10806
+  }
+]

@@ -1,0 +1,76 @@
+[
+  {
+    "path": "/",
+    "form": "desktop",
+    "time": "2026-10-28T08:12:21.429Z",
+    "version": "13.5.0",
+    "throttlingMethod": "simulate",
+    "scores": {
+      "performance": 100,
+      "accessibility": 100,
+      "best-practices": 100,
+      "seo": 100
+    },
+    "lcp": 684.5706,
+    "tbt": 0,
+    "cls": 0.0011648310132931238,
+    "si": 395.001159942068,
+    "longTasks": [],
+    "boot": [
+      {
+        "url": "http://localhost:3001/",
+        "total": 121.14199999999998,
+        "scripting": 1.576,
+        "scriptParseCompile": 2.166999999999998
+      },
+      {
+        "url": "http://localhost:3001/_next/static/chunks/8156-b276e5e6044f2f62.js",
+        "total": 120.64600000000037,
+        "scripting": 105.80700000000037,
+        "scriptParseCompile": 2.622
+      }
+    ],
+    "runtimeError": null,
+    "auditErrors": []
+  },
+  {
+    "path": "/contact",
+    "form": "desktop",
+    "time": "2026-10-28T08:12:29.552Z",
+    "version": "13.5.0",
+    "throttlingMethod": "simulate",
+    "scores": {
+      "performance": 100,
+      "accessibility": 100,
+      "best-practices": 100,
+      "seo": 100
+    },
+    "lcp": 596.4626000000001,
+    "tbt": 0,
+    "cls": 0,
+    "si": 444.79508440564064,
+    "longTasks": [],
+    "boot": [
+      {
+        "url": "http://localhost:3001/_next/static/chunks/5078-fb0c23ff236e6b9d.js",
+        "total": 118.46700000000018,
+        "scripting": 48.022000000000034,
+        "scriptParseCompile": 0.267
+      },
+      {
+        "url": "http://localhost:3001/contact",
+        "total": 79.87700000000001,
+        "scripting": 1.481,
+        "scriptParseCompile": 1.3399999999999985
+      },
+      {
+        "url": "http://localhost:3001/_next/static/chunks/8156-b276e5e6044f2f62.js",
+        "total": 64.94599999999988,
+        "scripting": 60.51199999999988,
+        "scriptParseCompile": 2.6449999999999996
+      }
+    ],
+    "runtimeError": null,
+    "auditErrors": []
+  }
+]

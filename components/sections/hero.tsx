@@ -29,20 +29,20 @@ export function Hero() {
                 surfaceClassName="hero-hands-surface"
                 priority
                 sizes="100vw"
-                frameSrc="/frames/signal/hero-hands-edge.png"
-                mobileFrameSrc="/frames/signal/hero-hands-diagonal.png"
+                frameSrc="/frames/signal/hero-hands-edge.webp"
+                mobileFrameSrc="/frames/signal/hero-hands-diagonal.webp"
                 frameSources={[
                   {
                     media: "(min-width: 768px) and (min-aspect-ratio: 2/1)",
-                    srcSet: "/frames/signal/hero-hands-edge-wide.png",
+                    srcSet: "/frames/signal/hero-hands-edge-wide.webp",
                   },
                   {
                     media: "(min-width: 768px) and (max-height: 800px)",
-                    srcSet: "/frames/signal/hero-hands-edge-short.png",
+                    srcSet: "/frames/signal/hero-hands-edge-short.webp",
                   },
                   {
                     media: "(min-width: 768px) and (max-aspect-ratio: 6/5)",
-                    srcSet: "/frames/signal/hero-hands-edge-portrait.png",
+                    srcSet: "/frames/signal/hero-hands-edge-portrait.webp",
                   },
                 ]}
               />

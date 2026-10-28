@@ -2,6 +2,7 @@
 // @ts-nocheck
 "use client"
 
+import { requestVisualFrame as requestAnimationFrame, cancelVisualFrame as cancelAnimationFrame } from "@/lib/visual-runtime";
 import React, { useEffect, useRef, useState, useLayoutEffect, useCallback, useMemo } from "react"
 
 const DEFAULTS = {
@@ -272,11 +273,11 @@ function CosmicBG(props) {
         const start = performance.now();
         function loop(now) {
             draw((now - start) / 1000);
-            raf = window.requestAnimationFrame(loop);
+            raf = requestAnimationFrame(loop);
         }
-        raf = window.requestAnimationFrame(loop);
+        raf = requestAnimationFrame(loop);
         return () => {
-            window.cancelAnimationFrame(raf);
+            cancelAnimationFrame(raf);
             cleanupGL();
         };
 

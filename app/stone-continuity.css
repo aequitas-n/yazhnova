@@ -1,4 +1,12 @@
 /* The intro background fades independently; the real stone stays above it. */
+.intro-loading-poster {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  width: min(100vw, 100svh);
+  height: min(100vw, 100svh);
+  transform: translate(-50%, -50%) scale(0.668);
+}
 .site-intro .intro-visual-layer {
   mask-image: none;
 }

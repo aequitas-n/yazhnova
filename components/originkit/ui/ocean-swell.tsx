@@ -1,4 +1,5 @@
 "use client"
+import { requestVisualFrame as requestAnimationFrame, cancelVisualFrame as cancelAnimationFrame } from "@/lib/visual-runtime";
 import { canvasPixelRatio } from "@/lib/canvas-quality";
 import { warmRenderer } from "@/lib/warm-renderer";
 
@@ -322,7 +323,7 @@ class OceanSwellScene {
         this.cfg = cfg
         const S = settingsFor(cfg)
 
-        this.renderer = new THREE.WebGLRenderer({ antialias: false, alpha: false })
+        this.renderer = new THREE.WebGLRenderer({ antialias: false, alpha: false, stencil: false, powerPreference: "high-performance" })
 
         this.renderer.setPixelRatio(canvasPixelRatio(1.25))
         this.renderer.outputColorSpace = THREE.SRGBColorSpace

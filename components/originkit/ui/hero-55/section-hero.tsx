@@ -1,7 +1,8 @@
 /* eslint-disable */
 // @ts-nocheck
 "use client"
-import RainPuddle from "@/components/originkit/ui/hero-55/rain-puddle";
+import dynamic from "next/dynamic";
+const RainPuddle = dynamic(() => import("@/components/originkit/ui/hero-55/rain-puddle"), { ssr: false });
 import type { ReactNode } from "react";
 
 export interface SectionHeroProps {

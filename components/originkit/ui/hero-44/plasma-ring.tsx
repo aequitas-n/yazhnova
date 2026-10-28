@@ -2,6 +2,7 @@
 // @ts-nocheck
 "use client"
 
+import { requestVisualFrame as requestAnimationFrame, cancelVisualFrame as cancelAnimationFrame } from "@/lib/visual-runtime";
 import React, { useEffect, useRef } from "react"
 import { animate, motionValue } from "framer-motion"
 import { canvasPixelRatio } from "@/lib/canvas-quality"
@@ -241,6 +242,8 @@ const CAM_FAR = 2100;
 const CAM_PER_SCALE = 15;
 
 function PlasmaRing(props) {
+    const readyRef = useRef(props.onReady);
+    readyRef.current = props.onReady;
     const { background = "#000000", colors = ["#FF3300", "#0055FF", "#E200FF"], density = 120, speed = 100, waveHeight = 20, centerOpacity = 100, scale = 36, dragSensitivity = 100, transition = { "ease": [0, 0, 0.58, 1], "mass": 1, "type": "tween", "delay": 0, "damping": 60, "duration": 1, "stiffness": 800 }, style, } = props;
 
     const hoverMV = useRef(motionValue(0)).current;
@@ -289,6 +292,7 @@ function PlasmaRing(props) {
         const canvas = canvasRef.current;
         if (!host || !canvas)
             return;
+        let reportedReady = false;
         const gl = canvas.getContext("webgl", {
             alpha: true, antialias: false, premultipliedAlpha: true, depth: false,
         });
@@ -582,6 +586,7 @@ function PlasmaRing(props) {
             gl.vertexAttribPointer(sA.rnd, 2, gl.FLOAT, false, 0, 0);
             gl.bindBuffer(gl.ELEMENT_ARRAY_BUFFER, idxBuf);
             gl.drawElements(gl.LINES, indexCount, gl.UNSIGNED_SHORT, 0);
+            if (!reportedReady) { reportedReady = true; readyRef.current?.(); }
         };
         raf = requestAnimationFrame(frame);
         return () => {

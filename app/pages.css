@@ -6,12 +6,6 @@
 .intro-label {
   color: #a3a3a3;
 }
-@media (prefers-reduced-motion: no-preference) {
-  .live-visual > .visual-frame,
-  .service-story-scene > .visual-frame {
-    visibility: hidden;
-  }
-}
 .route-wipe {
   position: fixed;
   inset: 0;
@@ -19,6 +13,45 @@
   background: var(--ink);
   pointer-events: none;
   will-change: transform;
+  animation: route-wipe-y 0.42s cubic-bezier(0.76, 0, 0.24, 1) both;
+}
+.route-wipe.chapter-wipe {
+  animation-name: route-wipe-x;
+  animation-duration: 0.55s;
+}
+@keyframes route-wipe-y {
+  from {
+    transform: translateY(0);
+  }
+  to {
+    transform: translateY(-105%);
+  }
+}
+@keyframes route-wipe-x {
+  from {
+    transform: translateX(0);
+  }
+  to {
+    transform: translateX(-105%);
+  }
+}
+.section-title[data-revealed] {
+  transition: transform 0.6s cubic-bezier(0.22, 0.61, 0.36, 1);
+}
+.section-title[data-revealed="false"] {
+  transform: translateY(12px);
+}
+.section-title[data-revealed="true"] {
+  transform: translateY(0);
+}
+@media (prefers-reduced-motion: reduce) {
+  .route-wipe {
+    display: none;
+  }
+  .section-title[data-revealed] {
+    transform: none;
+    transition: none;
+  }
 }
 .route-wipe > span {
   position: absolute;
@@ -150,7 +183,8 @@
     transform: translateY(0);
   }
 }
-.live-visual[data-mode="live"]:has(.visual-canvas canvas[width]) > .visual-frame {
+.live-visual[data-mode="live"]:not([data-ready="false"]):has(.visual-canvas canvas[width])
+  > .visual-frame {
   opacity: 0;
 }
 .live-visual canvas {

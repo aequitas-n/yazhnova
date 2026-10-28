@@ -1,4 +1,3 @@
-"use client";
 import { Check } from "lucide-react";
 import { site } from "@/content/site";
 import { SectionLabel } from "@/components/ui/section-label";

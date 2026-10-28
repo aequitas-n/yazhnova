@@ -93,7 +93,7 @@
         rgba(60, 102, 145, 0.75) 55%,
         rgba(37, 79, 119, 0.9) 100%
       ),
-      url("/originkit/hero-44/mist-overlay.png") center / cover no-repeat;
+      url("/originkit/hero-44/mist-overlay.webp") center / cover no-repeat;
   }
   .hero-44 .bg {
     display: none;

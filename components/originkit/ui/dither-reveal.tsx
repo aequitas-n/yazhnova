@@ -1,5 +1,6 @@
 "use client";
 
+import { requestVisualFrame as requestAnimationFrame, cancelVisualFrame as cancelAnimationFrame } from "@/lib/visual-runtime";
 import { useEffect, useRef, type CSSProperties } from "react";
 import { canvasPixelRatio } from "@/lib/canvas-quality";
 

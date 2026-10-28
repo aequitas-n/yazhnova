@@ -2,6 +2,7 @@
 // @ts-nocheck
 "use client"
 
+import { requestVisualFrame as requestAnimationFrame, cancelVisualFrame as cancelAnimationFrame } from "@/lib/visual-runtime";
 import React, { useEffect, useRef } from "react"
 import { canvasPixelRatio } from "@/lib/canvas-quality"
 
@@ -319,6 +320,8 @@ const DROPS_DEFAULTS = { ripples: 100, streaks: 70 };
 const CURSOR_DEFAULTS = { reach: 54, ripple: 100, glow: 60 };
 
 function RainPuddle(props) {
+    const readyRef = useRef(props.onReady);
+    readyRef.current = props.onReady;
     const { background = "#000000", baseColor = "#03661A", accentColor = "#FFFFFF", rain = 100, speed = 100, tilt = 25, puddles, drops, cursor, width, height, style, } = props;
     const pd = { ...PUDDLES_DEFAULTS, ...(puddles || {}) };
     const dr = { ...DROPS_DEFAULTS, ...(drops || {}) };
@@ -498,6 +501,7 @@ function RainPuddle(props) {
 
         window.addEventListener("pointermove", onMove);
 
+        let reportedReady = false;
         let clock = 0;
         let last = 0;
         let raf = 0;
@@ -556,6 +560,7 @@ function RainPuddle(props) {
             gl.uniform4fv(u.pulses, pulses);
             gl.uniform1f(u.now, clock);
             gl.drawArrays(gl.TRIANGLES, 0, 3);
+            if (!reportedReady) { reportedReady = true; readyRef.current?.(); }
         };
         raf = requestAnimationFrame(frame);
         stopDrawing = () => {

@@ -1,0 +1,495 @@
+[
+  {
+    "path": "/",
+    "form": "mobile",
+    "time": "2026-10-28T08:11:14.462Z",
+    "version": "13.5.0",
+    "throttlingMethod": "simulate",
+    "scores": {
+      "performance": 92,
+      "accessibility": 100,
+      "best-practices": 100,
+      "seo": 100
+    },
+    "lcp": 3269.938225,
+    "tbt": 78.5,
+    "cls": 0,
+    "si": 1271.4641567368983,
+    "longTasks": [
+      {
+        "url": "http://localhost:3001/",
+        "duration": 140,
+        "startTime": 612.98235
+      },
+      {
+        "url": "http://localhost:3001/_next/static/chunks/8156-b276e5e6044f2f62.js",
+        "duration": 106,
+        "startTime": 3315.9294
+      },
+      {
+        "url": "http://localhost:3001/_next/static/chunks/e8018d56.545336f87dc8d45a.js",
+        "duration": 78,
+        "startTime": 4841.8940999999995
+      },
+      {
+        "url": "http://localhost:3001/_next/static/chunks/8156-b276e5e6044f2f62.js",
+        "duration": 67,
+        "startTime": 4919.8940999999995
+      }
+    ],
+    "boot": [
+      {
+        "url": "http://localhost:3001/_next/static/chunks/8156-b276e5e6044f2f62.js",
+        "total": 541.8080000000009,
+        "scripting": 490.924000000001,
+        "scriptParseCompile": 11.156
+      },
+      {
+        "url": "http://localhost:3001/",
+        "total": 415.57999999999987,
+        "scripting": 5.832,
+        "scriptParseCompile": 6.427999999999994
+      },
+      {
+        "url": "Unattributable",
+        "total": 118.49600000000011,
+        "scripting": 4.664000000000001,
+        "scriptParseCompile": 0
+      },
+      {
+        "url": "http://localhost:3001/_next/static/chunks/e8018d56.545336f87dc8d45a.js",
+        "total": 78.00799999999998,
+        "scripting": 58.967999999999975,
+        "scriptParseCompile": 18.804000000000002
+      },
+      {
+        "url": "http://localhost:3001/_next/static/chunks/1e60002b.529449cf394375bd.js",
+        "total": 76.304,
+        "scripting": 41.57999999999999,
+        "scriptParseCompile": 2.924
+      }
+    ],
+    "runtimeError": null,
+    "auditErrors": []
+  },
+  {
+    "path": "/contact",
+    "form": "mobile",
+    "time": "2026-10-28T08:11:22.472Z",
+    "version": "13.5.0",
+    "throttlingMethod": "simulate",
+    "scores": {
+      "performance": 95,
+      "accessibility": 100,
+      "best-practices": 100,
+      "seo": 100
+    },
+    "lcp": 2894.3972,
+    "tbt": 28.5,
+    "cls": 0,
+    "si": 1074.5398540012882,
+    "longTasks": [
+      {
+        "url": "http://localhost:3001/_next/static/chunks/91abc880-80aaa40e1a2a1cb2.js",
+        "duration": 107,
+        "startTime": 2862.3971999999994
+      },
+      {
+        "url": "http://localhost:3001/contact",
+        "duration": 61,
+        "startTime": 619.1324
+      }
+    ],
+    "boot": [
+      {
+        "url": "http://localhost:3001/_next/static/chunks/5078-fb0c23ff236e6b9d.js",
+        "total": 452.3840000000004,
+        "scripting": 186.20000000000016,
+        "scriptParseCompile": 1.072
+      },
+      {
+        "url": "http://localhost:3001/_next/static/chunks/8156-b276e5e6044f2f62.js",
+        "total": 264.467999999999,
+        "scripting": 244.179999999999,
+        "scriptParseCompile": 12.908000000000001
+      },
+      {
+        "url": "http://localhost:3001/contact",
+        "total": 195.05599999999998,
+        "scripting": 5.696,
+        "scriptParseCompile": 6.123999999999993
+      },
+      {
+        "url": "Unattributable",
+        "total": 168.34400000000045,
+        "scripting": 5.587999999999999,
+        "scriptParseCompile": 0
+      },
+      {
+        "url": "http://localhost:3001/_next/static/chunks/91abc880-80aaa40e1a2a1cb2.js",
+        "total": 115.67200000000014,
+        "scripting": 104.46000000000014,
+        "scriptParseCompile": 8.988
+      }
+    ],
+    "runtimeError": null,
+    "auditErrors": []
+  },
+  {
+    "path": "/services",
+    "form": "mobile",
+    "time": "2026-10-28T08:11:29.776Z",
+    "version": "13.5.0",
+    "throttlingMethod": "simulate",
+    "scores": {
+      "performance": 91,
+      "accessibility": 100,
+      "best-practices": 100,
+      "seo": 100
+    },
+    "lcp": 3383.3252,
+    "tbt": 77.5,
+    "cls": 0.00002547641731290986,
+    "si": 1192.1832206942408,
+    "longTasks": [
+      {
+        "url": "http://localhost:3001/_next/static/chunks/8156-b276e5e6044f2f62.js",
+        "duration": 114,
+        "startTime": 3162.4878000000003
+      },
+      {
+        "url": "http://localhost:3001/services",
+        "duration": 84,
+        "startTime": 614.1626
+      },
+      {
+        "url": "http://localhost:3001/_next/static/chunks/8156-b276e5e6044f2f62.js",
+        "duration": 77,
+        "startTime": 3765.813
+      }
+    ],
+    "boot": [
+      {
+        "url": "http://localhost:3001/_next/static/chunks/5078-fb0c23ff236e6b9d.js",
+        "total": 946.0400000000002,
+        "scripting": 263.9800000000001,
+        "scriptParseCompile": 0.88
+      },
+      {
+        "url": "http://localhost:3001/_next/static/chunks/8156-b276e5e6044f2f62.js",
+        "total": 469.3640000000026,
+        "scripting": 447.4600000000026,
+        "scriptParseCompile": 9.203999999999999
+      },
+      {
+        "url": "http://localhost:3001/services",
+        "total": 253.18000000000004,
+        "scripting": 7.524,
+        "scriptParseCompile": 5.839999999999995
+      },
+      {
+        "url": "Unattributable",
+        "total": 179.65600000000063,
+        "scripting": 4.288,
+        "scriptParseCompile": 0
+      }
+    ],
+    "runtimeError": null,
+    "auditErrors": []
+  },
+  {
+    "path": "/ai-agents",
+    "form": "mobile",
+    "time": "2026-10-28T08:11:37.331Z",
+    "version": "13.5.0",
+    "throttlingMethod": "simulate",
+    "scores": {
+      "performance": 91,
+      "accessibility": 100,
+      "best-practices": 100,
+      "seo": 100
+    },
+    "lcp": 3384.3647,
+    "tbt": 67,
+    "cls": 0.00005010103390191115,
+    "si": 1248.6265357926836,
+    "longTasks": [
+      {
+        "url": "http://localhost:3001/_next/static/chunks/8156-b276e5e6044f2f62.js",
+        "duration": 117,
+        "startTime": 3164.04705
+      },
+      {
+        "url": "http://localhost:3001/ai-agents",
+        "duration": 87,
+        "startTime": 617.68235
+      }
+    ],
+    "boot": [
+      {
+        "url": "http://localhost:3001/_next/static/chunks/5078-fb0c23ff236e6b9d.js",
+        "total": 973.1520000000015,
+        "scripting": 248.23600000000062,
+        "scriptParseCompile": 1.28
+      },
+      {
+        "url": "http://localhost:3001/_next/static/chunks/8156-b276e5e6044f2f62.js",
+        "total": 380.6240000000032,
+        "scripting": 360.6440000000032,
+        "scriptParseCompile": 9.604
+      },
+      {
+        "url": "http://localhost:3001/ai-agents",
+        "total": 252.508,
+        "scripting": 7.4799999999999995,
+        "scriptParseCompile": 7.691999999999991
+      },
+      {
+        "url": "Unattributable",
+        "total": 189.0760000000012,
+        "scripting": 4.775999999999999,
+        "scriptParseCompile": 0
+      }
+    ],
+    "runtimeError": null,
+    "auditErrors": []
+  },
+  {
+    "path": "/work",
+    "form": "mobile",
+    "time": "2026-10-28T08:11:45.554Z",
+    "version": "13.5.0",
+    "throttlingMethod": "simulate",
+    "scores": {
+      "performance": 91,
+      "accessibility": 100,
+      "best-practices": 100,
+      "seo": 100
+    },
+    "lcp": 3460.3186999999994,
+    "tbt": 70,
+    "cls": 0.00004656264260845144,
+    "si": 1255.5850632212776,
+    "longTasks": [
+      {
+        "url": "http://localhost:3001/_next/static/chunks/8156-b276e5e6044f2f62.js",
+        "duration": 120,
+        "startTime": 3165.4780499999993
+      },
+      {
+        "url": "http://localhost:3001/work",
+        "duration": 65,
+        "startTime": 615.15935
+      }
+    ],
+    "boot": [
+      {
+        "url": "http://localhost:3001/_next/static/chunks/5078-fb0c23ff236e6b9d.js",
+        "total": 870.2920000000012,
+        "scripting": 227.7080000000003,
+        "scriptParseCompile": 0.9359999999999999
+      },
+      {
+        "url": "http://localhost:3001/_next/static/chunks/8156-b276e5e6044f2f62.js",
+        "total": 352.772,
+        "scripting": 329.756,
+        "scriptParseCompile": 12.296
+      },
+      {
+        "url": "http://localhost:3001/work",
+        "total": 222.57600000000005,
+        "scripting": 9.276000000000002,
+        "scriptParseCompile": 5.943999999999994
+      },
+      {
+        "url": "Unattributable",
+        "total": 161.6280000000006,
+        "scripting": 5.308,
+        "scriptParseCompile": 0
+      }
+    ],
+    "runtimeError": null,
+    "auditErrors": []
+  },
+  {
+    "path": "/process",
+    "form": "mobile",
+    "time": "2026-10-28T08:11:53.388Z",
+    "version": "13.5.0",
+    "throttlingMethod": "simulate",
+    "scores": {
+      "performance": 92,
+      "accessibility": 100,
+      "best-practices": 100,
+      "seo": 100
+    },
+    "lcp": 3383.085,
+    "tbt": 62.5,
+    "cls": 0.00004703565993018808,
+    "si": 1140.6974043114483,
+    "longTasks": [
+      {
+        "url": "http://localhost:3001/process",
+        "duration": 130,
+        "startTime": 614.0425
+      },
+      {
+        "url": "http://localhost:3001/_next/static/chunks/8156-b276e5e6044f2f62.js",
+        "duration": 108,
+        "startTime": 3162.1275
+      },
+      {
+        "url": "http://localhost:3001/_next/static/chunks/8156-b276e5e6044f2f62.js",
+        "duration": 59,
+        "startTime": 3270.1275
+      }
+    ],
+    "boot": [
+      {
+        "url": "http://localhost:3001/_next/static/chunks/5078-fb0c23ff236e6b9d.js",
+        "total": 952.6240000000005,
+        "scripting": 254.98400000000007,
+        "scriptParseCompile": 0.804
+      },
+      {
+        "url": "http://localhost:3001/process",
+        "total": 392.216,
+        "scripting": 5.543999999999998,
+        "scriptParseCompile": 4.971999999999998
+      },
+      {
+        "url": "http://localhost:3001/_next/static/chunks/8156-b276e5e6044f2f62.js",
+        "total": 373.4440000000027,
+        "scripting": 352.7560000000027,
+        "scriptParseCompile": 9.155999999999999
+      },
+      {
+        "url": "Unattributable",
+        "total": 145.9560000000004,
+        "scripting": 4.576,
+        "scriptParseCompile": 0
+      }
+    ],
+    "runtimeError": null,
+    "auditErrors": []
+  },
+  {
+    "path": "/engage",
+    "form": "mobile",
+    "time": "2026-10-28T08:12:01.022Z",
+    "version": "13.5.0",
+    "throttlingMethod": "simulate",
+    "scores": {
+      "performance": 91,
+      "accessibility": 100,
+      "best-practices": 100,
+      "seo": 100
+    },
+    "lcp": 3384.4751999999994,
+    "tbt": 81.49999999999977,
+    "cls": 0.00005010103390191115,
+    "si": 1269.2745896574438,
+    "longTasks": [
+      {
+        "url": "http://localhost:3001/_next/static/chunks/8156-b276e5e6044f2f62.js",
+        "duration": 115,
+        "startTime": 3164.2127999999993
+      },
+      {
+        "url": "http://localhost:3001/_next/static/chunks/8156-b276e5e6044f2f62.js",
+        "duration": 82.99999999999955,
+        "startTime": 3279.2127999999993
+      },
+      {
+        "url": "http://localhost:3001/engage",
+        "duration": 67,
+        "startTime": 617.7376
+      }
+    ],
+    "boot": [
+      {
+        "url": "http://localhost:3001/_next/static/chunks/5078-fb0c23ff236e6b9d.js",
+        "total": 902.6839999999996,
+        "scripting": 246.82400000000032,
+        "scriptParseCompile": 0.8760000000000001
+      },
+      {
+        "url": "http://localhost:3001/_next/static/chunks/8156-b276e5e6044f2f62.js",
+        "total": 428.21200000000636,
+        "scripting": 399.54400000000635,
+        "scriptParseCompile": 10.644
+      },
+      {
+        "url": "http://localhost:3001/engage",
+        "total": 243.25199999999992,
+        "scripting": 10.627999999999997,
+        "scriptParseCompile": 14.579999999999997
+      },
+      {
+        "url": "Unattributable",
+        "total": 188.78800000000138,
+        "scripting": 4.656,
+        "scriptParseCompile": 0
+      }
+    ],
+    "runtimeError": null,
+    "auditErrors": []
+  },
+  {
+    "path": "/about",
+    "form": "mobile",
+    "time": "2026-10-28T08:12:08.969Z",
+    "version": "13.5.0",
+    "throttlingMethod": "simulate",
+    "scores": {
+      "performance": 92,
+      "accessibility": 100,
+      "best-practices": 100,
+      "seo": 100
+    },
+    "lcp": 3384.5701,
+    "tbt": 56,
+    "cls": 0.00009279269491255681,
+    "si": 1280.8297309938187,
+    "longTasks": [
+      {
+        "url": "http://localhost:3001/_next/static/chunks/8156-b276e5e6044f2f62.js",
+        "duration": 106,
+        "startTime": 3164.3551500000003
+      },
+      {
+        "url": "http://localhost:3001/about",
+        "duration": 57,
+        "startTime": 613.78505
+      }
+    ],
+    "boot": [
+      {
+        "url": "http://localhost:3001/_next/static/chunks/5078-fb0c23ff236e6b9d.js",
+        "total": 807.3999999999993,
+        "scripting": 215.33200000000014,
+        "scriptParseCompile": 0.948
+      },
+      {
+        "url": "http://localhost:3001/_next/static/chunks/8156-b276e5e6044f2f62.js",
+        "total": 358.224,
+        "scripting": 337.192,
+        "scriptParseCompile": 10.08
+      },
+      {
+        "url": "http://localhost:3001/about",
+        "total": 196.2,
+        "scripting": 6.567999999999999,
+        "scriptParseCompile": 5.363999999999996
+      },
+      {
+        "url": "Unattributable",
+        "total": 160.8120000000004,
+        "scripting": 5.212,
+        "scriptParseCompile": 0
+      }
+    ],
+    "runtimeError": null,
+    "auditErrors": []
+  }
+]

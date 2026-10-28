@@ -1,5 +1,6 @@
 "use client"
 
+import { requestVisualFrame as requestAnimationFrame, cancelVisualFrame as cancelAnimationFrame } from "@/lib/visual-runtime";
 import { useEffect, useLayoutEffect, useRef, type CSSProperties, type MutableRefObject } from "react"
 
 const RenderTarget = {

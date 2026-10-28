@@ -2,6 +2,7 @@
 // @ts-nocheck
 "use client"
 
+import { requestVisualFrame as requestAnimationFrame, cancelVisualFrame as cancelAnimationFrame } from "@/lib/visual-runtime";
 import React, { useEffect, useRef, useState, useLayoutEffect, useCallback, useMemo } from "react"
 import { motion, useAnimate } from "framer-motion"
 

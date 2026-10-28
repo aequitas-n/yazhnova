@@ -1,6 +1,7 @@
 /* eslint-disable */
 // @ts-nocheck
 "use client"
+import { requestVisualFrame as requestAnimationFrame, cancelVisualFrame as cancelAnimationFrame } from "@/lib/visual-runtime";
 import { canvasPixelRatio } from "@/lib/canvas-quality";
 
 import { useEffect, useRef, useState } from "react"
