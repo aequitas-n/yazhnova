@@ -37,6 +37,11 @@
 }
 .stone-hands-hero .hero-visual-space {
   position: relative;
+  container-type: size;
+  /* The hand texture is 1586 × 992. Match its cover-fitted image scale. */
+  --hand-image-aspect: 1.59879;
+  --stone-hand-ratio: 0.27;
+  --hand-render-width: max(100cqw, calc(100cqh * var(--hand-image-aspect)));
   width: 100vw;
   align-self: center;
   height: max(42svh, 54vw);
@@ -62,7 +67,7 @@
   z-index: 2;
   left: 50%;
   top: 50%;
-  width: clamp(180px, 38vw, 760px);
+  width: min(760px, calc(var(--stone-hand-ratio) * var(--hand-render-width)));
   aspect-ratio: 1;
   transform: translate(-50%, -50%);
 }
@@ -102,7 +107,116 @@
   margin-top: 30px;
   padding-top: 18px;
 }
+@media (min-width: 768px) {
+  .home-page .stone-hands-hero,
+  .home-page .stone-hands-hero .hero-stage,
+  .stone-hands-hero .hero-visual-space,
+  .stone-hands-hero .hero-art,
+  .stone-hands-hero .hero-art .live-visual,
+  .stone-hands-hero .hero-art .visual-canvas {
+    overflow: visible;
+  }
+  .stone-hands-hero .hero-hands-surface {
+    position: absolute;
+    top: -280px;
+    height: calc(100% + 560px) !important;
+  }
+  .stone-hands-hero .hero-eyebrow,
+  .stone-hands-hero h1,
+  .stone-hands-hero .hero-description,
+  .stone-hands-hero .hero-support,
+  .stone-hands-hero .hero-baseline {
+    position: relative;
+    z-index: 3;
+  }
+  .home-page .stone-hands-hero .hero-stage {
+    height: 100svh;
+    min-height: 0;
+  }
+  .stone-hands-hero::after {
+    height: 36px;
+  }
+  .stone-hands-hero .hero-composition {
+    height: 100%;
+    min-height: 0;
+    padding-top: clamp(96px, 10.5svh, 120px);
+    padding-bottom: 44px;
+  }
+  .stone-hands-hero h1 {
+    order: 1;
+    flex-shrink: 0;
+    margin-top: 14px;
+  }
+  .stone-hands-hero .hero-visual-space {
+    order: 3;
+    flex: 1 1 0;
+    min-height: 0;
+    height: auto;
+    margin-block: 16px 0;
+  }
+  .stone-hands-hero .hero-art .visual-frame {
+    inset: 50% auto auto 50% !important;
+    width: var(--hand-render-width) !important;
+    height: auto !important;
+    max-width: none;
+    transform: translate(-50%, -50%);
+    object-fit: cover;
+  }
+  .stone-hands-hero .hero-stone {
+    top: 44%;
+  }
+  .stone-hands-hero .hero-support {
+    order: 4;
+    display: flex;
+    justify-content: flex-end;
+    flex-shrink: 0;
+    gap: 24px;
+    margin-top: 6px;
+    align-items: center;
+  }
+  .stone-hands-hero .hero-description {
+    order: 2;
+    flex-shrink: 0;
+    margin-top: 14px;
+    font-size: 14px;
+    line-height: 1.6;
+  }
+  .stone-hands-hero .hero-note {
+    margin-top: 8px;
+  }
+  .home-page .stone-hands-hero .hero-baseline {
+    order: 5;
+    flex-shrink: 0;
+    margin-top: 16px;
+    padding-top: 12px;
+  }
+}
+@media (min-width: 768px) and (min-height: 801px) and (max-aspect-ratio: 6/5) {
+  .stone-hands-hero .hero-art .visual-frame {
+    /* The portrait capture has a 586px logical stage plus 560px of bleed. */
+    width: calc(var(--hand-render-width) * 768 / (586 * var(--hand-image-aspect))) !important;
+  }
+}
 @media (max-width: 767px) {
+  .stone-hands-hero .hero-eyebrow {
+    order: 1;
+  }
+  .stone-hands-hero h1 {
+    order: 2;
+  }
+  .stone-hands-hero .hero-visual-space {
+    order: 3;
+  }
+  .stone-hands-hero .hero-description {
+    order: 4;
+    margin-bottom: 24px;
+  }
+  .stone-hands-hero .hero-support {
+    order: 5;
+  }
+  .stone-hands-hero .hero-baseline {
+    order: 6;
+  }
   .home-page > .stone-hands-hero {
     margin-top: 0;
   }
@@ -137,9 +251,6 @@
     height: max(230px, 64vw);
     max-height: none;
     margin-block: 20px;
-  }
-  .stone-hands-hero .hero-stone {
-    width: clamp(140px, 38vw, 290px);
   }
   .stone-hands-hero .hero-support {
     grid-template-columns: 1fr;

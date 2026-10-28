@@ -34,6 +34,7 @@ export function LiveVisual({
   sizes = "(max-width:767px) 100vw, 60vw",
   frameSrc,
   mobileFrameSrc,
+  frameSources,
   overrides,
   surfaceClassName,
   surfaceStyle,
@@ -50,6 +51,7 @@ export function LiveVisual({
   sizes?: string;
   frameSrc?: string;
   mobileFrameSrc?: string;
+  frameSources?: ReadonlyArray<{ media: string; srcSet: string }>;
   overrides?: Record<string, unknown>;
   surfaceClassName?: string;
   surfaceStyle?: CSSProperties;
@@ -73,7 +75,8 @@ export function LiveVisual({
   }, [onNativeReady]);
   // Keep the SSR/reduced-motion frame available without preloading a large
   // decorative bitmap ahead of the live chapter scene and its fonts.
-  const preloadFrame = priority && kind !== "plasma" && kind !== "contact-rain";
+  const preloadFrame =
+    priority && kind !== "plasma" && kind !== "contact-rain" && !frameSources?.length;
   useEffect(() => {
     const media = matchMedia("(prefers-reduced-motion: no-preference)");
     const sync = () => setAllowed(media.matches);
@@ -145,7 +148,7 @@ export function LiveVisual({
       }
     };
   }, [live, kind]);
-  const Frame = mobileFrameSrc ? "picture" : Fragment;
+  const Frame = mobileFrameSrc || frameSources?.length ? "picture" : Fragment;
   return (
     <div
       ref={ref}
@@ -157,6 +160,9 @@ export function LiveVisual({
       {loaded && (!allowed || (keepPreview && (!live || !ready))) && !forceLive && (
         <Frame>
           {mobileFrameSrc && <source media="(max-width: 767px)" srcSet={mobileFrameSrc} />}
+          {frameSources?.map((source) => (
+            <source key={source.media} {...source} />
+          ))}
           <Image
             src={frameSrc ?? `/frames/signal/${kind}.png`}
             alt={alt}
@@ -164,7 +170,8 @@ export function LiveVisual({
             sizes={sizes}
             className="visual-frame"
             priority={preloadFrame}
-            fetchPriority={preloadFrame ? "high" : undefined}
+            fetchPriority={preloadFrame || (priority && frameSources?.length) ? "high" : undefined}
+            loading={priority && frameSources?.length ? "eager" : undefined}
             quality={kind === "manifesto" ? 90 : kind === "pixels" ? 65 : 75}
             unoptimized={keepPreview}
           />

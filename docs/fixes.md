@@ -190,3 +190,46 @@ Removed the final burst and expanding radial mask. HomeStone now owns one stable
 EmberHusk receives three optional choreography fields: camera `size` for the smooth framing change, debris `spread` to ease into the home orbit, and `idle` to resume the original hover physics/rotation from the final intro pose. Existing source defaults stay unchanged. The intro frame uses a constant square canvas and CSS transforms, avoiding render-target allocations every animation frame. Its final move triggers one resize into the hero dimensions.
 
 Fixed a positioning issue found during visual review: the GSAP `inset` shorthand was clearing the explicitly set opening coordinates. The opening now stays centered, covered by a browser assertion. Seven focused browser checks and the production build pass; see [continuity report](intro-continuity/README.md).
+
+
+## Homepage viewport fit ? 28 October 2026
+
+Desktop uses a `100svh` flex layout. The original hand texture is now recomposed in one native DitherReveal canvas using an opt-in `panoramicHands` flag: two proportional samples place the left hand lower and right hand higher, each anchored to its corresponding screen edge. Sampling retains the actual forearms without stretching edge pixels. The stone scales from the available stage height and the same measured destination drives the continuous intro. Supporting copy, actions and baseline remain visible within the desktop viewport. The flag defaults off and is disabled in the mobile preset. Responsive native frame captures match the wide, standard, short and portrait compositions during loading/reduced motion. See [viewport captures and measurements](hero-viewport/README.md).
+
+
+## Hero hand heights and copy placement - 28 October 2026
+
+Moved the desktop support row (description, project buttons and note) beneath the headline, above the visual. The native left-hand anchor and right-hand anchor are adjusted independently to place the palm lower on the page and lift the right fingers. The stone is centered slightly higher within the remaining stage and the intro still follows its measured slot. The original texture, proportional scaling, full screen-edge entry and single-view desktop height are preserved. Mobile keeps its existing reading order. Native static captures were refreshed for the new offsets and available stage heights. See [viewport review](hero-viewport/README.md).
+
+
+## Hand overflow and bottom actions - 28 October 2026
+
+Separated the description from the action group: description stays below the headline, while project buttons and note return to the bottom right. Desktop drawing now extends 280px above and below the logical artwork stage. The native optional `verticalBleed` control adjusts the logical UV/aspect and pointer coordinates to match that extra drawing area; transparent paper pixels prevent a rectangular background. CSS overflow alone would still clip at the framebuffer, so the actual renderer and native static frames are expanded. Mobile remains at zero bleed, and touch tablets retain the desktop composition with lighter rendering controls.
+
+Lowered only the left-hand sample after the right-hand position was approved; the right anchor stays fixed. Refreshed transparent native captures and viewport reports. The existing intro canvas continuity and two-context budget remain active. Production build, TypeScript and thirteen focused browser checks pass for the layout/overflow integration; final left-hand captures are free of console errors and horizontal overflow. See [viewport review](hero-viewport/README.md).
+
+
+## Practice height and phone distortion - 28 October 2026
+
+Restored a generous desktop Practice stage (`max(80svh, 760px)`) on Home and Services, plus a 560px minimum visual on phones. The Mobile story was stretching a 390x760 raster into independently sized width/height; its native surface and reduced-motion frame now share a 390:760 aspect ratio and scale to the available scene. The frame shadow stays outside the viewport so shell thickness cannot alter the screen proportions.
+
+Regenerated the phone-only reduced-motion capture from the actual pixel-grid renderer and updated the capture helper. No native effect, sequence or visual algorithm was replaced. Before/after screenshots, mobile/static previews and measured geometry are in [the Practice report](practice-height/README.md). Production build, TypeScript and three relevant browser tests pass.
+
+
+## Lower left hand and enlarge the stone - 28 October 2026
+
+Lowered only the native left-hand anchor further toward the bottom, keeping the approved right-hand anchor fixed. Enlarged the desktop stone container to `min(40vw, 120cqh, 760px)` so it occupies the extra space between the hands. The continuous intro still measures and follows that container, preserving the same native canvas. Phone sizing is unchanged.
+
+Regenerated native hand previews and an 800x800 transparent stone frame, then refreshed viewport screenshots. Production build and three focused intro/stone browser checks pass. See [updated preview](hero-viewport/1880x900-live.png).
+
+## Stone-to-hands responsive ratio - 28 October 2026
+
+Replaced the height-driven stone sizing with a shared image-relative rule. The stone canvas cannot exceed 27% of the rendered hand texture width, calculated from the native shader's cover fit (1586:992), with an additional 760px ceiling. At 1920px wide, its canvas stays 518.39px at viewport heights of 720, 900 and 1080px. This removes the disproportionate growth on taller screens while preserving the hand anchors and continuous intro docking.
+
+Loading/reduced-motion previews use the same hand scale; desktop portrait previews account for their captured bleed instead of independently fitting the full expanded bitmap. The original renderer, animation and geometry remain unchanged. Eleven viewport captures verify live/static ratios, both screen-edge hands, desktop viewport height, and no horizontal overflow or console errors. All thirteen existing intro/hands/mobile browser checks pass. See [ratio measurements and previews](hero-viewport/README.md).
+
+## Full-viewport intro shard space - 28 October 2026
+
+Removed the inner square WebGL boundary by making the intro render target viewport-sized. The source hero-69 renderer accepts an optional `viewportFraming` choreography flag, extending the camera view while preserving the existing stone scale and perspective. Fragment geometry, physics, timing and reformation are unchanged; shards can now continue to the screen edges. The same canvas docks into the responsive hero slot, with one resize on arrival.
+
+Desktop and mobile captures verify real shard pixels outside the former square, full-screen canvas bounds, continued canvas identity and no console/page errors. TypeScript, seven existing intro/hands browser tests and the production build pass. See [before/after images and measurements](intro-space/README.md).

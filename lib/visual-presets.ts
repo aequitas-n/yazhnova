@@ -56,6 +56,8 @@ export const visualPresets = {
     ...editorialPresets["dither-reveal"],
     image: { src: "/originkit/dither-reveal/hands-diagonal.webp", alt: site.hero.imageAlt },
     fit: "cover",
+    panoramicHands: true,
+    verticalBleed: 280,
     focusY: 50,
     darkColor: "#3D3C39",
     lightColor: paper,

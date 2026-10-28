@@ -293,27 +293,14 @@ export function ServiceStory({
           overrides={overrides}
           forceLive={forceLive}
           frameSrc={
-            forceLive ? "/frames/signal/" + kind + ".png" : "/frames/stories/" + id + ".png"
+            forceLive
+              ? "/frames/signal/" + kind + ".png"
+              : "/frames/stories/" + (id === "mobile" ? "mobile-phone" : id) + ".png"
           }
           sizes="(max-width:767px) 100vw, 70vw"
           overlay={overlay}
           surfaceClassName={
             id === "ai" ? "story-core" : id === "mobile" ? "story-phone" : "story-native"
-          }
-          surfaceStyle={
-            id === "mobile"
-              ? {
-                  position: "absolute",
-                  width: "min(310px,72%)",
-                  height: "86%",
-                  left: "50%",
-                  top: "6%",
-                  transform: "translateX(-50%)",
-                  border: "8px solid #303030",
-                  borderRadius: 36,
-                  overflow: "hidden",
-                }
-              : undefined
           }
         />
       </div>

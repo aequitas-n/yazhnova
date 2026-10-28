@@ -1,0 +1,158 @@
+[
+  {
+    "name": "home-desktop",
+    "stage": {
+      "width": 1316,
+      "height": 760,
+      "top": 255.84375,
+      "bottom": 1015.84375,
+      "ratio": 1.731578947368421
+    },
+    "scene": {
+      "width": 1316,
+      "height": 690,
+      "top": 255.84375,
+      "bottom": 945.84375,
+      "ratio": 1.9072463768115941
+    },
+    "phone": {
+      "width": 304.5,
+      "height": 593.375,
+      "top": 304.15625,
+      "bottom": 897.53125,
+      "ratio": 0.5131662102380451
+    },
+    "canvas": {
+      "width": 304.5,
+      "height": 593.375,
+      "top": 304.15625,
+      "bottom": 897.53125,
+      "ratio": 0.5131662102380451
+    },
+    "overflow": false,
+    "frame": {
+      "width": 304.5,
+      "height": 593.375,
+      "ratio": 0.5131662102380451,
+      "source": "http://localhost:3000/_next/image?url=%2Fframes%2Fstories%2Fmobile-phone.png&w=1920&q=75"
+    },
+    "errors": []
+  },
+  {
+    "name": "services-desktop",
+    "stage": {
+      "width": 956.203125,
+      "height": 796.734375,
+      "top": 199.390625,
+      "bottom": 996.125,
+      "ratio": 1.2001529681708536
+    },
+    "scene": {
+      "width": 956.203125,
+      "height": 726.734375,
+      "top": 199.390625,
+      "bottom": 926.125,
+      "ratio": 1.315753262669046
+    },
+    "phone": {
+      "width": 310,
+      "height": 604.09375,
+      "top": 260.703125,
+      "bottom": 864.796875,
+      "ratio": 0.5131653820288655
+    },
+    "canvas": {
+      "width": 310,
+      "height": 604.09375,
+      "top": 260.703125,
+      "bottom": 864.796875,
+      "ratio": 0.5131653820288655
+    },
+    "overflow": false,
+    "frame": {
+      "width": 310,
+      "height": 604.09375,
+      "ratio": 0.5131653820288655,
+      "source": "http://localhost:3000/_next/image?url=%2Fframes%2Fstories%2Fmobile-phone.png&w=1080&q=75"
+    },
+    "errors": []
+  },
+  {
+    "name": "home-mobile",
+    "stage": {
+      "width": 393,
+      "height": 633,
+      "top": 182.703125,
+      "bottom": 815.703125,
+      "ratio": 0.6208530805687204
+    },
+    "scene": {
+      "width": 393,
+      "height": 555,
+      "top": 182.703125,
+      "bottom": 737.703125,
+      "ratio": 0.7081081081081081
+    },
+    "phone": {
+      "width": 244.921875,
+      "height": 477.28125,
+      "top": 221.5625,
+      "bottom": 698.84375,
+      "ratio": 0.5131604792771558
+    },
+    "canvas": {
+      "width": 244.921875,
+      "height": 477.28125,
+      "top": 221.5625,
+      "bottom": 698.84375,
+      "ratio": 0.5131604792771558
+    },
+    "overflow": false,
+    "frame": {
+      "width": 244.921875,
+      "height": 477.28125,
+      "ratio": 0.5131604792771558,
+      "source": "http://localhost:3000/_next/image?url=%2Fframes%2Fstories%2Fmobile-phone.png&w=640&q=75"
+    },
+    "errors": []
+  },
+  {
+    "name": "services-mobile",
+    "stage": {
+      "width": 393,
+      "height": 633,
+      "top": 192.578125,
+      "bottom": 825.578125,
+      "ratio": 0.6208530805687204
+    },
+    "scene": {
+      "width": 393,
+      "height": 555,
+      "top": 192.578125,
+      "bottom": 747.578125,
+      "ratio": 0.7081081081081081
+    },
+    "phone": {
+      "width": 244.921875,
+      "height": 477.28125,
+      "top": 231.4375,
+      "bottom": 708.71875,
+      "ratio": 0.5131604792771558
+    },
+    "canvas": {
+      "width": 244.921875,
+      "height": 477.28125,
+      "top": 231.4375,
+      "bottom": 708.71875,
+      "ratio": 0.5131604792771558
+    },
+    "overflow": false,
+    "frame": {
+      "width": 244.921875,
+      "height": 477.28125,
+      "ratio": 0.5131604792771558,
+      "source": "http://localhost:3000/_next/image?url=%2Fframes%2Fstories%2Fmobile-phone.png&w=640&q=75"
+    },
+    "errors": []
+  }
+]

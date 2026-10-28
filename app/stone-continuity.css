@@ -6,8 +6,8 @@
   inset: auto;
   left: 50%;
   top: 50%;
-  width: min(100vw, 100svh);
-  height: min(100vw, 100svh);
+  width: 100vw;
+  height: 100svh;
   transform: translate(-50%, -50%);
   will-change: transform;
 }

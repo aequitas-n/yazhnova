@@ -39,13 +39,15 @@ export default function CinematicIntro({
       return;
     }
     onReady();
-    // A square native render target retains its resolution while only its outer
-    // transform moves. No per-frame GPU target allocation or canvas replacement.
-    const size = Math.min(innerWidth, innerHeight);
+    // Render across the full viewport so travelling shards have no inner box.
+    // Keep this target stable during docking; only its outer transform moves.
+    const width = innerWidth;
+    const height = innerHeight;
+    const size = Math.min(width, height);
     const state = { dock: 0 };
     gsap.set(frame, {
-      width: size,
-      height: size,
+      width,
+      height,
       left: innerWidth / 2,
       top: innerHeight / 2,
       xPercent: -50,

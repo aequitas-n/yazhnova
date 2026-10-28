@@ -1,0 +1,17 @@
+# Large hands from both screen edges
+
+The homepage has a desktop stage exactly `100svh` tall. The description sits beneath the headline; project buttons and the note sit at the bottom right. The hand artwork can overflow its logical stage, so the upper forearm and lower palm are not cut by a rectangular frame.
+
+The original diagonal hand texture is preserved. An opt-in `panoramicHands` mode in the real DitherReveal shader places the two hands independently, at a uniform scale, with their forearms anchored to the left and right edges. It samples each original hand without stretching edge pixels or lengthening the arms. The left palm is lowered toward the bottom; the approved right-hand position stays unchanged. The existing native dithering, wave and pointer interaction remain active on one canvas.
+
+The stone now follows the hands' actual rendered image scale. Its square canvas is capped at 27% of the cover-fitted hand texture width, with a further 760px ceiling. A taller viewport cannot enlarge it independently of the hands. At 1920px width, the canvas stays 518.39px across 720px, 900px and 1080px viewport heights. Portrait and mobile layouts use the same image-relative rule. Hand anchors, the stone center and native geometry are unchanged. Loading/reduced-motion hand previews follow that same scale, including the bleed captured in desktop frames.
+
+Screenshots: [1920 × 1080](1920x1080-live.png), [1880 × 900](1880x900-live.png), [1440 × 900](1440x900-live.png), [1366 × 768](1366x768-live.png), [1280 × 720](1280x720-live.png), [768 × 1024](768x1024-live.png), [mobile](393x720-live.png). Matching static-frame screenshots are in this directory without the `-live` suffix.
+
+[Measured layout results](layout.json) cover eleven viewports from 393px mobile to 3840px ultrawide, including 768 x 1366 portrait. They enforce the 27% maximum for live and static rendering, and verify height-independent scaling at a fixed desktop width. They also check that the complete desktop hero is one viewport high, supporting copy/buttons/baseline are visible, hands reach both edges, and there is no horizontal overflow or console error. Mobile retains its original composition and readable vertical flow.
+
+The intro still moves the same live stone into the measured slot. Two WebGL contexts cover the hands and stone. A `verticalBleed` control adds 280px of real drawing area above and below the desktop stage, rather than relying on CSS overflow on a clipped framebuffer. Logical image coordinates and pointer mapping account for that extra area. Paper pixels become transparent so overflow does not introduce an opaque rectangle. The original default remains zero bleed.
+
+Reduced motion and loading use transparent native renderer captures selected through a responsive picture, including dedicated wide, short-screen and portrait presets. Phones retain zero bleed and their original frame. Touch tablets keep the desktop composition with lighter pixel density. Only the matching picture resource is requested at high priority, avoiding an unnecessary desktop preload on mobile.
+
+Reproduce with `node scripts/capture-hero-viewport.mjs`. Regenerate native frames with `FRAME_KINDS=hero-dither npm run capture:frames` (PowerShell: set `$env:FRAME_KINDS` first). Production build and thirteen intro/hands/mobile checks pass. The current captures also verify that the canvas extends beyond the stage, the description stays above it, and buttons stay below it without horizontal page overflow.

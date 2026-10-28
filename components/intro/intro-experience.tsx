@@ -42,6 +42,7 @@ export function IntroExperience({ children }: { children: ReactNode }) {
     size: 2.2,
     spread: 0.42,
     idle: false,
+    viewportFraming: true,
   });
   const onNativeReady = useCallback(() => setNativeReady(true), []);
   const dialog = useRef<HTMLDivElement>(null);

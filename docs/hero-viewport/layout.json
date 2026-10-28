@@ -1,0 +1,761 @@
+[
+  {
+    "width": 1920,
+    "height": 720,
+    "hero": {
+      "top": 1,
+      "bottom": 721,
+      "width": 1920,
+      "height": 720
+    },
+    "title": {
+      "top": 123,
+      "bottom": 241.53125,
+      "width": 1440,
+      "height": 118.53125
+    },
+    "description": {
+      "top": 255.53125,
+      "bottom": 300.3125,
+      "width": 356.125,
+      "height": 44.78125
+    },
+    "nav": {
+      "top": 0,
+      "bottom": 77,
+      "width": 1920,
+      "height": 77
+    },
+    "canvas": {
+      "top": 36.3125,
+      "bottom": 827.21875,
+      "width": 1920,
+      "height": 790.90625
+    },
+    "visual": {
+      "top": 316.3125,
+      "bottom": 547.21875,
+      "width": 1920,
+      "height": 230.90625
+    },
+    "stone": {
+      "top": 158.7109375,
+      "bottom": 677.1015625,
+      "width": 518.390625,
+      "height": 518.390625
+    },
+    "handImageWidth": 1920,
+    "stoneToHands": 0.2699951171875,
+    "support": {
+      "top": 553.21875,
+      "bottom": 628,
+      "width": 1440,
+      "height": 74.78125
+    },
+    "baseline": {
+      "top": 644,
+      "bottom": 677,
+      "width": 1440,
+      "height": 33
+    },
+    "canvases": 2,
+    "overflow": false,
+    "edgeCoverage": {
+      "left": 0.2829218106995885,
+      "right": 0.35875955320399766
+    },
+    "staticSource": "http://localhost:3000/frames/signal/hero-hands-edge-wide.png",
+    "staticStoneToHands": 0.2699951171875,
+    "errors": []
+  },
+  {
+    "width": 1920,
+    "height": 900,
+    "hero": {
+      "top": 1,
+      "bottom": 901,
+      "width": 1920,
+      "height": 900
+    },
+    "title": {
+      "top": 123,
+      "bottom": 241.53125,
+      "width": 1440,
+      "height": 118.53125
+    },
+    "description": {
+      "top": 255.53125,
+      "bottom": 300.3125,
+      "width": 356.125,
+      "height": 44.78125
+    },
+    "nav": {
+      "top": 0,
+      "bottom": 77,
+      "width": 1920,
+      "height": 77
+    },
+    "canvas": {
+      "top": 36.3125,
+      "bottom": 1007.21875,
+      "width": 1920,
+      "height": 970.90625
+    },
+    "visual": {
+      "top": 316.3125,
+      "bottom": 727.21875,
+      "width": 1920,
+      "height": 410.90625
+    },
+    "stone": {
+      "top": 237.9140625,
+      "bottom": 756.3046875,
+      "width": 518.390625,
+      "height": 518.390625
+    },
+    "handImageWidth": 1920,
+    "stoneToHands": 0.2699951171875,
+    "support": {
+      "top": 733.21875,
+      "bottom": 808,
+      "width": 1440,
+      "height": 74.78125
+    },
+    "baseline": {
+      "top": 824,
+      "bottom": 857,
+      "width": 1440,
+      "height": 33
+    },
+    "canvases": 2,
+    "overflow": false,
+    "edgeCoverage": {
+      "left": 0.2639446675591254,
+      "right": 0.28502900490852295
+    },
+    "staticSource": "http://localhost:3000/frames/signal/hero-hands-edge-wide.png",
+    "staticStoneToHands": 0.2699951171875,
+    "errors": []
+  },
+  {
+    "width": 1920,
+    "height": 1080,
+    "hero": {
+      "top": 1,
+      "bottom": 1081,
+      "width": 1920,
+      "height": 1080
+    },
+    "title": {
+      "top": 140.390625,
+      "bottom": 258.921875,
+      "width": 1440,
+      "height": 118.53125
+    },
+    "description": {
+      "top": 272.921875,
+      "bottom": 317.703125,
+      "width": 356.125,
+      "height": 44.78125
+    },
+    "nav": {
+      "top": 0,
+      "bottom": 77,
+      "width": 1920,
+      "height": 77
+    },
+    "canvas": {
+      "top": 53.703125,
+      "bottom": 1187.21875,
+      "width": 1920,
+      "height": 1133.515625
+    },
+    "visual": {
+      "top": 333.703125,
+      "bottom": 907.21875,
+      "width": 1920,
+      "height": 573.515625
+    },
+    "stone": {
+      "top": 326.8515625,
+      "bottom": 845.2421875,
+      "width": 518.390625,
+      "height": 518.390625
+    },
+    "handImageWidth": 1920,
+    "stoneToHands": 0.2699951171875,
+    "support": {
+      "top": 913.21875,
+      "bottom": 988,
+      "width": 1440,
+      "height": 74.78125
+    },
+    "baseline": {
+      "top": 1004,
+      "bottom": 1037,
+      "width": 1440,
+      "height": 33
+    },
+    "canvases": 2,
+    "overflow": false,
+    "edgeCoverage": {
+      "left": 0.23148148148148148,
+      "right": 0.2526069759079468
+    },
+    "staticSource": "http://localhost:3000/frames/signal/hero-hands-edge.png",
+    "staticStoneToHands": 0.2699951171875,
+    "errors": []
+  },
+  {
+    "width": 1880,
+    "height": 900,
+    "hero": {
+      "top": 1,
+      "bottom": 901,
+      "width": 1880,
+      "height": 900
+    },
+    "title": {
+      "top": 123,
+      "bottom": 239.0625,
+      "width": 1440,
+      "height": 116.0625
+    },
+    "description": {
+      "top": 253.0625,
+      "bottom": 297.84375,
+      "width": 356.125,
+      "height": 44.78125
+    },
+    "nav": {
+      "top": 0,
+      "bottom": 77,
+      "width": 1880,
+      "height": 77
+    },
+    "canvas": {
+      "top": 33.84375,
+      "bottom": 1007.21875,
+      "width": 1880,
+      "height": 973.375
+    },
+    "visual": {
+      "top": 313.84375,
+      "bottom": 727.21875,
+      "width": 1880,
+      "height": 413.375
+    },
+    "stone": {
+      "top": 241.921875,
+      "bottom": 749.515625,
+      "width": 507.59375,
+      "height": 507.59375
+    },
+    "handImageWidth": 1880,
+    "stoneToHands": 0.2699966755319149,
+    "support": {
+      "top": 733.21875,
+      "bottom": 808,
+      "width": 1440,
+      "height": 74.78125
+    },
+    "baseline": {
+      "top": 824,
+      "bottom": 857,
+      "width": 1440,
+      "height": 33
+    },
+    "canvases": 2,
+    "overflow": false,
+    "edgeCoverage": {
+      "left": 0.2639446675591254,
+      "right": 0.28346720214190096
+    },
+    "staticSource": "http://localhost:3000/frames/signal/hero-hands-edge-wide.png",
+    "staticStoneToHands": 0.2699966755319149,
+    "errors": []
+  },
+  {
+    "width": 1440,
+    "height": 900,
+    "hero": {
+      "top": 1,
+      "bottom": 901,
+      "width": 1440,
+      "height": 900
+    },
+    "title": {
+      "top": 123,
+      "bottom": 211.890625,
+      "width": 1328,
+      "height": 88.890625
+    },
+    "description": {
+      "top": 225.890625,
+      "bottom": 270.671875,
+      "width": 356.125,
+      "height": 44.78125
+    },
+    "nav": {
+      "top": 0,
+      "bottom": 77,
+      "width": 1440,
+      "height": 77
+    },
+    "canvas": {
+      "top": 6.671875,
+      "bottom": 1007.21875,
+      "width": 1440,
+      "height": 1000.546875
+    },
+    "visual": {
+      "top": 286.671875,
+      "bottom": 727.21875,
+      "width": 1440,
+      "height": 440.546875
+    },
+    "stone": {
+      "top": 286.1015625,
+      "bottom": 674.8984375,
+      "width": 388.796875,
+      "height": 388.796875
+    },
+    "handImageWidth": 1440,
+    "stoneToHands": 0.2699978298611111,
+    "support": {
+      "top": 733.21875,
+      "bottom": 808,
+      "width": 1328,
+      "height": 74.78125
+    },
+    "baseline": {
+      "top": 824,
+      "bottom": 857,
+      "width": 1328,
+      "height": 33
+    },
+    "canvases": 2,
+    "overflow": false,
+    "edgeCoverage": {
+      "left": 0.23025435073627845,
+      "right": 0.2466532797858099
+    },
+    "staticSource": "http://localhost:3000/frames/signal/hero-hands-edge.png",
+    "staticStoneToHands": 0.2699978298611111,
+    "errors": []
+  },
+  {
+    "width": 1366,
+    "height": 768,
+    "hero": {
+      "top": 1,
+      "bottom": 769,
+      "width": 1366,
+      "height": 768
+    },
+    "title": {
+      "top": 123,
+      "bottom": 207.34375,
+      "width": 1254,
+      "height": 84.34375
+    },
+    "description": {
+      "top": 221.34375,
+      "bottom": 266.125,
+      "width": 356.125,
+      "height": 44.78125
+    },
+    "nav": {
+      "top": 0,
+      "bottom": 77,
+      "width": 1366,
+      "height": 77
+    },
+    "canvas": {
+      "top": 2.125,
+      "bottom": 875.21875,
+      "width": 1366,
+      "height": 873.09375
+    },
+    "visual": {
+      "top": 282.125,
+      "bottom": 595.21875,
+      "width": 1366,
+      "height": 313.09375
+    },
+    "stone": {
+      "top": 235.46875,
+      "bottom": 604.28125,
+      "width": 368.8125,
+      "height": 368.8125
+    },
+    "handImageWidth": 1366,
+    "stoneToHands": 0.26999450951683746,
+    "support": {
+      "top": 601.21875,
+      "bottom": 676,
+      "width": 1254,
+      "height": 74.78125
+    },
+    "baseline": {
+      "top": 692,
+      "bottom": 725,
+      "width": 1254,
+      "height": 33
+    },
+    "canvases": 2,
+    "overflow": false,
+    "edgeCoverage": {
+      "left": 0.24308943089430896,
+      "right": 0.2780487804878049
+    },
+    "staticSource": "http://localhost:3000/frames/signal/hero-hands-edge-short.png",
+    "staticStoneToHands": 0.26999450951683746,
+    "errors": []
+  },
+  {
+    "width": 1280,
+    "height": 720,
+    "hero": {
+      "top": 1,
+      "bottom": 721,
+      "width": 1280,
+      "height": 720
+    },
+    "title": {
+      "top": 123,
+      "bottom": 202.015625,
+      "width": 1168,
+      "height": 79.015625
+    },
+    "description": {
+      "top": 216.015625,
+      "bottom": 260.796875,
+      "width": 356.125,
+      "height": 44.78125
+    },
+    "nav": {
+      "top": 0,
+      "bottom": 77,
+      "width": 1280,
+      "height": 77
+    },
+    "canvas": {
+      "top": -3.203125,
+      "bottom": 827.21875,
+      "width": 1280,
+      "height": 830.421875
+    },
+    "visual": {
+      "top": 276.796875,
+      "bottom": 547.21875,
+      "width": 1280,
+      "height": 270.421875
+    },
+    "stone": {
+      "top": 222.984375,
+      "bottom": 568.578125,
+      "width": 345.59375,
+      "height": 345.59375
+    },
+    "handImageWidth": 1280,
+    "stoneToHands": 0.2699951171875,
+    "support": {
+      "top": 553.21875,
+      "bottom": 628,
+      "width": 1168,
+      "height": 74.78125
+    },
+    "baseline": {
+      "top": 644,
+      "bottom": 677,
+      "width": 1168,
+      "height": 33
+    },
+    "canvases": 2,
+    "overflow": false,
+    "edgeCoverage": {
+      "left": 0.2501469723691946,
+      "right": 0.2879188712522046
+    },
+    "staticSource": "http://localhost:3000/frames/signal/hero-hands-edge-short.png",
+    "staticStoneToHands": 0.2699951171875,
+    "errors": []
+  },
+  {
+    "width": 768,
+    "height": 1024,
+    "hero": {
+      "top": 1,
+      "bottom": 1025,
+      "width": 768,
+      "height": 1024
+    },
+    "title": {
+      "top": 134.515625,
+      "bottom": 191.828125,
+      "width": 704,
+      "height": 57.3125
+    },
+    "description": {
+      "top": 205.828125,
+      "bottom": 250.609375,
+      "width": 356.125,
+      "height": 44.78125
+    },
+    "nav": {
+      "top": 0,
+      "bottom": 77,
+      "width": 768,
+      "height": 77
+    },
+    "canvas": {
+      "top": -13.390625,
+      "bottom": 1132.40625,
+      "width": 768,
+      "height": 1145.796875
+    },
+    "visual": {
+      "top": 266.609375,
+      "bottom": 852.40625,
+      "width": 768,
+      "height": 585.796875
+    },
+    "stone": {
+      "top": 397.9296875,
+      "bottom": 650.7890625,
+      "width": 252.859375,
+      "height": 252.859375
+    },
+    "handImageWidth": 936.5663747479839,
+    "stoneToHands": 0.26998553633536193,
+    "support": {
+      "top": 858.40625,
+      "bottom": 932,
+      "width": 704,
+      "height": 73.59375
+    },
+    "baseline": {
+      "top": 948,
+      "bottom": 981,
+      "width": 704,
+      "height": 33
+    },
+    "canvases": 2,
+    "overflow": false,
+    "edgeCoverage": {
+      "left": 0.12944890929965558,
+      "right": 0.14619211634137008
+    },
+    "staticSource": "http://localhost:3000/frames/signal/hero-hands-edge-portrait.png",
+    "staticStoneToHands": 0.26999082492494486,
+    "errors": []
+  },
+  {
+    "width": 768,
+    "height": 1366,
+    "hero": {
+      "top": 1,
+      "bottom": 1367,
+      "width": 768,
+      "height": 1366
+    },
+    "title": {
+      "top": 147,
+      "bottom": 204.3125,
+      "width": 704,
+      "height": 57.3125
+    },
+    "description": {
+      "top": 218.3125,
+      "bottom": 263.09375,
+      "width": 356.125,
+      "height": 44.78125
+    },
+    "nav": {
+      "top": 0,
+      "bottom": 77,
+      "width": 768,
+      "height": 77
+    },
+    "canvas": {
+      "top": -0.90625,
+      "bottom": 1474.40625,
+      "width": 768,
+      "height": 1475.3125
+    },
+    "visual": {
+      "top": 279.09375,
+      "bottom": 1194.40625,
+      "width": 768,
+      "height": 915.3125
+    },
+    "stone": {
+      "top": 484.2734375,
+      "bottom": 879.3828125,
+      "width": 395.109375,
+      "height": 395.109375
+    },
+    "handImageWidth": 1463.3927671370968,
+    "stoneToHands": 0.2699954406450777,
+    "support": {
+      "top": 1200.40625,
+      "bottom": 1274,
+      "width": 704,
+      "height": 73.59375
+    },
+    "baseline": {
+      "top": 1290,
+      "bottom": 1323,
+      "width": 704,
+      "height": 33
+    },
+    "canvases": 2,
+    "overflow": false,
+    "edgeCoverage": {
+      "left": 0.13073646606210498,
+      "right": 0.16783456993679582
+    },
+    "staticSource": "http://localhost:3000/frames/signal/hero-hands-edge-portrait.png",
+    "staticStoneToHands": 0.26999821327737833,
+    "errors": []
+  },
+  {
+    "width": 393,
+    "height": 720,
+    "hero": {
+      "top": 68,
+      "bottom": 885.03125,
+      "width": 393,
+      "height": 817.03125
+    },
+    "title": {
+      "top": 133,
+      "bottom": 265.015625,
+      "width": 353,
+      "height": 132.015625
+    },
+    "description": {
+      "top": 556.53125,
+      "bottom": 630.03125,
+      "width": 275.1875,
+      "height": 73.5
+    },
+    "nav": {
+      "top": 0,
+      "bottom": 68,
+      "width": 393,
+      "height": 68
+    },
+    "canvas": {
+      "top": 285.015625,
+      "bottom": 536.53125,
+      "width": 393,
+      "height": 251.515625
+    },
+    "visual": {
+      "top": 285.015625,
+      "bottom": 536.53125,
+      "width": 393,
+      "height": 251.515625
+    },
+    "stone": {
+      "top": 356.484375,
+      "bottom": 465.046875,
+      "width": 108.5625,
+      "height": 108.5625
+    },
+    "handImageWidth": 402.1207472278226,
+    "stoneToHands": 0.26997487881045246,
+    "support": {
+      "top": 654.03125,
+      "bottom": 736.03125,
+      "width": 353,
+      "height": 82
+    },
+    "baseline": {
+      "top": 766.03125,
+      "bottom": 805.03125,
+      "width": 353,
+      "height": 39
+    },
+    "canvases": 2,
+    "overflow": false,
+    "edgeCoverage": {
+      "left": 0.07411674347158217,
+      "right": 0.08474142345110088
+    },
+    "staticSource": "http://localhost:3000/frames/signal/hero-hands-diagonal.png",
+    "staticStoneToHands": 0.2697707647387712,
+    "errors": []
+  },
+  {
+    "width": 3840,
+    "height": 1080,
+    "hero": {
+      "top": 1,
+      "bottom": 1081,
+      "width": 3840,
+      "height": 1080
+    },
+    "title": {
+      "top": 140.390625,
+      "bottom": 259.453125,
+      "width": 1440,
+      "height": 119.0625
+    },
+    "description": {
+      "top": 273.453125,
+      "bottom": 318.234375,
+      "width": 356.125,
+      "height": 44.78125
+    },
+    "nav": {
+      "top": 0,
+      "bottom": 77,
+      "width": 3840,
+      "height": 77
+    },
+    "canvas": {
+      "top": 54.234375,
+      "bottom": 1187.21875,
+      "width": 3840,
+      "height": 1132.984375
+    },
+    "visual": {
+      "top": 334.234375,
+      "bottom": 907.21875,
+      "width": 3840,
+      "height": 572.984375
+    },
+    "stone": {
+      "top": 206.34375,
+      "bottom": 966.34375,
+      "width": 760,
+      "height": 760
+    },
+    "handImageWidth": 3840,
+    "stoneToHands": 0.19791666666666666,
+    "support": {
+      "top": 913.21875,
+      "bottom": 988,
+      "width": 1440,
+      "height": 74.78125
+    },
+    "baseline": {
+      "top": 1004,
+      "bottom": 1037,
+      "width": 1440,
+      "height": 33
+    },
+    "canvases": 2,
+    "overflow": false,
+    "edgeCoverage": {
+      "left": 0.24883135562747213,
+      "right": 0.31032002876663073
+    },
+    "staticSource": "http://localhost:3000/frames/signal/hero-hands-edge-wide.png",
+    "staticStoneToHands": 0.19791666666666669,
+    "errors": []
+  }
+]

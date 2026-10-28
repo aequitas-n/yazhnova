@@ -1,0 +1,30 @@
+[
+  {
+    "name": "desktop",
+    "width": 1920,
+    "height": 1080,
+    "canvas": {
+      "x": 0,
+      "y": 0,
+      "width": 1920,
+      "height": 1080
+    },
+    "outsidePixels": 120976,
+    "sameCanvas": true,
+    "errors": []
+  },
+  {
+    "name": "mobile",
+    "width": 390,
+    "height": 844,
+    "canvas": {
+      "x": 0,
+      "y": 0,
+      "width": 390,
+      "height": 844
+    },
+    "outsidePixels": 11127,
+    "sameCanvas": true,
+    "errors": []
+  }
+]

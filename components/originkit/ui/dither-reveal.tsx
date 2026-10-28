@@ -40,6 +40,8 @@ interface DitherRevealProps {
   darkColor?: string;
   lightColor?: string;
   monochrome?: boolean;
+  panoramicHands?: boolean;
+  verticalBleed?: number;
   onReady?: () => void;
 }
 
@@ -174,6 +176,8 @@ export default function DitherReveal(props: DitherRevealProps) {
     const uImageAspect = u("uImageAspect");
     const uResolution = u("uResolution");
     const uFit = u("uFit");
+    const uPanoramicHands = u("uPanoramicHands");
+    const uVerticalBleed = u("uVerticalBleed");
     const uFocusY = u("uFocusY");
     const uDark = u("uDark");
     const uLight = u("uLight");
@@ -232,8 +236,9 @@ export default function DitherReveal(props: DitherRevealProps) {
 
     function onMove(e: PointerEvent) {
       const r = container!.getBoundingClientRect();
+      const bleed = appearance.current.verticalBleed ?? 0;
       mouse.x = (e.clientX - r.left) / r.width;
-      mouse.y = 1 - (e.clientY - r.top) / r.height;
+      mouse.y = 1 - (e.clientY - r.top - bleed) / Math.max(1, r.height - 2 * bleed);
       mouse.entered = true;
       mouse.target = 1;
     }
@@ -280,14 +285,18 @@ export default function DitherReveal(props: DitherRevealProps) {
       gl!.uniform1f(uWaveFrequency, L.waveFrequency);
       gl!.uniform1f(uWaveAmplitude, L.waveAmplitude);
       gl!.uniform1f(uWaveMargin, L.waveMargin);
-      gl!.uniform1f(uCanvasAspect, canvas!.width / canvas!.height);
+      const bleed = appearance.current.verticalBleed ?? 0;
+      const logicalHeight = Math.max(1, container!.clientHeight - 2 * bleed);
+      gl!.uniform1f(uCanvasAspect, container!.clientWidth / logicalHeight);
+      gl!.uniform1f(uVerticalBleed, bleed / logicalHeight);
       gl!.uniform1f(uImageAspect, imgAspect);
       gl!.uniform2f(
         uResolution,
         container!.clientWidth || 1,
-        container!.clientHeight || 1,
+        logicalHeight,
       );
       gl!.uniform1f(uFit, L.fit);
+      gl!.uniform1f(uPanoramicHands, appearance.current.panoramicHands ? 1 : 0);
       gl!.uniform1f(uFocusY, L.focusY);
       gl!.uniform3fv(uDark, rgb(appearance.current.darkColor ?? "#000000"));
       gl!.uniform3fv(uLight, rgb(appearance.current.lightColor ?? "#FFFFFF"));
@@ -361,6 +370,8 @@ uniform float uCanvasAspect;
 uniform float uImageAspect;
 uniform vec2 uResolution;
 uniform float uFit;
+uniform float uPanoramicHands;
+uniform float uVerticalBleed;
 uniform float uFocusY;
 uniform vec3 uDark;
 uniform vec3 uLight;
@@ -411,6 +422,7 @@ vec2 fitUv(vec2 uv) {
 
 void main() {
     vec2 uv = vUv;
+    uv.y = (uv.y - 0.5) * (1.0 + 2.0 * uVerticalBleed) + 0.5;
     float time = uTime;
     float waveStrength = uWaveAmplitude * 0.1;
     float revealNorm = uRevealRadius / max(min(uResolution.x, uResolution.y), 1.0);
@@ -435,6 +447,24 @@ void main() {
     vec4 color = texture2D(uTexture, sampleUv);
     vec2 inside = step(vec2(0.0), sampleUv) * step(sampleUv, vec2(1.0));
     color *= inside.x * inside.y;
+    if (uPanoramicHands > 0.5) {
+        // Recompose the original two hands as separate, proportional samples.
+        // Forearms stay anchored to the texture edges; no edge pixels stretch.
+        vec2 s = uCanvasAspect < uImageAspect
+            ? vec2(uCanvasAspect / uImageAspect, 1.0)
+            : vec2(1.0, uImageAspect / uCanvasAspect);
+        if (uVerticalBleed <= 0.0) s *= max(1.0, 0.44 / s.y);
+        float handX = clamp(distortedUv.x, 0.0, 1.0);
+        vec2 leftUv = vec2(handX * s.x, (distortedUv.y - 0.20) * s.y + 0.29);
+        vec2 rightUv = vec2(1.0 - (1.0 - handX) * s.x, (distortedUv.y - 0.88) * s.y + 0.71);
+        float leftMask = step(0.0, leftUv.x) * step(leftUv.x, 0.535)
+            * step(0.0, leftUv.y) * step(leftUv.y, 1.0);
+        float rightMask = step(0.535, rightUv.x) * step(rightUv.x, 1.0)
+            * step(0.0, rightUv.y) * step(rightUv.y, 1.0);
+        vec3 leftColor = mix(vec3(1.0), texture2D(uTexture, leftUv).rgb, leftMask);
+        vec3 rightColor = mix(vec3(1.0), texture2D(uTexture, rightUv).rgb, rightMask);
+        color = vec4(min(leftColor, rightColor), 1.0);
+    }
 
     float gray = dot(color.rgb, vec3(0.299, 0.587, 0.114));
     float ps = max(uPixelSize, 0.25);
@@ -447,6 +477,8 @@ void main() {
     float revealAmount = (1.0 - smoothstep(innerRadius, outerRadius, revealDist)) * uMouseActive;
 
     vec3 photoColor = mix(color.rgb, mix(uDark, uLight, gray), uMonochrome);
-    gl_FragColor = vec4(mix(ditherColor, photoColor, revealAmount), color.a);
+    float alpha = color.a;
+    if (uVerticalBleed > 0.0) alpha *= 1.0 - smoothstep(0.94, 0.995, gray);
+    gl_FragColor = vec4(mix(ditherColor, photoColor, revealAmount), alpha);
 }
 `;

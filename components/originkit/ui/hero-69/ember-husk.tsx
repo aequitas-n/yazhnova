@@ -176,6 +176,8 @@ export interface EmberHuskChoreography {
     size?: number
     spread?: number
     idle?: boolean
+    // Extend the original square camera view without changing its perspective.
+    viewportFraming?: boolean
 }
 
 export interface EmberHuskProps {
@@ -1520,8 +1522,13 @@ function __OriginkitBase_EmberHusk(props: EmberHuskProps) {
             aspect = w / h
 
             renderer.setSize(w, h)
-            camera.aspect = aspect
-            camera.updateProjectionMatrix()
+            if (choreographyRef.current?.current.viewportFraming) {
+                const side = Math.min(w, h)
+                camera.setViewOffset(side, side, (side - w) / 2, (side - h) / 2, w, h)
+            } else {
+                camera.aspect = aspect
+                camera.updateProjectionMatrix()
+            }
             bgMat.uniforms.uAspect.value = aspect
 
             const dpr = renderer.getPixelRatio()
@@ -1648,7 +1655,7 @@ function __OriginkitBase_EmberHusk(props: EmberHuskProps) {
             upMat.uniforms.uRadius.value = 0.55 + (q.glow.radius / 10) * 1.7
             compositeMat.uniforms.uStrength.value = 0.04 + (q.glow.strength / 10) * 0.62
 
-            camera.position.z = cameraDistance(q.size, aspect)
+            camera.position.z = cameraDistance(q.size, choreographyRef.current?.current.viewportFraming ? 1 : aspect)
             camera.lookAt(0, 0, 0)
         }
 
@@ -1829,7 +1836,7 @@ function __OriginkitBase_EmberHusk(props: EmberHuskProps) {
             const bob = (q.drift.bob / 10) * 0.11
             const sway = (q.drift.sway / 10) * 0.17
             const cue = choreographyRef.current?.current
-            if (cue?.size !== undefined) camera.position.z = cameraDistance(cue.size, aspect)
+            if (cue?.size !== undefined) camera.position.z = cameraDistance(cue.size, cue.viewportFraming ? 1 : aspect)
             if (cue?.idle && idleStarted === null) idleStarted = t
             rig.rotation.y = cue ? cue.rotation + (cue.idle ? (t - (idleStarted ?? t)) * spin : 0) : t * spin
             rig.rotation.z = Math.sin(t * 0.43) * sway

@@ -45,12 +45,18 @@ test("the native intro releases a live stone between landscape hands with two co
       visualTop: rect(".hero-visual-space").top,
       visualBottom: rect(".hero-visual-space").bottom,
       supportTop: rect(".hero-support").top,
+      descriptionBottom: rect(".hero-description").bottom,
+      canvasTop: rect(".hero-art canvas").top,
+      canvasBottom: rect(".hero-art canvas").bottom,
       maximum: (window as unknown as { handsContextState: { maximum: number } }).handsContextState
         .maximum,
     };
   });
   expect(layout.titleBottom).toBeLessThan(layout.visualTop);
-  expect(layout.visualBottom).toBeLessThanOrEqual(layout.supportTop);
+  expect(layout.descriptionBottom).toBeLessThan(layout.visualTop);
+  expect(layout.visualBottom).toBeLessThan(layout.supportTop);
+  expect(layout.canvasTop).toBeLessThan(layout.visualTop);
+  expect(layout.canvasBottom).toBeGreaterThan(layout.visualBottom);
   expect(layout.maximum).toBeLessThanOrEqual(2);
   await page.locator("#manifesto").scrollIntoViewIfNeeded();
   await expect(page.locator(".hero-visual-space canvas")).toHaveCount(0);

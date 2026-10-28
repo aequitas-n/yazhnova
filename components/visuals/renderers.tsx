@@ -66,6 +66,12 @@ export default function Renderer({
       }
     }
   }
+  // Composition follows the CSS viewport breakpoint; touch tablets still use
+  // the desktop frame while retaining the lighter mobile rendering controls.
+  if (kind === "hero-dither" && typeof window !== "undefined" && window.innerWidth < 768) {
+    props.panoramicHands = false;
+    props.verticalBleed = 0;
+  }
   return (
     <Source
       {...props}

@@ -11,7 +11,7 @@ Replay locally at `http://localhost:3000/?intro=replay`.
 - [Desktop transition](desktop-transition.png) and [settled hero](desktop-hero.png)
 - [Mobile transition](mobile-transition.png) and [settled hero](mobile-hero.png)
 
-The shared HomeStone owns a stable portal container. That container temporarily lives in the intro and then moves into the home slot. The actual WebGL canvas, GPU context, geometry, material and clock survive the move. The square render target retains its dimensions during the transform and resizes once on arrival. Camera framing and debris spread ease into the homepage settings; idle rotation continues from the final intro pose.
+The shared HomeStone owns a stable portal container. That container temporarily lives in the intro and then moves into the home slot. The actual WebGL canvas, GPU context, geometry, material and clock survive the move. The viewport-sized render target retains its dimensions during the transform and resizes once on arrival. An optional camera view offset extends the original square framing across the viewport without changing the stone's perspective or apparent size. Camera framing and debris spread ease into the homepage settings; idle rotation continues from the final intro pose. See [the full-viewport shard review](../intro-space/README.md).
 
 Desktop playback lasts approximately 5.4 seconds after the first native frame, mobile approximately 2.1 seconds. Escape, session skipping, reduced motion, loading failure recovery and no-JavaScript access remain available. No visible Skip button was added.
 

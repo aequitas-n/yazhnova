@@ -220,7 +220,7 @@
 }
 .home-practice .service-stage,
 .home-practice .service-stage-visual {
-  min-height: 66svh;
+  min-height: max(80svh, 760px);
 }
 .home-practice .service-console {
   padding-block: 25px;
@@ -838,8 +838,8 @@
     min-height: 0;
   }
   .home-practice .service-stage-visual {
-    height: 45svh;
-    min-height: 360px;
+    height: 75svh;
+    min-height: 560px;
   }
   .home-practice .service-active-copy {
     padding: 25px 20px 40px;

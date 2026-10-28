@@ -298,7 +298,7 @@ textarea:focus-visible,
   padding-bottom: 0;
 }
 .service-stage {
-  min-height: 80vh;
+  min-height: max(80svh, 760px);
   display: grid;
   grid-template-columns: minmax(310px, 30%) minmax(0, 1fr);
   border-block: 1px solid var(--rule);
@@ -372,7 +372,7 @@ textarea:focus-visible,
   margin-top: 8px;
 }
 .service-stage-visual {
-  min-height: 80vh;
+  min-height: max(80svh, 760px);
   position: relative;
   overflow: hidden;
 }
@@ -1147,8 +1147,8 @@ textarea:focus-visible,
   }
   .service-stage-visual {
     order: 1;
-    min-height: 65vh;
-    height: 65vh;
+    min-height: 560px;
+    height: 75svh;
   }
   .service-stage-caption {
     inset-inline: 20px;

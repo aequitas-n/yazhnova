@@ -21,13 +21,30 @@ export function Hero() {
           <h1 id="hero-title">
             <span>{site.hero.lines.join(" ")}</span> <em>{site.hero.serif}</em>
           </h1>
+          <p className="hero-description">{site.hero.description}</p>
           <div className="hero-visual-space" aria-hidden="true">
             <div className="hero-art" data-source="dither-reveal">
               <LiveVisual
                 kind="hero-dither"
+                surfaceClassName="hero-hands-surface"
                 priority
                 sizes="100vw"
-                frameSrc="/frames/signal/hero-hands-diagonal.png"
+                frameSrc="/frames/signal/hero-hands-edge.png"
+                mobileFrameSrc="/frames/signal/hero-hands-diagonal.png"
+                frameSources={[
+                  {
+                    media: "(min-width: 768px) and (min-aspect-ratio: 2/1)",
+                    srcSet: "/frames/signal/hero-hands-edge-wide.png",
+                  },
+                  {
+                    media: "(min-width: 768px) and (max-height: 800px)",
+                    srcSet: "/frames/signal/hero-hands-edge-short.png",
+                  },
+                  {
+                    media: "(min-width: 768px) and (max-aspect-ratio: 6/5)",
+                    srcSet: "/frames/signal/hero-hands-edge-portrait.png",
+                  },
+                ]}
               />
             </div>
             <div className="hero-stone" data-source="hero-69">
@@ -35,7 +52,6 @@ export function Hero() {
             </div>
           </div>
           <div className="hero-support">
-            <p className="hero-description">{site.hero.description}</p>
             <div className="hero-action-group">
               <div className="hero-actions">
                 <ProjectLink>{site.actions.start}</ProjectLink>

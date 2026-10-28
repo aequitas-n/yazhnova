@@ -25,6 +25,10 @@ try {
       await page
         .locator(".service-story-scene")
         .screenshot({ path: "public/frames/stories/" + id + ".png" });
+      if (id === "mobile")
+        await page
+          .locator(".story-phone")
+          .screenshot({ path: "public/frames/stories/mobile-phone.png" });
       records.push({
         id,
         final: true,

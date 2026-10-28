@@ -9,6 +9,7 @@
   position: absolute;
   inset: 0 0 70px;
   overflow: hidden;
+  container-type: size;
 }
 .service-story-scene > .live-visual {
   width: 100%;
@@ -146,6 +147,19 @@
   text-align: center;
   font-size: 9px;
   color: var(--grey);
+}
+.story-phone,
+.service-story[data-story="mobile"] .visual-frame {
+  position: absolute;
+  inset: 50% auto auto 50% !important;
+  width: min(310px, 72%, calc(86cqh * 390 / 760)) !important;
+  height: auto !important;
+  aspect-ratio: 390 / 760;
+  transform: translate(-50%, -50%);
+  box-shadow: 0 0 0 8px #303030;
+  border-radius: 36px;
+  overflow: hidden;
+  object-fit: contain;
 }
 .story-phone::after {
   content: "";

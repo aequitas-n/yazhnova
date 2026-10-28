@@ -40,7 +40,7 @@ try {
   for (const kind of kinds) {
     if (process.env.FRAME_KINDS && !process.env.FRAME_KINDS.split(",").includes(kind)) continue;
     await page.emulateMedia({ reducedMotion: kind === "hero-stone" ? "no-preference" : "reduce" });
-    await page.setViewportSize({ width: 1200, height: 700 });
+    await page.setViewportSize({ width: 1200, height: kind === "hero-dither" ? 1260 : 700 });
     let errors = [];
     const listener = (e) => errors.push(e.message);
     page.on("pageerror", listener);
@@ -54,8 +54,29 @@ try {
     );
     await page.locator(".visual-export").screenshot({ path: `public/frames/signal/${kind}.png` });
     if (kind === "hero-dither") {
+      await page.addStyleTag({
+        content: "html,body,.visual-export{background:transparent!important}",
+      });
+      for (const [name, width, height] of [
+        ["edge", 1440, 441],
+        ["edge-wide", 1880, 413],
+        ["edge-short", 1366, 313],
+        ["edge-portrait", 768, 586],
+      ]) {
+        await page.setViewportSize({ width, height: height + 560 });
+        await page.waitForTimeout(300);
+        const frame = await page.locator("canvas").screenshot({ omitBackground: true });
+        await writeFile(
+          `public/frames/signal/hero-hands-${name}.png`,
+          await sharp(frame).png({ palette: true, colors: 256, dither: 0, effort: 10 }).toBuffer(),
+        );
+      }
       await page.setViewportSize({ width: 1280, height: 800 });
-      await page.waitForTimeout(300);
+      await page.goto(
+        `${process.env.BASE_URL || "http://localhost:3000"}/playground/visual/hero-dither?composition=original`,
+      );
+      await page.waitForSelector("canvas");
+      await page.waitForTimeout(1000);
       await page
         .locator(".visual-export")
         .screenshot({ path: "public/frames/signal/hero-hands-diagonal.png" });
@@ -66,7 +87,7 @@ try {
     }
     if (kind === "hero-stone") {
       await page.waitForSelector('canvas[data-native-ready="true"]', { timeout: 30000 });
-      await page.setViewportSize({ width: 500, height: 500 });
+      await page.setViewportSize({ width: 800, height: 800 });
       await page.addStyleTag({
         content: "html,body,.visual-export{background:transparent!important}",
       });

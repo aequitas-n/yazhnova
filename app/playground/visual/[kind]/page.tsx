@@ -2,8 +2,15 @@ import { notFound } from "next/navigation";
 import Renderer from "@/components/visuals/renderers";
 import { visualPresets, type VisualKind } from "@/lib/visual-presets";
 export const metadata = { robots: { index: false, follow: false } };
-export default async function VisualPage({ params }: { params: Promise<{ kind: string }> }) {
+export default async function VisualPage({
+  params,
+  searchParams,
+}: {
+  params: Promise<{ kind: string }>;
+  searchParams: Promise<{ composition?: string }>;
+}) {
   const { kind } = await params;
+  const { composition } = await searchParams;
   if (!(kind in visualPresets)) notFound();
   return (
     <main
@@ -17,7 +24,14 @@ export default async function VisualPage({ params }: { params: Promise<{ kind: s
             : "#0A0A0A",
       }}
     >
-      <Renderer kind={kind as VisualKind} />
+      <Renderer
+        kind={kind as VisualKind}
+        overrides={
+          kind === "hero-dither" && composition === "original"
+            ? { panoramicHands: false, verticalBleed: 0 }
+            : undefined
+        }
+      />
     </main>
   );
 }
