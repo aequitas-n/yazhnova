@@ -4,24 +4,24 @@ The homepage opens with the real hero-69 EmberHusk: the stone separates, release
 
 ## Consistent live rendering
 
-There is no poster-to-canvas crossfade. The ink background holds while the native shaders warm, and the stone fades in only after its first genuine 3D frame. A stable portal moves the same renderer, perspective camera, geometry and procedural material through the opening, reformation and into the homepage. The canvas is never replaced at the handoff. Desktop uses the native high-quality preset (DPR capped at 2); mobile uses medium (DPR capped at 1.5), eight shards and six debris pieces. Quality does not change mid-sequence.
+The loading poster remains until the native shaders produce their first genuine 3D frame. A stable portal moves the same renderer, perspective camera, geometry and procedural material through the opening, reformation and into the homepage. The canvas is never replaced at the handoff. Desktop follows the performance tier (DPR up to 1.5); mobile keeps its 30fps cadence and no bloom, twelve main shards and six debris pieces. The full-screen mobile intro stays at DPR 1. Once docked, its small buffer can use DPR up to 1.5 within a 262,144-pixel budget to preserve the rock texture.
 
-`components/intro/cinematic-intro.tsx` drives the optional native choreography ref. The full sequence lasts approximately 5.4 seconds after readiness, or 2.1 seconds on mobile. The two DOM wordmark halves emerge from their center clips; the ink layer then fades while the stone follows the measured hero position. The hands gently appear underneath it.
+`components/intro/cinematic-intro.tsx` drives the optional native choreography ref. The full sequence lasts approximately 5.4 seconds after readiness on desktop and mobile. The previous mobile-only 2.57x acceleration is removed. The two DOM wordmark halves emerge from their center clips; the ink layer then fades while the stone follows the measured hero position. The hands gently appear underneath it.
 
-| Desktop time after readiness | Action                                    |
-| ---------------------------- | ----------------------------------------- |
-| 0.00-0.65 s                  | The live stone fades in and settles       |
-| 0.70-1.75 s                  | Native rock fragments separate and rotate |
-| 1.15-2.10 s                  | YAZH / NOVA emerge outward                |
-| 2.10-2.95 s                  | Wordmark holds                            |
-| 2.95-3.95 s                  | Text retracts and fragments reassemble    |
-| 3.95-4.18 s                  | Reformed stone holds intact               |
-| 4.18-5.40 s                  | Intact stone moves into the hands; ink fades |
+| Time after readiness | Action                                       |
+| -------------------- | -------------------------------------------- |
+| 0.00-0.65 s          | The live stone fades in and settles          |
+| 0.70-1.75 s          | Native rock fragments separate and rotate    |
+| 1.15-2.10 s          | YAZH / NOVA emerge outward                   |
+| 2.10-2.95 s          | Wordmark holds                               |
+| 2.95-3.95 s          | Text retracts and fragments reassemble       |
+| 3.95-4.18 s          | Reformed stone holds intact                  |
+| 4.18-5.40 s          | Intact stone moves into the hands; ink fades |
 
 ## Interaction and cleanup
 
 - The visible Skip intro button is removed. Escape remains available and is described to screen readers. Focus stays on the dialog during playback, then returns to the hero heading. These two noninteractive landmarks do not display an outline; links, buttons and form controls retain their keyboard focus indicators.
-- Reduced motion bypasses the sequence. Mobile plays the shorter live animation. Without JavaScript, the server-rendered site remains accessible through a `noscript` rule.
+- Reduced motion bypasses the sequence. Mobile uses lighter rendering with the same choreography timing. Without JavaScript, the server-rendered site remains accessible through a `noscript` rule.
 - The loading watchdog releases the page after six seconds on desktop, or twelve seconds on mobile and explicit replay. Context failures and component errors also release the page.
 - Native shader warmup is cancellable. Hidden tabs pause the renderer and timeline. The hands renderer can mount during the final reveal beside the original stone, within the two-context budget. The stone remains live in its hero slot; scrolling it off-screen disposes its resources. The intro still restores scrolling and focus.
 
@@ -30,7 +30,6 @@ There is no poster-to-canvas crossfade. The ink background holds while the nativ
 `tests/intro.spec.ts` covers the complete WebGL2 sequence, no image/button in the intro, Escape during pending compilation, session persistence, focused heading without an outline, mobile/reduced-motion/no-JavaScript access and WebGL failure recovery. `npm run capture:intro` records five screenshots and a video against a running production preview in `artifacts/`.
 
 The opening-quality update passed the production build, TypeScript check, five intro tests and both touch-viewport integration tests. Captures at desktop DPR 2 and 390px/412px touch viewports verified that the drawing-buffer size stays constant throughout the sequence. Both mobile runs used 4x CPU throttling and 4 Mbps network emulation, finished playback in 2.08/2.06 seconds, stayed within two live WebGL contexts and reported no console errors. These are Chrome emulation checks, not physical-device measurements. Screenshots, video and measured results are saved locally under `artifacts/intro-*`.
-
 
 ## Current continuity review ? 28 October 2026
 

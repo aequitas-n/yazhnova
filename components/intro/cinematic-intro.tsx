@@ -12,13 +12,11 @@ export default function CinematicIntro({
   onBeat,
   onReveal,
   onComplete,
-  compact = false,
 }: {
   onReady: () => void;
   onBeat: (beat: IntroBeat) => void;
   onReveal: () => void;
   onComplete: () => void;
-  compact?: boolean;
 }) {
   const root = useRef<HTMLDivElement>(null);
   const left = useRef<HTMLSpanElement>(null);
@@ -103,7 +101,6 @@ export default function CinematicIntro({
       .to(cue.current, { size: 4.5, spread: 1, duration: 1.22, ease: "power3.inOut" }, 4.18)
       .to(overlay.querySelector(".intro-label"), { opacity: 0, duration: 0.25 }, 0.7)
       .to(overlay.querySelector(".intro-controls"), { opacity: 0, duration: 0.3 }, 4.9);
-    if (compact) timeline.timeScale(5.4 / 2.1);
     const visibility = () => {
       cue.current.paused = document.hidden;
       if (document.hidden) timeline.pause();
@@ -116,7 +113,7 @@ export default function CinematicIntro({
       document.removeEventListener("visibilitychange", visibility);
       overlay.style.removeProperty("--intro-progress");
     };
-  }, [ready, cue, onReady, onBeat, onReveal, onComplete, compact]);
+  }, [ready, cue, onReady, onBeat, onReveal, onComplete]);
 
   return (
     <div className="intro-scene" ref={root}>

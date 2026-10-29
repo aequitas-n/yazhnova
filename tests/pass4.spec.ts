@@ -48,9 +48,7 @@ test("each chapter has its own hero, metadata, OG image and shared shell", async
 });
 
 for (const width of [390, 412])
-  test(`touch ${width}px autoplays canvases, stories and a short skippable intro`, async ({
-    browser,
-  }) => {
+  test(`touch ${width}px autoplays canvases, stories and the full intro`, async ({ browser }) => {
     const context = await browser.newContext({
       baseURL: process.env.BASE_URL || "http://localhost:3000",
       viewport: { width, height: width === 390 ? 844 : 915 },

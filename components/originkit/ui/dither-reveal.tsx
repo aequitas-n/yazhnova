@@ -2,7 +2,7 @@
 
 import { requestVisualFrame as requestAnimationFrame, cancelVisualFrame as cancelAnimationFrame } from "@/lib/visual-runtime";
 import { useEffect, useRef, type CSSProperties } from "react";
-import { canvasPixelRatio } from "@/lib/canvas-quality";
+import { detailCanvasPixelRatio } from "@/lib/canvas-quality";
 
 const DEFAULT_IMAGE =
   "https://plus.unsplash.com/premium_photo-1726099913477-291d8ca697f8?w=600&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8NXx8YWVzdGhldGljJTIwY29sb3JmdWwlMjBwb3J0cmFpdCUyMGZ1dHVyaXN0aWN8ZW58MHx8MHx8fDA%3D";
@@ -32,6 +32,9 @@ interface DitherRevealProps {
   focusY?: number;
   ditherStyle?: "bayer8" | "lines" | "noise";
   dotSize?: number;
+  ditherStrength?: number;
+  detailDpr?: number;
+  imageWhite?: string;
   revealRadius?: number;
   revealSoftness?: number;
   wave?: boolean;
@@ -169,6 +172,8 @@ export default function DitherReveal(props: DitherRevealProps) {
     const uRevealSoftness = u("uRevealSoftness");
     const uPixelSize = u("uPixelSize");
     const uDitherStyle = u("uDitherStyle");
+    const uDitherStrength = u("uDitherStrength");
+    const uImageWhite = u("uImageWhite");
     const uWaveSpeed = u("uWaveSpeed");
     const uWaveFrequency = u("uWaveFrequency");
     const uWaveAmplitude = u("uWaveAmplitude");
@@ -250,7 +255,7 @@ export default function DitherReveal(props: DitherRevealProps) {
     container.addEventListener("pointerleave", onLeave);
 
     function resize() {
-      const dpr = canvasPixelRatio(2);
+      const dpr = detailCanvasPixelRatio(container!.clientWidth, container!.clientHeight, appearance.current.detailDpr);
       canvas!.width = Math.max(1, Math.floor(container!.clientWidth * dpr));
       canvas!.height = Math.max(1, Math.floor(container!.clientHeight * dpr));
       gl!.viewport(0, 0, canvas!.width, canvas!.height);
@@ -282,6 +287,9 @@ export default function DitherReveal(props: DitherRevealProps) {
       gl!.uniform1f(uRevealSoftness, L.revealSoftness);
       gl!.uniform1f(uPixelSize, L.pixelSize);
       gl!.uniform1f(uDitherStyle, DITHER_INDEX[L.ditherStyle] ?? 0);
+      gl!.uniform1f(uDitherStrength, clamp(appearance.current.ditherStrength, 0, 100, 100) / 100);
+      const white = rgb(appearance.current.imageWhite ?? "#FFFFFF");
+      gl!.uniform1f(uImageWhite, white[0] * 0.299 + white[1] * 0.587 + white[2] * 0.114);
       gl!.uniform1f(uWaveSpeed, L.waveSpeed);
       gl!.uniform1f(uWaveFrequency, L.waveFrequency);
       gl!.uniform1f(uWaveAmplitude, L.waveAmplitude);
@@ -361,6 +369,8 @@ uniform float uRevealRadius;
 uniform float uRevealSoftness;
 uniform float uPixelSize;
 uniform float uDitherStyle;
+uniform float uDitherStrength;
+uniform float uImageWhite;
 
 uniform float uWaveSpeed;
 uniform float uWaveFrequency;
@@ -467,7 +477,7 @@ void main() {
         color = vec4(min(leftColor, rightColor), 1.0);
     }
 
-    float gray = dot(color.rgb, vec3(0.299, 0.587, 0.114));
+    float gray = clamp(dot(color.rgb, vec3(0.299, 0.587, 0.114)) / max(uImageWhite, 0.001), 0.0, 1.0);
     float ps = max(uPixelSize, 0.25);
     float tone = ditherTone(gray, ps);
     vec3 ditherColor = mix(uDark, uLight, tone);
@@ -478,6 +488,7 @@ void main() {
     float revealAmount = (1.0 - smoothstep(innerRadius, outerRadius, revealDist)) * uMouseActive;
 
     vec3 photoColor = mix(color.rgb, mix(uDark, uLight, gray), uMonochrome);
+    ditherColor = mix(photoColor, ditherColor, uDitherStrength);
     float alpha = color.a;
     if (uVerticalBleed > 0.0) alpha *= 1.0 - smoothstep(0.94, 0.995, gray);
     gl_FragColor = vec4(mix(ditherColor, photoColor, revealAmount), alpha);

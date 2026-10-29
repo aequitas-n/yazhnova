@@ -168,13 +168,19 @@ export function IntroExperience({ children }: { children: ReactNode }) {
             <div className="intro-visual-layer">
               {(phase === "pending" || phase === "loading") && (
                 <div className="intro-loading-poster" aria-hidden="true">
-                  <Image src="/frames/signal/hero-stone.webp?v=pass5" alt="" fill priority unoptimized sizes="100vw" />
+                  <Image
+                    src="/frames/signal/hero-stone.webp?v=pass5"
+                    alt=""
+                    fill
+                    priority
+                    unoptimized
+                    sizes="100vw"
+                  />
                 </div>
               )}
               {phase !== "pending" && (
                 <IntroBoundary onError={finish}>
                   <CinematicIntro
-                    compact={compact}
                     onReady={onReady}
                     onBeat={onBeat}
                     onReveal={onReveal}

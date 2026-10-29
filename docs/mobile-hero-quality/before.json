@@ -1,0 +1,98 @@
+[
+  {
+    "width": 390,
+    "buffers": [
+      {
+        "width": 390,
+        "height": 250,
+        "cssWidth": 390,
+        "cssHeight": 249.59375
+      },
+      {
+        "width": 108,
+        "height": 108,
+        "cssWidth": 108,
+        "cssHeight": 108
+      }
+    ],
+    "timing": {
+      "beats": [
+        {
+          "beat": "formed",
+          "time": 936.5999999642372
+        },
+        {
+          "beat": "opening",
+          "time": 1196.3999999761581
+        },
+        {
+          "beat": "wordmark",
+          "time": 1742.800000011921
+        },
+        {
+          "beat": "closing",
+          "time": 2070
+        },
+        {
+          "beat": "reformed",
+          "time": 2456.5
+        },
+        {
+          "beat": "docking",
+          "time": 2548.199999988079
+        }
+      ],
+      "duration": 2171.800000011921,
+      "liveContexts": 2
+    },
+    "errors": []
+  },
+  {
+    "width": 412,
+    "buffers": [
+      {
+        "width": 412,
+        "height": 264,
+        "cssWidth": 412,
+        "cssHeight": 263.671875
+      },
+      {
+        "width": 114,
+        "height": 114,
+        "cssWidth": 114,
+        "cssHeight": 114
+      }
+    ],
+    "timing": {
+      "beats": [
+        {
+          "beat": "formed",
+          "time": 966.1000000238419
+        },
+        {
+          "beat": "opening",
+          "time": 1227.1000000238419
+        },
+        {
+          "beat": "wordmark",
+          "time": 1770.800000011921
+        },
+        {
+          "beat": "closing",
+          "time": 2097.800000011921
+        },
+        {
+          "beat": "reformed",
+          "time": 2485.600000023842
+        },
+        {
+          "beat": "docking",
+          "time": 2579.900000035763
+        }
+      ],
+      "duration": 2097.300000011921,
+      "liveContexts": 2
+    },
+    "errors": []
+  }
+]

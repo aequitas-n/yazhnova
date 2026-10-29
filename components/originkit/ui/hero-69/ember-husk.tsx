@@ -5,7 +5,7 @@
 "use client"
 import { warmRenderer } from "@/lib/warm-renderer"
 import { getVisualTier } from "@/lib/visual-runtime"
-import { canvasPixelRatio } from "@/lib/canvas-quality"
+import { canvasPixelRatio, detailCanvasPixelRatio } from "@/lib/canvas-quality"
 
 import { useEffect, useRef } from "react"
 import type { CSSProperties } from "react"
@@ -184,6 +184,7 @@ export interface EmberHuskChoreography {
 
 export interface EmberHuskProps {
     transparent?: boolean
+    detailDpr?: number
     choreography?: { readonly current: EmberHuskChoreography }
     onReady?: () => void
     onError?: (error: unknown) => void
@@ -1165,6 +1166,14 @@ function __OriginkitBase_EmberHusk(props: EmberHuskProps) {
             uCenter: { value: centre },
         }
 
+        // The bloom composite normally performs this output conversion. A
+        // direct render still needs it, otherwise linear rock colors appear
+        // much darker on the mobile path than in the captured poster.
+        const outputShader = (source: string) => post ? source : source.replace(/\}\s*$/, `
+            #include <tonemapping_fragment>
+            #include <colorspace_fragment>
+        }`)
+
         const rockMat = new THREE.ShaderMaterial({
             uniforms: {
                 ...shared,
@@ -1176,15 +1185,15 @@ function __OriginkitBase_EmberHusk(props: EmberHuskProps) {
                 uTime: { value: 0 },
             },
             vertexShader: ROCK_VERT,
-            fragmentShader: ROCK_FRAG,
-            toneMapped: false,
+            fragmentShader: outputShader(ROCK_FRAG),
+            toneMapped: !post,
         })
 
         const debrisMat = new THREE.ShaderMaterial({
             uniforms: rockMat.uniforms,
             vertexShader: DEBRIS_VERT,
-            fragmentShader: ROCK_FRAG,
-            toneMapped: false,
+            fragmentShader: outputShader(ROCK_FRAG),
+            toneMapped: !post,
         })
 
         const crossMat = new THREE.ShaderMaterial({
@@ -1193,15 +1202,15 @@ function __OriginkitBase_EmberHusk(props: EmberHuskProps) {
                 uCrossColor: { value: new THREE.Color(DEFAULT_CROSSES.color) },
             },
             vertexShader: CROSS_VERT,
-            fragmentShader: CROSS_FRAG,
-            toneMapped: false,
+            fragmentShader: outputShader(CROSS_FRAG),
+            toneMapped: !post,
         })
 
         const beadMat = new THREE.ShaderMaterial({
             uniforms: { ...shared },
             vertexShader: BEAD_VERT,
-            fragmentShader: BEAD_FRAG,
-            toneMapped: false,
+            fragmentShader: outputShader(BEAD_FRAG),
+            toneMapped: !post,
         })
 
         const bgMat = new THREE.ShaderMaterial({
@@ -1212,10 +1221,10 @@ function __OriginkitBase_EmberHusk(props: EmberHuskProps) {
                 uAspect: { value: 1 },
             },
             vertexShader: BG_VERT,
-            fragmentShader: BG_FRAG,
+            fragmentShader: outputShader(BG_FRAG),
             depthTest: false,
             depthWrite: false,
-            toneMapped: false,
+            toneMapped: !post,
         })
 
         const bgQuad = new THREE.Mesh(new THREE.PlaneGeometry(2, 2), bgMat)
@@ -1526,6 +1535,8 @@ function __OriginkitBase_EmberHusk(props: EmberHuskProps) {
             sizeH = h
             aspect = w / h
 
+            const ratioCap = paramsRef.current.quality === "low" ? 1 : paramsRef.current.quality === "medium" ? 1.5 : 2
+            renderer.setPixelRatio(Math.min(ratioCap, detailCanvasPixelRatio(w, h, props.detailDpr)))
             renderer.setSize(w, h)
             if (choreographyRef.current?.current.viewportFraming) {
                 const side = Math.min(w, h)

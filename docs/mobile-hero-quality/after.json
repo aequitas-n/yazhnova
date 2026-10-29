@@ -1,0 +1,106 @@
+[
+  {
+    "width": 390,
+    "buffers": [
+      {
+        "width": 585,
+        "height": 375,
+        "cssWidth": 390,
+        "cssHeight": 249.59375
+      },
+      {
+        "width": 162,
+        "height": 162,
+        "cssWidth": 108,
+        "cssHeight": 108
+      }
+    ],
+    "fps": [
+      29.97804424928222,
+      29.97804424928222
+    ],
+    "timing": {
+      "beats": [
+        {
+          "beat": "formed",
+          "time": 984.5
+        },
+        {
+          "beat": "opening",
+          "time": 1662.300000011921
+        },
+        {
+          "beat": "wordmark",
+          "time": 3061.7000000476837
+        },
+        {
+          "beat": "closing",
+          "time": 3910.2000000476837
+        },
+        {
+          "beat": "reformed",
+          "time": 4949.400000035763
+        },
+        {
+          "beat": "docking",
+          "time": 5140.600000023842
+        }
+      ],
+      "duration": 5394.5,
+      "liveContexts": 2
+    },
+    "errors": []
+  },
+  {
+    "width": 412,
+    "buffers": [
+      {
+        "width": 618,
+        "height": 396,
+        "cssWidth": 412,
+        "cssHeight": 263.671875
+      },
+      {
+        "width": 171,
+        "height": 171,
+        "cssWidth": 114,
+        "cssHeight": 114
+      }
+    ],
+    "fps": [
+      30.045067601402103,
+      30.064363143631436
+    ],
+    "timing": {
+      "beats": [
+        {
+          "beat": "formed",
+          "time": 973.8000000119209
+        },
+        {
+          "beat": "opening",
+          "time": 1663
+        },
+        {
+          "beat": "wordmark",
+          "time": 3062.2000000476837
+        },
+        {
+          "beat": "closing",
+          "time": 3910.900000035763
+        },
+        {
+          "beat": "reformed",
+          "time": 4922.100000023842
+        },
+        {
+          "beat": "docking",
+          "time": 5142.100000023842
+        }
+      ],
+      "duration": 5406,
+      "liveContexts": 2
+    },
+    "errors": []
+  }
+]
